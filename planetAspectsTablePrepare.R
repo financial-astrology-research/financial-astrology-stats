@@ -20,8 +20,8 @@ degreesDistanceNormalize <- function(x) {
 }
 
 composePlanetColNameCombine <- function(planetsIds, colNameSuffix) {
-  planetsComb <- combn(planetsIds, 2, simplify=F)
-  as.character(lapply(planetsComb, function(x) paste(x[1], x[2], colNameSuffix, sep='')))
+  planetsComb <- combn(planetsIds, 2, simplify = F)
+  as.character(lapply(planetsComb, function(x) paste(x[1], x[2], colNameSuffix, sep = '')))
 }
 
 #' Generate all combined planets longitude column names.
@@ -129,8 +129,8 @@ planetsAspectsCalculate <- function(planetsPositions, usePlanets, aspectSet) {
   )
 
   planetsPositionsClone[,
-     c(planetsCombAspCols) :=
-       lapply(.SD, longitudeDistanceAspectCategorize, orbs = orbsMatrix), .SDcols = planetsCombLonCols
+    c(planetsCombAspCols) :=
+      lapply(.SD, longitudeDistanceAspectCategorize, orbs = orbsMatrix), .SDcols = planetsCombLonCols
   ]
 
   planetsPositionsClone[,
@@ -149,8 +149,9 @@ planetsAspectsCalculate <- function(planetsPositions, usePlanets, aspectSet) {
 planetsAspectsTablePrepare <- function(resolution, usePlanets, aspectSet) {
   planets <- loadPlanetsPositionTable(resolution)
   colNames <- colnames(planets)
-  selectCols <- colNames[grep(paste0(usePlanets, collapse = "|"), colNames)]
+  filterColNames <- colNames[grep(paste0(usePlanets, collapse = "|"), colNames)]
   planetsCombLonCols <- planetsLongitudeColNamesCombine(usePlanets)
+  selectCols <- c('Date', 'Hour', filterColNames)
 
   planets <- planets[, selectCols, with = F]
   # Calculate planets combinations longitudinal differences.
@@ -176,10 +177,41 @@ planetsAspectsTablePrepare <- function(resolution, usePlanets, aspectSet) {
   return(planets)
 }
 
-modernPlanetsSet <- modernPlanets()
-aspectSet <- pabloCerdaAspectSet()
-dailyPlanets <- planetsAspectsTablePrepare(
-  resolution = "hourly",
-  usePlanets = modernPlanetsSet,
-  aspectSet = aspectSet
-)
+#' Convert hourly aspects wide table into long format.
+#' @param hourlyPlanetsTable Planets hourly position / aspects / orb data table.
+#' @return Long format aspects data table.
+hourlyAspectsWideToLongTransform <- function(hourlyPlanetsTable) {
+  idCols <- c('Date', 'Hour')
+  colNames <- colnames(hourlyPlanetsTable)
+  aspectColNames <- colNames[grep("^....ASP$", colNames)]
+  hourlyAspects <- melt(
+    hourlyPlanetsTable, id.var = idCols,
+    variable.name = 'origin', value.name = 'aspect',
+    value.factor = T, measure.var = aspectColNames, na.rm = T
+  )
+
+  hourlyAspects[, origin := substr(origin, 1, 4)]
+  setkey(hourlyAspects, 'Date', 'Hour')
+  # hourlyAspects <- dailyAspectsAddOrbs(hourlyAspects, hourlyPlanetsRange, idCols)
+  # dailyAspects <- hourlyAspectsDateAggregate(hourlyAspects)
+  # dailyAspects <- dailyAspectsAddOrbsDir(dailyAspects)
+  # dailyAspects <- dailyAspectsAddLongitude(dailyAspects, hourlyPlanetsRange, idCols)
+  # dailyAspects <- dailyAspectsAddSpeed(dailyAspects, hourlyPlanetsRange, idCols)
+  # dailyAspects <- dailyAspectsAddDeclination(dailyAspects, hourlyPlanetsRange, idCols)
+
+  return(hourlyAspects)
+}
+
+modernPlanetsPabloAspectsDailyAspectsTable <- function() {
+  modernPlanetsSet <- modernPlanets()
+  aspectSet <- pabloCerdaAspectSet()
+  dailyPlanets <- planetsAspectsTablePrepare(
+    resolution = "hourly",
+    usePlanets = modernPlanetsSet,
+    aspectSet = aspectSet
+  )
+
+  hourlyAspectsWideToLongTransform(dailyPlanets)
+}
+
+dailyAspectsLongTable <- modernPlanetsPabloAspectsDailyAspectsTable()
