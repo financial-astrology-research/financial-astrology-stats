@@ -66,23 +66,76 @@ loadPlanetsPositionTable <- function(resolution = "hourly") {
   return(planetsPositionsTable)
 }
 
+#' Categorize the longitue distance between two planets as astrological angular aspect.
+#' @param x Longitude distance vector.
+#' @param orbsMatrix Aspects orbs matrix.
+#' @return A vector of the continuous longitude distance mapped to aspect categories.
+longitudeDistanceAspectCategorize <- function(x, orbsMatrix) {
+  allidx <- rep(FALSE, length(x))
+  aspects <- as.numeric(colnames(orbsMatrix))
+  for (aspect in aspects) {
+    comborb <- orbsMatrix['orbs', as.character(aspect)]
+    rstart <- aspect - comborb
+    rend <- aspect + comborb
+    idx <- x >= rstart & x <= rend
+    x[idx] <- aspect
+    allidx[idx] <- TRUE
+  }
+
+  # Set NA when no aspects mapped.
+  x[!allidx] <- NA
+  return(x)
+}
+
+#' Calculate the aspect orb (distance from exact angle) between two planets angular aspect.
+#' @param x Longitude distance vector.
+#' @param orbsMatrix Aspects orbs matrix.
+#' @return A vector of the continuous longitude distance mapped to aspect categories.
+longitudeDistanceAspectOrbCalculate <- function(x, orbsMatrix) {
+  allidx <- rep(FALSE, length(x))
+  aspects <- as.numeric(colnames(orbsMatrix))
+  for (aspect in aspects) {
+    comborb <- orbsMatrix['orbs', as.character(aspect)]
+    rstart <- aspect - comborb
+    rend <- aspect + comborb
+    idx <- x >= rstart & x <= rend
+    x[idx] <- abs(x[idx] - aspect)
+    allidx[idx] <- TRUE
+  }
+
+  # Set NA when no aspects mapped.
+  x[!allidx] <- NA
+  return(x)
+}
+
 #' Calculate planets aspects within desired aspect type orb.
 #' @param planetsPositions Planets positions data table.
 #' @param usePlanets Planets IDs to compute angular aspects for it's longitudes.
-#' @param orbs Aspects planets orb (degrees tolerance to exact angle).
+#' @param aspectSet Aspects set with aspect / orbs properties to compute.
 #' @return Planets data table augmented with aspects and orbs planets combination columns.
-planetsAspectsCalculate <- function(planetsPositions, usePlanets, orbs) {
+planetsAspectsCalculate <- function(planetsPositions, usePlanets, aspectSet) {
   # Clone to avoid original table is not modified.
   planetsPositionsClone <- copy(planetsPositions)
+  planetsCombLonCols <- planetsLongitudeColNamesCombine(usePlanets)
   planetsCombAspCols <- planetsAspectColNamesCombine(usePlanets)
   planetsCombOrbCols <- planetsOrbColNamesCombine(usePlanets)
 
+  orbsMatrix <- matrix(
+    aspectSet$orbs,
+    nrow = 1,
+    ncol = length(aspectSet$aspects),
+    byrow = TRUE,
+    dimnames = list('orbs', aspectSet$aspects)
+  )
+
   planetsPositionsClone[,
-     c(planetsCombAspCols) := lapply(.SD, calculateAspects, orbs = orbs), .SDcols = planetsCombAspCols
+     c(planetsCombAspCols) :=
+       lapply(.SD, longitudeDistanceAspectCategorize, orbs = orbsMatrix), .SDcols = planetsCombLonCols
   ]
 
   planetsPositionsClone[,
-    c(planetsCombOrbCols) := lapply(.SD, calculateAspectOrbs, orbs = orbs), .SDcols = planetsCombOrbCols
+    c(planetsCombOrbCols) :=
+      lapply(.SD, longitudeDistanceAspectOrbCalculate, orbs = orbsMatrix), .SDcols = planetsCombLonCols
   ]
 
   return(planetsPositionsClone)
@@ -91,10 +144,9 @@ planetsAspectsCalculate <- function(planetsPositions, usePlanets, orbs) {
 #' Calculate specific planet angles aspects for a given resolution.
 #' @param usePlanets The list of planets ID codes to calculate aspects for.
 #' @param resolution The row resolution of the aspects: "hourly" or "daily".
-#' @param aspects Aspects angles vector needs to be calculated.
-#' @param cusorbs Aspects orbs (tolerance to exact angle formation) vector in same order as the aspects.
+#' @param aspectSet Aspects set list, that defines "aspect" and "orbs" properties.
 #' @return A data table with combined planet code columns with the angular aspects.
-planetsAspectsTablePrepare <- function(resolution, usePlanets, aspects, orbs) {
+planetsAspectsTablePrepare <- function(resolution, usePlanets, aspectSet) {
   planets <- loadPlanetsPositionTable(resolution)
   colNames <- colnames(planets)
   selectCols <- colNames[grep(paste0(usePlanets, collapse = "|"), colNames)]
@@ -112,8 +164,11 @@ planetsAspectsTablePrepare <- function(resolution, usePlanets, aspects, orbs) {
   planets[, c(planetsCombLonCols) := lapply(.SD, degreesDistanceNormalize), .SDcols = planetsCombLonCols]
 
   # Calculate aspects within specified orb.
-  orbsmatrix <- matrix(orbs, nrow = 1, ncol = length(aspects), byrow = TRUE, dimnames = list('orbs', aspects))
-  planets <- planetsAspectsCalculate(planets, orbsmatrix)
+  planets <- planetsAspectsCalculate(
+    planetsPositions = planets,
+    usePlanets = usePlanets,
+    aspectSet = aspectSet
+  )
 
   #planets[, c(planetsSpCols) := lapply(.SD, function(x) scales::rescale(x, to = c(0, 1))), .SDcols = planetsSpCols]
   #planets[, c(planetsDecCols) := lapply(.SD, function(x) scales::rescale(x, to = c(0, 1))), .SDcols = planetsDecCols]
@@ -122,10 +177,9 @@ planetsAspectsTablePrepare <- function(resolution, usePlanets, aspects, orbs) {
 }
 
 modernPlanetsSet <- modernPlanets()
-aspectsSet <- pabloCerdaAspectSet()
+aspectSet <- pabloCerdaAspectSet()
 dailyPlanets <- planetsAspectsTablePrepare(
   resolution = "hourly",
   usePlanets = modernPlanetsSet,
-  aspects = aspectsSet$aspects,
-  orbs = aspectsSet$orbs
+  aspectSet = aspectSet
 )
