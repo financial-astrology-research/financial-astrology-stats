@@ -113,7 +113,7 @@ longitudeDistanceAspectOrbCalculate <- function(x, orbsMatrix) {
 #' @param usePlanets Planets IDs to compute angular aspects for it's longitudes.
 #' @param aspectSet Aspects set with aspect / orbs properties to compute.
 #' @return Planets data table augmented with aspects and orbs planets combination columns.
-planetsAspectsCalculate <- function(planetsPositions, usePlanets, aspectSet) {
+planetAspectsCalculate <- function(planetsPositions, usePlanets, aspectSet) {
   # Clone to avoid original table is not modified.
   planetsPositionsClone <- copy(planetsPositions)
   planetsCombLonCols <- planetsLongitudeColNamesCombine(usePlanets)
@@ -146,7 +146,7 @@ planetsAspectsCalculate <- function(planetsPositions, usePlanets, aspectSet) {
 #' @param resolution The row resolution of the aspects: "hourly" or "daily".
 #' @param aspectSet Aspects set list, that defines "aspect" and "orbs" properties.
 #' @return A data table with combined planet code columns with the angular aspects.
-planetsAspectsTablePrepare <- function(resolution, usePlanets, aspectSet) {
+planetAspectsTablePrepare <- function(resolution, usePlanets, aspectSet) {
   planets <- loadPlanetsPositionTable(resolution)
   colNames <- colnames(planets)
   filterColNames <- colNames[grep(paste0(usePlanets, collapse = "|"), colNames)]
@@ -165,7 +165,7 @@ planetsAspectsTablePrepare <- function(resolution, usePlanets, aspectSet) {
   planets[, c(planetsCombLonCols) := lapply(.SD, degreesDistanceNormalize), .SDcols = planetsCombLonCols]
 
   # Calculate aspects within specified orb.
-  planets <- planetsAspectsCalculate(
+  planets <- planetAspectsCalculate(
     planetsPositions = planets,
     usePlanets = usePlanets,
     aspectSet = aspectSet
@@ -177,41 +177,61 @@ planetsAspectsTablePrepare <- function(resolution, usePlanets, aspectSet) {
   return(planets)
 }
 
+#' Append aspects orbs column data to planet aspects table.
+#' @param planetAspectsLong Planets aspects long table (one planet combination aspect per row).
+#' @param planetAspectsWide Planets aspects wide table with all planets/aspects data columns.
+#' @param idCols Columns IDs to use for aspects orb table merge.
+#' @return Planets aspects long table augmented with aspects orb cols.
+aspectsOrbColumnsAppend <- function(planetAspectsLong, planetAspectsWide, idCols = c('Date')) {
+  colNames <- colnames(planetAspectsWide)
+  orbColNames <- colNames[grep("^....ORB$", colNames)]
+  planetAspectsOrbs <- melt(
+    planetAspectsWide, id.var = idCols, variable.name = 'origin',
+    value.name = 'orb', measure.var = orbColNames
+  )
+
+  planetAspectsOrbs[, orb := round(orb, 2)]
+  planetAspectsOrbs[, origin := substr(origin, 1, 4)]
+  merge(planetAspectsLong, planetAspectsOrbs, by = c(idCols, 'origin'))
+}
+
 #' Convert hourly aspects wide table into long format.
-#' @param hourlyPlanetsTable Planets hourly position / aspects / orb data table.
+#' @param hourlyPlanetAspectsWide Planets hourly position / aspects / orb data table.
 #' @return Long format aspects data table.
-hourlyAspectsWideToLongTransform <- function(hourlyPlanetsTable) {
+hourlyAspectsWideToLongTransform <- function(hourlyPlanetAspectsWide) {
   idCols <- c('Date', 'Hour')
-  colNames <- colnames(hourlyPlanetsTable)
+  colNames <- colnames(hourlyPlanetAspectsWide)
   aspectColNames <- colNames[grep("^....ASP$", colNames)]
-  hourlyAspects <- melt(
-    hourlyPlanetsTable, id.var = idCols,
+  hourlyPlanetAspectsLong <- melt(
+    hourlyPlanetAspectsWide, id.var = idCols,
     variable.name = 'origin', value.name = 'aspect',
     value.factor = T, measure.var = aspectColNames, na.rm = T
   )
 
-  hourlyAspects[, origin := substr(origin, 1, 4)]
-  setkey(hourlyAspects, 'Date', 'Hour')
-  # hourlyAspects <- dailyAspectsAddOrbs(hourlyAspects, hourlyPlanetsRange, idCols)
-  # dailyAspects <- hourlyAspectsDateAggregate(hourlyAspects)
-  # dailyAspects <- dailyAspectsAddOrbsDir(dailyAspects)
-  # dailyAspects <- dailyAspectsAddLongitude(dailyAspects, hourlyPlanetsRange, idCols)
-  # dailyAspects <- dailyAspectsAddSpeed(dailyAspects, hourlyPlanetsRange, idCols)
-  # dailyAspects <- dailyAspectsAddDeclination(dailyAspects, hourlyPlanetsRange, idCols)
+  setkey(hourlyPlanetAspectsLong, 'Date', 'Hour')
+  hourlyPlanetAspectsLong[, origin := substr(origin, 1, 4)]
+  planetAspectsLongDataAugment(hourlyPlanetAspectsLong, hourlyPlanetAspectsWide, idCols)
+}
 
-  return(hourlyAspects)
+#' Augment planet aspects rows with additional aspects / planets data: orb, speed, declination, etc.
+#' @param planetAspectsLong Planets aspects long table (one planet combination aspect per row).
+#' @param planetAspectsWide Planets aspects wide table (one planet combination per column).
+#' @param mergeCols The time period merge cols used to merge.
+#' @return Planets aspects wide table augmented with all astrological relevant data: orbs, speed, declination, etc.
+planetAspectsLongDataAugment <- function(planetAspectsLong, planetAspectsWide, mergeCols) {
+  aspectsOrbColumnsAppend(planetAspectsLong, planetAspectsWide, mergeCols)
 }
 
 modernPlanetsPabloAspectsDailyAspectsTable <- function() {
   modernPlanetsSet <- modernPlanets()
   aspectSet <- pabloCerdaAspectSet()
-  dailyPlanets <- planetsAspectsTablePrepare(
+  planetAspectsWideTable <- planetAspectsTablePrepare(
     resolution = "hourly",
     usePlanets = modernPlanetsSet,
     aspectSet = aspectSet
   )
 
-  hourlyAspectsWideToLongTransform(dailyPlanets)
+  hourlyAspectsWideToLongTransform(planetAspectsWideTable)
 }
 
-dailyAspectsLongTable <- modernPlanetsPabloAspectsDailyAspectsTable()
+planetAspectsWide <- modernPlanetsPabloAspectsDailyAspectsTable()
