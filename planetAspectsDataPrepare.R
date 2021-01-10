@@ -7,10 +7,7 @@ library(data.table)
 
 source("./aspectSets.R")
 source("./planetSets.R")
-
-expandPath <- function(path) {
-  normalizePath(path.expand(path))
-}
+source("./fileSystemUtilities.R")
 
 #' Normalize planets longitude distance to 180 degrees limit.
 degreesDistanceNormalize <- function(x) {
