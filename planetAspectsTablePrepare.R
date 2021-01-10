@@ -222,6 +222,17 @@ planetAspectsLongDataAugment <- function(planetAspectsLong, planetAspectsWide, m
   aspectsOrbColumnsAppend(planetAspectsLong, planetAspectsWide, mergeCols)
 }
 
+#' Daily aggregate hourly resolution planet aspects.
+#' @param hourlyPlanetAspectsLong Planets aspects long table (one planet combination aspect per row).
+hourlyAspectsDateAggregate <- function(hourlyPlanetAspectsLong) {
+  # Keep min orb for the aggrecation.
+  dailyPlanetAspectsLong <- hourlyPlanetAspectsLong[,
+    min(orb), by = list(Date, origin, aspect)
+   ]
+
+  setnames(dailyPlanetAspectsLong, c('Date', 'origin', 'aspect', 'orb'))
+}
+
 modernPlanetsPabloAspectsDailyAspectsTable <- function() {
   modernPlanetsSet <- modernPlanets()
   aspectSet <- pabloCerdaAspectSet()
@@ -231,7 +242,8 @@ modernPlanetsPabloAspectsDailyAspectsTable <- function() {
     aspectSet = aspectSet
   )
 
-  hourlyAspectsWideToLongTransform(planetAspectsWideTable)
+  hourlyPlanetAspectsLong <- hourlyAspectsWideToLongTransform(planetAspectsWideTable)
+  hourlyAspectsDateAggregate(hourlyPlanetAspectsLong)
 }
 
 planetAspectsWide <- modernPlanetsPabloAspectsDailyAspectsTable()
