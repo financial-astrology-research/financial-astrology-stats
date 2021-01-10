@@ -137,11 +137,31 @@ assetPriceDataPriceAugment <- function(symbolID) {
   return(TRUE)
 }
 
+#' Merge daily planet aspects and asset prices augmented tables and export to CSV.
+#' @param symbolID Symbol ID of the asset data to process.
+#' @return Boolean vector with TRUE for success data augmentation and FALSE for failed.
+planetAspectsAssetPricesDataMerge <- function(symbolID) {
+  # TODO: Separate merge from export logic.
+  assetPriceAugmentedFileName <- paste0(assetsDataDestinationPath(), symbolID, "-augmented.csv")
+  assetPriceAugmentedTable <- fread(assetPriceAugmentedFileName)
+  aspectFileName <- "aspects_modern_planets_pablo_aspects_set_long"
+  planetAspectLong <- fread(paste0("./data/", aspectFileName, ".csv"))
+
+  planetAspectsAssetPricesTable <- merge(planetAspectLong, assetPriceAugmentedTable, by = c('Date'))
+  targetFileName <- paste0(assetsDataDestinationPath(), symbolID, "-", aspectFileName, ".csv")
+  fwrite(planetAspectsAssetPricesTable, targetFileName)
+  cat("Exported aspects / asset price merged data to:", targetFileName, "\n")
+
+  # TODO: Implement error handling on write and return false on failure.
+  return(TRUE)
+}
+
 #' Process planet aspects / assets price data preparation.
 planetsAspectsAssetsPriceDataPrepare <- function() {
   #watchListPriceDataFetch()
   symbolsList <- assetsWatchList()
-  result <- lapply(symbolsList$SymbolID, assetPriceDataPriceAugment)
+  augmentResult <- lapply(symbolsList$SymbolID, assetPriceDataPriceAugment)
+  mergeResult <- lapply(symbolsList$SymbolID, planetAspectsAssetPricesDataMerge)
 }
 
 planetsAspectsAssetsPriceDataPrepare()
