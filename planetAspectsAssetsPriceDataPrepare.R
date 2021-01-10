@@ -158,7 +158,7 @@ planetAspectsAssetPricesDataMerge <- function(symbolID) {
 
 #' Process planet aspects / assets price data preparation.
 planetsAspectsAssetsPriceDataPrepare <- function() {
-  #watchListPriceDataFetch()
+  watchListPriceDataFetch()
   symbolsList <- assetsWatchList()
   augmentResult <- lapply(symbolsList$SymbolID, assetPriceDataPriceAugment)
   mergeResult <- lapply(symbolsList$SymbolID, planetAspectsAssetPricesDataMerge)
