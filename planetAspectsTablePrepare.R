@@ -220,6 +220,9 @@ hourlyAspectsWideToLongTransform <- function(hourlyPlanetAspectsWide) {
 
   setkey(hourlyPlanetAspectsLong, 'Date', 'Hour')
   hourlyPlanetAspectsLong[, origin := substr(origin, 1, 4)]
+  # Transform aspect numerical aspect to factor to siplify categorical analysis plots.
+  hourlyPlanetAspectsLong[, aspect := as.factor(paste("a", aspect))]
+
   planetAspectsLongDataAugment(hourlyPlanetAspectsLong, hourlyPlanetAspectsWide, idCols)
 }
 
@@ -238,7 +241,7 @@ hourlyAspectsDateAggregate <- function(hourlyPlanetAspectsLong) {
   # Keep min orb for the aggrecation.
   dailyPlanetAspectsLong <- hourlyPlanetAspectsLong[,
     min(orb), by = list(Date, origin, aspect)
-   ]
+  ]
 
   setnames(dailyPlanetAspectsLong, c('Date', 'origin', 'aspect', 'orb'))
 }
@@ -254,8 +257,12 @@ modernPlanetsPabloAspectsDailyAspectsTableExport <- function() {
   )
 
   hourlyPlanetAspectsLong <- hourlyAspectsWideToLongTransform(planetAspectsWideTable)
-  hourlyAspectsLong <- hourlyAspectsDateAggregate(hourlyPlanetAspectsLong)
-  fwrite(hourlyAspectsLong, expandPath("./data/aspects_modern_planets_pablo_aspects_set_long.csv"))
+  dailyPlanetAspectsLong <- hourlyAspectsDateAggregate(hourlyPlanetAspectsLong)
+
+  fwrite(
+    dailyPlanetAspectsLong,
+    expandPath("./data/aspects_modern_planets_pablo_aspects_set_long.csv"), append = F
+  )
 }
 
 modernPlanetsPabloAspectsDailyAspectsTableExport()
