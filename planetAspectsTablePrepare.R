@@ -243,7 +243,8 @@ hourlyAspectsDateAggregate <- function(hourlyPlanetAspectsLong) {
   setnames(dailyPlanetAspectsLong, c('Date', 'origin', 'aspect', 'orb'))
 }
 
-modernPlanetsPabloAspectsDailyAspectsTable <- function() {
+#' Prepare and export planet aspects long format table using modern planets set and pablo aspect / orb set.
+modernPlanetsPabloAspectsDailyAspectsTableExport <- function() {
   modernPlanetsSet <- modernPlanets()
   aspectSet <- pabloCerdaAspectSet()
   planetAspectsWideTable <- planetAspectsTablePrepare(
@@ -253,7 +254,8 @@ modernPlanetsPabloAspectsDailyAspectsTable <- function() {
   )
 
   hourlyPlanetAspectsLong <- hourlyAspectsWideToLongTransform(planetAspectsWideTable)
-  hourlyAspectsDateAggregate(hourlyPlanetAspectsLong)
+  hourlyAspectsLong <- hourlyAspectsDateAggregate(hourlyPlanetAspectsLong)
+  fwrite(hourlyAspectsLong, expandPath("./data/aspects_modern_planets_pablo_aspects_set_long.csv"))
 }
 
-planetAspectsWide <- modernPlanetsPabloAspectsDailyAspectsTable()
+modernPlanetsPabloAspectsDailyAspectsTableExport()
