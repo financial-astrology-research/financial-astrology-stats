@@ -238,9 +238,9 @@ planetAspectsLongDataAugment <- function(planetAspectsLong, planetAspectsWide, m
 #' Daily aggregate hourly resolution planet aspects.
 #' @param hourlyPlanetAspectsLong Planets aspects long table (one planet combination aspect per row).
 hourlyAspectsDateAggregate <- function(hourlyPlanetAspectsLong) {
-  # Keep min orb for the aggrecation.
+  # Use mean orb for the aggregation.
   dailyPlanetAspectsLong <- hourlyPlanetAspectsLong[,
-    min(orb), by = list(Date, origin, aspect)
+    mean(orb), by = list(Date, origin, aspect)
   ]
 
   setnames(dailyPlanetAspectsLong, c('Date', 'origin', 'aspect', 'orb'))
