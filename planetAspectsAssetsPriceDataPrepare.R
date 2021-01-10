@@ -21,19 +21,19 @@ assetsWatchList <- function() {
 }
 
 #' Fetch asset price data from a given data provider source.
-#' @param symbol Data source asset symbol ID.
+#' @param symbolID Data source asset symbol ID.
 #' @param source Data provider source ID supported by quantmod.
 #' @return Boolean vector with TRUE for success symbol data download and FALSE for failed.
-assetPriceDataFetch <- function(symbol, source = "yahoo") {
+assetPriceDataFetch <- function(symbolID, source = "yahoo") {
   # Date to retrieve asset price since if available, oldest data source records are around this year.
   startDate = as.Date("1970-01-01")
   maxRetry <- 5
 
   for (t in 1:maxRetry) {
     tryCatch({
-      cat("Downloading", symbol, "- attempt: #", t, "of", maxRetry, "\n")
+      cat("Downloading", symbolID, "- attempt: #", t, "of", maxRetry, "\n")
       symbolDataFrame <- getSymbols(
-        symbol,
+        symbolID,
         src = "yahoo",
         from = startDate,
         env = NULL,
@@ -47,9 +47,9 @@ assetPriceDataFetch <- function(symbol, source = "yahoo") {
       setDT(symbolDataFrame)
 
       # Store to tmp data directory.
-      targetFileName <- paste0(assetsDataDestinationPath(), symbol, ".csv")
+      targetFileName <- paste0(assetsDataDestinationPath(), symbolID, ".csv")
       write.csv(symbolDataFrame, file = targetFileName, row.names = F)
-      cat("Sucessfully saved the asset data to:", targetFileName, "\n")
+      cat("Exported asset price data to:", targetFileName, "\n")
       return(TRUE)
     }, error = function(e) {
       print(e)
@@ -64,4 +64,84 @@ watchListPriceDataFetch <- function() {
   result <- lapply(symbolsList$SymbolID, assetPriceDataFetch)
 }
 
-watchListPriceDataFetch()
+#' Process asset price data load and price derivations calculation.
+#' @param symbolID Asset symbol ID as identified in data source.
+#' @return Boolean vector with TRUE for success data augmentation and FALSE for failed.
+assetPriceDataPriceAugment <- function(symbolID) {
+  dateFormat = "%Y-%m-%d"
+  mapricefs <- 2
+  mapricesl <- 4
+  assetPriceTable <- fread(
+    paste0(assetsDataDestinationPath(), symbolID, ".csv")
+  )
+
+  # Filter observations with missing open price.
+  assetPriceTable <- assetPriceTable[!is.na(Open)]
+  assetPriceTable[, Date := as.Date(Date, format = dateFormat)]
+  setkey(assetPriceTable, 'Date')
+
+  # Calculate daily mid prices based on OHLC combinations.
+  assetPriceTable[, OHLCMid := (Open + High + Low + Close) / 4]
+  assetPriceTable[, HLCMid := (High + Low + Close) / 3]
+  assetPriceTable[, HLMid := (High + Low) / 2]
+
+  # Calculate fast / slow MAs for the different mid prices.
+  assetPriceTable[, OHLCMAF := SMA(OHLCMid, n = mapricefs)]
+  assetPriceTable[, OHLCMAS := SMA(OHLCMid, n = mapricesl)]
+  assetPriceTable[, HLCMAF := SMA(HLCMid, n = mapricefs)]
+  assetPriceTable[, HLCMAS := SMA(HLCMid, n = mapricesl)]
+  assetPriceTable[, HLMAF := SMA(HLMid, n = mapricefs)]
+  assetPriceTable[, HLMAS := SMA(HLMid, n = mapricesl)]
+
+  # Calculate moving average momentum.
+  assetPriceTable[, OHLCMom := OHLCMAF - OHLCMAS]
+  assetPriceTable[, HLCMom := HLCMAF - HLCMAS]
+  assetPriceTable[, HLMom := HLMAF - HLMAS]
+
+  # Calculate mid price differences.
+  assetPriceTable[, diffOHLC := Delt(OHLCMid, k = 1)]
+  assetPriceTable[, difflogOHLC := Delt(OHLCMid, k = 1, type = "log")]
+  assetPriceTable[, diffOxHL := Delt(Open, HLMid, k = 0)]
+  assetPriceTable[, difflogOxHL := Delt(Open, HLMid, k = 0, type = "log")]
+  assetPriceTable[, diffOxHLC := Delt(Open, HLCMid, k = 0)]
+  assetPriceTable[, difflogOxHLC := Delt(Open, HLCMid, k = 0, type = "log")]
+  assetPriceTable[, difflogHLMASxF := Delt(HLMAS, HLMAF, k = 0, type = "log")]
+  assetPriceTable[, difflogHLCMASxF := Delt(HLCMAS, HLCMAF, k = 0, type = "log")]
+
+  # Normalize price daily change to Z scores and center data.
+  assetPriceTable[, zdiffOHLC := scale(diffOHLC, center = T)]
+  assetPriceTable[, zdifflogOHLC := scale(difflogOHLC, center = T)]
+  assetPriceTable[, zdifflogHLMASxF := scale(difflogHLMASxF, center = T)]
+  assetPriceTable[, zdifflogHLCMASxF := scale(difflogHLCMASxF, center = T)]
+  assetPriceTable[, zdiffOxHL := scale(diffOxHL, center = T)]
+  assetPriceTable[, zdifflogOxHL := scale(difflogOxHL, center = T)]
+  assetPriceTable[, zdiffOxHLC := scale(diffOxHLC, center = T)]
+  assetPriceTable[, zdifflogOxHLC := scale(difflogOxHLC, center = T)]
+
+  # Filter the initial days needed by MAs max period where MA value cannot be determined.
+  assetPriceTable <- assetPriceTable[!is.na(OHLCMAF)]
+  labelCuts <- c(-1000000, 0, 1000000)
+  labels <- c('sell', 'buy')
+  assetPriceTable[, OHLCEff := cut(OHLCMom, labelCuts, labels = labels, right = FALSE)]
+  assetPriceTable[, HLCMomEff := cut(HLCMom, labelCuts, labels = labels, right = FALSE)]
+  assetPriceTable[, HLMomEff := cut(HLMom, labelCuts, labels = labels, right = FALSE)]
+  assetPriceTable[, OxHLEff := cut(diffOxHL, labelCuts, labels = labels, right = FALSE)]
+  assetPriceTable[, OxHLCEff := cut(diffOxHLC, labelCuts, labels = labels, right = FALSE)]
+
+  # Store augmented asset price table into temporal data directory.
+  targetFileName <- paste0(assetsDataDestinationPath(), symbolID, "-augmented.csv")
+  fwrite(assetPriceTable, targetFileName)
+  cat("Exported augmented asset price data to:", targetFileName, "\n")
+
+  # TODO: Implement error handling on write and return false on failure.
+  return(TRUE)
+}
+
+#' Process planet aspects / assets price data preparation.
+planetsAspectsAssetsPriceDataPrepare <- function() {
+  #watchListPriceDataFetch()
+  symbolsList <- assetsWatchList()
+  result <- lapply(symbolsList$SymbolID, assetPriceDataPriceAugment)
+}
+
+planetsAspectsAssetsPriceDataPrepare()
