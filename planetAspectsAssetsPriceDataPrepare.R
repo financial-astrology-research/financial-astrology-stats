@@ -119,7 +119,7 @@ assetPriceDataPriceAugment <- function(symbolID) {
   assetPriceTable[, zdifflogOxHLC := scale(difflogOxHLC, center = T)]
 
   # Filter the initial days needed by MAs max period where MA value cannot be determined.
-  assetPriceTable <- assetPriceTable[!is.na(OHLCMAF)]
+  assetPriceTable <- assetPriceTable[!is.na(OHLCMAF) & !is.na(difflogHLMASxF)]
   labelCuts <- c(-1000000, 0, 1000000)
   labels <- c('sell', 'buy')
   assetPriceTable[, OHLCEff := cut(OHLCMom, labelCuts, labels = labels, right = FALSE)]
