@@ -240,15 +240,16 @@ planetAspectsLongDataAugment <- function(planetAspectsLong, planetAspectsWide, m
 hourlyAspectsDateAggregate <- function(hourlyPlanetAspectsLong) {
   # Use mean orb for the aggregation.
   dailyPlanetAspectsLong <- hourlyPlanetAspectsLong[,
-    round(mean(orb), 2), by = list(Date, origin, aspect)
+    mean(orb), by = list(Date, origin, aspect)
   ]
 
   # Separate aspect planets codes pX (fast) pY (slow) body, fast one is the force activation
   # due the fact that is the one approaching to slow one.
   dailyPlanetAspectsLong[, pX := substr(origin, 1, 2)]
   dailyPlanetAspectsLong[, pY := substr(origin, 3, 4)]
-
   setnames(dailyPlanetAspectsLong, c('Date', 'origin', 'aspect', 'orb', 'pX', 'pY'))
+
+  dailyPlanetAspectsLong[, orb := round(orb, 2)]
 }
 
 #' Prepare and export planet aspects long format table using modern planets set and pablo aspect / orb set.
