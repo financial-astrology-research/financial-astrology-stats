@@ -51,12 +51,22 @@ planetsOrbColNamesCombine <- function(planetsIds) {
 loadPlanetsPositionTable <- function(resolution = "hourly") {
   if (resolution == "daily") {
     planetsDataFile <- expandPath(paste("./data/planets_position_daily_1930-2029.tsv", sep = ""))
+    planetsPositionsTable <- fread(planetsDataFile, sep = "\t", na.strings = "", verbose = F)
   }
   else {
-    planetsDataFile <- expandPath(paste("./data/planets_position_hourly_1980-2000.tsv", sep = ""))
+    # TODO: Extract path composition to separate function.
+    planetsDataFile1 <- expandPath(paste("./data/planets_position_hourly_1980-2000.tsv", sep = ""))
+    planetsDataFile2 <- expandPath(paste("./data/planets_position_hourly_2001-2019.tsv", sep = ""))
+    planetsDataFile3 <- expandPath(paste("./data/planets_position_hourly_2020-2029.tsv", sep = ""))
+    planetsDataFiles <- c(planetsDataFile1, planetsDataFile2, planetsDataFile3)
+    planetsPositionsTable <- rbindlist(
+      lapply(
+        planetsDataFiles,
+        function(filePath) fread(filePath, sep = "\t", na.strings = "", verbose = F)
+      )
+    )
   }
 
-  planetsPositionsTable <- fread(planetsDataFile, sep = "\t", na.strings = "", verbose = F)
   # Normalize date and set year and weekday columns.
   planetsPositionsTable[, Date := as.Date(Date, format = "%Y-%m-%d")]
   planetsPositionsTable[, Year := as.character(format(Date, "%Y"))]
