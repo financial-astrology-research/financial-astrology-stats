@@ -43,7 +43,7 @@ planetAspectsAssetPriceSideFrequencyPrepare <- function(planetAspectsAssetPrices
 #' @param planetAspectsAssetPricesTable Daily planets aspects with asset prices table.
 #' @return Planets aspect price descriptive statistics table.
 planetAspectsAssetPriceDescriptivesPrepare <- function(planetAspectsAssetPricesTable) {
-  planetAspectsAssetPricesTable[, describe(diffOHLC), by = "PlanetsAspect"]
+  planetAspectsAssetPricesTable[, round(describe(diffOHLC), 3), by = "PlanetsAspect"]
 }
 
 #' Provide stats data destination path.
