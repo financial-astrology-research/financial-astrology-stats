@@ -18,8 +18,8 @@ planetAspectsAssetStatsPrepare <- function() {
   planetAspectsAssetPricesFiles <- list.files("./data/tmp", pattern = "*aspects_set_long.csv")
 
   for (planetAspectsAssetPricesFile in planetAspectsAssetPricesFiles) {
-    filenameParts <- unlist(strsplit(planetAspectsAssetPricesFile, "-"))
-    symbolID <- paste(filenameParts[1], filenameParts[2], sep = "-")
+    filenameParts <- unlist(strsplit(planetAspectsAssetPricesFile, "--"))
+    symbolID <- filenameParts[1]
 
     planetAspectsAssetPricesTable <- fread(paste0("./data/tmp/", planetAspectsAssetPricesFile))
     planetAspectsAssetPricesTable[, PlanetsAspect := paste0(origin, "_", aspect)]

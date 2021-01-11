@@ -129,7 +129,7 @@ assetPriceDataPriceAugment <- function(symbolID) {
   assetPriceTable[, OxHLCEff := cut(diffOxHLC, labelCuts, labels = labels, right = FALSE)]
 
   # Store augmented asset price table into temporal data directory.
-  targetFileName <- paste0(assetsDataDestinationPath(), symbolID, "-augmented.csv")
+  targetFileName <- paste0(assetsDataDestinationPath(), symbolID, "--augmented.csv")
   fwrite(assetPriceTable, targetFileName)
   cat("Exported augmented asset price data to:", targetFileName, "\n")
 
@@ -142,13 +142,13 @@ assetPriceDataPriceAugment <- function(symbolID) {
 #' @return Boolean vector with TRUE for success data augmentation and FALSE for failed.
 planetAspectsAssetPricesDataMerge <- function(symbolID) {
   # TODO: Separate merge from export logic.
-  assetPriceAugmentedFileName <- paste0(assetsDataDestinationPath(), symbolID, "-augmented.csv")
+  assetPriceAugmentedFileName <- paste0(assetsDataDestinationPath(), symbolID, "--augmented.csv")
   assetPriceAugmentedTable <- fread(assetPriceAugmentedFileName)
   aspectFileName <- "aspects_modern_planets_pablo_aspects_set_long"
   planetAspectLong <- fread(paste0("./data/", aspectFileName, ".csv"))
 
   planetAspectsAssetPricesTable <- merge(planetAspectLong, assetPriceAugmentedTable, by = c('Date'))
-  targetFileName <- paste0(assetsDataDestinationPath(), symbolID, "-", aspectFileName, ".csv")
+  targetFileName <- paste0(assetsDataDestinationPath(), symbolID, "--", aspectFileName, ".csv")
   fwrite(planetAspectsAssetPricesTable, targetFileName)
   cat("Exported aspects / asset price merged data to:", targetFileName, "\n")
 
