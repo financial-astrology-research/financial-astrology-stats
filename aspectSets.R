@@ -68,7 +68,7 @@ pabloCerdaAspectSet <- function() {
   return(
     list(
       aspects = c(0, 30, 45, 60, 90, 103, 120, 135, 150, 180),
-      orbs = c(5, 4, 4, 4, 4, 4, 4, 4, 4, 5)
+      orbs = c(2, 2, 2, 2, 2, 2, 2, 2, 2, 2)
     )
   )
 }
