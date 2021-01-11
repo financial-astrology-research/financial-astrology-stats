@@ -37,8 +37,13 @@ planetAspectsAssetPriceSideFrequencyPrepare <- function(planetAspectsAssetPrices
       as.list(round(prop.table(c(buy, sell)), 2)),
     by = "PlanetsAspect"
   ]
+}
 
-  return(planetAspectsEffectCountWide)
+#' Calculate planet aspects asset price descriptive statistics.
+#' @param planetAspectsAssetPricesTable Daily planets aspects with asset prices table.
+#' @return Planets aspect price descriptive statistics table.
+planetAspectsAssetPriceDescriptivesPrepare <- function(planetAspectsAssetPricesTable) {
+  planetAspectsAssetPricesTable[, describe(diffOHLC), by = "PlanetsAspect"]
 }
 
 #' Provide stats data destination path.
@@ -65,12 +70,17 @@ planetAspectsAssetStatsPrepare <- function() {
     symbolID <- filenameParts[1]
     planetAspectsAssetPricesTable <- fread(paste0("./data/tmp/", planetAspectsAssetPricesFile))
     planetAspectsAssetPricesTable[, PlanetsAspect := paste0(origin, "_", aspect)]
-    #planetAspectsAssetPricesTable[, describe(diffOHLC), by = "PlanetsAspect"]
 
     planetAspectsEffectCountWide <- planetAspectsAssetPriceSideFrequencyPrepare(planetAspectsAssetPricesTable)
     dataTableStatsExport(
       planetAspectsEffectCountWide,
       paste0(symbolID, "-buy_sell_count_freq_stats")
+    )
+
+    planetAspectsPriceDescriptives <- planetAspectsAssetPriceDescriptivesPrepare(planetAspectsAssetPricesTable)
+    dataTableStatsExport(
+      planetAspectsPriceDescriptives,
+      paste0(symbolID, "-price_descriptive_stats")
     )
   }
 }
