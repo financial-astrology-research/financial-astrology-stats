@@ -34,6 +34,13 @@ planetAspectsAssetStatsPrepare <- function() {
       fill = 0
     )
 
+    # Total days count.
+    planetAspectsEffectCountWide[, daysN := buy + sell]
+    # Compute buy/sell days percentage frequency.
+    planetAspectsEffectCountWide[,
+      c("BuyDays%", "SellDays%") := as.list(prop.table(c(buy, sell))), by = "PlanetsAspect"
+    ]
+
     targetFileName <- paste0("./stats/", symbolID, "-buy_sell_count_freq_stats", ".csv")
     fwrite(planetAspectsEffectCountWide, targetFileName)
 
@@ -47,3 +54,4 @@ planetAspectsAssetStatsPrepare <- function() {
 }
 
 planetAspectsAssetStatsPrepare()
+
