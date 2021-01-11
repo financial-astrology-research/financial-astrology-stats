@@ -38,17 +38,22 @@ planetAspectsAssetPriceSideFrequencyPrepare <- function(planetAspectsAssetPrices
     by = "PlanetsAspect"
   ]
 
-  targetFileName <- paste0("./stats/", symbolID, "-buy_sell_count_freq_stats", ".csv")
-  fwrite(planetAspectsEffectCountWide, targetFileName)
-
-  cat(
-    symbolID,
-    "- Aspects price change effect category frequency stats exported:",
-    targetFileName,
-    "\n"
-  )
-
   return(planetAspectsEffectCountWide)
+}
+
+#' Provide stats data destination path.
+#' @returns The stats data relative destination path.
+statsDataDestinationPath <- function() {
+  destinationPath <- "./stats/"
+}
+
+#' Persist stats data table into target path and file destination.
+#' @param dataTable The data table to persist.
+#' @param targetFileName The destination file name without extension.
+dataTableStatsExport <- function(dataTable, targetFileName) {
+  targetFileName <- paste0(statsDataDestinationPath(), targetFileName, ".csv")
+  fwrite(dataTable, targetFileName)
+  cat("Stats table exported to:", targetFileName, "\n")
 }
 
 planetAspectsAssetStatsPrepare <- function() {
@@ -61,9 +66,13 @@ planetAspectsAssetStatsPrepare <- function() {
     planetAspectsAssetPricesTable <- fread(paste0("./data/tmp/", planetAspectsAssetPricesFile))
     planetAspectsAssetPricesTable[, PlanetsAspect := paste0(origin, "_", aspect)]
     #planetAspectsAssetPricesTable[, describe(diffOHLC), by = "PlanetsAspect"]
-    planetAspectsAssetPriceSideFrequencyPrepare(planetAspectsAssetPricesTable)
+
+    planetAspectsEffectCountWide <- planetAspectsAssetPriceSideFrequencyPrepare(planetAspectsAssetPricesTable)
+    dataTableStatsExport(
+      planetAspectsEffectCountWide,
+      paste0(symbolID, "-buy_sell_count_freq_stats")
+    )
   }
 }
 
 planetAspectsAssetStatsPrepare()
-
