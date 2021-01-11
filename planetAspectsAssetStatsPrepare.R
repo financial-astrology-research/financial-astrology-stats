@@ -5,12 +5,50 @@
 # Created on: 10/01/2021
 
 library(data.table)
+library(psych)
 
 source("./fileSystemUtilities.R")
 
 #' Provides assets stats report destination path.
 assetsDataDestinationPath <- function() {
   paste0(normalizePath('./stats'), "/")
+}
+
+#' Prepare planet aspects / asset price side (buy / sell) frequency statistics.
+#' @param planetAspectsAssetPricesTable Daily planets aspects with asset prices table.
+#' @return Planets aspect price side category frequency statistics table.
+planetAspectsAssetPriceSideFrequencyPrepare <- function(planetAspectsAssetPricesTable) {
+  planetsAspectEffectCountLong <- planetAspectsAssetPricesTable[,
+    data.table(table(OHLCEff)), by = "PlanetsAspect"
+  ]
+
+  planetAspectsEffectCountWide <- dcast(
+    planetsAspectEffectCountLong,
+    PlanetsAspect ~ OHLCEff,
+    value.var = "N",
+    fill = 0
+  )
+
+  # Total days count.
+  planetAspectsEffectCountWide[, daysN := buy + sell]
+  # Compute buy/sell days percentage frequency.
+  planetAspectsEffectCountWide[,
+    c("BuyDays%", "SellDays%") :=
+      as.list(round(prop.table(c(buy, sell)), 2)),
+    by = "PlanetsAspect"
+  ]
+
+  targetFileName <- paste0("./stats/", symbolID, "-buy_sell_count_freq_stats", ".csv")
+  fwrite(planetAspectsEffectCountWide, targetFileName)
+
+  cat(
+    symbolID,
+    "- Aspects price change effect category frequency stats exported:",
+    targetFileName,
+    "\n"
+  )
+
+  return(planetAspectsEffectCountWide)
 }
 
 planetAspectsAssetStatsPrepare <- function() {
@@ -20,38 +58,10 @@ planetAspectsAssetStatsPrepare <- function() {
   for (planetAspectsAssetPricesFile in planetAspectsAssetPricesFiles) {
     filenameParts <- unlist(strsplit(planetAspectsAssetPricesFile, "--"))
     symbolID <- filenameParts[1]
-
     planetAspectsAssetPricesTable <- fread(paste0("./data/tmp/", planetAspectsAssetPricesFile))
     planetAspectsAssetPricesTable[, PlanetsAspect := paste0(origin, "_", aspect)]
-    planetsAspectEffectCountLong <- planetAspectsAssetPricesTable[,
-      data.table(table(OHLCEff)), by = "PlanetsAspect"
-    ]
-
-    planetAspectsEffectCountWide <- dcast(
-      planetsAspectEffectCountLong,
-      PlanetsAspect ~ OHLCEff,
-      value.var = "N",
-      fill = 0
-    )
-
-    # Total days count.
-    planetAspectsEffectCountWide[, daysN := buy + sell]
-    # Compute buy/sell days percentage frequency.
-    planetAspectsEffectCountWide[,
-      c("BuyDays%", "SellDays%") :=
-        as.list(round(prop.table(c(buy, sell)), 2)),
-      by = "PlanetsAspect"
-    ]
-
-    targetFileName <- paste0("./stats/", symbolID, "-buy_sell_count_freq_stats", ".csv")
-    fwrite(planetAspectsEffectCountWide, targetFileName)
-
-    cat(
-      symbolID,
-      "- Aspects price change effect category frequency stats exported:",
-      targetFileName,
-      "\n"
-    )
+    #planetAspectsAssetPricesTable[, describe(diffOHLC), by = "PlanetsAspect"]
+    planetAspectsAssetPriceSideFrequencyPrepare(planetAspectsAssetPricesTable)
   }
 }
 
