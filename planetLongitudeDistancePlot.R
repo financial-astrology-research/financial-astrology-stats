@@ -58,7 +58,6 @@ planetLongitudeDistancePlotTheme <- function() {
     theme(axis.text = element_blank()),
     theme(axis.title = element_blank()),
     theme(axis.line = element_blank()),
-    theme(legend.position = "none"),
     theme(axis.ticks.length = unit(0, "null")),
     theme(axis.ticks.margin = unit(0, "null")),
     theme(axis.text.x = element_text(angle = 90, size = 10))
@@ -87,7 +86,7 @@ planetsLongitudesDistanceAxesCustomize <- function(dateBreaks, dateRangeLimits) 
   list(
     geom_vline(xintercept = todayDate, linetype = "dashed", color = "white", size = 0.6, alpha = 0.7),
     labs(x = "Date", y = "Distance Angle"),
-    scale_y_continuous(breaks = seq(0, 180, by = 10)),
+    scale_y_continuous(breaks = seq(0, 180, by = 5)),
     scale_x_date(date_breaks = dateBreaks, date_labels = "%b %Y", limits = dateRangeLimits)
   )
 }
