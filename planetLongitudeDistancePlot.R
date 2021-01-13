@@ -8,7 +8,7 @@ library(ggplot2)
 
 source("./planetAspectsDataPrepare.R")
 
-ggplotDarkTheme = function(base_size = 12) {
+ggplotDarkTheme <- function(base_size = 12) {
   theme_grey(base_size = base_size) %+replace%
     theme(
       axis.line = element_blank(),
@@ -60,10 +60,11 @@ planetLongitudeDistancePlotTheme <- function() {
     theme(legend.position = "none"),
     theme(axis.ticks.length = unit(0, "null")),
     theme(axis.ticks.margin = unit(0, "null")),
-    theme(legend.margin = unit(0, "null"))
+    theme(axis.text.x = element_text(angle = 90, size = 10))
+  )
 }
 
-#' Provides ggplot horizontal reference zone lines for the modern astrology angles.
+#' Provides ggplot horizontal reference lines for all modern astrology angles.
 aspectsReferenceZonesLines <- function() {
   list(
     geom_hline(yintercept = 180, linetype = "longdash", color = "magenta2", size = 1, alpha = 0.7),
@@ -86,7 +87,7 @@ planetsLongitudesDistanceAxesCustomize <- function(dateBreaks, dateRangeLimits) 
     geom_vline(xintercept = todayDate, linetype = "dashed", color = "white", size = 0.6, alpha = 0.7),
     labs(x = "Date", y = "Distance Angle"),
     scale_y_continuous(breaks = seq(0, 180, by = 10)),
-    scale_x_date(date_breaks = dateBreaks, date_labels = "%Y-%m-%d", limits = dateRangeLimits)
+    scale_x_date(date_breaks = dateBreaks, date_labels = "%b %Y", limits = dateRangeLimits)
   )
 }
 
@@ -94,7 +95,7 @@ planetsLongitudesDistanceAxesCustomize <- function(dateBreaks, dateRangeLimits) 
 #' @param planetPositionsTable Daily planets position data table.
 planetsLongitudeDistanceForUranusPlot <- function(planetPositionsTable) {
   dateBreaks <- "1 month"
-  dateRangeLimits <- c(as.Date("2018-01-01"), Sys.Date())
+  dateRangeLimits <- c(Sys.Date() - (365 * 3), Sys.Date())
   planetPositionsTableFiltered <- planetPositionsTable[
     Date >= dateRangeLimits[1] & Date <= Sys.Date(),
   ]
