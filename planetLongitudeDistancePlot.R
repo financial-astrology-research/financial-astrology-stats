@@ -60,9 +60,7 @@ planetLongitudeDistancePlotTheme <- function() {
     theme(legend.position = "none"),
     theme(axis.ticks.length = unit(0, "null")),
     theme(axis.ticks.margin = unit(0, "null")),
-    theme(legend.margin = unit(0, "null")),
-    theme(axis.title.x = element_blank(), axis.text.x = element_blank(), axis.ticks.x = element_blank()),
-    theme(axis.title.y = element_blank()))
+    theme(legend.margin = unit(0, "null"))
 }
 
 #' Provides ggplot horizontal reference zone lines for the modern astrology angles.
@@ -86,17 +84,22 @@ planetsLongitudesDistanceAxesCustomize <- function(dateBreaks, dateRangeLimits) 
   todayDate <- Sys.Date()
   list(
     geom_vline(xintercept = todayDate, linetype = "dashed", color = "white", size = 0.6, alpha = 0.7),
+    labs(x = "Date", y = "Distance Angle"),
     scale_y_continuous(breaks = seq(0, 180, by = 10)),
-    scale_x_date(date_breaks = dateBreaks, limits = dateRangeLimits)
+    scale_x_date(date_breaks = dateBreaks, date_labels = "%Y-%m-%d", limits = dateRangeLimits)
   )
 }
 
 #' Plot all planets longitude distance from Uranus.
 #' @param planetPositionsTable Daily planets position data table.
 planetsLongitudeDistanceForUranusPlot <- function(planetPositionsTable) {
-  dateBreaks <- "7 days"
-  dateRangeLimits <- c(as.Date("2018-01-10"), as.Date("2020-12-31"))
-  distancesPlot <- ggplot(data = planetPositionsTable) +
+  dateBreaks <- "1 month"
+  dateRangeLimits <- c(as.Date("2018-01-01"), Sys.Date())
+  planetPositionsTableFiltered <- planetPositionsTable[
+    Date >= dateRangeLimits[1] & Date <= Sys.Date(),
+  ]
+
+  distancesPlot <- ggplot(data = planetPositionsTableFiltered) +
     geom_point(aes(x = Date, y = SUURLON, size = 1), colour = "yellow", alpha = 0.5, size = 1) +
     geom_point(aes(x = Date, y = MOURLON, size = 1), colour = "black", alpha = 0.6, size = 1) +
     geom_point(aes(x = Date, y = MEURLON, size = 1), colour = "orange", alpha = 0.5, size = 1) +
