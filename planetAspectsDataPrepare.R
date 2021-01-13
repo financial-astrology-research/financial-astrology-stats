@@ -148,6 +148,24 @@ planetAspectsCalculate <- function(planetsPositions, usePlanets, aspectSet) {
   return(planetsPositionsClone)
 }
 
+#' Augment planets position table with all planet pairs longitudes distance.
+#' @param planetPositionsTable Daily planets position data table.
+#' @param usePlanets The list of planets ID codes to calculate aspects for.
+#' @return A data table with planet pairs longitudes distance columns.
+planetLongitudesDistanceDataAugment <- function(planetPositionsTable, usePlanets) {
+  planetsCombLonCols <- planetsLongitudeColNamesCombine(usePlanets)
+  for (currentComb in planetsCombLonCols) {
+    col1 <- paste(substr(currentComb, 1, 2), 'LON', sep = '')
+    col2 <- paste(substr(currentComb, 3, 4), 'LON', sep = '')
+    planetPositionsTable[, c(currentComb) := get(col1) - get(col2)]
+  }
+
+  # Normalize to 180 degrees range.
+  planetPositionsTable[,
+     c(planetsCombLonCols) := lapply(.SD, degreesDistanceNormalize), .SDcols = planetsCombLonCols
+  ]
+}
+
 #' Calculate specific planet angles aspects for a given resolution.
 #' @param usePlanets The list of planets ID codes to calculate aspects for.
 #' @param resolution The row resolution of the aspects: "hourly" or "daily".
@@ -157,19 +175,9 @@ planetAspectsTablePrepare <- function(resolution, usePlanets, aspectSet) {
   planets <- loadPlanetsPositionTable(resolution)
   colNames <- colnames(planets)
   filterColNames <- colNames[grep(paste0(usePlanets, collapse = "|"), colNames)]
-  planetsCombLonCols <- planetsLongitudeColNamesCombine(usePlanets)
   selectCols <- c('Date', 'Hour', filterColNames)
-
   planets <- planets[, selectCols, with = F]
-  # Calculate planets combinations longitudinal differences.
-  for (currentComb in planetsCombLonCols) {
-    col1 <- paste(substr(currentComb, 1, 2), 'LON', sep = '')
-    col2 <- paste(substr(currentComb, 3, 4), 'LON', sep = '')
-    planets[, c(currentComb) := get(col1) - get(col2)]
-  }
-
-  # Normalize to 180 degrees range.
-  planets[, c(planetsCombLonCols) := lapply(.SD, degreesDistanceNormalize), .SDcols = planetsCombLonCols]
+  planets <- planetLongitudesDistanceDataAugment(planets)
 
   # Calculate aspects within specified orb.
   planets <- planetAspectsCalculate(
