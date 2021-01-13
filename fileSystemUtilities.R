@@ -5,3 +5,15 @@
 expandPath <- function(path) {
   normalizePath(path.expand(path))
 }
+
+#' Provide visualizations data destination path.
+#' @returns The stats data relative destination path.
+visualizationsDataDestinationPath <- function() {
+  destinationPath <- "./visualizations/"
+}
+
+#' Provide stats data destination path.
+#' @returns The stats data relative destination path.
+statsDataDestinationPath <- function() {
+  destinationPath <- "./stats/"
+}

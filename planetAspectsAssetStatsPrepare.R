@@ -46,12 +46,6 @@ planetAspectsAssetPriceDescriptivesPrepare <- function(planetAspectsAssetPricesT
   planetAspectsAssetPricesTable[, round(describe(diffOHLC), 3), by = "PlanetsAspect"]
 }
 
-#' Provide stats data destination path.
-#' @returns The stats data relative destination path.
-statsDataDestinationPath <- function() {
-  destinationPath <- "./stats/"
-}
-
 #' Persist stats data table into target path and file destination.
 #' @param dataTable The data table to persist.
 #' @param targetFileName The destination file name without extension.
