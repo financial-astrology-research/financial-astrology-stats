@@ -114,7 +114,15 @@ planetsLongitudeDistanceForUranusPlot <- function(planetPositionsTable) {
     planetsLongitudesDistanceAxesCustomize(dateBreaks, dateRangeLimits) +
     planetLongitudeDistancePlotTheme()
 
-  print(distancesPlot)
+  targetFileName <- paste0(visualizationsDataDestinationPath(), "planets_longitude_distance_from_uranus.png")
+  ggsave(
+    filename = targetFileName,
+    plot = distancesPlot,
+    width = 40,
+    units = "cm"
+  )
+
+  cat("Plot saved to:", targetFileName)
 }
 
 planetPositionsTable <- loadPlanetsPositionTable("daily")
