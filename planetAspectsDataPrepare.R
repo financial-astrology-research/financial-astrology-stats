@@ -177,7 +177,7 @@ planetAspectsTablePrepare <- function(resolution, usePlanets, aspectSet) {
   filterColNames <- colNames[grep(paste0(usePlanets, collapse = "|"), colNames)]
   selectCols <- c('Date', 'Hour', filterColNames)
   planets <- planets[, selectCols, with = F]
-  planets <- planetLongitudesDistanceDataAugment(planets)
+  planets <- planetLongitudesDistanceDataAugment(planets, usePlanets)
 
   # Calculate aspects within specified orb.
   planets <- planetAspectsCalculate(

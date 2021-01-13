@@ -4,9 +4,49 @@
 # Created by: pablocc
 # Created on: 13/01/2021
 
+library(ggplot2)
+
+source("./planetAspectsDataPrepare.R")
+
+ggplotDarkTheme = function(base_size = 12) {
+  theme_grey(base_size = base_size) %+replace%
+    theme(
+      axis.line = element_blank(),
+      axis.text.x = element_text(size = base_size * 0.8, color = "white", lineheight = 0.9),
+      axis.text.y = element_text(size = base_size * 0.8, color = "white", lineheight = 0.9),
+      axis.ticks = element_line(color = "white", size = 0.2),
+      axis.title.x = element_text(size = base_size, color = "white", margin = margin(0, 10, 0, 0)),
+      axis.title.y = element_text(size = base_size, color = "white", angle = 90, margin = margin(0, 10, 0, 0)),
+      axis.ticks.length = unit(0.3, "lines"),
+      legend.background = element_rect(color = NA, fill = "black"),
+      legend.key = element_rect(color = "white", fill = "black"),
+      legend.key.size = unit(1.2, "lines"),
+      legend.key.height = NULL,
+      legend.key.width = NULL,
+      legend.text = element_text(size = base_size * 0.8, color = "white"),
+      legend.title = element_text(size = base_size * 0.8, face = "bold", hjust = 0, color = "white"),
+      legend.position = "right",
+      legend.text.align = NULL,
+      legend.title.align = NULL,
+      legend.direction = "vertical",
+      legend.box = NULL,
+      panel.background = element_rect(fill = "black", color = NA),
+      panel.border = element_rect(fill = NA, color = "white"),
+      panel.grid.major = element_line(color = "grey35"),
+      panel.grid.minor = element_line(color = "grey20"),
+      panel.spacing = unit(0.5, "lines"),
+      strip.background = element_rect(fill = "grey30", color = "grey10"),
+      strip.text.x = element_text(size = base_size * 0.8, color = "white"),
+      strip.text.y = element_text(size = base_size * 0.8, color = "white", angle = -90),
+      plot.background = element_rect(color = "black", fill = "black"),
+      plot.title = element_text(size = base_size * 1.2, color = "white"),
+      plot.margin = unit(rep(1, 4), "lines")
+    )
+}
+
 planetLongitudeDistancePlotTheme <- function() {
   list(
-    theme_black(),
+    ggplotDarkTheme(),
     theme(panel.spacing = unit(c(0, 0, 0, 0), "null")),
     theme(plot.margin = unit(c(0, 0, 0, 0), "null")),
     theme(panel.grid = element_blank()),
@@ -47,18 +87,21 @@ aspectsReferenceZonesLines <- function() {
   )
 }
 
-planetsLongitudesDistanceAxesCustomize <- function(dataDates, dateBreaks, chartPeriod) {
+planetsLongitudesDistanceAxesCustomize <- function(dateBreaks, dateRangeLimits) {
+  todayDate <- Sys.Date()
   list(
-    geom_vline(xintercept = dataDates, linetype = "dashed", color = "white", size = 0.6, alpha = 0.7),
+    geom_vline(xintercept = todayDate, linetype = "dashed", color = "white", size = 0.6, alpha = 0.7),
     scale_y_continuous(breaks = seq(0, 180, by = 10)),
-    scale_x_date(date_breaks = dateBreaks, limits = chartPeriod)
+    scale_x_date(date_breaks = dateBreaks, limits = dateRangeLimits)
   )
 }
 
 #' Plot all planets longitude distance from Uranus.
-#' @param planetsPositionTable Daily planets position data table.
-planetsLongitudeDistanceForUranusPlot <- function(planetsPositionTable) {
-  p <- ggplot(data = dailyPlanetsResearch) +
+#' @param planetPositionsTable Daily planets position data table.
+planetsLongitudeDistanceForUranusPlot <- function(planetPositionsTable) {
+  dateBreaks <- "7 days"
+  dateRangeLimits <- c(as.Date("2018-01-10"), as.Date("2020-12-31"))
+  distancesPlot <- ggplot(data = planetPositionsTable) +
     geom_point(aes(x = Date, y = SUURLON, size = 1), colour = "yellow", alpha = 0.5, size = 1) +
     geom_point(aes(x = Date, y = MOURLON, size = 1), colour = "black", alpha = 0.6, size = 1) +
     geom_point(aes(x = Date, y = MEURLON, size = 1), colour = "orange", alpha = 0.5, size = 1) +
@@ -66,8 +109,14 @@ planetsLongitudeDistanceForUranusPlot <- function(planetsPositionTable) {
     geom_point(aes(x = Date, y = MAURLON, size = 1), colour = "red", alpha = 0.6, size = 1) +
     geom_point(aes(x = Date, y = JUURLON, size = 1), colour = "palegreen3", alpha = 0.6, size = 1) +
     geom_point(aes(x = Date, y = SAURLON, size = 1), colour = "gray", alpha = 0.6, size = 1) +
-    geom_point(aes(x = Date, y = NNURLON, size = 1), colour = "mediumaquamarine", alpha = 0.6, size = 1) +
+    geom_point(aes(x = Date, y = URNELON, size = 1), colour = "mediumaquamarine", alpha = 0.6, size = 1) +
     aspectsReferenceZonesLines() +
-    planetsLongitudesDistanceAxesCustomize() +
+    planetsLongitudesDistanceAxesCustomize(dateBreaks, dateRangeLimits) +
     planetLongitudeDistancePlotTheme()
+
+  print(distancesPlot)
 }
+
+planetPositionsTable <- loadPlanetsPositionTable("daily")
+planetPositionsTable <- planetLongitudesDistanceDataAugment(planetPositionsTable, modernPlanets())
+planetsLongitudeDistanceForUranusPlot(planetPositionsTable)
