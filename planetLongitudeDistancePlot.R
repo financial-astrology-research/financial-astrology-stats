@@ -68,22 +68,17 @@ planetLongitudeDistancePlotTheme <- function() {
 #' Provides ggplot horizontal reference zone lines for the modern astrology angles.
 aspectsReferenceZonesLines <- function() {
   list(
-    geom_hline(yintercept = 165, linetype = "longdash", color = "magenta2", size = 1, alpha = 0.7),
-    geom_hline(yintercept = 155, linetype = "longdash", color = "salmon2", size = 1, alpha = 0.7),
-    geom_hline(yintercept = 145, linetype = "longdash", color = "salmon2", size = 1, alpha = 0.7),
-    geom_hline(yintercept = 140, linetype = "longdash", color = "magenta2", size = 1, alpha = 0.7),
-    geom_hline(yintercept = 130, linetype = "longdash", color = "magenta2", size = 1, alpha = 0.7),
-    geom_hline(yintercept = 125, linetype = "longdash", color = "salmon2", size = 1, alpha = 0.7),
-    geom_hline(yintercept = 115, linetype = "longdash", color = "salmon2", size = 1, alpha = 0.7),
-    geom_hline(yintercept = 100, linetype = "longdash", color = "magenta2", size = 1, alpha = 0.7),
-    geom_hline(yintercept = 80, linetype = "longdash", color = "magenta2", size = 1, alpha = 0.7),
-    geom_hline(yintercept = 65, linetype = "longdash", color = "salmon2", size = 1, alpha = 0.7),
-    geom_hline(yintercept = 55, linetype = "longdash", color = "salmon2", size = 1, alpha = 0.7),
-    geom_hline(yintercept = 50, linetype = "longdash", color = "magenta2", size = 1, alpha = 0.7),
-    geom_hline(yintercept = 40, linetype = "longdash", color = "magenta2", size = 1, alpha = 0.7),
-    geom_hline(yintercept = 35, linetype = "longdash", color = "salmon2", size = 1, alpha = 0.7),
-    geom_hline(yintercept = 25, linetype = "longdash", color = "salmon2", size = 1, alpha = 0.7),
-    geom_hline(yintercept = 15, linetype = "longdash", color = "magenta2", size = 1, alpha = 0.7)
+    geom_hline(yintercept = 180, linetype = "longdash", color = "magenta2", size = 1, alpha = 0.7),
+    geom_hline(yintercept = 150, linetype = "longdash", color = "magenta2", size = 1, alpha = 0.7),
+    geom_hline(yintercept = 135, linetype = "longdash", color = "magenta2", size = 1, alpha = 0.7),
+    geom_hline(yintercept = 120, linetype = "longdash", color = "magenta2", size = 1, alpha = 0.7),
+    geom_hline(yintercept = 103, linetype = "longdash", color = "magenta2", size = 1, alpha = 0.7),
+    geom_hline(yintercept = 90, linetype = "longdash", color = "magenta2", size = 1, alpha = 0.7),
+    geom_hline(yintercept = 52, linetype = "longdash", color = "magenta2", size = 1, alpha = 0.7),
+    geom_hline(yintercept = 60, linetype = "longdash", color = "magenta2", size = 1, alpha = 0.7),
+    geom_hline(yintercept = 45, linetype = "longdash", color = "magenta2", size = 1, alpha = 0.7),
+    geom_hline(yintercept = 30, linetype = "longdash", color = "magenta2", size = 1, alpha = 0.7),
+    geom_hline(yintercept = 0, linetype = "longdash", color = "magenta2", size = 1, alpha = 0.7)
   )
 }
 
