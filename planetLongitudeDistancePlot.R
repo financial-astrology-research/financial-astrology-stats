@@ -53,6 +53,7 @@ planetLongitudeDistancePlotTheme <- function() {
     theme(panel.grid = element_blank()),
     theme(plot.margin = unit(c(0, 0, 0, 0), "null")),
     theme(panel.spacing = unit(c(0, 0, 0, 0), "null")),
+    theme(panel.margin = element_blank()),
     theme(axis.text.x = element_text(angle = 90, size = 10))
   )
 }
@@ -74,13 +75,13 @@ aspectsReferenceZonesLines <- function() {
   )
 }
 
-planetsLongitudesDistanceAxesCustomize <- function(dateBreaks, dateRangeLimits) {
+planetsLongitudesDistanceAxesCustomize <- function(dateBreaks) {
   todayDate <- Sys.Date()
   list(
     geom_vline(xintercept = todayDate, linetype = "dashed", color = "white", size = 0.6, alpha = 0.7),
     labs(x = "Date", y = "Distance Angle"),
     scale_y_continuous(breaks = seq(0, 180, by = 5)),
-    scale_x_date(date_breaks = dateBreaks, date_labels = "%b %Y", limits = dateRangeLimits)
+    scale_x_date(date_breaks = dateBreaks, date_labels = "%b %Y", expand = c(0, 0))
   )
 }
 
@@ -93,21 +94,41 @@ planetsLongitudeDistanceForUranusPlot <- function(planetPositionsTable) {
     Date >= dateRangeLimits[1] & Date <= Sys.Date(),
   ]
 
-  distancesPlot <- ggplot(data = planetPositionsTableFiltered) +
-    geom_point(aes(x = Date, y = SUURLON, size = 1, label = "SUUR"), colour = "yellow", alpha = 0.5, size = 1) +
-    geom_point(aes(x = Date, y = MOURLON, size = 1, label = "MOUR"), colour = "black", alpha = 0.6, size = 1) +
-    geom_point(aes(x = Date, y = MEURLON, size = 1, label = "MEUR"), colour = "orange", alpha = 0.5, size = 1) +
-    geom_point(aes(x = Date, y = VEURLON, size = 1, label = "VEUR"), colour = "pink", alpha = 0.7, size = 1) +
-    geom_point(aes(x = Date, y = MAURLON, size = 1, label = "MAUR"), colour = "red", alpha = 0.6, size = 1) +
-    geom_point(aes(x = Date, y = JUURLON, size = 1, label = "JUUR"), colour = "palegreen3", alpha = 0.6, size = 1) +
-    geom_point(aes(x = Date, y = SAURLON, size = 1, label = "SAUR"), colour = "gray", alpha = 0.6, size = 1) +
-    geom_point(aes(x = Date, y = URNELON, size = 1, label = "URNE"), colour = "mediumaquamarine", alpha = 0.6, size = 1) +
-    labs(title = "Planets longitude distance from Uranus", x = "Date", y = "Distance Angle", color = "Planet Pairs") +
-    scale_color_manual(values = c("SUUR" = "yellow", "MOUR" = "black", "MEUR" = "orange", "VEUR" = "pink")) +
+  colNames <- colnames(planetPositionsTable)
+  longitudeColNames <- colNames[grep("^....LON", colNames)]
+  planetPositionsTableLong <- melt(
+    planetPositionsTableFiltered,
+    id.var = "Date",
+    measure.var = longitudeColNames
+  )
+
+  fromPlanetCode <- "UR"
+  variableColors <- c(
+    "SUURLON" = "yellow",
+    "MOURLON" = "white",
+    "MEURLON" = "orange",
+    "VEURLON" = "pink",
+    "MAURLON" = "red",
+    "JUURLON" = "palegreen3",
+    "SAURLON" = "gray",
+    "URNELON" = "mediumaquamarine",
+    "URPLLON" = "violetred2"
+  )
+
+  distancesPlot <- ggplot(data = planetPositionsTableLong[grep(fromPlanetCode, variable)]) +
+    geom_point(aes(x = Date, y = value, size = 1, color = variable), alpha = 0.6, size = 1) +
+    labs(
+      title = "Planets longitude distance from Uranus",
+      x = "Date",
+      y = "Distance Angle",
+      color = "Planet Pairs"
+    ) +
+    scale_color_manual(values = variableColors) +
     aspectsReferenceZonesLines() +
-    planetsLongitudesDistanceAxesCustomize(dateBreaks, dateRangeLimits) +
+    planetsLongitudesDistanceAxesCustomize(dateBreaks) +
     planetLongitudeDistancePlotTheme()
 
+  print(distancesPlot)
   targetFileName <- paste0(visualizationsDataDestinationPath(), "planets_longitude_distance_from_uranus.png")
   ggsave(
     filename = targetFileName,
