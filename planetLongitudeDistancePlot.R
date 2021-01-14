@@ -130,7 +130,6 @@ planetsLongitudeDistanceForUranusPlot <- function(planetPositionsTable) {
     planetsLongitudesDistanceAxesCustomize(dateBreaks) +
     planetLongitudeDistancePlotTheme()
 
-  print(distancesPlot)
   targetFileName <- paste0(visualizationsDataDestinationPath(), "planets_longitude_distance_from_uranus.png")
   ggsave(
     filename = targetFileName,
@@ -138,7 +137,8 @@ planetsLongitudeDistanceForUranusPlot <- function(planetPositionsTable) {
     width = 20,
     height = 15,
     units = "cm",
-    dpi = 150
+    scale = 1.5,
+    dpi = 72
   )
 
   cat("Plot saved to:", targetFileName, "\n")
