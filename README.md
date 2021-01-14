@@ -15,9 +15,23 @@ We are very lucky to live in the digital era with the most power machine learnin
 # Planets longitude distance (angular relationships)
 TODO: Explain what are planets aspects.
 
-# Visualization of planets longitude distance from Uranus
+# Planets longitude distance from Mars
+![](visualizations/planets_longitude_distance_MA.png?raw=true)
 
-![](visualizations/planets_longitude_distance_from_uranus.png?raw=true)
+# Planets longitude distance from Jupiter
+![](visualizations/planets_longitude_distance_JU.png?raw=true)
+
+# Planets longitude distance from Saturn
+![](visualizations/planets_longitude_distance_SA.png?raw=true)
+
+# Planets longitude distance from Uranus
+![](visualizations/planets_longitude_distance_UR.png?raw=true)
+
+# Planets longitude distance from Neptune
+![](visualizations/planets_longitude_distance_NE.png?raw=true)
+
+# Planets longitude distance from Pluto
+![](visualizations/planets_longitude_distance_PL.png?raw=true)
 
 [1]: https://en.wikipedia.org/wiki/Babylonian_astrology
 [2]: https://en.wikipedia.org/wiki/Seasonality
