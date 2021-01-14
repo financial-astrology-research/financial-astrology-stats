@@ -16,8 +16,8 @@ ggplotDarkTheme <- function(base_size = 12) {
       axis.text.x = element_text(size = base_size * 0.8, color = "white", lineheight = 0.9),
       axis.text.y = element_text(size = base_size * 0.8, color = "white", lineheight = 0.9),
       axis.ticks = element_line(color = "white", size = 0.2),
-      axis.title.x = element_text(size = base_size, color = "white", margin = margin(0, 10, 0, 0)),
-      axis.title.y = element_text(size = base_size, color = "white", angle = 90, margin = margin(0, 10, 0, 0)),
+      axis.title.x = element_text(size = base_size, color = "white", margin = margin(10, 0, 10, 0)),
+      axis.title.y = element_text(size = base_size, color = "white", angle = 90, margin = margin(0, 10, 0, 10)),
       axis.ticks.length = unit(0.3, "lines"),
       legend.background = element_rect(color = NA, fill = "black"),
       legend.key = element_rect(color = "white", fill = "black"),
@@ -40,7 +40,11 @@ ggplotDarkTheme <- function(base_size = 12) {
       strip.text.x = element_text(size = base_size * 0.8, color = "white"),
       strip.text.y = element_text(size = base_size * 0.8, color = "white", angle = -90),
       plot.background = element_rect(color = "black", fill = "black"),
-      plot.title = element_text(size = base_size * 1.2, color = "white"),
+      plot.title = element_text(
+        size = base_size * 1.2,
+        color = "white",
+        margin = margin(10, 0, 10, 0)
+      ),
       plot.margin = unit(rep(1, 4), "lines")
     )
 }
@@ -48,13 +52,11 @@ ggplotDarkTheme <- function(base_size = 12) {
 planetLongitudeDistancePlotTheme <- function() {
   list(
     ggplotDarkTheme(),
-    theme(panel.spacing = unit(c(0, 0, 0, 0), "null")),
-    theme(plot.margin = unit(c(0, 0, 0, 0), "null")),
-    theme(panel.grid = element_blank()),
-    theme(plot.margin = unit(c(0, 0, 0, 0), "null")),
-    theme(panel.spacing = unit(c(0, 0, 0, 0), "null")),
-    theme(panel.margin = element_blank()),
-    theme(axis.text.x = element_text(angle = 90, size = 10))
+    theme(
+      plot.margin = unit(rep(0, 4), "null"),
+      panel.grid = element_blank(),
+      axis.text.x = element_text(angle = 90, size = 10)
+    )
   )
 }
 
