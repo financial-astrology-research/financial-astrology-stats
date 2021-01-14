@@ -89,7 +89,8 @@ planetsLongitudesDistanceAxesCustomize <- function(dateBreaks) {
 
 #' Plot all planets longitude distance from Uranus.
 #' @param planetPositionsTable Daily planets position data table.
-planetsLongitudeDistanceForUranusPlot <- function(planetPositionsTable) {
+#' @param fromPlanetCode Planet ID (JU, SA, UR, ...) code to plot longitude distances from.
+planetsLongitudeDistanceFromPlanetPlot <- function(planetPositionsTable, fromPlanetCode) {
   dateBreaks <- "1 month"
   dateRangeLimits <- c(Sys.Date() - (365 * 3), Sys.Date())
   planetPositionsTableFiltered <- planetPositionsTable[
@@ -106,18 +107,22 @@ planetsLongitudeDistanceForUranusPlot <- function(planetPositionsTable) {
 
   fromPlanetCode <- "UR"
   variableColors <- c(
-    "SUURLON" = "yellow",
-    "MOURLON" = "white",
-    "MEURLON" = "orange",
-    "VEURLON" = "pink",
-    "MAURLON" = "red",
-    "JUURLON" = "palegreen3",
-    "SAURLON" = "gray",
-    "URNELON" = "mediumaquamarine",
-    "URPLLON" = "violetred2"
+    "yellow",
+    "white",
+    "orange",
+    "pink",
+    "red",
+    "palegreen3",
+    "gray",
+    "mediumaquamarine",
+    "violetred2"
   )
 
-  distancesPlot <- ggplot(data = planetPositionsTableLong[grep(fromPlanetCode, variable)]) +
+  fromPlanetColNames <- longitudeColNames[grep(fromPlanetCode, longitudeColNames)]
+  fromPlanetPositionsTable <- planetPositionsTableLong[variable %in% fromPlanetColNames]
+  setNames(variableColors, fromPlanetColNames)
+
+  distancesPlot <- ggplot(data = fromPlanetPositionsTable) +
     geom_point(aes(x = Date, y = value, size = 1, color = variable), alpha = 0.6, size = 1) +
     labs(
       title = "Planets longitude distance from Uranus",
@@ -130,7 +135,11 @@ planetsLongitudeDistanceForUranusPlot <- function(planetPositionsTable) {
     planetsLongitudesDistanceAxesCustomize(dateBreaks) +
     planetLongitudeDistancePlotTheme()
 
-  targetFileName <- paste0(visualizationsDataDestinationPath(), "planets_longitude_distance_from_uranus.png")
+  targetFileName <- paste0(
+    visualizationsDataDestinationPath(),
+    "planets_longitude_distance_", fromPlanetCode, ".png"
+  )
+
   ggsave(
     filename = targetFileName,
     plot = distancesPlot,
@@ -146,4 +155,4 @@ planetsLongitudeDistanceForUranusPlot <- function(planetPositionsTable) {
 
 planetPositionsTable <- loadPlanetsPositionTable("daily")
 planetPositionsTable <- planetLongitudesDistanceDataAugment(planetPositionsTable, modernPlanets())
-planetsLongitudeDistanceForUranusPlot(planetPositionsTable)
+planetsLongitudeDistanceFromPlanetPlot(planetPositionsTable, "UR")
