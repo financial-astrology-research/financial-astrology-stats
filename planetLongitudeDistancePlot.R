@@ -118,7 +118,9 @@ planetsLongitudeDistanceForUranusPlot <- function(planetPositionsTable) {
     filename = targetFileName,
     plot = distancesPlot,
     width = 20,
-    units = "cm"
+    height = 15,
+    units = "cm",
+    dpi = 150
   )
 
   cat("Plot saved to:", targetFileName)
