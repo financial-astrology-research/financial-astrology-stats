@@ -117,7 +117,7 @@ planetsLongitudeDistanceForUranusPlot <- function(planetPositionsTable) {
   ggsave(
     filename = targetFileName,
     plot = distancesPlot,
-    width = 40,
+    width = 20,
     units = "cm"
   )
 
