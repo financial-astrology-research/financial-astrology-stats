@@ -154,6 +154,7 @@ planetsLongitudeDistanceFromPlanetPlot <- function(planetPositionsTable, fromPla
 
 planetPositionsTable <- loadPlanetsPositionTable("daily")
 planetPositionsTable <- planetLongitudesDistanceDataAugment(planetPositionsTable, modernPlanets())
+planetsLongitudeDistanceFromPlanetPlot(planetPositionsTable, "MA")
 planetsLongitudeDistanceFromPlanetPlot(planetPositionsTable, "JU")
 planetsLongitudeDistanceFromPlanetPlot(planetPositionsTable, "SA")
 planetsLongitudeDistanceFromPlanetPlot(planetPositionsTable, "UR")
