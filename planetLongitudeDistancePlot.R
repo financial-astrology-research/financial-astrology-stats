@@ -105,7 +105,6 @@ planetsLongitudeDistanceFromPlanetPlot <- function(planetPositionsTable, fromPla
     measure.var = longitudeColNames
   )
 
-  fromPlanetCode <- "UR"
   variableColors <- c(
     "yellow",
     "white",
@@ -125,7 +124,7 @@ planetsLongitudeDistanceFromPlanetPlot <- function(planetPositionsTable, fromPla
   distancesPlot <- ggplot(data = fromPlanetPositionsTable) +
     geom_point(aes(x = Date, y = value, size = 1, color = variable), alpha = 0.6, size = 1) +
     labs(
-      title = "Planets longitude distance from Uranus",
+      title = paste("Planets longitude distance from", fromPlanetCode),
       x = "Date",
       y = "Distance Angle",
       color = "Planet Pairs"
@@ -155,4 +154,8 @@ planetsLongitudeDistanceFromPlanetPlot <- function(planetPositionsTable, fromPla
 
 planetPositionsTable <- loadPlanetsPositionTable("daily")
 planetPositionsTable <- planetLongitudesDistanceDataAugment(planetPositionsTable, modernPlanets())
+planetsLongitudeDistanceFromPlanetPlot(planetPositionsTable, "JU")
+planetsLongitudeDistanceFromPlanetPlot(planetPositionsTable, "SA")
 planetsLongitudeDistanceFromPlanetPlot(planetPositionsTable, "UR")
+planetsLongitudeDistanceFromPlanetPlot(planetPositionsTable, "NE")
+planetsLongitudeDistanceFromPlanetPlot(planetPositionsTable, "PL")
