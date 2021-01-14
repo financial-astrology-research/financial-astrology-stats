@@ -82,7 +82,7 @@ planetsLongitudesDistanceAxesCustomize <- function(dateBreaks) {
   list(
     geom_vline(xintercept = todayDate, linetype = "dashed", color = "white", size = 0.6, alpha = 0.7),
     labs(x = "Date", y = "Distance Angle"),
-    scale_y_continuous(breaks = seq(0, 180, by = 5)),
+    scale_y_continuous(breaks = seq(0, 180, by = 5), expand = c(0, 0)),
     scale_x_date(date_breaks = dateBreaks, date_labels = "%b %Y", expand = c(0, 0))
   )
 }
@@ -141,7 +141,7 @@ planetsLongitudeDistanceForUranusPlot <- function(planetPositionsTable) {
     dpi = 150
   )
 
-  cat("Plot saved to:", targetFileName)
+  cat("Plot saved to:", targetFileName, "\n")
 }
 
 planetPositionsTable <- loadPlanetsPositionTable("daily")
