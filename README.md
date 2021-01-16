@@ -15,6 +15,15 @@ We are very lucky to live in the digital era with the most power machine learnin
 # Planets longitude distance (angular relationships)
 TODO: Explain what are planets aspects.
 
+# Planets longitude distance from Mercury
+![](visualizations/planets_longitude_distance_ME.png?raw=true)
+
+# Planets longitude distance from Venus
+![](visualizations/planets_longitude_distance_VE.png?raw=true)
+
+# Planets longitude distance from Sun
+![](visualizations/planets_longitude_distance_SU.png?raw=true)
+
 # Planets longitude distance from Mars
 ![](visualizations/planets_longitude_distance_MA.png?raw=true)
 
