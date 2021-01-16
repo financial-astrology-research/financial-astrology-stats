@@ -89,8 +89,8 @@ planetsLongitudesDistanceAxesCustomize <- function(dateBreaks) {
 
 #' Plot all planets longitude distance from Uranus.
 #' @param planetPositionsTable Daily planets position data table.
-#' @param fromPlanetCode Planet ID (JU, SA, UR, ...) code to plot longitude distances from.
-planetsLongitudeDistanceFromPlanetPlot <- function(planetPositionsTable, fromPlanetCode) {
+#' @param planetId Planet ID (JU, SA, UR, ...) code to plot longitude distances from.
+planetsLongitudeDistanceFromPlanetPlot <- function(planetPositionsTable, planetId) {
   dateBreaks <- "1 month"
   dateRangeLimits <- c(Sys.Date() - (365 * 3), Sys.Date())
   planetPositionsTableFiltered <- planetPositionsTable[
@@ -114,17 +114,24 @@ planetsLongitudeDistanceFromPlanetPlot <- function(planetPositionsTable, fromPla
     "palegreen3",
     "gray",
     "mediumaquamarine",
-    "violetred2"
+    "violetred2",
+    "tomato2",
+    "slateblue2",
+    "peachpuff",
+    "purple1",
+    "olivedrab2",
+    "gold1",
+    "lavender"
   )
 
-  fromPlanetColNames <- longitudeColNames[grep(fromPlanetCode, longitudeColNames)]
+  fromPlanetColNames <- longitudeColNames[grep(planetId, longitudeColNames)]
   fromPlanetPositionsTable <- planetPositionsTableLong[variable %in% fromPlanetColNames]
   setNames(variableColors, fromPlanetColNames)
 
   distancesPlot <- ggplot(data = fromPlanetPositionsTable) +
     geom_point(aes(x = Date, y = value, size = 1, color = variable), alpha = 0.6, size = 1) +
     labs(
-      title = paste("Planets longitude distance from", fromPlanetCode),
+      title = paste("Planets longitude distance from", planetId),
       x = "Date",
       y = "Distance Angle",
       color = "Planet Pairs"
@@ -136,7 +143,7 @@ planetsLongitudeDistanceFromPlanetPlot <- function(planetPositionsTable, fromPla
 
   targetFileName <- paste0(
     visualizationsDataDestinationPath(),
-    "planets_longitude_distance_", fromPlanetCode, ".png"
+    "planets_longitude_distance_", planetId, ".png"
   )
 
   ggsave(
@@ -153,13 +160,7 @@ planetsLongitudeDistanceFromPlanetPlot <- function(planetPositionsTable, fromPla
 }
 
 planetPositionsTable <- loadPlanetsPositionTable("daily")
-planetPositionsTable <- planetLongitudesDistanceDataAugment(planetPositionsTable, modernPlanets())
-planetsLongitudeDistanceFromPlanetPlot(planetPositionsTable, "ME")
-planetsLongitudeDistanceFromPlanetPlot(planetPositionsTable, "VE")
-planetsLongitudeDistanceFromPlanetPlot(planetPositionsTable, "SU")
-planetsLongitudeDistanceFromPlanetPlot(planetPositionsTable, "MA")
-planetsLongitudeDistanceFromPlanetPlot(planetPositionsTable, "JU")
-planetsLongitudeDistanceFromPlanetPlot(planetPositionsTable, "SA")
-planetsLongitudeDistanceFromPlanetPlot(planetPositionsTable, "UR")
-planetsLongitudeDistanceFromPlanetPlot(planetPositionsTable, "NE")
-planetsLongitudeDistanceFromPlanetPlot(planetPositionsTable, "PL")
+planetPositionsTable <- planetLongitudesDistanceDataAugment(planetPositionsTable, allPlanetsAndAsteroids())
+for (planetId in allPlanetsAndAsteroids()) {
+  planetsLongitudeDistanceFromPlanetPlot(planetPositionsTable, planetId)
+}
