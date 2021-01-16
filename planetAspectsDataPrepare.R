@@ -272,7 +272,7 @@ dailyAspectsForConfigSetsTablePrepare <- function(planetSet, aspectSet) {
   dailyPlanetAspectsLong <- hourlyAspectsDateAggregate(hourlyPlanetAspectsLong)
 }
 
-#' Prepare and export planet aspects long format table using modern planets set and pablo aspect / orb set.
+#' Export planet aspects long format table using modern planets set and pablo aspect set.
 modernPlanetsPabloAspectsDailyAspectsTableExport <- function() {
   fwrite(
     dailyAspectsForConfigSetsTablePrepare(modernPlanets(), pabloCerdaAspectSet()),
@@ -280,4 +280,14 @@ modernPlanetsPabloAspectsDailyAspectsTableExport <- function() {
   )
 }
 
+#' Export planet aspects long format table using modern planets + CE/VS/CH/NN (few asteroids and north node)
+#' set and pablo aspect set.
+modernPlanetsCEVSCHNNPabloAspectsDailyAspectsTableExport <- function() {
+  fwrite(
+    dailyAspectsForConfigSetsTablePrepare(modernPlanetsAndCEVSCHNN(), pabloCerdaAspectSet()),
+    expandPath("./data/aspects_modern_planets+CEVSCHNN_pablo_aspects_set_long.csv"), append = F
+  )
+}
+
 modernPlanetsPabloAspectsDailyAspectsTableExport()
+modernPlanetsCEVSCHNNPabloAspectsDailyAspectsTableExport()
