@@ -15,31 +15,52 @@ We are very lucky to live in the digital era with the most power machine learnin
 # Planets longitude distance (angular relationships)
 TODO: Explain what are planets aspects.
 
-# Planets longitude distance from Mercury
+# Longitude distance from Moon
+![](visualizations/planets_longitude_distance_MO.png?raw=true)
+
+# Longitude distance from Mercury
 ![](visualizations/planets_longitude_distance_ME.png?raw=true)
 
-# Planets longitude distance from Venus
+# Longitude distance from Venus
 ![](visualizations/planets_longitude_distance_VE.png?raw=true)
 
-# Planets longitude distance from Sun
+# Longitude distance from Sun
 ![](visualizations/planets_longitude_distance_SU.png?raw=true)
 
-# Planets longitude distance from Mars
+# Longitude distance from Mars
 ![](visualizations/planets_longitude_distance_MA.png?raw=true)
 
-# Planets longitude distance from Jupiter
+# Longitude distance from Vesta
+![](visualizations/planets_longitude_distance_VE.png?raw=true)
+
+# Longitude distance from Juno
+![](visualizations/planets_longitude_distance_JN.png?raw=true)
+
+# Longitude distance from Ceres
+![](visualizations/planets_longitude_distance_CE.png?raw=true)
+
+# Longitude distance from Pallas
+![](visualizations/planets_longitude_distance_PA.png?raw=true)
+
+# Longitude distance from Jupiter
 ![](visualizations/planets_longitude_distance_JU.png?raw=true)
 
-# Planets longitude distance from Saturn
+# Longitude distance from Saturn
 ![](visualizations/planets_longitude_distance_SA.png?raw=true)
 
-# Planets longitude distance from Uranus
+# Longitude distance from Chiron
+![](visualizations/planets_longitude_distance_CH.png?raw=true)
+
+# Longitude distance from Uranus
 ![](visualizations/planets_longitude_distance_UR.png?raw=true)
 
-# Planets longitude distance from Neptune
+# Longitude distance from Neptune
 ![](visualizations/planets_longitude_distance_NE.png?raw=true)
 
-# Planets longitude distance from Pluto
+# Longitude distance from Pholus
+![](visualizations/planets_longitude_distance_PH.png?raw=true)
+
+# Longitude distance from Pluto
 ![](visualizations/planets_longitude_distance_PL.png?raw=true)
 
 [1]: https://en.wikipedia.org/wiki/Babylonian_astrology
