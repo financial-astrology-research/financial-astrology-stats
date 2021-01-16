@@ -10,20 +10,23 @@
 # Created by: pablocc
 # Created on: 08/01/2021
 
-# I designated a planets / celestial objects IDs used to shorten the columns names in data tables:
-# MO = Moon
-# ME = Mercury
-# VE = Venus
-# SU = Sun
-# MA = Mars
-# CE = Ceres
-# VS = Vesta
-# JU = Jupiter
-# SA = Saturn
-# CH = Chiron
-# UR = Uranus
-# NE = Neptune
-# PL = Pluto
+# I designated a planets / celestial objects two chars IDs to shorten the columns names in data tables as follow:
+# MO = Moon (0.07 years)
+# ME = Mercury (0.24 years)
+# VE = Venus (0.61 years)
+# SU = Sun (1 year)
+# MA = Mars (1.88 years)
+# VS = Vesta (3.63 years)
+# JN = Juno (4.36 years)
+# CE = Ceres (4.61 years)
+# PA = Pallas (4.62 years)
+# JU = Jupiter (11.86 years)
+# SA = Saturn (29.45 years)
+# CH = Chiron (50.42 years)
+# UR = Uranus (84.02 years)
+# PH = Pholus (92.09 years)
+# NE = Neptune (164.8 years)
+# PL = Pluto (247.94 years)
 
 #' Planets used by classic astrologers prior Uranus discovery in 1781.
 #' @return Planets IDs vector.
@@ -59,6 +62,12 @@ modernPlanetsAndCE <- function() {
 
 modernPlanetsAndCEVSCHNN <- function() {
   return (
-    c('MO', 'ME', 'VE', 'SU', 'MA', 'CE', 'VS', 'JU', 'NN', 'SA', 'UR', 'CH', 'NE', 'PL')
+    c('MO', 'ME', 'VE', 'SU', 'MA', 'VS', 'CE', 'JU', 'NN', 'SA', 'UR', 'CH', 'NE', 'PL')
+  )
+}
+
+allPlanetsAndAsteroids <- function() {
+  return(
+    c('MO', 'ME', 'VE', 'SU', 'MA', 'VS', 'JN', 'CE', 'PA', 'JU', 'SA', 'UR', 'PH', 'NE', 'PL')
   )
 }
