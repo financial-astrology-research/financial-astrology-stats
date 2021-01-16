@@ -162,7 +162,7 @@ planetLongitudesDistanceDataAugment <- function(planetPositionsTable, usePlanets
 
   # Normalize to 180 degrees range.
   planetPositionsTable[,
-     c(planetsCombLonCols) := lapply(.SD, degreesDistanceNormalize), .SDcols = planetsCombLonCols
+    c(planetsCombLonCols) := lapply(.SD, degreesDistanceNormalize), .SDcols = planetsCombLonCols
   ]
 }
 
@@ -257,21 +257,25 @@ hourlyAspectsDateAggregate <- function(hourlyPlanetAspectsLong) {
   dailyPlanetAspectsLong[, orb := round(orb, 2)]
 }
 
-#' Prepare and export planet aspects long format table using modern planets set and pablo aspect / orb set.
-modernPlanetsPabloAspectsDailyAspectsTableExport <- function() {
-  modernPlanetsSet <- modernPlanets()
-  aspectSet <- pabloCerdaAspectSet()
+#' Prepare daily aspects for a given aspects / planet configuration sets.
+#' @param planetSet Planets set with planet IDs to include aspects for.
+#' @param aspectSet Aspects set list of aspects angles / orbs.
+#' @return Daily planet aspects long table.
+dailyAspectsForConfigSetsTablePrepare <- function(planetSet, aspectSet) {
   planetAspectsWideTable <- planetAspectsTablePrepare(
     resolution = "hourly",
-    usePlanets = modernPlanetsSet,
+    usePlanets = planetSet,
     aspectSet = aspectSet
   )
 
   hourlyPlanetAspectsLong <- hourlyAspectsWideToLongTransform(planetAspectsWideTable)
   dailyPlanetAspectsLong <- hourlyAspectsDateAggregate(hourlyPlanetAspectsLong)
+}
 
+#' Prepare and export planet aspects long format table using modern planets set and pablo aspect / orb set.
+modernPlanetsPabloAspectsDailyAspectsTableExport <- function() {
   fwrite(
-    dailyPlanetAspectsLong,
+    dailyAspectsForConfigSetsTablePrepare(modernPlanets(), pabloCerdaAspectSet()),
     expandPath("./data/aspects_modern_planets_pablo_aspects_set_long.csv"), append = F
   )
 }
