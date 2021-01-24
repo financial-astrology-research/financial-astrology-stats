@@ -31,7 +31,7 @@ TODO: Explain what are planets aspects.
 ![](visualizations/planets_longitude_distance_MA.png?raw=true)
 
 # Longitude distance from Vesta
-![](visualizations/planets_longitude_distance_VE.png?raw=true)
+![](visualizations/planets_longitude_distance_VS.png?raw=true)
 
 # Longitude distance from Juno
 ![](visualizations/planets_longitude_distance_JN.png?raw=true)
