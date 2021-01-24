@@ -24,13 +24,13 @@ ggplotDarkTheme <- function(base_size = 12) {
       legend.key.size = unit(1.2, "lines"),
       legend.key.height = NULL,
       legend.key.width = NULL,
-      legend.text = element_text(size = base_size * 0.8, color = "white"),
-      legend.title = element_text(size = base_size * 0.8, face = "bold", hjust = 0, color = "white"),
-      legend.position = "right",
+      legend.text = element_text(size = base_size * 1.1, color = "white"),
+      legend.title = element_text(size = base_size * 1.3, face = "bold", hjust = 0, color = "white"),
+      legend.position = "bottom",
+      legend.box = NULL,
       legend.text.align = NULL,
       legend.title.align = NULL,
-      legend.direction = "vertical",
-      legend.box = NULL,
+      legend.direction = NULL,
       panel.background = element_rect(fill = "black", color = NA),
       panel.border = element_rect(fill = NA, color = "white"),
       panel.grid.major = element_line(color = "grey35"),
@@ -56,7 +56,8 @@ planetLongitudeDistancePlotTheme <- function() {
       plot.margin = unit(rep(0, 4), "null"),
       panel.grid = element_blank(),
       axis.text.x = element_text(angle = 90, size = 10)
-    )
+    ),
+    guides(colour = guide_legend(override.aes = list(size=3, stroke=0.5)))
   )
 }
 
