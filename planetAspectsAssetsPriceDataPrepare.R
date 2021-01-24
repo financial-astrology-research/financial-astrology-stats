@@ -122,7 +122,8 @@ assetPriceDataPriceAugment <- function(symbolID) {
   assetPriceTable <- assetPriceTable[!is.na(OHLCMAF) & !is.na(difflogHLMASxF)]
   labelCuts <- c(-1000000, 0, 1000000)
   labels <- c('sell', 'buy')
-  assetPriceTable[, OHLCEff := cut(OHLCMom, labelCuts, labels = labels, right = FALSE)]
+  assetPriceTable[, OHLCEff := cut(diffOHLC, labelCuts, labels = labels, right = FALSE)]
+  assetPriceTable[, OHLCMomEff := cut(OHLCMom, labelCuts, labels = labels, right = FALSE)]
   assetPriceTable[, HLCMomEff := cut(HLCMom, labelCuts, labels = labels, right = FALSE)]
   assetPriceTable[, HLMomEff := cut(HLMom, labelCuts, labels = labels, right = FALSE)]
   assetPriceTable[, OxHLEff := cut(diffOxHL, labelCuts, labels = labels, right = FALSE)]
