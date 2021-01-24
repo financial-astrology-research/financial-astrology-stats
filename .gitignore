@@ -1,2 +1,5 @@
 # Ignore temporal data.
 data/tmp/*.csv
+
+# Ignore lock files.
+.~lock*
