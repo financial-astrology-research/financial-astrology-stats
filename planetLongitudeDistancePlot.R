@@ -65,13 +65,15 @@ aspectsReferenceZonesLines <- function() {
   list(
     geom_hline(yintercept = 180, linetype = "longdash", color = "magenta2", size = 1, alpha = 0.7),
     geom_hline(yintercept = 150, linetype = "longdash", color = "magenta2", size = 1, alpha = 0.7),
+    geom_hline(yintercept = 144, linetype = "longdash", color = "magenta2", size = 1, alpha = 0.7),
     geom_hline(yintercept = 135, linetype = "longdash", color = "magenta2", size = 1, alpha = 0.7),
     geom_hline(yintercept = 120, linetype = "longdash", color = "magenta2", size = 1, alpha = 0.7),
     geom_hline(yintercept = 103, linetype = "longdash", color = "magenta2", size = 1, alpha = 0.7),
     geom_hline(yintercept = 90, linetype = "longdash", color = "magenta2", size = 1, alpha = 0.7),
-    geom_hline(yintercept = 52, linetype = "longdash", color = "magenta2", size = 1, alpha = 0.7),
+    geom_hline(yintercept = 72, linetype = "longdash", color = "magenta2", size = 1, alpha = 0.7),
     geom_hline(yintercept = 60, linetype = "longdash", color = "magenta2", size = 1, alpha = 0.7),
     geom_hline(yintercept = 45, linetype = "longdash", color = "magenta2", size = 1, alpha = 0.7),
+    geom_hline(yintercept = 36, linetype = "longdash", color = "magenta2", size = 1, alpha = 0.7),
     geom_hline(yintercept = 30, linetype = "longdash", color = "magenta2", size = 1, alpha = 0.7),
     geom_hline(yintercept = 0, linetype = "longdash", color = "magenta2", size = 1, alpha = 0.7)
   )
