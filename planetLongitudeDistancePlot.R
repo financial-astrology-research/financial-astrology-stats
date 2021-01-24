@@ -92,7 +92,7 @@ planetsLongitudesDistanceAxesCustomize <- function(dateBreaks) {
 #' @param planetId Planet ID (JU, SA, UR, ...) code to plot longitude distances from.
 planetsLongitudeDistanceFromPlanetPlot <- function(planetPositionsTable, planetId) {
   dateBreaks <- "1 month"
-  dateRangeLimits <- c(Sys.Date() - (365 * 3), Sys.Date())
+  dateRangeLimits <- c(Sys.Date() - (365 * 3), Sys.Date() + 15)
   planetPositionsTableFiltered <- planetPositionsTable[
     Date >= dateRangeLimits[1] & Date <= Sys.Date(),
   ]
