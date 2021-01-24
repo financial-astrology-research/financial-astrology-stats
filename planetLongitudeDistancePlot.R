@@ -132,7 +132,7 @@ planetsLongitudeDistanceFromPlanetPlot <- function(planetPositionsTable, planetI
   setNames(variableColors, fromPlanetColNames)
 
   distancesPlot <- ggplot(data = fromPlanetPositionsTable) +
-    geom_point(aes(x = Date, y = value, size = 1, color = variable), alpha = 0.6, size = 1) +
+    geom_point(aes(x = Date, y = value, size = 1, color = variable), alpha = 0.8, size = 1.1) +
     labs(
       title = paste("Planets longitude distance from", planetId),
       x = "Date",
