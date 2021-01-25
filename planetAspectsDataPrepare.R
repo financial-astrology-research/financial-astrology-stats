@@ -243,16 +243,28 @@ planetAspectsLongDataAugment <- function(planetAspectsLong, planetAspectsWide, m
 #' Daily aggregate hourly resolution planet aspects.
 #' @param hourlyPlanetAspectsLong Planets aspects long table (one planet combination aspect per row).
 hourlyAspectsDateAggregate <- function(hourlyPlanetAspectsLong) {
+  # Determine the number of hours an aspect is in effect per day.
+  hourlyPlanetAspectsLong[, PlanetsAspect := paste0(origin, "_", aspect)]
+  hourlyPlanetAspectsLong[, effHours := length(Hour), by = list(Date, PlanetsAspect)]
+  hourlyPlanetAspectsLong[, pX := substr(origin, 1, 2)]
+  hourlyPlanetAspectsLong$filter = F
+  # Aspects should be in effect at least 1/3 (8 hours) part of a day to be measurable.
+  hourlyPlanetAspectsLong[pX != "MO" & effHours <= 8, filter := T]
+  # For Moon the max daily duration within max effect orb is 9 hours so 1/3 (3 hours)
+  hourlyPlanetAspectsLong[pX == "MO" & effHours <= 3, filter := T]
+  # Remove noisy observations: planets aspect don't have enough daily effect hours.
+  hourlyPlanetAspectsLong <- hourlyPlanetAspectsLong[filter != T]
+
   # Use mean orb for the aggregation.
   dailyPlanetAspectsLong <- hourlyPlanetAspectsLong[,
-    mean(orb), by = list(Date, origin, aspect)
+    list(mean(orb), mean(effHours)), by = list(Date, origin, aspect)
   ]
 
   # Separate aspect planets codes pX (fast) pY (slow) body, fast one is the force activation
   # due the fact that is the one approaching to slow one.
   dailyPlanetAspectsLong[, pX := substr(origin, 1, 2)]
   dailyPlanetAspectsLong[, pY := substr(origin, 3, 4)]
-  setnames(dailyPlanetAspectsLong, c('Date', 'origin', 'aspect', 'orb', 'pX', 'pY'))
+  setnames(dailyPlanetAspectsLong, c('Date', 'origin', 'aspect', 'orb', 'effHours', 'pX', 'pY'))
 
   dailyPlanetAspectsLong[, orb := round(orb, 2)]
 }
