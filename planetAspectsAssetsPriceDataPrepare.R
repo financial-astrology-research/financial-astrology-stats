@@ -164,5 +164,3 @@ planetsAspectsAssetsPriceDataPrepare <- function() {
   augmentResult <- lapply(symbolsList$SymbolID, assetPriceDataPriceAugment)
   mergeResult <- lapply(symbolsList$SymbolID, planetAspectsAssetPricesDataMerge)
 }
-
-planetsAspectsAssetsPriceDataPrepare()

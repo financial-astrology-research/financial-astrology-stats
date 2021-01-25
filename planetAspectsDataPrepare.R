@@ -286,6 +286,7 @@ dailyAspectsForConfigSetsTablePrepare <- function(planetSet, aspectSet) {
 
 #' Export planet aspects long format table using modern planets set and pablo aspect set.
 modernPlanetsPabloAspectsDailyAspectsTableExport <- function() {
+  cat("Preparing modern planets with pablo aspects set table\n")
   fwrite(
     dailyAspectsForConfigSetsTablePrepare(modernPlanets(), pabloCerdaAspectSet()),
     expandPath("./data/aspects_modern_planets_pablo_aspects_set_long.csv"), append = F
@@ -295,11 +296,9 @@ modernPlanetsPabloAspectsDailyAspectsTableExport <- function() {
 #' Export planet aspects long format table using modern planets + CE/VS/CH/NN (few asteroids and north node)
 #' set and pablo aspect set.
 modernPlanetsCEVSCHNNPabloAspectsDailyAspectsTableExport <- function() {
+  cat("Preparing modern planets + CE/VS/CH/NN with pablo aspects set table\n")
   fwrite(
     dailyAspectsForConfigSetsTablePrepare(modernPlanetsAndCEVSCHNN(), pabloCerdaAspectSet()),
     expandPath("./data/aspects_modern_planets+CEVSCHNN_pablo_aspects_set_long.csv"), append = F
   )
 }
-
-modernPlanetsPabloAspectsDailyAspectsTableExport()
-modernPlanetsCEVSCHNNPabloAspectsDailyAspectsTableExport()

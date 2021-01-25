@@ -79,4 +79,3 @@ planetAspectsAssetStatsPrepare <- function() {
   }
 }
 
-planetAspectsAssetStatsPrepare()
