@@ -8,11 +8,6 @@ library(quantmod)
 
 source("./fileSystemUtilities.R")
 
-#' Provides assets data destination path.
-assetsDataDestinationPath <- function() {
-  destinationPath <- paste0(normalizePath('./data/tmp'), "/")
-}
-
 #' Load watchlist CSV config file with assets symbols to watch.
 assetsWatchList <- function() {
   listFilePath <- normalizePath('./config/watchlist.csv')

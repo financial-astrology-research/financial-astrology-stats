@@ -9,11 +9,6 @@ library(psych)
 
 source("./fileSystemUtilities.R")
 
-#' Provides assets stats report destination path.
-assetsDataDestinationPath <- function() {
-  paste0(normalizePath('./stats'), "/")
-}
-
 #' Prepare planet aspects / asset price side (buy / sell) frequency statistics.
 #' @param planetAspectsAssetPricesTable Daily planets aspects with asset prices table.
 #' @return Planets aspect price side category frequency statistics table.

@@ -29,3 +29,9 @@ modelsPredictionDestinationPath <- function() {
 modelsPerformanceDestinationPath <- function() {
   destinationPath <- paste0(normalizePath('./machine_learning/performance'), "/")
 }
+
+#' Provides assets data destination path.
+#' @returns The assets data relative destination path.
+assetsDataDestinationPath <- function() {
+  destinationPath <- paste0(normalizePath('./data/tmp'), "/")
+}
