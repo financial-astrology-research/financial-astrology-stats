@@ -8,17 +8,17 @@ source("./configUtils.R")
 source("./dataMergeUtils.R")
 source("./fileSystemUtilities.R")
 
-#' Prepare planets zodiac sign / asset price side (buy / sell) frequency statistics.
-#' @param planetPositionAssetTable Daily planets positions with asset prices long table.
-#' @return Planets zodiac sign price side category frequency statistics table.
-planetZodSignAssetPriceSideFrequencyPrepare <- function(planetPositionAssetTable) {
-  variableEffectCountLong <- planetPositionAssetTable[,
-    data.table(table(OHLCEff)), by = "PlanetZodSign"
+#' Calculate asset price category frequency by a given category variable.
+#' @param factorAssetTable Factor variable with asset prices long table.
+#' @return Factor / asset price (buy / sell) frequency statistics table.
+factorAssetPriceFrequencyCount <- function (factorAssetTable, byFactor) {
+  variableEffectCountLong <- factorAssetTable[,
+    data.table(table(OHLCEff)), by = byFactor
   ]
 
   effectCountWide <- dcast(
     variableEffectCountLong,
-    PlanetZodSign ~ OHLCEff,
+    formula(paste0(byFactor, " ~ OHLCEff")),
     value.var = "N",
     fill = 0
   )
@@ -29,8 +29,16 @@ planetZodSignAssetPriceSideFrequencyPrepare <- function(planetPositionAssetTable
   effectCountWide[,
     c("BuyDays%", "SellDays%") :=
       as.list(round(prop.table(c(buy, sell)), 2)),
-    by = "PlanetZodSign"
+    by = byFactor
   ]
+}
+
+
+#' Prepare planets zodiac sign / asset price side (buy / sell) frequency statistics.
+#' @param planetPositionAssetTable Daily planets positions with asset prices long table.
+#' @return Planets zodiac sign price side category frequency statistics table.
+planetZodSignAssetPriceSideFrequencyPrepare <- function(planetPositionAssetTable) {
+  factorAssetPriceFrequencyCount(planetPositionAssetTable, "PlanetZodSign")
 }
 
 #' Persist stats data table into target path and file destination.
@@ -56,3 +64,5 @@ planetPositionsAssetStatsPrepare <- function() {
     )
   }
 }
+
+planetPositionsAssetStatsPrepare()
