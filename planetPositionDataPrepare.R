@@ -9,12 +9,12 @@ library(plyr)
 source("./fileSystemUtilities.R")
 source("./planetAspectsDataPrepare.R")
 
-#' Augment planet positions data table with zodiacal sign.
+#' Augment planet positions data table with zodiacal sign and derivatives: polarity, triplicity, elements and so forth.
 #' @param Planet longitude positions long data table.
-#' @return Daily planets position table augmented with zodiacal sign.
-zodiacSignPositionTableAugment <- function(planetLongitudeTableLong) {
+#' @return Daily planets position table augmented with longitude derivatives.
+longitudeDerivativesPositionTableAugment <- function(planetLongitudeTableLong) {
   zsignN <- seq(1, 12)
-  zsignName <- c(
+  zodiacSignName <- c(
     'ARI',
     'TAU',
     'GEM',
@@ -31,9 +31,24 @@ zodiacSignPositionTableAugment <- function(planetLongitudeTableLong) {
 
   # Prevent zero division.
   planetLongitudeTableLong[lon == 0, lon := 0.1]
-  # Calculate zodiacal signs for each planet longitude.
-  planetLongitudeTableLong[, zsign := ceiling(lon / 30)]
-  planetLongitudeTableLong[, zsign := mapvalues(zsign, zsignN, zsignName)]
+  # Categorize longitude in zodiac signs: https://www.astro.com/astrowiki/en/Zodiac_Sign
+  planetLongitudeTableLong[, znum := ceiling(lon / 30)]
+  planetLongitudeTableLong[, zsign := mapvalues(znum, zsignN, zodiacSignName)]
+
+  # Categorize signs in qualities: https://www.astro.com/astrowiki/en/Quality
+  qualityName <- rep(c('FIR', 'EAR', 'AIR', 'WAT'), 3)
+  planetLongitudeTableLong[, quality := mapvalues(znum, zsignN, qualityName)]
+
+  # Categorize signs in triplicities: https://www.astro.com/astrowiki/en/Triplicity
+  triplicityName <- rep(c('CAR', 'FIX', 'MUT'), 4)
+  planetLongitudeTableLong[, triplicity := mapvalues(znum, zsignN, triplicityName)]
+
+  # Categorize signs in polarities: https://en.wikipedia.org/wiki/Polarity_(astrology)
+  polarityName <- rep(c('POS', 'NEG'), 6)
+  planetLongitudeTableLong[, polarity := mapvalues(znum, zsignN, polarityName)]
+
+  # Remove zodiac sign number temporal variable.
+  planetLongitudeTableLong[, znum := NULL]
 }
 
 #' Prepare daily planets longitude position and categorical derivatives: polarity, triplicity, element, sign, etc.
@@ -55,11 +70,10 @@ dailyPlanetsPositionTablePrepare <- function() {
   # Customize columns names.
   setnames(planetLongitudeTableLong, c('Date', 'lon', 'pID'))
   setcolorder(planetLongitudeTableLong, c('Date', 'pID', 'lon'))
-  zodiacSignPositionTableAugment(planetLongitudeTableLong)
+  longitudeDerivativesPositionTableAugment(planetLongitudeTableLong)
 
   fwrite(
     planetLongitudeTableLong,
     expandPath("./data/daily_planets_positions_long.csv"), append = F
   )
 }
-
