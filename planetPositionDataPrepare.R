@@ -39,6 +39,7 @@ zodiacSignPositionTableAugment <- function(planetLongitudeTableLong) {
 #' Prepare daily planets longitude position and categorical derivatives: polarity, triplicity, element, sign, etc.
 #' @return Daily planets position data table that includes: longitude and it's categorical derivatives.
 dailyPlanetsPositionTablePrepare <- function() {
+  cat("Preparing daily planets position table.\n")
   planetPositionsTable <- loadPlanetsPositionTable("daily")
   colNames <- colnames(planetPositionsTable)
   longitudeColNames <- colNames[grep("^..LON", colNames)]
@@ -53,6 +54,9 @@ dailyPlanetsPositionTablePrepare <- function() {
   # Customize columns names.
   setnames(planetLongitudeTableLong, c('Date', 'variable', 'lon', 'pID'))
   zodiacSignPositionTableAugment(planetLongitudeTableLong)
-}
 
-dailyPlanetsPosition <- dailyPlanetsPositionTablePrepare()
+  fwrite(
+    dailyAspectsForConfigSetsTablePrepare(modernPlanetsAndCEVSCHNN(), pabloCerdaAspectSet()),
+    expandPath("./data/daily_planets_positions_long.csv"), append = F
+  )
+}
