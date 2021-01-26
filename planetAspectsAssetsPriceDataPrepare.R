@@ -6,14 +6,8 @@
 library(data.table)
 library(quantmod)
 
+source("./configUtils.R")
 source("./fileSystemUtilities.R")
-
-#' Load watchlist CSV config file with assets symbols to watch.
-assetsWatchList <- function() {
-  listFilePath <- normalizePath('./config/watchlist.csv')
-  symbolsList <- fread(listFilePath, header = F)
-  setnames(symbolsList, c('SymbolID'))
-}
 
 #' Fetch asset price data from a given data provider source.
 #' @param symbolID Data source asset symbol ID.
