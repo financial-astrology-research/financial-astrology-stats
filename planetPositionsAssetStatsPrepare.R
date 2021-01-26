@@ -8,9 +8,9 @@ source("./configUtils.R")
 source("./dataMergeUtils.R")
 source("./fileSystemUtilities.R")
 
-#' Calculate asset price category frequency by a given category variable.
+#' Calculate asset price category frequency by a given factor variable.
 #' @param factorAssetTable Factor variable with asset prices long table.
-#' @return Factor / asset price (buy / sell) frequency statistics table.
+#' @return Factor / asset price (buy / sell) category frequency statistics table.
 factorAssetPriceFrequencyCount <- function (factorAssetTable, byFactor) {
   variableEffectCountLong <- factorAssetTable[,
     data.table(table(OHLCEff)), by = byFactor
@@ -33,12 +33,20 @@ factorAssetPriceFrequencyCount <- function (factorAssetTable, byFactor) {
   ]
 }
 
-
 #' Prepare planets zodiac sign / asset price side (buy / sell) frequency statistics.
 #' @param planetPositionAssetTable Daily planets positions with asset prices long table.
-#' @return Planets zodiac sign price side category frequency statistics table.
+#' @return Planets zodiac sign price category frequency statistics table.
 planetZodSignAssetPriceSideFrequencyPrepare <- function(planetPositionAssetTable) {
+  planetPositionAssetTable[, PlanetZodSign := paste0(pID, "_", zsign)]
   factorAssetPriceFrequencyCount(planetPositionAssetTable, "PlanetZodSign")
+}
+
+#' Prepare planets triplicity / asset price side (buy / sell) frequency statistics.
+#' @param planetPositionAssetTable Daily planets positions with asset prices long table.
+#' @return Planets triplicity price category frequency statistics table.
+planetTriplicityAssetPriceSideFrequencyPrepare <- function(planetPositionAssetTable) {
+  planetPositionAssetTable[, PlanetTriplicity := paste0(pID, "_", triplicity)]
+  factorAssetPriceFrequencyCount(planetPositionAssetTable, "PlanetTriplicity")
 }
 
 #' Persist stats data table into target path and file destination.
@@ -55,14 +63,18 @@ planetPositionsAssetStatsPrepare <- function() {
   watchList <- assetsWatchList()
   for (symbolID in watchList$SymbolID) {
     planetsPositionsAssetPriceTable <- planetsPositionsAssetPricesDataMerge(symbolID)
-    planetsPositionsAssetPriceTable[, PlanetZodSign := paste0(pID, "_", zsign)]
     planetsZodSignFrequencyStats <- planetZodSignAssetPriceSideFrequencyPrepare(planetsPositionsAssetPriceTable)
 
     dataTableStatsExport(
       planetsZodSignFrequencyStats,
       paste0(symbolID, "-planet_zodsign", "-buy_sell_count_freq_stats")
     )
+
+    planetsTriplicityFrequencyStats <- planetTriplicityAssetPriceSideFrequencyPrepare(planetsPositionsAssetPriceTable)
+
+    dataTableStatsExport(
+      planetsTriplicityFrequencyStats,
+      paste0(symbolID, "-planet_triplicity", "-buy_sell_count_freq_stats")
+    )
   }
 }
-
-planetPositionsAssetStatsPrepare()
