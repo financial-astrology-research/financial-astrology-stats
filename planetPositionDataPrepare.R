@@ -61,8 +61,4 @@ dailyPlanetsPositionTablePrepare <- function() {
     planetLongitudeTableLong,
     expandPath("./data/daily_planets_positions_long.csv"), append = F
   )
-
-  return(planetLongitudeTableLong)
 }
-
-dailyPlanetsPositions <- dailyPlanetsPositionTablePrepare()
