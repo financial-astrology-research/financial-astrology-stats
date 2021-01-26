@@ -42,6 +42,7 @@ dataTableStatsExport <- function(dataTable, targetFileName) {
   cat("Stats table exported to:", targetFileName, "\n")
 }
 
+#' Calculate planets positions / asset price effect statistics.
 planetPositionsAssetStatsPrepare <- function() {
   watchList <- assetsWatchList()
   for (symbolID in watchList$SymbolID) {
@@ -55,5 +56,3 @@ planetPositionsAssetStatsPrepare <- function() {
     )
   }
 }
-
-planetPositionsAssetStatsPrepare()

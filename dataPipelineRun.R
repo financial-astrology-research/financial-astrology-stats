@@ -17,5 +17,7 @@ modernPlanetsCEVSCHNNPabloAspectsDailyAspectsTableExport()
 dailyPlanetsPositionTablePrepare()
 # Prepare merged daily planets aspects + watchlist assets price CSV tables.
 planetsAspectsAssetsPriceDataPrepare()
-# Produce frequency and descriptive price / aspects statistics CSV tables for all watchlist assets.
+# Produce aspects / price statistics CSV tables for watchlist assets.
 planetAspectsAssetStatsPrepare()
+# Produce planet positions / price statistics CSV tables for watchlist assets.
+planetPositionsAssetStatsPrepare()
