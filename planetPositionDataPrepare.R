@@ -36,8 +36,8 @@ longitudeDerivativesPositionTableAugment <- function(planetLongitudeTableLong) {
   planetLongitudeTableLong[, zsign := mapvalues(znum, zsignN, zodiacSignName)]
 
   # Categorize signs in qualities: https://www.astro.com/astrowiki/en/Quality
-  qualityName <- rep(c('FIR', 'EAR', 'AIR', 'WAT'), 3)
-  planetLongitudeTableLong[, quality := mapvalues(znum, zsignN, qualityName)]
+  elementName <- rep(c('FIR', 'EAR', 'AIR', 'WAT'), 3)
+  planetLongitudeTableLong[, element := mapvalues(znum, zsignN, elementName)]
 
   # Categorize signs in triplicities: https://www.astro.com/astrowiki/en/Triplicity
   triplicityName <- rep(c('CAR', 'FIX', 'MUT'), 4)
