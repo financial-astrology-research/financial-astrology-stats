@@ -51,12 +51,18 @@ dailyPlanetsPositionTablePrepare <- function() {
 
   # Extract planet code ID.
   planetLongitudeTableLong[, pID := substr(variable, 1, 2)]
+  planetLongitudeTableLong[, variable := NULL]
   # Customize columns names.
-  setnames(planetLongitudeTableLong, c('Date', 'variable', 'lon', 'pID'))
+  setnames(planetLongitudeTableLong, c('Date', 'lon', 'pID'))
+  setcolorder(planetLongitudeTableLong, c('Date', 'pID', 'lon'))
   zodiacSignPositionTableAugment(planetLongitudeTableLong)
 
   fwrite(
-    dailyAspectsForConfigSetsTablePrepare(modernPlanetsAndCEVSCHNN(), pabloCerdaAspectSet()),
+    planetLongitudeTableLong,
     expandPath("./data/daily_planets_positions_long.csv"), append = F
   )
+
+  return(planetLongitudeTableLong)
 }
+
+dailyPlanetsPositions <- dailyPlanetsPositionTablePrepare()
