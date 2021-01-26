@@ -8,6 +8,7 @@ source("./planetAspectsDataPrepare.R")
 source("./planetAspectsAssetsPriceDataPrepare.R")
 source("./planetAspectsAssetStatsPrepare.R")
 source("./planetPositionDataPrepare.R")
+source("./planetPositionsAssetStatsPrepare.R")
 
 # Daily aspects table only with modern astrology planets.
 modernPlanetsPabloAspectsDailyAspectsTableExport()
