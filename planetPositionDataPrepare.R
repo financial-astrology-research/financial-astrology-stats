@@ -51,6 +51,27 @@ longitudeDerivativesPositionTableAugment <- function(planetLongitudeTableLong) {
   planetLongitudeTableLong[, znum := NULL]
 }
 
+#' Augment planet positions data table with position motion speed.
+#' @return Daily planets speed table.
+dailyPlanetsSpeedTablePrepare <- function() {
+  cat("Preparing daily planets speed table.\n")
+  planetPositionsTable <- loadPlanetsPositionTable("daily")
+  colNames <- colnames(planetPositionsTable)
+  speedColNames <- colNames[grep("^..SP", colNames)]
+  planetSpeedTableLong <- melt(
+    planetPositionsTable,
+    id.var = "Date",
+    measure.var = speedColNames
+  )
+
+  # Moon Nodes are imaginary points so we assume don't have own speed.
+  planetSpeedTableLong[variable %in% c('NNSP', 'SNSP'), value := 0]
+  # Extract planet ID from variable name.
+  planetSpeedTableLong[, variable := substr(variable, 1, 2)]
+  setnames(planetSpeedTableLong, c('Date', 'pID', 'speed'))
+}
+
+
 #' Prepare daily planets longitude position and categorical derivatives: polarity, triplicity, element, sign, etc.
 #' @return Daily planets position data table that includes: longitude and it's categorical derivatives.
 dailyPlanetsPositionTablePrepare <- function() {
@@ -64,7 +85,7 @@ dailyPlanetsPositionTablePrepare <- function() {
     measure.var = longitudeColNames
   )
 
-  # Extract planet code ID.
+  # Extract planet ID from variable name.
   planetLongitudeTableLong[, pID := substr(variable, 1, 2)]
   planetLongitudeTableLong[, variable := NULL]
   # Customize columns names.
@@ -72,8 +93,16 @@ dailyPlanetsPositionTablePrepare <- function() {
   setcolorder(planetLongitudeTableLong, c('Date', 'pID', 'lon'))
   longitudeDerivativesPositionTableAugment(planetLongitudeTableLong)
 
-  fwrite(
+  # Merge the planets speed columns.
+  planetSpeedTableLong <- dailyPlanetsSpeedTablePrepare()
+  planetPositionsTableLong <- merge(
     planetLongitudeTableLong,
+    planetSpeedTableLong,
+    by = c('Date', 'pID')
+  )
+
+  fwrite(
+    planetPositionsTableLong,
     expandPath("./data/daily_planets_positions_long.csv"), append = F
   )
 }
