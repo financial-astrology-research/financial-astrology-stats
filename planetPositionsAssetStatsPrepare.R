@@ -62,7 +62,7 @@ planetElementAssetPriceSideFrequencyPrepare <- function(planetPositionAssetTable
 #' @param planetPositionAssetTable Daily planets positions with asset prices long table.
 #' @return Planets polarity price category frequency statistics table.
 planetPolarityAssetPriceSideFrequencyPrepare <- function(planetPositionAssetTable) {
-  planetPositionAssetTable[, PlanetPolarity := paste0(pID, "_", element)]
+  planetPositionAssetTable[, PlanetPolarity := paste0(pID, "_", polarity)]
   factorAssetPriceFrequencyCount(planetPositionAssetTable, "PlanetPolarity")
 }
 
