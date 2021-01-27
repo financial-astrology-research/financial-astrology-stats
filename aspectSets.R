@@ -67,8 +67,8 @@ setMajorAspectsSet <- function() {
 pabloCerdaAspectSet <- function() {
   return(
     list(
-      aspects = c(0, 30, 45, 60, 90, 103, 120, 135, 150, 180),
-      orbs = c(2, 2, 2, 2, 2, 2, 2, 2, 2, 2)
+      aspects = c(0, 30, 36, 45, 60, 72, 90, 103, 120, 135, 144, 150, 180),
+      orbs = c(2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2)
     )
   )
 }
