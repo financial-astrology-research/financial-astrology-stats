@@ -41,15 +41,6 @@ planetAspectsAssetPriceDescriptivesPrepare <- function(planetAspectsAssetPricesT
   planetAspectsAssetPricesTable[, round(describe(diffOHLC), 3), by = "PlanetsAspect"]
 }
 
-#' Persist stats data table into target path and file destination.
-#' @param dataTable The data table to persist.
-#' @param targetFileName The destination file name without extension.
-dataTableStatsExport <- function(dataTable, targetFileName) {
-  targetFileName <- paste0(statsDataDestinationPath(), targetFileName, ".csv")
-  fwrite(dataTable, targetFileName)
-  cat("Stats table exported to:", targetFileName, "\n")
-}
-
 planetAspectsAssetStatsPrepare <- function() {
   # TODO: Extract data tmp path composition to FS utilities and use here.
   planetAspectsAssetPricesFiles <- list.files("./data/tmp", pattern = "*aspects_set_long.csv")

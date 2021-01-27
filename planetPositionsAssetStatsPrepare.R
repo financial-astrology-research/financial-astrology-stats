@@ -6,6 +6,7 @@
 
 source("./configUtils.R")
 source("./dataMergeUtils.R")
+source("./dataExportUtils.R")
 source("./fileSystemUtilities.R")
 
 #' Calculate asset price category frequency by a given factor variable.
@@ -63,15 +64,6 @@ planetElementAssetPriceSideFrequencyPrepare <- function(planetPositionAssetTable
 planetPolarityAssetPriceSideFrequencyPrepare <- function(planetPositionAssetTable) {
   planetPositionAssetTable[, PlanetPolarity := paste0(pID, "_", element)]
   factorAssetPriceFrequencyCount(planetPositionAssetTable, "PlanetPolarity")
-}
-
-#' Persist stats data table into target path and file destination.
-#' @param dataTable The data table to persist.
-#' @param targetFileName The destination file name without extension.
-dataTableStatsExport <- function(dataTable, targetFileName) {
-  targetFileName <- paste0(statsDataDestinationPath(), targetFileName, ".csv")
-  fwrite(dataTable, targetFileName)
-  cat("Stats table exported to:", targetFileName, "\n")
 }
 
 #' Calculate planets positions / asset price effect statistics.
