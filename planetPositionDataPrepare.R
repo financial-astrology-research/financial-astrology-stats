@@ -59,15 +59,38 @@ speedDerivativesPositionTableAugment <- function(planetSpeedTableLong) {
   # on the formula suggested at https://www.astro.com/astrowiki/en/Stationary_Phase
   planetSpeedBoundary <- planetSpeedTableLong[,
     list(
-      Max = max(speed),
-      Avg = round(mean(speed), 3),
-      Static = round(mean(speed) * 0.05, 2)
+      Average = round(mean(speed), 3),
+      Static = round(mean(speed) * 0.1, 2)
     ),
     by = "pID"
   ]
 
-  planetSpeedTableLong$speedmode <- "normal"
-  planetSpeedTableLong[speed < 0, speedmode := "retrograde"]
+  staticBoundary <- matrix(
+    planetSpeedBoundary$Static,
+    nrow = 1,
+    ncol = length(planetSpeedBoundary$Static),
+    byrow = TRUE,
+    dimnames = list('speed', planetSpeedBoundary$pID)
+  )
+
+  averageBoundary <- matrix(
+    planetSpeedBoundary$Average,
+    nrow = 1,
+    ncol = length(planetSpeedBoundary$Average),
+    byrow = TRUE,
+    dimnames = list('speed', planetSpeedBoundary$pID)
+  )
+
+  planetSpeedTableLong$speedmode <- "DIR"
+  planetSpeedTableLong[speed < 0, speedmode := "RET"]
+  planetSpeedTableLong[
+    speed >= 0 & speed <= staticBoundary['speed', pID],
+    speedmode := "STA"
+  ]
+  planetSpeedTableLong[
+    speed > averageBoundary['speed', pID],
+    speedmode := "FAS"
+  ]
 }
 
 #' Augment planet positions data table with position motion speed.
@@ -126,5 +149,3 @@ dailyPlanetsPositionTablePrepare <- function() {
     expandPath("./data/daily_planets_positions_long.csv"), append = F
   )
 }
-
-dailyPlanetsSpeedTablePrepare()
