@@ -57,6 +57,14 @@ planetElementAssetPriceSideFrequencyPrepare <- function(planetPositionAssetTable
   factorAssetPriceFrequencyCount(planetPositionAssetTable, "PlanetElement")
 }
 
+#' Prepare planets polarity / asset price side (buy / sell) frequency statistics.
+#' @param planetPositionAssetTable Daily planets positions with asset prices long table.
+#' @return Planets polarity price category frequency statistics table.
+planetPolarityAssetPriceSideFrequencyPrepare <- function(planetPositionAssetTable) {
+  planetPositionAssetTable[, PlanetPolarity := paste0(pID, "_", element)]
+  factorAssetPriceFrequencyCount(planetPositionAssetTable, "PlanetPolarity")
+}
+
 #' Persist stats data table into target path and file destination.
 #' @param dataTable The data table to persist.
 #' @param targetFileName The destination file name without extension.
@@ -78,15 +86,21 @@ planetPositionsAssetStatsPrepare <- function() {
       paste0(symbolID, "-planet_zodsign", "-buy_sell_count_freq_stats")
     )
 
+    planetsPolarityFrequencyStats <- planetPolarityAssetPriceSideFrequencyPrepare(planetsPositionsAssetPriceTable)
+    dataTableStatsExport(
+      planetsPolarityFrequencyStats,
+      paste0(symbolID, "-planet_polarity", "-buy_sell_count_freq_stats")
+    )
+
     planetsTriplicityFrequencyStats <- planetTriplicityAssetPriceSideFrequencyPrepare(planetsPositionsAssetPriceTable)
     dataTableStatsExport(
       planetsTriplicityFrequencyStats,
       paste0(symbolID, "-planet_triplicity", "-buy_sell_count_freq_stats")
     )
 
-    planetsTriplicityFrequencyStats <- planetElementAssetPriceSideFrequencyPrepare(planetsPositionsAssetPriceTable)
+    planetsElementFrequencyStats <- planetElementAssetPriceSideFrequencyPrepare(planetsPositionsAssetPriceTable)
     dataTableStatsExport(
-      planetsTriplicityFrequencyStats,
+      planetsElementFrequencyStats,
       paste0(symbolID, "-planet_element", "-buy_sell_count_freq_stats")
     )
   }
