@@ -53,12 +53,14 @@ planetAspectsAssetStatsPrepare <- function() {
 
     planetAspectsEffectCountWide <- planetAspectsAssetPriceSideFrequencyPrepare(planetAspectsAssetPricesTable)
     dataTableStatsExport(
+      symbolID,
       planetAspectsEffectCountWide,
       paste0(symbolID, "-buy_sell_count_freq_stats")
     )
 
     planetAspectsPriceDescriptives <- planetAspectsAssetPriceDescriptivesPrepare(planetAspectsAssetPricesTable)
     dataTableStatsExport(
+      symbolID,
       planetAspectsPriceDescriptives,
       paste0(symbolID, "-price_descriptive_stats")
     )

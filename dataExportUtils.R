@@ -11,8 +11,8 @@ source("./fileSystemUtilities.R")
 #' @param symbolID Asset symbol ID the stats are calculated for.
 #' @param dataTable The data table to persist.
 #' @param targetFileName The destination file name without extension.
-dataTableStatsExport <- function(dataTable, targetFileName) {
-  targetFileName <- paste0(statsDataDestinationPath(), targetFileName, ".csv")
+dataTableStatsExport <- function(symbolID, dataTable, targetFileName) {
+  targetFileName <- paste0(statsDataDestinationPath(symbolID), targetFileName, ".csv")
   fwrite(dataTable, targetFileName)
   cat("Stats table exported to:", targetFileName, "\n")
 }

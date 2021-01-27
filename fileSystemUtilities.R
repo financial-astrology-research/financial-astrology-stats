@@ -13,9 +13,15 @@ visualizationsDataDestinationPath <- function() {
 }
 
 #' Provide stats data destination path.
+#' @param symbolID Asset symbol ID.
 #' @returns The stats data relative destination path.
-statsDataDestinationPath <- function() {
-  destinationPath <- "./stats/"
+statsDataDestinationPath <- function(symbolID) {
+  destinationPath <- paste0("./stats/", symbolID, "/")
+  if (!dir.exists(destinationPath)) {
+    dir.create(destinationPath)
+  }
+
+  return(destinationPath)
 }
 
 #' Provides models predictions destination path.
