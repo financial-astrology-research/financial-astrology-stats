@@ -9,9 +9,9 @@ library(plyr)
 source("./fileSystemUtilities.R")
 source("./planetAspectsDataPrepare.R")
 
-#' Augment planet positions data table with zodiacal sign and derivatives: polarity, triplicity, elements and so forth.
-#' @param Planet longitude positions long data table.
-#' @return Daily planets position table augmented with longitude derivatives.
+#' Augment planet positions data table with categorical derivatives: polarity, triplicity, elements and so forth.
+#' @param planetLongitudeTableLong Planet longitude positions long data table.
+#' @return Daily planets position table augmented with categorical derivatives.
 longitudeDerivativesPositionTableAugment <- function(planetLongitudeTableLong) {
   zsignN <- seq(1, 12)
   zodiacSignName <- c(
@@ -51,6 +51,25 @@ longitudeDerivativesPositionTableAugment <- function(planetLongitudeTableLong) {
   planetLongitudeTableLong[, znum := NULL]
 }
 
+#' Augment planets speed data table with categorical derivatives: retrograde, stationary, normal.
+#' @param planetSpeedTableLong Planet longitude positions long data table.
+#' @return Daily planets speed table augmented with categorical derivatives.
+speedDerivativesPositionTableAugment <- function(planetSpeedTableLong) {
+  # Determine min speed when planet should be considered stationary based
+  # on the formula suggested at https://www.astro.com/astrowiki/en/Stationary_Phase
+  planetSpeedBoundary <- planetSpeedTableLong[,
+    list(
+      Max = max(speed),
+      Avg = round(mean(speed), 3),
+      Static = round(mean(speed) * 0.05, 2)
+    ),
+    by = "pID"
+  ]
+
+  planetSpeedTableLong$speedmode <- "normal"
+  planetSpeedTableLong[speed < 0, speedmode := "retrograde"]
+}
+
 #' Augment planet positions data table with position motion speed.
 #' @return Daily planets speed table.
 dailyPlanetsSpeedTablePrepare <- function() {
@@ -69,6 +88,7 @@ dailyPlanetsSpeedTablePrepare <- function() {
   # Extract planet ID from variable name.
   planetSpeedTableLong[, variable := substr(variable, 1, 2)]
   setnames(planetSpeedTableLong, c('Date', 'pID', 'speed'))
+  speedDerivativesPositionTableAugment(planetSpeedTableLong)
 }
 
 
@@ -106,3 +126,5 @@ dailyPlanetsPositionTablePrepare <- function() {
     expandPath("./data/daily_planets_positions_long.csv"), append = F
   )
 }
+
+dailyPlanetsSpeedTablePrepare()
