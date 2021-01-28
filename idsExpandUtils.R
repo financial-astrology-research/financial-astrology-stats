@@ -30,6 +30,13 @@ planetsIdsDefinition <- function() {
   )
 }
 
+polarityIdsDefinition <- function() {
+  c(
+    'Positive' = 'POS',
+    'Negative' = 'NEG'
+  )
+}
+
 #' Map planet IDs vector to planet names.
 #' @param ids Planet IDs vector.
 #' @return Planet names vector.
