@@ -75,6 +75,15 @@ zodSignIdsDefinition <- function() {
   )
 }
 
+#' Definition of speed phases and it's corresponding human readable names.
+speedPhasesIdsDefinition <- function() {
+  c(
+    'Direct' = 'DIR',
+    'Stationary' = 'STA',
+    'Retrograde' = 'RET'
+  )
+}
+
 #' Map planet IDs vector to planet names.
 #' @param ids Planet IDs vector.
 #' @return Planet names vector.
