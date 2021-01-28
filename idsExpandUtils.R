@@ -7,7 +7,7 @@
 library(plyr)
 
 #' Definition of all planets IDs and it's corresponding human readable names.
-planetsIdsDefinition <- function() {
+planetIdsDefinition <- function() {
   c(
     'Moon' = 'MO',
     'Mercury' = 'ME',
@@ -26,7 +26,9 @@ planetsIdsDefinition <- function() {
     'Uranus' = 'UR',
     'Pholus' = 'PH',
     'Neptune' = 'NE',
-    'Pluto' = 'PL'
+    'Pluto' = 'PL',
+    'Sun Eclipse' = "ES",
+    'Moon Eclipse' = 'EM',
   )
 }
 
@@ -88,7 +90,7 @@ speedPhasesIdsDefinition <- function() {
 #' @param ids Planet IDs vector.
 #' @return Planet names vector.
 planetIdToNameMap <- function(ids) {
-  idsDefinition <- planetsIdsDefinition()
+  idsDefinition <- planetIdsDefinition()
   useIds <- idsDefinition[idsDefinition %in% ids]
   mapvalues(ids, from = useIds, to = names(useIds))
 }
