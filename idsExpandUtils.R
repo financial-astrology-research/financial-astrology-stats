@@ -32,6 +32,26 @@ planetIdsDefinition <- function() {
   )
 }
 
+#' Definition of aspects and it's corresponding human readable names.
+aspectIdsDefinition <- function() {
+  c(
+    'Conjunction' = 'a0',
+    'Semi-Sextile' = 'a30',
+    'Semi-Quintile' = 'a36',
+    'Semi-Square' = 'a45',
+    'Septile' = 'a51',
+    'Sextile' = 'a60',
+    'Quintile' = 'a72',
+    'Square' = 'a90',
+    'Biseptile' = 'a103',
+    'Trine' = 'a120',
+    'Sesquisquare' = 'a135',
+    'Biquintile' = 'a144',
+    'Quincunx' = 'a150',
+    'Opposition' = 'a180'
+  )
+}
+
 #' Definition of polarities and it's corresponding human readable names.
 polarityIdsDefinition <- function() {
   c(
@@ -135,4 +155,11 @@ zodSignIdToNameMap <- function(ids) {
 #' @return Speed phase names vector.
 speedPhaseIdToNameMap <- function(ids) {
   idToNameMap(speedPhaseIdsDefinition(), ids)
+}
+
+#' Map aspects IDs vector to names.
+#' @param ids Aspects IDs vector.
+#' @return Aspects names vector.
+aspectIdToNameMap <- function(ids) {
+  idToNameMap(aspectIdsDefinition(), ids)
 }
