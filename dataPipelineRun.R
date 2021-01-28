@@ -11,7 +11,7 @@ source("./planetPositionDataPrepare.R")
 source("./planetPositionsAssetStatsPrepare.R")
 
 # Daily aspects table only with modern astrology planets.
-modernPlanetsPabloAspectsDailyAspectsTableExport()
+allPlanetsPabloAspectsDailyAspectsTableExport()
 # Daily aspects table with modern astrology planets and asteroids Ceres, Vesta, Chiron and the North Node.
 modernPlanetsCEVSCHNNPabloAspectsDailyAspectsTableExport()
 # Prepare daily planets lingitude positions and derivatives.
