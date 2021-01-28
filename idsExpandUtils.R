@@ -30,10 +30,21 @@ planetsIdsDefinition <- function() {
   )
 }
 
+#' Definition of polarities and it's corresponding human readable names.
 polarityIdsDefinition <- function() {
   c(
     'Positive' = 'POS',
     'Negative' = 'NEG'
+  )
+}
+
+#' Definition of element and it's corresponding human readable names.
+elementIdsDefinition <- function() {
+  c(
+    'Fire' = 'FIR',
+    'Earth' = 'EAR',
+    'Air' = 'AIR',
+    'Water' = 'WAT'
   )
 }
 
