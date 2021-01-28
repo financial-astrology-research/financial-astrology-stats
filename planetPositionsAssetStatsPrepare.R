@@ -66,6 +66,14 @@ planetPolarityAssetPriceSideFrequencyPrepare <- function(planetPositionAssetTabl
   factorAssetPriceFrequencyCount(planetPositionAssetTable, "PlanetPolarity")
 }
 
+#' Prepare planets speed mode / asset price side (buy / sell) frequency statistics.
+#' @param planetPositionAssetTable Daily planets positions with asset prices long table.
+#' @return Planets polarity price category frequency statistics table.
+planetSpeedModeAssetPriceSideFrequencyPrepare <- function(planetPositionAssetTable) {
+  planetPositionAssetTable[, PlanetSpeed := paste0(pID, "_", speedmode)]
+  factorAssetPriceFrequencyCount(planetPositionAssetTable, "PlanetSpeed")
+}
+
 #' Calculate planets positions / asset price effect statistics.
 planetPositionsAssetStatsPrepare <- function() {
   watchList <- assetsWatchList()
@@ -98,6 +106,13 @@ planetPositionsAssetStatsPrepare <- function() {
       symbolID,
       planetsElementFrequencyStats,
       paste0(symbolID, "-planet_element", "-buy_sell_count_freq_stats")
+    )
+
+    planetsSpeedModeFrequencyStats <- planetSpeedModeAssetPriceSideFrequencyPrepare(planetsPositionsAssetPriceTable)
+    dataTableStatsExport(
+      symbolID,
+      planetsSpeedModeFrequencyStats,
+      paste0(symbolID, "-planet_speed", "-buy_sell_count_freq_stats")
     )
   }
 }
