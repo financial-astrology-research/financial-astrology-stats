@@ -38,6 +38,15 @@ polarityIdsDefinition <- function() {
   )
 }
 
+#' Definition of triplicity and it's corresponding human readable names.
+triplicityIdsDefinition <- function() {
+  c(
+    'Cardinal' = 'CAR',
+    'Fixed' = 'FIX',
+    'Mutable' = 'MUT'
+  )
+}
+
 #' Definition of element and it's corresponding human readable names.
 elementIdsDefinition <- function() {
   c(
@@ -48,12 +57,21 @@ elementIdsDefinition <- function() {
   )
 }
 
-#' Definition of triplicity and it's corresponding human readable names.
-triplicityIdsDefinition <- function() {
+#' Definition of zodiac sign and it's corresponding human readable names.
+zodSignIdsDefinition <- function() {
   c(
-    'Cardinal' = 'CAR',
-    'Fixed' = 'FIX',
-    'Mutable' = 'MUT'
+    'Aries' = 'ARI',
+    'Taurus' = 'TAU',
+    'Gemini' = 'GEM',
+    'Cancer' = 'CAN',
+    'Leo' = 'LEO',
+    'Virgo' = 'VIR',
+    'Libra' = 'LIB',
+    'Scorpio' = 'SCO',
+    'Sagittarius' = 'SAG',
+    'Capricorn' = 'CAP',
+    'Aquarius' = 'AQU',
+    'Pisces' = 'PIS'
   )
 }
 
