@@ -74,7 +74,7 @@ planetAspectsAssetStatsPrepare <- function() {
     dataTableStatsExport(
       symbolID,
       planetAspectsPriceDescriptives,
-      paste(symbolID, "planets_aspects", "-price_descriptive_stats", sep = "-")
+      paste(symbolID, "planets_aspects", "price_descriptive_stats", sep = "-")
     )
   }
 }

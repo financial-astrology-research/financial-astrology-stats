@@ -125,35 +125,35 @@ planetPositionsAssetStatsPrepare <- function() {
     dataTableStatsExport(
       symbolID,
       planetsZodSignFrequencyStats,
-      paste0(symbolID, "-planet_zodsign", "-buy_sell_count_freq_stats")
+      paste(symbolID, "planet_zodsign", "buy_sell_count_freq_stats", sep = "-")
     )
 
     planetsPolarityFrequencyStats <- planetPolarityAssetPriceSideFrequencyPrepare(planetsPositionsAssetPriceTable)
     dataTableStatsExport(
       symbolID,
       planetsPolarityFrequencyStats,
-      paste0(symbolID, "-planet_polarity", "-buy_sell_count_freq_stats")
+      paste(symbolID, "planet_polarity", "buy_sell_count_freq_stats", sep = "-")
     )
 
     planetsTriplicityFrequencyStats <- planetTriplicityAssetPriceSideFrequencyPrepare(planetsPositionsAssetPriceTable)
     dataTableStatsExport(
       symbolID,
       planetsTriplicityFrequencyStats,
-      paste0(symbolID, "-planet_triplicity", "-buy_sell_count_freq_stats")
+      paste(symbolID, "planet_triplicity", "buy_sell_count_freq_stats", sep = "-")
     )
 
     planetsElementFrequencyStats <- planetElementAssetPriceSideFrequencyPrepare(planetsPositionsAssetPriceTable)
     dataTableStatsExport(
       symbolID,
       planetsElementFrequencyStats,
-      paste0(symbolID, "-planet_element", "-buy_sell_count_freq_stats")
+      paste(symbolID, "planet_element", "buy_sell_count_freq_stats", sep = "-")
     )
 
     planetsSpeedModeFrequencyStats <- planetSpeedModeAssetPriceSideFrequencyPrepare(planetsPositionsAssetPriceTable)
     dataTableStatsExport(
       symbolID,
       planetsSpeedModeFrequencyStats,
-      paste0(symbolID, "-planet_speed", "-buy_sell_count_freq_stats")
+      paste(symbolID, "planet_speed", "buy_sell_count_freq_stats", sep = "-")
     )
   }
 }
