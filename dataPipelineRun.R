@@ -10,6 +10,8 @@ source("./planetAspectsAssetStatsPrepare.R")
 source("./planetPositionDataPrepare.R")
 source("./planetPositionsAssetStatsPrepare.R")
 
+# Clean tmp directory to ensure all tables are up to date.
+unlink("./data/tmp/*.csv")
 # Daily aspects table only with modern astrology planets.
 allPlanetsPabloAspectsDailyAspectsTableExport()
 # Prepare daily planets lingitude positions and derivatives.
