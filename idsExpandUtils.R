@@ -122,3 +122,17 @@ triplicityIdToNameMap <- function(ids) {
 elementIdToNameMap <- function(ids) {
   idToNameMap(elementIdsDefinition(), ids)
 }
+
+#' Map zodiac sign IDs vector to names.
+#' @param ids Zodiac sign IDs vector.
+#' @return Zodiac sign names vector.
+zodSignIdToNameMap <- function(ids) {
+  idToNameMap(zodSignIdsDefinition(), ids)
+}
+
+#' Map speed phase IDs vector to names.
+#' @param ids Speed phase IDs vector.
+#' @return Speed phase names vector.
+speedPhaseIdToNameMap <- function(ids) {
+  idToNameMap(speedPhaseIdsDefinition(), ids)
+}
