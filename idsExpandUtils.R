@@ -95,10 +95,30 @@ idToNameMap <- function(idsDefinition, ids) {
   mapvalues(ids, from = useIds, to = names(useIds))
 }
 
-#' Map planet IDs vector to planet names.
+#' Map planet IDs vector to names.
 #' @param ids Planet IDs vector.
 #' @return Planet names vector.
 planetIdToNameMap <- function(ids) {
   idToNameMap(planetsIdsDefinition(), ids)
 }
 
+#' Map polarity IDs vector to names.
+#' @param ids Polarity IDs vector.
+#' @return Polarity names vector.
+polarityIdToNameMap <- function(ids) {
+  idToNameMap(polarityIdsDefinition(), ids)
+}
+
+#' Map triplicity IDs vector to names.
+#' @param ids Triplicity IDs vector.
+#' @return Triplicity names vector.
+triplicityIdToNameMap <- function(ids) {
+  idToNameMap(triplicityIdsDefinition(), ids)
+}
+
+#' Map element IDs vector to names.
+#' @param ids Element IDs vector.
+#' @return Element names vector.
+elementIdToNameMap <- function(ids) {
+  idToNameMap(elementIdsDefinition(), ids)
+}
