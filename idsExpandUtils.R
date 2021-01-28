@@ -28,7 +28,7 @@ planetIdsDefinition <- function() {
     'Neptune' = 'NE',
     'Pluto' = 'PL',
     'Sun Eclipse' = "ES",
-    'Moon Eclipse' = 'EM',
+    'Moon Eclipse' = 'EM'
   )
 }
 
@@ -98,7 +98,7 @@ zodSignIdsDefinition <- function() {
 }
 
 #' Definition of speed phases and it's corresponding human readable names.
-speedPhasesIdsDefinition <- function() {
+speedPhaseIdsDefinition <- function() {
   c(
     'Direct' = 'DIR',
     'Stationary' = 'STA',
@@ -119,7 +119,7 @@ idToNameMap <- function(idsDefinition, ids) {
 #' @param ids Planet IDs vector.
 #' @return Planet names vector.
 planetIdToNameMap <- function(ids) {
-  idToNameMap(planetsIdsDefinition(), ids)
+  idToNameMap(planetIdsDefinition(), ids)
 }
 
 #' Map polarity IDs vector to names.
