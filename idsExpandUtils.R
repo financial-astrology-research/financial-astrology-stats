@@ -86,11 +86,19 @@ speedPhasesIdsDefinition <- function() {
   )
 }
 
+#' Generic IDs to name mapping based on definition vector.
+#' @param idsDefinition ID's named vector definition.
+#' @param ids ID's vector to map to names.
+#' @return Names vector.
+idToNameMap <- function(idsDefinition, ids) {
+  useIds <- idsDefinition[idsDefinition %in% ids]
+  mapvalues(ids, from = useIds, to = names(useIds))
+}
+
 #' Map planet IDs vector to planet names.
 #' @param ids Planet IDs vector.
 #' @return Planet names vector.
 planetIdToNameMap <- function(ids) {
-  idsDefinition <- planetIdsDefinition()
-  useIds <- idsDefinition[idsDefinition %in% ids]
-  mapvalues(ids, from = useIds, to = names(useIds))
+  idToNameMap(planetsIdsDefinition(), ids)
 }
+
