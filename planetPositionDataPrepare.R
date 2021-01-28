@@ -51,32 +51,24 @@ longitudeDerivativesPositionTableAugment <- function(planetLongitudeTableLong) {
   planetLongitudeTableLong[, znum := NULL]
 }
 
-#' Augment planets speed data table with categorical derivatives: retrograde, stationary, normal.
+#' Augment planets speed data table with categorical derivatives: retrograde, stationary, direct.
 #' @param planetSpeedTableLong Planet longitude positions long data table.
 #' @return Daily planets speed table augmented with categorical derivatives.
 speedDerivativesPositionTableAugment <- function(planetSpeedTableLong) {
   # Determine min speed when planet should be considered stationary based
-  # on the formula suggested at https://www.astro.com/astrowiki/en/Stationary_Phase
+  # on average boundary inspired by the formula found at
+  # https://www.astro.com/astrowiki/en/Stationary_Phase
   planetSpeedBoundary <- planetSpeedTableLong[,
     list(
-      Average = round(mean(speed), 3),
-      Static = round(mean(speed) * 0.1, 2)
+      Stationary = round(mean(speed) * 0.2, 2)
     ),
     by = "pID"
   ]
 
-  staticBoundary <- matrix(
-    planetSpeedBoundary$Static,
+  stationaryBoundary <- matrix(
+    planetSpeedBoundary$Stationary,
     nrow = 1,
-    ncol = length(planetSpeedBoundary$Static),
-    byrow = TRUE,
-    dimnames = list('speed', planetSpeedBoundary$pID)
-  )
-
-  averageBoundary <- matrix(
-    planetSpeedBoundary$Average,
-    nrow = 1,
-    ncol = length(planetSpeedBoundary$Average),
+    ncol = length(planetSpeedBoundary$Stationary),
     byrow = TRUE,
     dimnames = list('speed', planetSpeedBoundary$pID)
   )
@@ -84,12 +76,8 @@ speedDerivativesPositionTableAugment <- function(planetSpeedTableLong) {
   planetSpeedTableLong$speedmode <- "DIR"
   planetSpeedTableLong[speed < 0, speedmode := "RET"]
   planetSpeedTableLong[
-    speed >= 0 & speed <= staticBoundary['speed', pID],
+    speed >= 0 & speed <= stationaryBoundary['speed', pID],
     speedmode := "STA"
-  ]
-  planetSpeedTableLong[
-    speed > averageBoundary['speed', pID],
-    speedmode := "FAS"
   ]
 }
 
