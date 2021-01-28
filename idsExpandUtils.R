@@ -48,6 +48,15 @@ elementIdsDefinition <- function() {
   )
 }
 
+#' Definition of triplicity and it's corresponding human readable names.
+triplicityIdsDefinition <- function() {
+  c(
+    'Cardinal' = 'CAR',
+    'Fixed' = 'FIX',
+    'Mutable' = 'MUT'
+  )
+}
+
 #' Map planet IDs vector to planet names.
 #' @param ids Planet IDs vector.
 #' @return Planet names vector.
