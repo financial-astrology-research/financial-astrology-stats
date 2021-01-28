@@ -134,7 +134,7 @@ planetAspectsAssetPricesDataMerge <- function(symbolID) {
   # TODO: Separate merge from export logic.
   assetPriceAugmentedFileName <- paste0(assetsDataDestinationPath(), symbolID, "--augmented.csv")
   assetPriceAugmentedTable <- fread(assetPriceAugmentedFileName)
-  aspectFileName <- "aspects_modern_planets_pablo_aspects_set_long"
+  aspectFileName <- "aspects_all_planets_pablo_aspects_set_long"
   planetAspectLong <- fread(paste0("./data/", aspectFileName, ".csv"))
 
   planetAspectsAssetPricesTable <- merge(planetAspectLong, assetPriceAugmentedTable, by = c('Date'))
