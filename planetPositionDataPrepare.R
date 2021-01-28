@@ -94,8 +94,8 @@ dailyPlanetsSpeedTablePrepare <- function() {
     measure.var = speedColNames
   )
 
-  # Moon Nodes are imaginary points so we assume don't have own speed.
-  planetSpeedTableLong[variable %in% c('NNSP', 'SNSP'), value := 0]
+  # Moon Nodes are imaginary points so we assume constant speed.
+  planetSpeedTableLong[variable %in% c('NNSP', 'SNSP'), value := 1]
   # Extract planet ID from variable name.
   planetSpeedTableLong[, variable := substr(variable, 1, 2)]
   setnames(planetSpeedTableLong, c('Date', 'pID', 'speed'))
