@@ -68,6 +68,6 @@ modernPlanetsAndCEVSCHNN <- function() {
 
 allPlanetsAndAsteroids <- function() {
   return(
-    c('MO', 'ME', 'VE', 'SU', 'MA', 'VS', 'JN', 'CE', 'PA', 'JU', 'SA', 'CH', 'UR', 'PH', 'NE', 'PL')
+    c('MO', 'ME', 'VE', 'SU', 'MA', 'VS', 'JN', 'CE', 'PA', 'JU', 'NN', 'SN', 'SA', 'CH', 'UR', 'PH', 'NE', 'PL')
   )
 }

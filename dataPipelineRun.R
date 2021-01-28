@@ -10,10 +10,10 @@ source("./planetAspectsAssetStatsPrepare.R")
 source("./planetPositionDataPrepare.R")
 source("./planetPositionsAssetStatsPrepare.R")
 
+# Clean tmp directory to ensure all tables are up to date.
+unlink("./data/tmp/*.csv")
 # Daily aspects table only with modern astrology planets.
-modernPlanetsPabloAspectsDailyAspectsTableExport()
-# Daily aspects table with modern astrology planets and asteroids Ceres, Vesta, Chiron and the North Node.
-modernPlanetsCEVSCHNNPabloAspectsDailyAspectsTableExport()
+allPlanetsPabloAspectsDailyAspectsTableExport()
 # Prepare daily planets lingitude positions and derivatives.
 dailyPlanetsPositionTablePrepare()
 # Prepare merged daily planets aspects + watchlist assets price CSV tables.
