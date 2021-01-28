@@ -8,6 +8,7 @@ library(data.table)
 library(psych)
 
 source("./fileSystemUtilities.R")
+source("./idsExpandUtils.R")
 
 #' Prepare planet aspects / asset price side (buy / sell) frequency statistics.
 #' @param planetAspectsAssetPricesTable Daily planets aspects with asset prices table.
@@ -17,7 +18,7 @@ planetAspectsAssetPriceSideFrequencyPrepare <- function(planetAspectsAssetPrices
     data.table(table(OHLCEff)), by = "PlanetsAspect"
   ]
 
-  planetAspectsEffectCountWide <- dcast(
+  frequencyTable <- dcast(
     planetsAspectEffectCountLong,
     PlanetsAspect ~ OHLCEff,
     value.var = "N",
@@ -25,13 +26,24 @@ planetAspectsAssetPriceSideFrequencyPrepare <- function(planetAspectsAssetPrices
   )
 
   # Total days count.
-  planetAspectsEffectCountWide[, daysN := buy + sell]
+  frequencyTable[, daysN := buy + sell]
   # Compute buy/sell days percentage frequency.
-  planetAspectsEffectCountWide[,
+  frequencyTable[,
     c("BuyDays%", "SellDays%") :=
       as.list(round(prop.table(c(buy, sell)), 2)),
     by = "PlanetsAspect"
   ]
+
+  pX <- substr(frequencyTable$PlanetsAspect, 1, 2)
+  pY <- substr(frequencyTable$PlanetsAspect, 3, 4)
+  aspect <- substr(frequencyTable$PlanetsAspect, 6, 10)
+  frequencyTable[, PlanetX := planetIdToNameMap(pX)]
+  frequencyTable[, PlanetY := planetIdToNameMap(pY)]
+  frequencyTable[, Aspect := aspectIdToNameMap(aspect)]
+  setcolorder(
+    frequencyTable,
+    c('PlanetsAspect', 'PlanetX', 'PlanetY', 'Aspect', 'buy', 'sell', 'daysN', 'BuyDays%', 'SellDays%')
+  )
 }
 
 #' Calculate planet aspects asset price descriptive statistics.
@@ -55,15 +67,14 @@ planetAspectsAssetStatsPrepare <- function() {
     dataTableStatsExport(
       symbolID,
       planetAspectsEffectCountWide,
-      paste0(symbolID, "-buy_sell_count_freq_stats")
+      paste0(symbolID, "planet_pairs_aspect", "-buy_sell_count_freq_stats")
     )
 
     planetAspectsPriceDescriptives <- planetAspectsAssetPriceDescriptivesPrepare(planetAspectsAssetPricesTable)
     dataTableStatsExport(
       symbolID,
       planetAspectsPriceDescriptives,
-      paste0(symbolID, "-price_descriptive_stats")
+      paste0(symbolID, "planet_pairs_aspect", "-price_descriptive_stats")
     )
   }
 }
-

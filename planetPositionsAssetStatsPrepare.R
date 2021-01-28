@@ -157,5 +157,3 @@ planetPositionsAssetStatsPrepare <- function() {
     )
   }
 }
-
-planetPositionsAssetStatsPrepare()
