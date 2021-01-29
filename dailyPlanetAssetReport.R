@@ -23,26 +23,26 @@ dailyPlanetsAspectsLoad <- function() {
 }
 
 #' Report the planets zodiacal positions with historical asset price effect frequencies.
+#' @param reportDate The date to generate the report for.
 #' @param symbolID Symbol ID to report frequencies for.
 #' @return Planet positions with price effect frequencies report table.
-dailyPlanetsSignsReport <- function(symbolID) {
-  nowDate <- Sys.Date()
+dailyPlanetsSignsReport <- function(reportDate, symbolID) {
   sourceFileName <- paste(symbolID, "planet_zodsign", "buy_sell_count_freq_stats", sep = "-")
   statsPathFileName <- paste0(statsDataDestinationPath(symbolID), sourceFileName, ".csv")
   frequencyTable <- fread(statsPathFileName)
   frequencyTable[, pID := substr(PlanetZodSign, 1, 2)]
   frequencyTable[, zsign := substr(PlanetZodSign, 4, 6)]
   dailyPlanetsPosition <- dailyPlanetsPositionLoad()
-  reportPlanetsPosition <- dailyPlanetsPosition[Date == nowDate, c('Date', 'pID', 'zsign')]
+  reportPlanetsPosition <- dailyPlanetsPosition[Date == reportDate, c('Date', 'pID', 'zsign')]
   dailyReportTable <- merge(reportPlanetsPosition, frequencyTable, by = c('pID', 'zsign'))
   dailyReportTable[, c('pID', 'zsign') := NULL]
 }
 
 #' Report the planets aspects with historical asset price effect frequencies.
+#' @param reportDate The date to generate the report for.
 #' @param symbolID Symbol ID to report frequencies for.
 #' @return Planet positions with price effect frequencies report table.
-dailyPlanetsAspectsReport <- function(symbolID) {
-  nowDate <- Sys.Date()
+dailyPlanetsAspectsReport <- function(reportDate, symbolID) {
   sourceFileName <- paste(symbolID, "planets_aspects", "buy_sell_count_freq_stats", sep = "-")
   statsPathFileName <- paste0(statsDataDestinationPath(symbolID), sourceFileName, ".csv")
   frequencyTable <- fread(statsPathFileName)
@@ -50,7 +50,7 @@ dailyPlanetsAspectsReport <- function(symbolID) {
   frequencyTable[, pY := substr(PlanetsAspect, 3, 4)]
   frequencyTable[, aspect := substr(PlanetsAspect, 6, 10)]
   dailyPlanetsAspects <- dailyPlanetsAspectsLoad()
-  reportPlanetsPosition <- dailyPlanetsAspects[Date == nowDate,]
+  reportPlanetsPosition <- dailyPlanetsAspects[Date == reportDate,]
   # Filter only the exact orb aspects.
   reportPlanetsPosition <- reportPlanetsPosition[orb <= 1]
   dailyReportTable <- merge(
@@ -62,7 +62,14 @@ dailyPlanetsAspectsReport <- function(symbolID) {
   dailyReportTable[order(Date, orb)]
 }
 
+symbolID <- readline("Enter an asset symbol: ")
+reportDate <- readline("Enter a date in YYYY-DD-MM format: ")
+reportDate <- try(as.Date(reportDate, format="%Y-%m-%d"))
+if("try-error" %in% class(reportDate) || is.na(reportDate)) {
+  stop("The date is invalid, please try again.")
+}
+
 cat("\nDAILY PLANET ZODIAC SIGN POSITION:\n\n")
-dailyPlanetsSignsReport("BTC-USD") %>% print()
+dailyPlanetsSignsReport(reportDate, symbolID) %>% print()
 cat("\nDAILY PLANETS ASPECTS:\n\n")
-dailyPlanetsAspectsReport("BTC-USD") %>% print()
+dailyPlanetsAspectsReport(reportDate, symbolID) %>% print()
