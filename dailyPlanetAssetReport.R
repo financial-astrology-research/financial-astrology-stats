@@ -38,6 +38,22 @@ dailyPlanetsSignsReport <- function(reportDate, symbolID) {
   dailyReportTable[, c('pID', 'zsign') := NULL]
 }
 
+#' Report the planets speed phase with historical asset price effect frequencies.
+#' @param reportDate The date to generate the report for.
+#' @param symbolID Symbol ID to report frequencies for.
+#' @return Planet speed phase with price effect frequencies report table.
+dailyPlanetsSpeedPhaseReport <- function(reportDate, symbolID) {
+  sourceFileName <- paste(symbolID, "planet_speed", "buy_sell_count_freq_stats", sep = "-")
+  statsPathFileName <- paste0(statsDataDestinationPath(symbolID), sourceFileName, ".csv")
+  frequencyTable <- fread(statsPathFileName)
+  frequencyTable[, pID := substr(PlanetSpeedPhase, 1, 2)]
+  frequencyTable[, speedmode := substr(PlanetSpeedPhase, 4, 6)]
+  dailyPlanetsPosition <- dailyPlanetsPositionLoad()
+  reportPlanetsPosition <- dailyPlanetsPosition[Date == reportDate, c('Date', 'pID', 'speed', 'speedmode')]
+  dailyReportTable <- merge(reportPlanetsPosition, frequencyTable, by = c('pID', 'speedmode'))
+  dailyReportTable[, c('pID', 'speedmode', 'PlanetSpeedPhase') := NULL]
+}
+
 #' Report the planets aspects with historical asset price effect frequencies.
 #' @param reportDate The date to generate the report for.
 #' @param symbolID Symbol ID to report frequencies for.
@@ -74,6 +90,8 @@ if("try-error" %in% class(reportDate) || is.na(reportDate)) {
   reportDate <- Sys.Date()
 }
 
+cat("\nDAILY PLANETS SPEED PHASE:\n\n")
+dailyPlanetsSpeedPhaseReport(reportDate, symbolID) %>% print()
 cat("\nDAILY PLANET ZODIAC SIGN POSITION:\n\n")
 dailyPlanetsSignsReport(reportDate, symbolID) %>% print()
 cat("\nDAILY PLANETS ASPECTS:\n\n")
