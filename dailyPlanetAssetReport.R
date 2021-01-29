@@ -3,6 +3,7 @@
 # Created by: pablocc
 # Created on: 29/01/2021
 
+library(data.table)
 library(magrittr)
 
 source("./fileSystemUtilities.R")
@@ -12,6 +13,13 @@ source("./fileSystemUtilities.R")
 dailyPlanetsPositionLoad <- function() {
   planetPositionsPathFileName <- paste0(astroDataDestinationPath(), "daily_planets_positions_long.csv")
   fread(planetPositionsPathFileName)
+}
+
+#' Load daily planets aspects data table from CSV.
+#' @return Daily planets positions data table.
+dailyPlanetsAspectsLoad <- function() {
+  planetsAspectsPathFileName <- paste0(astroDataDestinationPath(), "aspects_all_planets_pablo_aspects_set_long.csv")
+  fread(planetsAspectsPathFileName)
 }
 
 #' Report the planets zodiacal positions with historical asset price effect frequencies.
@@ -30,4 +38,31 @@ dailyPlanetsSignsReport <- function(symbolID) {
   dailyReportTable[, c('pID', 'zsign') := NULL]
 }
 
+#' Report the planets aspects with historical asset price effect frequencies.
+#' @param symbolID Symbol ID to report frequencies for.
+#' @return Planet positions with price effect frequencies report table.
+dailyPlanetsAspectsReport <- function(symbolID) {
+  nowDate <- Sys.Date()
+  sourceFileName <- paste(symbolID, "planets_aspects", "buy_sell_count_freq_stats", sep = "-")
+  statsPathFileName <- paste0(statsDataDestinationPath(symbolID), sourceFileName, ".csv")
+  frequencyTable <- fread(statsPathFileName)
+  frequencyTable[, pX := substr(PlanetsAspect, 1, 2)]
+  frequencyTable[, pY := substr(PlanetsAspect, 3, 4)]
+  frequencyTable[, aspect := substr(PlanetsAspect, 6, 10)]
+  dailyPlanetsAspects <- dailyPlanetsAspectsLoad()
+  reportPlanetsPosition <- dailyPlanetsAspects[Date == nowDate,]
+  # Filter only the exact orb aspects.
+  reportPlanetsPosition <- reportPlanetsPosition[orb <= 1]
+  dailyReportTable <- merge(
+    reportPlanetsPosition,
+    frequencyTable,
+    by = c('pX', 'pY', 'aspect')
+  )
+  dailyReportTable[, c('pX', 'pY', 'aspect', 'origin') := NULL]
+  dailyReportTable[order(Date, orb)]
+}
+
+cat("\nDAILY PLANET ZODIAC SIGN POSITION:\n\n")
 dailyPlanetsSignsReport("BTC-USD") %>% print()
+cat("\nDAILY PLANETS ASPECTS:\n\n")
+dailyPlanetsAspectsReport("BTC-USD") %>% print()
