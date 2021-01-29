@@ -255,18 +255,49 @@ hourlyAspectsDateAggregate <- function(hourlyPlanetAspectsLong) {
   # Remove noisy observations: planets aspect don't have enough daily effect hours.
   hourlyPlanetAspectsLong <- hourlyPlanetAspectsLong[filter != T]
 
+  # Locate hour when aspect will be exact.
+  hourlyPlanetAspectsLong[pX == "MO" & orb <= 1, minOrb := min(orb), list(Date, origin, aspect)]
+  hourlyPlanetAspectsLong[pX != "MO" & orb <= 0.1, minOrb := min(orb), list(Date, origin, aspect)]
+  hourlyPlanetAspectsLong[!is.na(minOrb) & orb == minOrb, exactHour := max(Hour), list(Date, origin, aspect)]
   # Use mean orb for the aggregation.
   dailyPlanetAspectsLong <- hourlyPlanetAspectsLong[,
-    list(mean(orb), mean(effHours)), by = list(Date, origin, aspect)
+    list(
+      mean(orb),
+      min(orb),
+      max(orb),
+      min(Hour),
+      max(Hour),
+      mean(exactHour, na.rm = T),
+      mean(effHours)
+    ),
+    by = list(Date, origin, aspect)
   ]
 
   # Separate aspect planets codes pX (fast) pY (slow) body, fast one is the force activation
   # due the fact that is the one approaching to slow one.
   dailyPlanetAspectsLong[, pX := substr(origin, 1, 2)]
   dailyPlanetAspectsLong[, pY := substr(origin, 3, 4)]
-  setnames(dailyPlanetAspectsLong, c('Date', 'origin', 'aspect', 'orb', 'effHours', 'pX', 'pY'))
-
-  dailyPlanetAspectsLong[, orb := round(orb, 2)]
+  setnames(
+    dailyPlanetAspectsLong,
+    c(
+      'Date',
+      'origin',
+      'aspect',
+      'meanOrb',
+      'minOrb',
+      'maxOrb',
+      'startHour',
+      'endHour',
+      'exactHour',
+      'effHours',
+      'pX',
+      'pY'
+    )
+  )
+  # Replace NaN by NA when exact hour is not available.
+  dailyPlanetAspectsLong[is.nan(exactHour), exactHour := NA]
+  # Limit mean orb precision to 2.
+  dailyPlanetAspectsLong[, meanOrb := round(meanOrb, 2)]
 }
 
 #' Prepare daily aspects for a given aspects / planet configuration sets.
