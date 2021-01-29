@@ -18,7 +18,7 @@ planetIdsDefinition <- function() {
     'Juno' = 'JN',
     'Ceres' = 'CE',
     'Pallas' = 'PA',
-    'Juno' = 'JU',
+    'Jupiter' = 'JU',
     'North Node' = 'NN',
     'South Node' = 'SN',
     'Saturn' = 'SA',
