@@ -49,17 +49,18 @@ dailyPlanetsAspectsReport <- function(reportDate, symbolID) {
   frequencyTable[, pX := substr(PlanetsAspect, 1, 2)]
   frequencyTable[, pY := substr(PlanetsAspect, 3, 4)]
   frequencyTable[, aspect := substr(PlanetsAspect, 6, 10)]
+  frequencyTable[, PlanetsAspect := NULL]
   dailyPlanetsAspects <- dailyPlanetsAspectsLoad()
   reportPlanetsPosition <- dailyPlanetsAspects[Date == reportDate,]
   # Filter only the exact orb aspects.
-  reportPlanetsPosition <- reportPlanetsPosition[orb <= 1]
+  reportPlanetsPosition <- reportPlanetsPosition[meanOrb <= 1]
   dailyReportTable <- merge(
     reportPlanetsPosition,
     frequencyTable,
     by = c('pX', 'pY', 'aspect')
   )
   dailyReportTable[, c('pX', 'pY', 'aspect', 'origin') := NULL]
-  dailyReportTable[order(Date, orb)]
+  dailyReportTable[order(Date, minOrb)]
 }
 
 symbolID <- readline("Enter an asset symbol: ")
