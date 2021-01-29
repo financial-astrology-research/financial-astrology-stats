@@ -63,11 +63,15 @@ dailyPlanetsAspectsReport <- function(reportDate, symbolID) {
   dailyReportTable[order(Date, minOrb)]
 }
 
-symbolID <- readline("Enter an asset symbol: ")
-reportDate <- readline("Enter a date in YYYY-DD-MM format: ")
+symbolID <- readline("Enter an asset symbol, default to BTCUSD when empty: ")
+if (symbolID == "") {
+  symbolID <- "BTC-USD"
+}
+
+reportDate <- readline("Enter a date in YYYY-DD-MM format, default to now date when empty: ")
 reportDate <- try(as.Date(reportDate, format="%Y-%m-%d"))
 if("try-error" %in% class(reportDate) || is.na(reportDate)) {
-  stop("The date is invalid, please try again.")
+  reportDate <- Sys.Date()
 }
 
 cat("\nDAILY PLANET ZODIAC SIGN POSITION:\n\n")
