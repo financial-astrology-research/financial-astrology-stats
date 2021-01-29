@@ -41,3 +41,9 @@ modelsPerformanceDestinationPath <- function() {
 assetsDataDestinationPath <- function() {
   destinationPath <- paste0(normalizePath('./data/tmp'), "/")
 }
+
+#' Provides astro data destination path.
+#' @returns The astro data relative destination path.
+astroDataDestinationPath <- function() {
+  destinationPath <- paste0(normalizePath('./data'), "/")
+}
