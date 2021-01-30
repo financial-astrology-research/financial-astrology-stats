@@ -9,6 +9,7 @@ source("./planetAspectsAssetsPriceDataPrepare.R")
 source("./planetAspectsAssetStatsPrepare.R")
 source("./planetPositionDataPrepare.R")
 source("./planetPositionsAssetStatsPrepare.R")
+source("./dailyMundaneEventsAssetReport.R")
 
 # Clean tmp directory to ensure all tables are up to date.
 unlink("./data/tmp/*.csv")
