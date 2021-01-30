@@ -87,6 +87,7 @@ testPredictAccuracy <- function(predictFilename) {
   return(reportData)
 }
 
+watchListPriceDataFetch()
 predictFiles <- list.files(modelsPredictionDestinationPath(), pattern = "*.csv")
 testResults <- setDT(rbindlist(lapply(predictFiles, testPredictAccuracy)))
 testResults <- testResults[order(Symbol, -Rank)]
