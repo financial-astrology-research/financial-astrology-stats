@@ -6,13 +6,13 @@ CE_CAP,Ceres,Capricorn,278,263,541,0.51,0.49
 CE_GEM,Ceres,Gemini,265,217,482,0.55,0.45
 CE_LEO,Ceres,Leo,206,181,387,0.53,0.47
 CE_LIB,Ceres,Libra,216,221,437,0.49,0.51
-CE_PIS,Ceres,Pisces,366,321,687,0.53,0.47
+CE_PIS,Ceres,Pisces,366,323,689,0.53,0.47
 CE_SAG,Ceres,Sagittarius,270,235,505,0.53,0.47
 CE_SCO,Ceres,Scorpio,209,227,436,0.48,0.52
 CE_TAU,Ceres,Taurus,271,235,506,0.54,0.46
 CE_VIR,Ceres,Virgo,244,190,434,0.56,0.44
 CH_AQU,Chiron,Aquarius,702,649,1351,0.52,0.48
-CH_ARI,Chiron,Aries,333,269,602,0.55,0.45
+CH_ARI,Chiron,Aries,333,271,604,0.55,0.45
 CH_CAP,Chiron,Capricorn,462,430,892,0.52,0.48
 CH_LIB,Chiron,Libra,37,37,74,0.5,0.5
 CH_PIS,Chiron,Pisces,1057,912,1969,0.54,0.46
@@ -26,22 +26,22 @@ JN_GEM,Juno,Gemini,166,168,334,0.5,0.5
 JN_LEO,Juno,Leo,280,262,542,0.52,0.48
 JN_LIB,Juno,Libra,426,349,775,0.55,0.45
 JN_PIS,Juno,Pisces,147,151,298,0.49,0.51
-JN_SAG,Juno,Sagittarius,340,347,687,0.49,0.51
+JN_SAG,Juno,Sagittarius,340,349,689,0.49,0.51
 JN_SCO,Juno,Scorpio,454,375,829,0.55,0.45
 JN_TAU,Juno,Taurus,170,117,287,0.59,0.41
 JN_VIR,Juno,Virgo,292,268,560,0.52,0.48
-JU_AQU,Juno,Aquarius,244,221,465,0.52,0.48
-JU_ARI,Juno,Aries,165,165,330,0.5,0.5
-JU_CAN,Juno,Cancer,258,269,527,0.49,0.51
-JU_CAP,Juno,Capricorn,269,259,528,0.51,0.49
-JU_GEM,Juno,Gemini,255,265,520,0.49,0.51
-JU_LEO,Juno,Leo,296,244,540,0.55,0.45
-JU_LIB,Juno,Libra,298,250,548,0.54,0.46
-JU_PIS,Juno,Pisces,246,201,447,0.55,0.45
-JU_SAG,Juno,Sagittarius,278,255,533,0.52,0.48
-JU_SCO,Juno,Scorpio,305,240,545,0.56,0.44
-JU_TAU,Juno,Taurus,210,225,435,0.48,0.52
-JU_VIR,Juno,Virgo,291,253,544,0.53,0.47
+JU_AQU,Jupiter,Aquarius,244,223,467,0.52,0.48
+JU_ARI,Jupiter,Aries,165,165,330,0.5,0.5
+JU_CAN,Jupiter,Cancer,258,269,527,0.49,0.51
+JU_CAP,Jupiter,Capricorn,269,259,528,0.51,0.49
+JU_GEM,Jupiter,Gemini,255,265,520,0.49,0.51
+JU_LEO,Jupiter,Leo,296,244,540,0.55,0.45
+JU_LIB,Jupiter,Libra,298,250,548,0.54,0.46
+JU_PIS,Jupiter,Pisces,246,201,447,0.55,0.45
+JU_SAG,Jupiter,Sagittarius,278,255,533,0.52,0.48
+JU_SCO,Jupiter,Scorpio,305,240,545,0.56,0.44
+JU_TAU,Jupiter,Taurus,210,225,435,0.48,0.52
+JU_VIR,Jupiter,Virgo,291,253,544,0.53,0.47
 MA_AQU,Mars,Aquarius,247,197,444,0.56,0.44
 MA_ARI,Mars,Aries,253,222,475,0.53,0.47
 MA_CAN,Mars,Cancer,227,242,469,0.48,0.52
@@ -52,9 +52,9 @@ MA_LIB,Mars,Libra,313,294,607,0.52,0.48
 MA_PIS,Mars,Pisces,246,211,457,0.54,0.46
 MA_SAG,Mars,Sagittarius,288,272,560,0.51,0.49
 MA_SCO,Mars,Scorpio,296,250,546,0.54,0.46
-MA_TAU,Mars,Taurus,236,243,479,0.49,0.51
+MA_TAU,Mars,Taurus,236,245,481,0.49,0.51
 MA_VIR,Mars,Virgo,289,271,560,0.52,0.48
-ME_AQU,Mercury,Aquarius,245,239,484,0.51,0.49
+ME_AQU,Mercury,Aquarius,245,241,486,0.5,0.5
 ME_ARI,Mercury,Aries,258,227,485,0.53,0.47
 ME_CAN,Mercury,Cancer,255,229,484,0.53,0.47
 ME_CAP,Mercury,Capricorn,247,235,482,0.51,0.49
@@ -68,10 +68,10 @@ ME_TAU,Mercury,Taurus,226,196,422,0.54,0.46
 ME_VIR,Mercury,Virgo,279,232,511,0.55,0.45
 MO_AQU,Moon,Aquarius,270,233,503,0.54,0.46
 MO_ARI,Moon,Aries,254,244,498,0.51,0.49
-MO_CAN,Moon,Cancer,248,247,495,0.5,0.5
+MO_CAN,Moon,Cancer,248,248,496,0.5,0.5
 MO_CAP,Moon,Capricorn,235,270,505,0.47,0.53
 MO_GEM,Moon,Gemini,278,213,491,0.57,0.43
-MO_LEO,Moon,Leo,256,235,491,0.52,0.48
+MO_LEO,Moon,Leo,256,236,492,0.52,0.48
 MO_LIB,Moon,Libra,269,223,492,0.55,0.45
 MO_PIS,Moon,Pisces,252,252,504,0.5,0.5
 MO_SAG,Moon,Sagittarius,251,247,498,0.5,0.5
@@ -80,20 +80,20 @@ MO_TAU,Moon,Taurus,283,212,495,0.57,0.43
 MO_VIR,Moon,Virgo,281,216,497,0.57,0.43
 NE_AQU,Neptune,Aquarius,1704,1670,3374,0.51,0.49
 NE_CAP,Neptune,Capricorn,129,115,244,0.53,0.47
-NE_PIS,Neptune,Pisces,1282,1062,2344,0.55,0.45
-NN_AQU,North Node,Aquarius,195,195,390,0.5,0.5
-NN_ARI,North Node,Aries,191,199,390,0.49,0.51
-NN_CAN,North Node,Cancer,382,394,776,0.49,0.51
-NN_CAP,North Node,Capricorn,213,179,392,0.54,0.46
-NN_GEM,North Node,Gemini,280,272,552,0.51,0.49
-NN_LEO,North Node,Leo,428,355,783,0.55,0.45
-NN_LIB,North Node,Libra,211,181,392,0.54,0.46
-NN_PIS,North Node,Pisces,212,178,390,0.54,0.46
-NN_SAG,North Node,Sagittarius,193,199,392,0.49,0.51
-NN_SCO,North Node,Scorpio,208,180,388,0.54,0.46
-NN_TAU,North Node,Taurus,205,186,391,0.52,0.48
-NN_VIR,North Node,Virgo,397,329,726,0.55,0.45
-PA_AQU,Pallas,Aquarius,414,379,793,0.52,0.48
+NE_PIS,Neptune,Pisces,1282,1064,2346,0.55,0.45
+NN_AQU,NNode,Aquarius,195,195,390,0.5,0.5
+NN_ARI,NNode,Aries,191,199,390,0.49,0.51
+NN_CAN,NNode,Cancer,382,394,776,0.49,0.51
+NN_CAP,NNode,Capricorn,213,179,392,0.54,0.46
+NN_GEM,NNode,Gemini,280,274,554,0.51,0.49
+NN_LEO,NNode,Leo,428,355,783,0.55,0.45
+NN_LIB,NNode,Libra,211,181,392,0.54,0.46
+NN_PIS,NNode,Pisces,212,178,390,0.54,0.46
+NN_SAG,NNode,Sagittarius,193,199,392,0.49,0.51
+NN_SCO,NNode,Scorpio,208,180,388,0.54,0.46
+NN_TAU,NNode,Taurus,205,186,391,0.52,0.48
+NN_VIR,NNode,Virgo,397,329,726,0.55,0.45
+PA_AQU,Pallas,Aquarius,414,381,795,0.52,0.48
 PA_ARI,Pallas,Aries,339,272,611,0.55,0.45
 PA_CAN,Pallas,Cancer,110,103,213,0.52,0.48
 PA_CAP,Pallas,Capricorn,378,372,750,0.5,0.5
@@ -105,13 +105,13 @@ PA_SAG,Pallas,Sagittarius,263,252,515,0.51,0.49
 PA_SCO,Pallas,Scorpio,232,211,443,0.52,0.48
 PA_TAU,Pallas,Taurus,165,161,326,0.51,0.49
 PA_VIR,Pallas,Virgo,203,177,380,0.53,0.47
-PH_CAP,Pholus,Capricorn,318,259,577,0.55,0.45
+PH_CAP,Pholus,Capricorn,318,261,579,0.55,0.45
 PH_LIB,Pholus,Libra,320,290,610,0.52,0.48
 PH_SAG,Pholus,Sagittarius,1728,1534,3262,0.53,0.47
 PH_SCO,Pholus,Scorpio,749,764,1513,0.5,0.5
-PL_CAP,Pluto,Capricorn,1713,1445,3158,0.54,0.46
+PL_CAP,Pluto,Capricorn,1713,1447,3160,0.54,0.46
 PL_SAG,Pluto,Sagittarius,1402,1402,2804,0.5,0.5
-SA_AQU,Saturn,Aquarius,57,40,97,0.59,0.41
+SA_AQU,Saturn,Aquarius,57,42,99,0.58,0.42
 SA_ARI,Saturn,Aries,187,165,352,0.53,0.47
 SA_CAN,Saturn,Cancer,276,257,533,0.52,0.48
 SA_CAP,Saturn,Capricorn,374,308,682,0.55,0.45
@@ -122,19 +122,19 @@ SA_SAG,Saturn,Sagittarius,386,300,686,0.56,0.44
 SA_SCO,Saturn,Scorpio,335,289,624,0.54,0.46
 SA_TAU,Saturn,Taurus,279,313,592,0.47,0.53
 SA_VIR,Saturn,Virgo,314,304,618,0.51,0.49
-SN_AQU,South Node,Aquarius,428,355,783,0.55,0.45
-SN_ARI,South Node,Aries,211,181,392,0.54,0.46
-SN_CAN,South Node,Cancer,213,179,392,0.54,0.46
-SN_CAP,South Node,Capricorn,382,394,776,0.49,0.51
-SN_GEM,South Node,Gemini,193,199,392,0.49,0.51
-SN_LEO,South Node,Leo,195,195,390,0.5,0.5
-SN_LIB,South Node,Libra,191,199,390,0.49,0.51
-SN_PIS,South Node,Pisces,397,329,726,0.55,0.45
-SN_SAG,South Node,Sagittarius,280,272,552,0.51,0.49
-SN_SCO,South Node,Scorpio,205,186,391,0.52,0.48
-SN_TAU,South Node,Taurus,208,180,388,0.54,0.46
-SN_VIR,South Node,Virgo,212,178,390,0.54,0.46
-SU_AQU,Sun,Aquarius,239,235,474,0.5,0.5
+SN_AQU,SNode,Aquarius,428,355,783,0.55,0.45
+SN_ARI,SNode,Aries,211,181,392,0.54,0.46
+SN_CAN,SNode,Cancer,213,179,392,0.54,0.46
+SN_CAP,SNode,Capricorn,382,394,776,0.49,0.51
+SN_GEM,SNode,Gemini,193,199,392,0.49,0.51
+SN_LEO,SNode,Leo,195,195,390,0.5,0.5
+SN_LIB,SNode,Libra,191,199,390,0.49,0.51
+SN_PIS,SNode,Pisces,397,329,726,0.55,0.45
+SN_SAG,SNode,Sagittarius,280,274,554,0.51,0.49
+SN_SCO,SNode,Scorpio,205,186,391,0.52,0.48
+SN_TAU,SNode,Taurus,208,180,388,0.54,0.46
+SN_VIR,SNode,Virgo,212,178,390,0.54,0.46
+SU_AQU,Sun,Aquarius,239,237,476,0.5,0.5
 SU_ARI,Sun,Aries,265,214,479,0.55,0.45
 SU_CAN,Sun,Cancer,283,232,515,0.55,0.45
 SU_CAP,Sun,Capricorn,228,211,439,0.52,0.48
@@ -149,11 +149,11 @@ SU_VIR,Sun,Virgo,271,231,502,0.54,0.46
 UR_AQU,Uranus,Aquarius,759,775,1534,0.49,0.51
 UR_ARI,Uranus,Aries,1052,887,1939,0.54,0.46
 UR_PIS,Uranus,Pisces,974,915,1889,0.52,0.48
-UR_TAU,Uranus,Taurus,330,270,600,0.55,0.45
+UR_TAU,Uranus,Taurus,330,272,602,0.55,0.45
 VE_AQU,Venus,Aquarius,203,223,426,0.48,0.52
 VE_ARI,Venus,Aries,308,264,572,0.54,0.46
 VE_CAN,Venus,Cancer,214,217,431,0.5,0.5
-VE_CAP,Venus,Capricorn,288,267,555,0.52,0.48
+VE_CAP,Venus,Capricorn,288,269,557,0.52,0.48
 VE_GEM,Venus,Gemini,332,291,623,0.53,0.47
 VE_LEO,Venus,Leo,298,272,570,0.52,0.48
 VE_LIB,Venus,Libra,255,206,461,0.55,0.45
@@ -173,4 +173,4 @@ VS_PIS,Vesta,Pisces,229,206,435,0.53,0.47
 VS_SAG,Vesta,Sagittarius,254,200,454,0.56,0.44
 VS_SCO,Vesta,Scorpio,143,108,251,0.57,0.43
 VS_TAU,Vesta,Taurus,358,331,689,0.52,0.48
-VS_VIR,Vesta,Virgo,223,209,432,0.52,0.48
+VS_VIR,Vesta,Virgo,223,211,434,0.51,0.49
