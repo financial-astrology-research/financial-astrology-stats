@@ -65,6 +65,7 @@ dailyMundaneEventsSignsReport <- function(reportDate, symbolID) {
   frequencyTable <- copy(memoFileRead(statsPathFileName))
   frequencyTable[, pID := substr(PlanetZodSign, 1, 2)]
   frequencyTable[, zsign := substr(PlanetZodSign, 4, 6)]
+  frequencyTable[, PlanetZodSign := NULL]
   dailyMundaneEventsPosition <- dailyMundaneEventsPositionLoad()
   reportPlanetsPosition <- dataTableDateColsFilter(
     dailyMundaneEventsPosition,
