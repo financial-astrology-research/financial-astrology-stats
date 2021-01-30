@@ -5,21 +5,32 @@
 
 library(data.table)
 library(magrittr)
+library(memoise)
 
 source("./fileSystemUtilities.R")
+
+#' Load CSV data table.
+#' @param pathFileName CSV file name including absolute or relative path.
+#' @return A data table.
+dataTableRead <- function(pathFileName) {
+  fread(pathFileName)
+}
+
+#' Memoized file read with memory cache (persist during current session).
+memoFileRead <- memoise(dataTableRead)
 
 #' Load daily planets positions data table from CSV.
 #' @return Daily planets positions data table.
 dailyPlanetsPositionLoad <- function() {
   planetPositionsPathFileName <- paste0(astroDataDestinationPath(), "daily_planets_positions_long.csv")
-  fread(planetPositionsPathFileName)
+  memoFileRead(planetPositionsPathFileName)
 }
 
 #' Load daily planets aspects data table from CSV.
 #' @return Daily planets positions data table.
 dailyPlanetsAspectsLoad <- function() {
   planetsAspectsPathFileName <- paste0(astroDataDestinationPath(), "aspects_all_planets_pablo_aspects_set_long.csv")
-  fread(planetsAspectsPathFileName)
+  memoFileRead(planetsAspectsPathFileName)
 }
 
 #' Report the planets zodiacal positions with historical asset price effect frequencies.
@@ -29,7 +40,7 @@ dailyPlanetsAspectsLoad <- function() {
 dailyPlanetsSignsReport <- function(reportDate, symbolID) {
   sourceFileName <- paste(symbolID, "planet_zodsign", "buy_sell_count_freq_stats", sep = "-")
   statsPathFileName <- paste0(statsDataDestinationPath(symbolID), sourceFileName, ".csv")
-  frequencyTable <- fread(statsPathFileName)
+  frequencyTable <- memoFileRead(statsPathFileName)
   frequencyTable[, pID := substr(PlanetZodSign, 1, 2)]
   frequencyTable[, zsign := substr(PlanetZodSign, 4, 6)]
   dailyPlanetsPosition <- dailyPlanetsPositionLoad()
@@ -45,7 +56,7 @@ dailyPlanetsSignsReport <- function(reportDate, symbolID) {
 dailyPlanetsSpeedPhaseReport <- function(reportDate, symbolID) {
   sourceFileName <- paste(symbolID, "planet_speed", "buy_sell_count_freq_stats", sep = "-")
   statsPathFileName <- paste0(statsDataDestinationPath(symbolID), sourceFileName, ".csv")
-  frequencyTable <- fread(statsPathFileName)
+  frequencyTable <- memoFileRead(statsPathFileName)
   frequencyTable[, pID := substr(PlanetSpeedPhase, 1, 2)]
   frequencyTable[, speedmode := substr(PlanetSpeedPhase, 4, 6)]
   dailyPlanetsPosition <- dailyPlanetsPositionLoad()
@@ -61,7 +72,7 @@ dailyPlanetsSpeedPhaseReport <- function(reportDate, symbolID) {
 dailyPlanetsAspectsReport <- function(reportDate, symbolID) {
   sourceFileName <- paste(symbolID, "planets_aspects", "buy_sell_count_freq_stats", sep = "-")
   statsPathFileName <- paste0(statsDataDestinationPath(symbolID), sourceFileName, ".csv")
-  frequencyTable <- fread(statsPathFileName)
+  frequencyTable <- memoFileRead(statsPathFileName)
   frequencyTable[, pX := substr(PlanetsAspect, 1, 2)]
   frequencyTable[, pY := substr(PlanetsAspect, 3, 4)]
   frequencyTable[, aspect := substr(PlanetsAspect, 6, 10)]
