@@ -62,7 +62,7 @@ dataTableDateColsFilter <- function(dataTable, filterDate, selectColNames = NULL
 dailyPlanetsSignsReport <- function(reportDate, symbolID) {
   sourceFileName <- paste(symbolID, "planet_zodsign", "buy_sell_count_freq_stats", sep = "-")
   statsPathFileName <- paste0(statsDataDestinationPath(symbolID), sourceFileName, ".csv")
-  frequencyTable <- memoFileRead(statsPathFileName)
+  frequencyTable <- copy(memoFileRead(statsPathFileName))
   frequencyTable[, pID := substr(PlanetZodSign, 1, 2)]
   frequencyTable[, zsign := substr(PlanetZodSign, 4, 6)]
   dailyPlanetsPosition <- dailyPlanetsPositionLoad()
@@ -82,7 +82,7 @@ dailyPlanetsSignsReport <- function(reportDate, symbolID) {
 dailyPlanetsSpeedPhaseReport <- function(reportDate, symbolID) {
   sourceFileName <- paste(symbolID, "planet_speed", "buy_sell_count_freq_stats", sep = "-")
   statsPathFileName <- paste0(statsDataDestinationPath(symbolID), sourceFileName, ".csv")
-  frequencyTable <- memoFileRead(statsPathFileName)
+  frequencyTable <- copy(memoFileRead(statsPathFileName))
   frequencyTable[, pID := substr(PlanetSpeedPhase, 1, 2)]
   frequencyTable[, speedmode := substr(PlanetSpeedPhase, 4, 6)]
   dailyPlanetsPosition <- dailyPlanetsPositionLoad()
@@ -102,7 +102,7 @@ dailyPlanetsSpeedPhaseReport <- function(reportDate, symbolID) {
 dailyPlanetsAspectsReport <- function(reportDate, symbolID) {
   sourceFileName <- paste(symbolID, "planets_aspects", "buy_sell_count_freq_stats", sep = "-")
   statsPathFileName <- paste0(statsDataDestinationPath(symbolID), sourceFileName, ".csv")
-  frequencyTable <- memoFileRead(statsPathFileName)
+  frequencyTable <- copy(memoFileRead(statsPathFileName))
   frequencyTable[, pX := substr(PlanetsAspect, 1, 2)]
   frequencyTable[, pY := substr(PlanetsAspect, 3, 4)]
   frequencyTable[, aspect := substr(PlanetsAspect, 6, 10)]
@@ -156,6 +156,7 @@ nDailyPlanetsReport <- function(daysN = 7) {
   watchList <- assetsWatchList()
   for (symbolID in watchList$SymbolID) {
     for (idx in seq_along(reportDates)) {
+      cat("Generating", symbolID, "planets report for", as.character(reportDates[idx]), "\n")
       dailyPlanetsReport(reportDates[idx], symbolID)
     }
   }
