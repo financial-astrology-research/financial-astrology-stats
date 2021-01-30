@@ -151,15 +151,22 @@ interactiveDailyPlanetsReport <- function() {
 #' Generate N future daily planets report for all watchlist assets.
 nDailyPlanetsReport <- function(daysN = 7) {
   startDate <- Sys.Date()
-  endDate <- Sys.Date() + daysN
+  endDate <- Sys.Date() + (daysN-1)
   reportDates <- seq(startDate, endDate, by = "1 day")
   watchList <- assetsWatchList()
+  options(width=200)
+
   for (symbolID in watchList$SymbolID) {
     for (idx in seq_along(reportDates)) {
-      cat("Generating", symbolID, "planets report for", as.character(reportDates[idx]), "\n")
+      reportDate <- reportDates[idx]
+      cat("Generating", symbolID, "mundane events report for date ", as.character(reportDate), "\n")
+      targetPathFile <- paste0(mundaneEventsDestinationPath(symbolID, reportDate), reportDate, ".txt")
+      sink(targetPathFile)
       dailyPlanetsReport(reportDates[idx], symbolID)
+      sink()
     }
   }
 }
 
-nDailyPlanetsReport(2)
+# Generate next next 10 days mundane events report for watchlist assets.
+nDailyPlanetsReport(10)

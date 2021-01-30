@@ -61,6 +61,6 @@ astroDataDestinationPath <- function() {
 #' @returns The stats data relative destination path.
 mundaneEventsDestinationPath <- function(symbolID, reportDate) {
   yearMonth <- format(reportDate, "%Y_%b")
-  destinationPath <- paste0("./mundane_events/", symbolID, "/", yearMonth)
+  destinationPath <- paste0("./mundane_events/", symbolID, "/", yearMonth, "/")
   destinationPathCreate(destinationPath)
 }
