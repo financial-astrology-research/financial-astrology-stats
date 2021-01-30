@@ -18,17 +18,17 @@ planetIdsDefinition <- function() {
     'Juno' = 'JN',
     'Ceres' = 'CE',
     'Pallas' = 'PA',
-    'Juno' = 'JU',
-    'North Node' = 'NN',
-    'South Node' = 'SN',
+    'Jupiter' = 'JU',
+    'NNode' = 'NN',
+    'SNode' = 'SN',
     'Saturn' = 'SA',
     'Chiron' = 'CH',
     'Uranus' = 'UR',
     'Pholus' = 'PH',
     'Neptune' = 'NE',
     'Pluto' = 'PL',
-    'Sun Eclipse' = "ES",
-    'Moon Eclipse' = 'EM'
+    'SUEclipse' = "ES",
+    'MOEclipse' = 'EM'
   )
 }
 
@@ -36,17 +36,17 @@ planetIdsDefinition <- function() {
 aspectIdsDefinition <- function() {
   c(
     'Conjunction' = 'a0',
-    'Semi-Sextile' = 'a30',
-    'Semi-Quintile' = 'a36',
-    'Semi-Square' = 'a45',
+    'SemiSextile' = 'a30',
+    'SemiQuintile' = 'a36',
+    'SemiSquare' = 'a45',
     'Septile' = 'a51',
     'Sextile' = 'a60',
     'Quintile' = 'a72',
     'Square' = 'a90',
-    'Biseptile' = 'a103',
+    'BiSeptile' = 'a103',
     'Trine' = 'a120',
-    'Sesquisquare' = 'a135',
-    'Biquintile' = 'a144',
+    'SesquiSquare' = 'a135',
+    'BiQuintile' = 'a144',
     'Quincunx' = 'a150',
     'Opposition' = 'a180'
   )

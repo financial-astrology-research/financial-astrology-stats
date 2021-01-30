@@ -9,6 +9,7 @@ source("./planetAspectsAssetsPriceDataPrepare.R")
 source("./planetAspectsAssetStatsPrepare.R")
 source("./planetPositionDataPrepare.R")
 source("./planetPositionsAssetStatsPrepare.R")
+source("./dailyMundaneEventsAssetReport.R")
 
 # Clean tmp directory to ensure all tables are up to date.
 unlink("./data/tmp/*.csv")
@@ -22,3 +23,5 @@ planetsAspectsAssetsPriceDataPrepare()
 planetAspectsAssetStatsPrepare()
 # Produce planet positions / price statistics CSV tables for watchlist assets.
 planetPositionsAssetStatsPrepare()
+# Produce next upcoming 10 days mundane events assets report for watchlist symbols.
+nDailyMundaneEventsReport(10)

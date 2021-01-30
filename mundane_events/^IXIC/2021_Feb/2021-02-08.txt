@@ -1,0 +1,86 @@
+
+DAILY PLANETS SPEED PHASE:
+
+          Date speed  Planet SpeedPhase  buy sell daysN BuyDays% SellDays%
+ 1: 2021-02-08  0.37   Ceres     Direct 5381 4187  9568     0.56      0.44
+ 2: 2021-02-08  0.04  Chiron     Direct 4119 3169  7288     0.57      0.43
+ 3: 2021-02-08  0.25    Juno     Direct 5307 4185  9492     0.56      0.44
+ 4: 2021-02-08  0.24 Jupiter     Direct 4733 3545  8278     0.57      0.43
+ 5: 2021-02-08  0.55    Mars     Direct 6274 4843 11117     0.56      0.44
+ 6: 2021-02-08 -1.18 Mercury Retrograde 1379 1024  2403     0.57      0.43
+ 7: 2021-02-08 13.84    Moon     Direct 7094 5510 12604     0.56      0.44
+ 8: 2021-02-08  0.03 Neptune     Direct 3634 2775  6409     0.57      0.43
+ 9: 2021-02-08  1.00   NNode     Direct 7094 5510 12604     0.56      0.44
+10: 2021-02-08  0.34  Pallas     Direct 5311 4103  9414     0.56      0.44
+11: 2021-02-08  0.03  Pholus     Direct 4049 3035  7084     0.57      0.43
+12: 2021-02-08  0.03   Pluto     Direct 3658 2873  6531     0.56      0.44
+13: 2021-02-08  0.12  Saturn     Direct 4167 3302  7469     0.56      0.44
+14: 2021-02-08  1.00   SNode     Direct 7094 5510 12604     0.56      0.44
+15: 2021-02-08  1.01     Sun     Direct 7094 5510 12604     0.56      0.44
+16: 2021-02-08  0.02  Uranus     Direct 3884 3025  6909     0.56      0.44
+17: 2021-02-08  1.25   Venus     Direct 6491 4983 11474     0.57      0.43
+18: 2021-02-08 -0.15   Vesta Retrograde 1287  971  2258     0.57      0.43
+
+DAILY PLANET ZODIAC SIGN POSITION:
+
+          Date  Planet     ZodSign  buy sell daysN BuyDays% SellDays%
+ 1: 2021-02-08   Ceres      Pisces  692  567  1259     0.55      0.45
+ 2: 2021-02-08  Chiron       Aries 1140  917  2057     0.55      0.45
+ 3: 2021-02-08    Juno Sagittarius  844  718  1562     0.54      0.46
+ 4: 2021-02-08 Jupiter    Aquarius  590  482  1072     0.55      0.45
+ 5: 2021-02-08    Mars      Taurus  559  435   994     0.56      0.44
+ 6: 2021-02-08 Mercury    Aquarius  618  458  1076     0.57      0.43
+ 7: 2021-02-08    Moon   Capricorn  574  488  1062     0.54      0.46
+ 8: 2021-02-08 Neptune      Pisces 1352  994  2346     0.58      0.42
+ 9: 2021-02-08   NNode      Gemini  491  456   947     0.52      0.48
+10: 2021-02-08  Pallas    Aquarius  880  726  1606     0.55      0.45
+11: 2021-02-08  Pholus   Capricorn  339  240   579     0.59      0.41
+12: 2021-02-08   Pluto   Capricorn 1806 1354  3160     0.57      0.43
+13: 2021-02-08  Saturn    Aquarius  478  348   826     0.58      0.42
+14: 2021-02-08   SNode Sagittarius  491  456   947     0.52      0.48
+15: 2021-02-08     Sun    Aquarius  590  425  1015     0.58      0.42
+16: 2021-02-08  Uranus      Taurus  349  253   602     0.58      0.42
+17: 2021-02-08   Venus    Aquarius  550  448   998     0.55      0.45
+18: 2021-02-08   Vesta       Virgo  540  439   979     0.55      0.45
+
+DAILY PLANETS ASPECTS:
+
+          Date meanOrb minOrb maxOrb startHour endHour exactHour effHours PlanetX PlanetY       Aspect  buy sell daysN BuyDays% SellDays%
+ 1: 2021-02-08    0.23   0.00   0.51         0      23        20       24    Mars   NNode  SemiSextile  129   93   222     0.58      0.42
+ 2: 2021-02-08    0.23   0.00   0.51         0      23        20       24    Mars   SNode     Quincunx  129   93   222     0.58      0.42
+ 3: 2021-02-08    0.31   0.00   0.67         0      23        10       24 Mercury  Pholus   SemiSquare  137  122   259     0.53      0.47
+ 4: 2021-02-08    0.36   0.00   0.82         0      23        19       24 Mercury   Vesta     Quincunx   83   61   144     0.58      0.42
+ 5: 2021-02-08    0.98   0.00   1.72         6      12         9        7    Moon  Uranus        Trine  406  361   767     0.53      0.47
+ 6: 2021-02-08    0.00   0.00   0.00         0      23        23       24   NNode   SNode   Opposition 5809 4550 10359     0.56      0.44
+ 7: 2021-02-08    0.30   0.00   0.68         0      23         9       24     Sun   Vesta     Quincunx   80   59   139     0.58      0.42
+ 8: 2021-02-08    0.57   0.02   1.26         0      23        14       24 Mercury     Sun  Conjunction  376  268   644     0.58      0.42
+ 9: 2021-02-08    0.41   0.02   0.88         0      23         2       24     Sun Neptune  SemiSextile  158   88   246     0.64      0.36
+10: 2021-02-08    0.33   0.02   0.76         0      23        19       24     Sun  Pholus   SemiSquare  127  116   243     0.52      0.48
+11: 2021-02-08    0.62   0.03   1.20         0      23        23       24 Mercury Neptune  SemiSextile  158  104   262     0.60      0.40
+12: 2021-02-08    0.70   0.03   1.43         0      23         1       24 Mercury  Pallas  Conjunction   94   91   185     0.51      0.49
+13: 2021-02-08    0.96   0.03   1.70        17      23        20        7    Moon   Ceres     Quintile  432  326   758     0.57      0.43
+14: 2021-02-08    0.82   0.03   1.64        20      23        23        4    Moon  Pallas SemiQuintile  416  344   760     0.55      0.45
+15: 2021-02-08    0.92   0.04   1.65         2       8         5        7    Moon     Sun   SemiSquare  418  305   723     0.58      0.42
+16: 2021-02-08    0.07   0.04   0.11         0      23        23       24  Saturn  Chiron      Sextile    5    4     9     0.56      0.44
+17: 2021-02-08    0.98   0.05   1.75         4      10         7        7    Moon Jupiter SemiQuintile  447  348   795     0.56      0.44
+18: 2021-02-08    0.99   0.06   1.77         7      13        10        7    Moon Neptune     Quintile  464  304   768     0.60      0.40
+19: 2021-02-08    0.99   0.06   1.78         3       9         6        7    Moon  Pholus  Conjunction  227  151   378     0.60      0.40
+20: 2021-02-08    0.91   0.06   1.62         9      15        12        7    Moon   Venus  SemiSextile  410  320   730     0.56      0.44
+21: 2021-02-08    0.97   0.07   1.76         4      10         7        7    Moon  Pallas   SemiSquare  431  314   745     0.58      0.42
+22: 2021-02-08    0.24   0.08   0.40         0      23        23       24   Ceres   Pluto      Sextile  113  101   214     0.53      0.47
+23: 2021-02-08    0.72   0.09   1.51        19      23        22        5    Moon     Sun SemiQuintile  426  297   723     0.59      0.41
+24: 2021-02-08    0.91   0.09   1.84         0       5         2        6    Moon   Vesta    BiSeptile  415  341   756     0.55      0.45
+25: 2021-02-08    0.93   0.13   1.73         4       9         6        6    Moon Mercury   SemiSquare  441  299   740     0.60      0.40
+26: 2021-02-08    0.92   0.18   1.67         0      23        NA       24 Mercury   Ceres SemiQuintile  164  132   296     0.55      0.45
+27: 2021-02-08    0.29   0.20   0.38         0      23        NA       24   Vesta Neptune   Opposition   82   73   155     0.53      0.47
+28: 2021-02-08    0.93   0.22   1.65        18      23        21        6    Moon Mercury SemiQuintile  424  307   731     0.58      0.42
+29: 2021-02-08    0.92   0.23   1.88         0       4         0        5    Moon   Venus SemiQuintile  419  310   729     0.57      0.43
+30: 2021-02-08    0.40   0.26   0.54         0      23        NA       24  Pallas  Chiron   SemiSquare  138   93   231     0.60      0.40
+31: 2021-02-08    0.71   0.41   1.03         0      23        NA       24     Sun   Ceres SemiQuintile  163  149   312     0.52      0.48
+32: 2021-02-08    0.62   0.47   0.76         0      23        NA       24  Pallas  Pholus   SemiSquare  130  124   254     0.51      0.49
+33: 2021-02-08    0.62   0.52   0.72         0      23        NA       24 Jupiter  Pholus SemiQuintile  139  166   305     0.46      0.54
+34: 2021-02-08    0.91   0.58   1.23         0      23        NA       24     Sun  Pallas  Conjunction   91   70   161     0.57      0.43
+35: 2021-02-08    0.77   0.75   0.78         0      23        NA       24  Chiron  Uranus  SemiSextile 1475 1125  2600     0.57      0.43
+36: 2021-02-08    0.84   0.80   0.89         0      23        NA       24  Saturn  Uranus       Square   46   36    82     0.56      0.44
+37: 2021-02-08    0.94   0.90   0.98         0      23        NA       24  Saturn  Pholus  SemiSextile   76   66   142     0.54      0.46
+          Date meanOrb minOrb maxOrb startHour endHour exactHour effHours PlanetX PlanetY       Aspect  buy sell daysN BuyDays% SellDays%
