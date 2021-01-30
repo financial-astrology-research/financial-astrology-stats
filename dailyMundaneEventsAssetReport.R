@@ -29,14 +29,14 @@ memoFileRead <- memoise(dataTableRead)
 
 #' Load daily planets positions data table from CSV.
 #' @return Daily planets positions data table.
-dailyPlanetsPositionLoad <- function() {
+dailyMundaneEventsPositionLoad <- function() {
   planetPositionsPathFileName <- paste0(astroDataDestinationPath(), "daily_planets_positions_long.csv")
   memoFileRead(planetPositionsPathFileName)
 }
 
 #' Load daily planets aspects data table from CSV.
 #' @return Daily planets positions data table.
-dailyPlanetsAspectsLoad <- function() {
+dailyMundaneEventsAspectsLoad <- function() {
   planetsAspectsPathFileName <- paste0(astroDataDestinationPath(), "aspects_all_planets_pablo_aspects_set_long.csv")
   memoFileRead(planetsAspectsPathFileName)
 }
@@ -59,15 +59,15 @@ dataTableDateColsFilter <- function(dataTable, filterDate, selectColNames = NULL
 #' @param reportDate The date to generate the report for.
 #' @param symbolID Symbol ID to report frequencies for.
 #' @return Planet positions with price effect frequencies report table.
-dailyPlanetsSignsReport <- function(reportDate, symbolID) {
+dailyMundaneEventsSignsReport <- function(reportDate, symbolID) {
   sourceFileName <- paste(symbolID, "planet_zodsign", "buy_sell_count_freq_stats", sep = "-")
   statsPathFileName <- paste0(statsDataDestinationPath(symbolID), sourceFileName, ".csv")
   frequencyTable <- copy(memoFileRead(statsPathFileName))
   frequencyTable[, pID := substr(PlanetZodSign, 1, 2)]
   frequencyTable[, zsign := substr(PlanetZodSign, 4, 6)]
-  dailyPlanetsPosition <- dailyPlanetsPositionLoad()
+  dailyMundaneEventsPosition <- dailyMundaneEventsPositionLoad()
   reportPlanetsPosition <- dataTableDateColsFilter(
-    dailyPlanetsPosition,
+    dailyMundaneEventsPosition,
     reportDate,
     c('Date', 'pID', 'zsign')
   )
@@ -79,15 +79,15 @@ dailyPlanetsSignsReport <- function(reportDate, symbolID) {
 #' @param reportDate The date to generate the report for.
 #' @param symbolID Symbol ID to report frequencies for.
 #' @return Planet speed phase with price effect frequencies report table.
-dailyPlanetsSpeedPhaseReport <- function(reportDate, symbolID) {
+dailyMundaneEventsSpeedPhaseReport <- function(reportDate, symbolID) {
   sourceFileName <- paste(symbolID, "planet_speed", "buy_sell_count_freq_stats", sep = "-")
   statsPathFileName <- paste0(statsDataDestinationPath(symbolID), sourceFileName, ".csv")
   frequencyTable <- copy(memoFileRead(statsPathFileName))
   frequencyTable[, pID := substr(PlanetSpeedPhase, 1, 2)]
   frequencyTable[, speedmode := substr(PlanetSpeedPhase, 4, 6)]
-  dailyPlanetsPosition <- dailyPlanetsPositionLoad()
+  dailyMundaneEventsPosition <- dailyMundaneEventsPositionLoad()
   reportPlanetsPosition <- dataTableDateColsFilter(
-    dailyPlanetsPosition,
+    dailyMundaneEventsPosition,
     reportDate,
     c('Date', 'pID', 'speed', 'speedmode')
   )
@@ -99,7 +99,7 @@ dailyPlanetsSpeedPhaseReport <- function(reportDate, symbolID) {
 #' @param reportDate The date to generate the report for.
 #' @param symbolID Symbol ID to report frequencies for.
 #' @return Planet positions with price effect frequencies report table.
-dailyPlanetsAspectsReport <- function(reportDate, symbolID) {
+dailyMundaneEventsAspectsReport <- function(reportDate, symbolID) {
   sourceFileName <- paste(symbolID, "planets_aspects", "buy_sell_count_freq_stats", sep = "-")
   statsPathFileName <- paste0(statsDataDestinationPath(symbolID), sourceFileName, ".csv")
   frequencyTable <- copy(memoFileRead(statsPathFileName))
@@ -107,8 +107,8 @@ dailyPlanetsAspectsReport <- function(reportDate, symbolID) {
   frequencyTable[, pY := substr(PlanetsAspect, 3, 4)]
   frequencyTable[, aspect := substr(PlanetsAspect, 6, 10)]
   frequencyTable[, PlanetsAspect := NULL]
-  dailyPlanetsAspects <- dailyPlanetsAspectsLoad()
-  reportPlanetsAspects <- dataTableDateColsFilter(dailyPlanetsAspects, reportDate)
+  dailyMundaneEventsAspects <- dailyMundaneEventsAspectsLoad()
+  reportPlanetsAspects <- dataTableDateColsFilter(dailyMundaneEventsAspects, reportDate)
   # Filter only the exact orb aspects.
   reportPlanetsAspects <- reportPlanetsAspects[meanOrb <= 1]
   dailyReportTable <- merge(
@@ -123,17 +123,17 @@ dailyPlanetsAspectsReport <- function(reportDate, symbolID) {
 #' Generate all planets daily setup with asset price effect stats.
 #' @param reportDate The date to generate the report for.
 #' @param symbolID Symbol ID to report frequencies for.
-dailyPlanetsReport <- function(reportDate, symbolID) {
+dailyMundaneEventsReport <- function(reportDate, symbolID) {
   cat("\nDAILY PLANETS SPEED PHASE:\n\n")
-  dailyPlanetsSpeedPhaseReport(reportDate, symbolID) %>% print()
+  dailyMundaneEventsSpeedPhaseReport(reportDate, symbolID) %>% print()
   cat("\nDAILY PLANET ZODIAC SIGN POSITION:\n\n")
-  dailyPlanetsSignsReport(reportDate, symbolID) %>% print()
+  dailyMundaneEventsSignsReport(reportDate, symbolID) %>% print()
   cat("\nDAILY PLANETS ASPECTS:\n\n")
-  dailyPlanetsAspectsReport(reportDate, symbolID) %>% print()
+  dailyMundaneEventsAspectsReport(reportDate, symbolID) %>% print()
 }
 
 #' Interactive input to specify symbol ID and date used for daily planets report.
-interactiveDailyPlanetsReport <- function() {
+interactiveDailyMundaneEventsReport <- function() {
   symbolID <- readline("Enter an asset symbol, default to BTCUSD when empty: ")
   if (symbolID == "") {
     symbolID <- "BTC-USD"
@@ -145,11 +145,11 @@ interactiveDailyPlanetsReport <- function() {
     reportDate <- Sys.Date()
   }
 
-  dailyPlanetsReport(reportDate, symbolID)
+  dailyMundaneEventsReport(reportDate, symbolID)
 }
 
 #' Generate N future daily planets report for all watchlist assets.
-nDailyPlanetsReport <- function(daysN = 7) {
+nDailyMundaneEventsReport <- function(daysN = 7) {
   startDate <- Sys.Date()
   endDate <- Sys.Date() + (daysN-1)
   reportDates <- seq(startDate, endDate, by = "1 day")
@@ -162,11 +162,11 @@ nDailyPlanetsReport <- function(daysN = 7) {
       cat("Generating", symbolID, "mundane events report for date ", as.character(reportDate), "\n")
       targetPathFile <- paste0(mundaneEventsDestinationPath(symbolID, reportDate), reportDate, ".txt")
       sink(targetPathFile)
-      dailyPlanetsReport(reportDates[idx], symbolID)
+      dailyMundaneEventsReport(reportDates[idx], symbolID)
       sink()
     }
   }
 }
 
 # Generate next next 10 days mundane events report for watchlist assets.
-nDailyPlanetsReport(10)
+nDailyMundaneEventsReport(10)
