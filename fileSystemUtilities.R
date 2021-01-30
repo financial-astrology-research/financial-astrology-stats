@@ -6,6 +6,17 @@ expandPath <- function(path) {
   normalizePath(path.expand(path))
 }
 
+#' Create destination path directories when not exist.
+#' @param destinationPath Absolute or relative destination path.
+#' @return The destination path.
+destinationPathCreate <- function(destinationPath) {
+  if (!dir.exists(destinationPath)) {
+    dir.create(destinationPath, recursive = T)
+  }
+
+  return(destinationPath)
+}
+
 #' Provide visualizations data destination path.
 #' @returns The stats data relative destination path.
 visualizationsDataDestinationPath <- function() {
@@ -17,11 +28,7 @@ visualizationsDataDestinationPath <- function() {
 #' @returns The stats data relative destination path.
 statsDataDestinationPath <- function(symbolID) {
   destinationPath <- paste0("./stats/", symbolID, "/")
-  if (!dir.exists(destinationPath)) {
-    dir.create(destinationPath)
-  }
-
-  return(destinationPath)
+  destinationPathCreate(destinationPath)
 }
 
 #' Provides models predictions destination path.
@@ -46,4 +53,14 @@ assetsDataDestinationPath <- function() {
 #' @returns The astro data relative destination path.
 astroDataDestinationPath <- function() {
   destinationPath <- paste0(normalizePath('./data'), "/")
+}
+
+#' Provide mundane events reports destination path.
+#' @param symbolID Asset symbol ID.
+#' @param reportDate Events report date used to group reports within year/month directory.
+#' @returns The stats data relative destination path.
+mundaneEventsDestinationPath <- function(symbolID, reportDate) {
+  yearMonth <- format(reportDate, "%Y_%b")
+  destinationPath <- paste0("./mundane_events/", symbolID, "/", yearMonth)
+  destinationPathCreate(destinationPath)
 }
