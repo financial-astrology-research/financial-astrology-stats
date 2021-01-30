@@ -90,20 +90,30 @@ dailyPlanetsAspectsReport <- function(reportDate, symbolID) {
   dailyReportTable[order(Date, minOrb)]
 }
 
-symbolID <- readline("Enter an asset symbol, default to BTCUSD when empty: ")
-if (symbolID == "") {
-  symbolID <- "BTC-USD"
+#' Generate all planets daily setup with asset price effect stats.
+#' @param reportDate The date to generate the report for.
+#' @param symbolID Symbol ID to report frequencies for.
+dailyPlanetsReport <- function(reportDate, symbolID) {
+  cat("\nDAILY PLANETS SPEED PHASE:\n\n")
+  dailyPlanetsSpeedPhaseReport(reportDate, symbolID) %>% print()
+  cat("\nDAILY PLANET ZODIAC SIGN POSITION:\n\n")
+  dailyPlanetsSignsReport(reportDate, symbolID) %>% print()
+  cat("\nDAILY PLANETS ASPECTS:\n\n")
+  dailyPlanetsAspectsReport(reportDate, symbolID) %>% print()
 }
 
-reportDate <- readline("Enter a date in YYYY-DD-MM format, default to now date when empty: ")
-reportDate <- try(as.Date(reportDate, format="%Y-%m-%d"))
-if("try-error" %in% class(reportDate) || is.na(reportDate)) {
-  reportDate <- Sys.Date()
-}
+#' Interactive input to specify symbol ID and date used for daily planets report.
+interactiveDailyPlanetsReport <- function() {
+  symbolID <- readline("Enter an asset symbol, default to BTCUSD when empty: ")
+  if (symbolID == "") {
+    symbolID <- "BTC-USD"
+  }
 
-cat("\nDAILY PLANETS SPEED PHASE:\n\n")
-dailyPlanetsSpeedPhaseReport(reportDate, symbolID) %>% print()
-cat("\nDAILY PLANET ZODIAC SIGN POSITION:\n\n")
-dailyPlanetsSignsReport(reportDate, symbolID) %>% print()
-cat("\nDAILY PLANETS ASPECTS:\n\n")
-dailyPlanetsAspectsReport(reportDate, symbolID) %>% print()
+  reportDate <- readline("Enter a date in YYYY-DD-MM format, default to now date when empty: ")
+  reportDate <- try(as.Date(reportDate, format="%Y-%m-%d"))
+  if("try-error" %in% class(reportDate) || is.na(reportDate)) {
+    reportDate <- Sys.Date()
+  }
+
+  dailyPlanetsReport(reportDate, symbolID)
+}
