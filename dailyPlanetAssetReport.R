@@ -7,6 +7,7 @@ library(data.table)
 library(magrittr)
 library(memoise)
 
+source("./configUtils.R")
 source("./fileSystemUtilities.R")
 
 #' Load CSV data table.
@@ -117,3 +118,18 @@ interactiveDailyPlanetsReport <- function() {
 
   dailyPlanetsReport(reportDate, symbolID)
 }
+
+#' Generate N future daily planets report for all watchlist assets.
+nDailyPlanetsReport <- function(daysN = 7) {
+  startDate <- Sys.Date()
+  endDate <- Sys.Date() + daysN
+  reportDates <- seq(startDate, endDate, by = "1 day")
+  watchList <- assetsWatchList()
+  for (symbolID in watchList$SymbolID) {
+    for (idx in seq_along(reportDates)) {
+      dailyPlanetsReport(reportDates[idx], symbolID)
+    }
+  }
+}
+
+nDailyPlanetsReport(2)
