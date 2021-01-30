@@ -14,7 +14,14 @@ source("./fileSystemUtilities.R")
 #' @param pathFileName CSV file name including absolute or relative path.
 #' @return A data table.
 dataTableRead <- function(pathFileName) {
-  fread(pathFileName)
+  dataTable <- fread(pathFileName)
+  columnNames <- colnames(dataTable)
+  # Set date as primary key when column exists.
+  if ("Date" %in% columnNames) {
+    setkey(dataTable, Date)
+  }
+
+  return(dataTable)
 }
 
 #' Memoized file read with memory cache (persist during current session).
@@ -34,6 +41,20 @@ dailyPlanetsAspectsLoad <- function() {
   memoFileRead(planetsAspectsPathFileName)
 }
 
+#' Filter data table rows by date value and return select columns.
+#' @param dataTable Data table to subset from.
+#' @param filterDate Date to use for filtering.
+#' @param selectColNames Columns names to return.
+#' @return Data table subset with rows that match Date and selected columns.
+dataTableDateColsFilter <- function(dataTable, filterDate, selectColNames = NULL) {
+  if (is.null(selectColNames)) {
+    selectColNames <- colnames(dataTable)
+  }
+
+  # Convert date to string for faster lookup through index.
+  dataTable[Date == as.character(filterDate), ..selectColNames]
+}
+
 #' Report the planets zodiacal positions with historical asset price effect frequencies.
 #' @param reportDate The date to generate the report for.
 #' @param symbolID Symbol ID to report frequencies for.
@@ -45,7 +66,11 @@ dailyPlanetsSignsReport <- function(reportDate, symbolID) {
   frequencyTable[, pID := substr(PlanetZodSign, 1, 2)]
   frequencyTable[, zsign := substr(PlanetZodSign, 4, 6)]
   dailyPlanetsPosition <- dailyPlanetsPositionLoad()
-  reportPlanetsPosition <- dailyPlanetsPosition[Date == reportDate, c('Date', 'pID', 'zsign')]
+  reportPlanetsPosition <- dataTableDateColsFilter(
+    dailyPlanetsPosition,
+    reportDate,
+    c('Date', 'pID', 'zsign')
+  )
   dailyReportTable <- merge(reportPlanetsPosition, frequencyTable, by = c('pID', 'zsign'))
   dailyReportTable[, c('pID', 'zsign') := NULL]
 }
@@ -61,7 +86,11 @@ dailyPlanetsSpeedPhaseReport <- function(reportDate, symbolID) {
   frequencyTable[, pID := substr(PlanetSpeedPhase, 1, 2)]
   frequencyTable[, speedmode := substr(PlanetSpeedPhase, 4, 6)]
   dailyPlanetsPosition <- dailyPlanetsPositionLoad()
-  reportPlanetsPosition <- dailyPlanetsPosition[Date == reportDate, c('Date', 'pID', 'speed', 'speedmode')]
+  reportPlanetsPosition <- dataTableDateColsFilter(
+    dailyPlanetsPosition,
+    reportDate,
+    c('Date', 'pID', 'speed', 'speedmode')
+  )
   dailyReportTable <- merge(reportPlanetsPosition, frequencyTable, by = c('pID', 'speedmode'))
   dailyReportTable[, c('pID', 'speedmode', 'PlanetSpeedPhase') := NULL]
 }
@@ -79,11 +108,11 @@ dailyPlanetsAspectsReport <- function(reportDate, symbolID) {
   frequencyTable[, aspect := substr(PlanetsAspect, 6, 10)]
   frequencyTable[, PlanetsAspect := NULL]
   dailyPlanetsAspects <- dailyPlanetsAspectsLoad()
-  reportPlanetsPosition <- dailyPlanetsAspects[Date == reportDate,]
+  reportPlanetsAspects <- dataTableDateColsFilter(dailyPlanetsAspects, reportDate)
   # Filter only the exact orb aspects.
-  reportPlanetsPosition <- reportPlanetsPosition[meanOrb <= 1]
+  reportPlanetsAspects <- reportPlanetsAspects[meanOrb <= 1]
   dailyReportTable <- merge(
-    reportPlanetsPosition,
+    reportPlanetsAspects,
     frequencyTable,
     by = c('pX', 'pY', 'aspect')
   )
@@ -111,8 +140,8 @@ interactiveDailyPlanetsReport <- function() {
   }
 
   reportDate <- readline("Enter a date in YYYY-DD-MM format, default to now date when empty: ")
-  reportDate <- try(as.Date(reportDate, format="%Y-%m-%d"))
-  if("try-error" %in% class(reportDate) || is.na(reportDate)) {
+  reportDate <- try(as.Date(reportDate, format = "%Y-%m-%d"))
+  if ("try-error" %in% class(reportDate) || is.na(reportDate)) {
     reportDate <- Sys.Date()
   }
 
