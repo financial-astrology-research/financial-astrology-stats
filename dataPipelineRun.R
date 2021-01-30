@@ -22,3 +22,5 @@ planetsAspectsAssetsPriceDataPrepare()
 planetAspectsAssetStatsPrepare()
 # Produce planet positions / price statistics CSV tables for watchlist assets.
 planetPositionsAssetStatsPrepare()
+# Produce next upcoming 10 days mundane events assets report for watchlist symbols.
+nDailyMundaneEventsReport(10)

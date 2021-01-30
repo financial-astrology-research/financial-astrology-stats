@@ -167,6 +167,3 @@ nDailyMundaneEventsReport <- function(daysN = 7) {
     }
   }
 }
-
-# Generate next next 10 days mundane events report for watchlist assets.
-nDailyMundaneEventsReport(10)
