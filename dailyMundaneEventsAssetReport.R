@@ -118,7 +118,7 @@ dailyMundaneEventsAspectsReport <- function(reportDate, symbolID) {
     by = c('pX', 'pY', 'aspect')
   )
   dailyReportTable[, c('pX', 'pY', 'aspect', 'origin') := NULL]
-  dailyReportTable[order(Date, minOrb)]
+  dailyReportTable[order(Date, exactHour)]
 }
 
 #' Generate all planets daily setup with asset price effect stats.
