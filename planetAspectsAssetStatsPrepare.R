@@ -26,11 +26,11 @@ planetAspectsAssetPriceSideFrequencyPrepare <- function(planetAspectsAssetPrices
   )
 
   # Total days count.
-  frequencyTable[, daysN := buy + sell]
+  frequencyTable[, DaysN := Buy + Sell]
   # Compute buy/sell days percentage frequency.
   frequencyTable[,
     c("BuyDays%", "SellDays%") :=
-      as.list(round(prop.table(c(buy, sell)), 2)),
+      as.list(round(prop.table(c(Buy, Sell)), 2)),
     by = "PlanetsAspect"
   ]
 
@@ -42,7 +42,7 @@ planetAspectsAssetPriceSideFrequencyPrepare <- function(planetAspectsAssetPrices
   frequencyTable[, Aspect := aspectIdToNameMap(aspect)]
   setcolorder(
     frequencyTable,
-    c('PlanetsAspect', 'PlanetX', 'PlanetY', 'Aspect', 'buy', 'sell', 'daysN', 'BuyDays%', 'SellDays%')
+    c('PlanetsAspect', 'PlanetX', 'PlanetY', 'Aspect', 'Buy', 'Sell', 'DaysN', 'BuyDays%', 'SellDays%')
   )
 }
 

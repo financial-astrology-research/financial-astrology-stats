@@ -97,6 +97,48 @@ zodSignIdsDefinition <- function() {
   )
 }
 
+#' Definition of decan and it's corresponding human readable names.
+decanIdsDefinition <- function() {
+  c(
+    'AriesD1' = '1ARI',
+    'AriesD2' = '2ARI',
+    'AriesD3' = '3ARI',
+    'TaurusD1' = '1TAU',
+    'TaurusD2' = '2TAU',
+    'TaurusD3' = '3TAU',
+    'GeminiD1' = '1GEM',
+    'GeminiD2' = '2GEM',
+    'GeminiD3' = '3GEM',
+    'CancerD1' = '1CAN',
+    'CancerD2' = '2CAN',
+    'CancerD3' = '3CAN',
+    'LeoD1' = '1LEO',
+    'LeoD2' = '2LEO',
+    'LeoD1' = '3LEO',
+    'VirgoD1' = '1VIR',
+    'VirgoD2' = '2VIR',
+    'VirgoD3' = '3VIR',
+    'LibraD1' = '1LIB',
+    'LibraD2' = '2LIB',
+    'LibraD3' = '3LIB',
+    'ScorpioD1' = '1SCO',
+    'ScorpioD2' = '2SCO',
+    'ScorpioD3' = '3SCO',
+    'SagittariusD1' = '1SAG',
+    'SagittariusD2' = '2SAG',
+    'SagittariusD3' = '3SAG',
+    'CapricornD1' = '1CAP',
+    'CapricornD2' = '2CAP',
+    'CapricornD3' = '3CAP',
+    'AquariusD1' = '1AQU',
+    'AquariusD2' = '2AQU',
+    'AquariusD3' = '3AQU',
+    'PiscesD1' = '1PIS',
+    'PiscesD2' = '2PIS',
+    'PiscesD3' = '3PIS'
+  )
+}
+
 #' Definition of speed phases and it's corresponding human readable names.
 speedPhaseIdsDefinition <- function() {
   c(
@@ -148,6 +190,13 @@ elementIdToNameMap <- function(ids) {
 #' @return Zodiac sign names vector.
 zodSignIdToNameMap <- function(ids) {
   idToNameMap(zodSignIdsDefinition(), ids)
+}
+
+#' Map decan IDs vector to names.
+#' @param ids Decan IDs vector.
+#' @return Decan names vector.
+decanIdToNameMap <- function(ids) {
+  idToNameMap(decanIdsDefinition(), ids)
 }
 
 #' Map speed phase IDs vector to names.
