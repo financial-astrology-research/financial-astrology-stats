@@ -114,7 +114,7 @@ decanIdsDefinition <- function() {
     'CancerD3' = '3CAN',
     'LeoD1' = '1LEO',
     'LeoD2' = '2LEO',
-    'LeoD1' = '1LEO',
+    'LeoD1' = '3LEO',
     'VirgoD1' = '1VIR',
     'VirgoD2' = '2VIR',
     'VirgoD3' = '3VIR',

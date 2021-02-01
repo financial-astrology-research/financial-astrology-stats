@@ -54,9 +54,6 @@ longitudeDerivativesPositionTableAugment <- function(planetLongitudeTableLong) {
   zodSignDecanIDGrid <- expand.grid(seq(1, 3), zodiacSignName)
   zodSignDecanIDNames <- paste0(zodSignDecanIDGrid$Var1, zodSignDecanIDGrid$Var2)
   planetLongitudeTableLong[, DecanID := cut(Lon, decansLonCut, zodSignDecanIDNames)]
-
-  # Remove zodiac sign number temporal variable.
-  planetLongitudeTableLong[, ZodSignN := NULL]
 }
 
 #' Augment planets speed data table with categorical derivatives: retrograde, stationary, direct.

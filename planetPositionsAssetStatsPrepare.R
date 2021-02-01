@@ -55,16 +55,18 @@ planetZodSignAssetPriceSideFrequencyPrepare <- function(planetPositionAssetTable
 #' @param planetPositionAssetTable Daily planets positions with asset prices long table.
 #' @return Planets decan / price category frequency statistics table.
 planetDecanAssetPriceSideFrequencyPrepare <- function(planetPositionAssetTable) {
-  planetPositionAssetTable[, PlanetDecan := paste0(pID, "_", DecanID)]
+  planetPositionAssetTable[, PlanetDecan := paste(pID, ZodSignN, DecanID, "_")]
   frequencyTable <- factorAssetPriceFrequencyCount(planetPositionAssetTable, "PlanetDecan")
-  pID <- substr(frequencyTable$PlanetDecan, 1, 2)
-  decanID <- substr(frequencyTable$PlanetDecan, 4, 7)
+  frequencyTable[, c("pID", "ZodSignN", "decanID") := tstrsplit(PlanetDecan, "_", fixed = TRUE)]
   frequencyTable[, Planet := planetIdToNameMap(pID)]
   frequencyTable[, Decan := decanIdToNameMap(decanID)]
   setcolorder(
     frequencyTable,
     c('PlanetDecan', 'Planet', 'Decan', 'Buy', 'Sell', 'DaysN', 'BuyDays%', 'SellDays%')
   )
+
+  frequencyTable[, c("pID", "ZodSignN", "decanID") := NULL]
+  frequencyTable[order(PlanetDecan)]
 }
 
 #' Prepare planets triplicity / asset price side (buy / sell) frequency statistics.
