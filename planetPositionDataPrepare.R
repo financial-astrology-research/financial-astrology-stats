@@ -4,7 +4,9 @@
 # Created by: pablocc
 # Created on: 26/01/2021
 
+library(data.table)
 library(plyr)
+library(tidyr)
 
 source("./fileSystemUtilities.R")
 source("./planetAspectsDataPrepare.R")
@@ -13,7 +15,7 @@ source("./planetAspectsDataPrepare.R")
 #' @param planetLongitudeTableLong Planet longitude positions long data table.
 #' @return Daily planets position table augmented with categorical derivatives.
 longitudeDerivativesPositionTableAugment <- function(planetLongitudeTableLong) {
-  zsignN <- seq(1, 12)
+  zodSignIdx <- seq(1, 12)
   zodiacSignName <- c(
     'ARI',
     'TAU',
@@ -30,25 +32,31 @@ longitudeDerivativesPositionTableAugment <- function(planetLongitudeTableLong) {
   )
 
   # Prevent zero division.
-  planetLongitudeTableLong[lon == 0, lon := 0.1]
+  planetLongitudeTableLong[Lon == 0, Lon := 0.1]
   # Categorize longitude in zodiac signs: https://www.astro.com/astrowiki/en/Zodiac_Sign
-  planetLongitudeTableLong[, znum := ceiling(lon / 30)]
-  planetLongitudeTableLong[, zsign := mapvalues(znum, zsignN, zodiacSignName)]
+  planetLongitudeTableLong[, ZodSignN := ceiling(Lon / 30)]
+  planetLongitudeTableLong[, ZodSign := mapvalues(ZodSignN, zodSignIdx, zodiacSignName)]
 
   # Categorize signs in qualities: https://www.astro.com/astrowiki/en/Quality
   elementName <- rep(c('FIR', 'EAR', 'AIR', 'WAT'), 3)
-  planetLongitudeTableLong[, element := mapvalues(znum, zsignN, elementName)]
+  planetLongitudeTableLong[, Element := mapvalues(ZodSignN, zodSignIdx, elementName)]
 
   # Categorize signs in triplicities: https://www.astro.com/astrowiki/en/Triplicity
   triplicityName <- rep(c('CAR', 'FIX', 'MUT'), 4)
-  planetLongitudeTableLong[, triplicity := mapvalues(znum, zsignN, triplicityName)]
+  planetLongitudeTableLong[, Triplicity := mapvalues(ZodSignN, zodSignIdx, triplicityName)]
 
   # Categorize signs in polarities: https://en.wikipedia.org/wiki/Polarity_(astrology)
   polarityName <- rep(c('POS', 'NEG'), 6)
-  planetLongitudeTableLong[, polarity := mapvalues(znum, zsignN, polarityName)]
+  planetLongitudeTableLong[, Polarity := mapvalues(ZodSignN, zodSignIdx, polarityName)]
+
+  # Categorize longitude in decans: https://www.astro.com/astrowiki/en/Decan
+  decansLonCut <- seq(0, 360, by = 10)
+  zodSignDecanGrid <- expand.grid(seq(1, 3), zodiacSignName)
+  zodSignDecanNames <- paste0(zodSignDecanGrid$Var1, zodSignDecanGrid$Var2)
+  planetLongitudeTableLong[, Decan := cut(lon, decansLonCut, zodSignDecanNames)]
 
   # Remove zodiac sign number temporal variable.
-  planetLongitudeTableLong[, znum := NULL]
+  planetLongitudeTableLong[, ZodSignN := NULL]
 }
 
 #' Augment planets speed data table with categorical derivatives: retrograde, stationary, direct.
@@ -137,3 +145,5 @@ dailyPlanetsPositionTablePrepare <- function() {
     expandPath("./data/daily_planets_positions_long.csv"), append = F
   )
 }
+
+dailyPlanetsPositionTablePrepare()
