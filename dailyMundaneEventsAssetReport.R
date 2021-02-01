@@ -111,7 +111,7 @@ dailyMundaneEventsAspectsReport <- function(reportDate, symbolID) {
   dailyMundaneEventsAspects <- dailyMundaneEventsAspectsLoad()
   reportPlanetsAspects <- dataTableDateColsFilter(dailyMundaneEventsAspects, reportDate)
   # Filter only the exact orb aspects.
-  reportPlanetsAspects <- reportPlanetsAspects[meanOrb <= 1]
+  reportPlanetsAspects <- reportPlanetsAspects[minOrb <= 1]
   dailyReportTable <- merge(
     reportPlanetsAspects,
     frequencyTable,
@@ -125,7 +125,7 @@ dailyMundaneEventsAspectsReport <- function(reportDate, symbolID) {
 #' @param reportDate The date to generate the report for.
 #' @param symbolID Symbol ID to report frequencies for.
 dailyMundaneEventsReport <- function(reportDate, symbolID) {
-  cat("\nDAILY PLANETS SPEED PHASE:\n\n")
+  cat("\nDAILY PLANET SPEED PHASE:\n\n")
   dailyMundaneEventsSpeedPhaseReport(reportDate, symbolID) %>% print()
   cat("\nDAILY PLANET ZODIAC SIGN POSITION:\n\n")
   dailyMundaneEventsSignsReport(reportDate, symbolID) %>% print()
