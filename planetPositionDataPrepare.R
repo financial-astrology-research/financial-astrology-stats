@@ -35,25 +35,25 @@ longitudeDerivativesPositionTableAugment <- function(planetLongitudeTableLong) {
   planetLongitudeTableLong[Lon == 0, Lon := 0.1]
   # Categorize longitude in zodiac signs: https://www.astro.com/astrowiki/en/Zodiac_Sign
   planetLongitudeTableLong[, ZodSignN := ceiling(Lon / 30)]
-  planetLongitudeTableLong[, ZodSign := mapvalues(ZodSignN, zodSignIdx, zodiacSignName)]
+  planetLongitudeTableLong[, ZodSignID := mapvalues(ZodSignN, zodSignIdx, zodiacSignName)]
 
   # Categorize signs in qualities: https://www.astro.com/astrowiki/en/Quality
   elementName <- rep(c('FIR', 'EAR', 'AIR', 'WAT'), 3)
-  planetLongitudeTableLong[, Element := mapvalues(ZodSignN, zodSignIdx, elementName)]
+  planetLongitudeTableLong[, ElementID := mapvalues(ZodSignN, zodSignIdx, elementName)]
 
-  # Categorize signs in triplicities: https://www.astro.com/astrowiki/en/Triplicity
+  # Categorize signs in triplicities: https://www.astro.com/astrowiki/en/TriplicityID
   triplicityName <- rep(c('CAR', 'FIX', 'MUT'), 4)
-  planetLongitudeTableLong[, Triplicity := mapvalues(ZodSignN, zodSignIdx, triplicityName)]
+  planetLongitudeTableLong[, TriplicityID := mapvalues(ZodSignN, zodSignIdx, triplicityName)]
 
   # Categorize signs in polarities: https://en.wikipedia.org/wiki/Polarity_(astrology)
   polarityName <- rep(c('POS', 'NEG'), 6)
-  planetLongitudeTableLong[, Polarity := mapvalues(ZodSignN, zodSignIdx, polarityName)]
+  planetLongitudeTableLong[, PolarityID := mapvalues(ZodSignN, zodSignIdx, polarityName)]
 
-  # Categorize longitude in decans: https://www.astro.com/astrowiki/en/Decan
+  # Categorize longitude in decans: https://www.astro.com/astrowiki/en/DecanID
   decansLonCut <- seq(0, 360, by = 10)
-  zodSignDecanGrid <- expand.grid(seq(1, 3), zodiacSignName)
-  zodSignDecanNames <- paste0(zodSignDecanGrid$Var1, zodSignDecanGrid$Var2)
-  planetLongitudeTableLong[, Decan := cut(Lon, decansLonCut, zodSignDecanNames)]
+  zodSignDecanIDGrid <- expand.grid(seq(1, 3), zodiacSignName)
+  zodSignDecanIDNames <- paste0(zodSignDecanIDGrid$Var1, zodSignDecanIDGrid$Var2)
+  planetLongitudeTableLong[, DecanID := cut(Lon, decansLonCut, zodSignDecanIDNames)]
 
   # Remove zodiac sign number temporal variable.
   planetLongitudeTableLong[, ZodSignN := NULL]
@@ -81,11 +81,11 @@ speedDerivativesPositionTableAugment <- function(planetSpeedTableLong) {
     dimnames = list('speed', planetSpeedBoundary$pID)
   )
 
-  planetSpeedTableLong$SpeedMode <- "DIR"
-  planetSpeedTableLong[Speed < 0, SpeedMode := "RET"]
+  planetSpeedTableLong$SpeedModeID <- "DIR"
+  planetSpeedTableLong[Speed < 0, SpeedModeID := "RET"]
   planetSpeedTableLong[
     Speed >= 0 & Speed <= stationaryBoundary['speed', pID],
-    SpeedMode := "STA"
+    SpeedModeID := "STA"
   ]
 }
 

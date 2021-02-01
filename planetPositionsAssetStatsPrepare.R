@@ -39,7 +39,7 @@ factorAssetPriceFrequencyCount <- function (factorAssetTable, byFactor) {
 #' @param planetPositionAssetTable Daily planets positions with asset prices long table.
 #' @return Planets zodiac sign price category frequency statistics table.
 planetZodSignAssetPriceSideFrequencyPrepare <- function(planetPositionAssetTable) {
-  planetPositionAssetTable[, PlanetZodSign := paste0(pID, "_", ZodSign)]
+  planetPositionAssetTable[, PlanetZodSign := paste0(pID, "_", ZodSignID)]
   frequencyTable <- factorAssetPriceFrequencyCount(planetPositionAssetTable, "PlanetZodSign")
   pID <- substr(frequencyTable$PlanetZodSign, 1, 2)
   zodSignID <- substr(frequencyTable$PlanetZodSign, 4, 6)
@@ -55,7 +55,7 @@ planetZodSignAssetPriceSideFrequencyPrepare <- function(planetPositionAssetTable
 #' @param planetPositionAssetTable Daily planets positions with asset prices long table.
 #' @return Planets triplicity price category frequency statistics table.
 planetTriplicityAssetPriceSideFrequencyPrepare <- function(planetPositionAssetTable) {
-  planetPositionAssetTable[, PlanetTriplicity := paste0(pID, "_", Triplicity)]
+  planetPositionAssetTable[, PlanetTriplicity := paste0(pID, "_", TriplicityID)]
   frequencyTable <- factorAssetPriceFrequencyCount(planetPositionAssetTable, "PlanetTriplicity")
   pID <- substr(frequencyTable$PlanetTriplicity, 1, 2)
   triplicityID <- substr(frequencyTable$PlanetTriplicity, 4, 6)
@@ -71,7 +71,7 @@ planetTriplicityAssetPriceSideFrequencyPrepare <- function(planetPositionAssetTa
 #' @param planetPositionAssetTable Daily planets positions with asset prices long table.
 #' @return Planets element price category frequency statistics table.
 planetElementAssetPriceSideFrequencyPrepare <- function(planetPositionAssetTable) {
-  planetPositionAssetTable[, PlanetElement := paste0(pID, "_", Element)]
+  planetPositionAssetTable[, PlanetElement := paste0(pID, "_", ElementID)]
   frequencyTable <- factorAssetPriceFrequencyCount(planetPositionAssetTable, "PlanetElement")
   pID <- substr(frequencyTable$PlanetElement, 1, 2)
   elementID <- substr(frequencyTable$PlanetElement, 4, 6)
@@ -87,7 +87,7 @@ planetElementAssetPriceSideFrequencyPrepare <- function(planetPositionAssetTable
 #' @param planetPositionAssetTable Daily planets positions with asset prices long table.
 #' @return Planets polarity price category frequency statistics table.
 planetPolarityAssetPriceSideFrequencyPrepare <- function(planetPositionAssetTable) {
-  planetPositionAssetTable[, PlanetPolarity := paste0(pID, "_", Polarity)]
+  planetPositionAssetTable[, PlanetPolarity := paste0(pID, "_", PolarityID)]
   frequencyTable <- factorAssetPriceFrequencyCount(planetPositionAssetTable, "PlanetPolarity")
   pID <- substr(frequencyTable$PlanetPolarity, 1, 2)
   polarityID <- substr(frequencyTable$PlanetPolarity, 4, 6)
@@ -103,7 +103,7 @@ planetPolarityAssetPriceSideFrequencyPrepare <- function(planetPositionAssetTabl
 #' @param planetPositionAssetTable Daily planets positions with asset prices long table.
 #' @return Planets polarity price category frequency statistics table.
 planetSpeedModeAssetPriceSideFrequencyPrepare <- function(planetPositionAssetTable) {
-  planetPositionAssetTable[, PlanetSpeedPhase := paste0(pID, "_", SpeedMode)]
+  planetPositionAssetTable[, PlanetSpeedPhase := paste0(pID, "_", SpeedModeID)]
   frequencyTable <- factorAssetPriceFrequencyCount(planetPositionAssetTable, "PlanetSpeedPhase")
   pID <- substr(frequencyTable$PlanetSpeedPhase, 1, 2)
   speedPhaseID <- substr(frequencyTable$PlanetSpeedPhase, 4, 6)
