@@ -70,9 +70,10 @@ dailyMundaneEventsSignsReport <- function(reportDate, symbolID) {
   reportPlanetsPosition <- dataTableDateColsFilter(
     dailyMundaneEventsPosition,
     reportDate,
-    c('Date', 'pID', 'ZodSign')
+    c('Date', 'pID', 'ZodSignID')
   )
   dailyReportTable <- merge(reportPlanetsPosition, frequencyTable, by = c('pID', 'ZodSignID'))
+  dailyReportTable[, ZodSignID := NULL]
 }
 
 #' Report the planets speed phase with historical asset price effect frequencies.
@@ -89,7 +90,7 @@ dailyMundaneEventsSpeedPhaseReport <- function(reportDate, symbolID) {
   reportPlanetsPosition <- dataTableDateColsFilter(
     dailyMundaneEventsPosition,
     reportDate,
-    c('Date', 'pID', 'Speed', 'SpeedMode')
+    c('Date', 'pID', 'Speed', 'SpeedModeID')
   )
   dailyReportTable <- merge(reportPlanetsPosition, frequencyTable, by = c('pID', 'SpeedModeID'))
   dailyReportTable[, c('pID', 'SpeedMode', 'PlanetSpeedPhase') := NULL]
