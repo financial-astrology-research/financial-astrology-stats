@@ -85,15 +85,15 @@ dailyMundaneEventsSpeedPhaseReport <- function(reportDate, symbolID) {
   statsPathFileName <- paste0(statsDataDestinationPath(symbolID), sourceFileName, ".csv")
   frequencyTable <- copy(memoFileRead(statsPathFileName))
   frequencyTable[, pID := substr(PlanetSpeedPhase, 1, 2)]
-  frequencyTable[, SpeedModeID := substr(PlanetSpeedPhase, 4, 6)]
+  frequencyTable[, SpeedPhaseID := substr(PlanetSpeedPhase, 4, 6)]
   dailyMundaneEventsPosition <- dailyMundaneEventsPositionLoad()
   reportPlanetsPosition <- dataTableDateColsFilter(
     dailyMundaneEventsPosition,
     reportDate,
-    c('Date', 'pID', 'Speed', 'SpeedModeID')
+    c('Date', 'pID', 'Speed', 'SpeedPhaseID')
   )
-  dailyReportTable <- merge(reportPlanetsPosition, frequencyTable, by = c('pID', 'SpeedModeID'))
-  dailyReportTable[, c('pID', 'SpeedMode', 'PlanetSpeedPhase') := NULL]
+  dailyReportTable <- merge(reportPlanetsPosition, frequencyTable, by = c('pID', 'SpeedPhaseID'))
+  dailyReportTable[, c('pID', 'SpeedPhaseID', 'PlanetSpeedPhase') := NULL]
 }
 
 #' Report the planets aspects with historical asset price effect frequencies.

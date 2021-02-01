@@ -81,11 +81,11 @@ speedDerivativesPositionTableAugment <- function(planetSpeedTableLong) {
     dimnames = list('speed', planetSpeedBoundary$pID)
   )
 
-  planetSpeedTableLong$SpeedModeID <- "DIR"
-  planetSpeedTableLong[Speed < 0, SpeedModeID := "RET"]
+  planetSpeedTableLong$SpeedPhaseID <- "DIR"
+  planetSpeedTableLong[Speed < 0, SpeedPhaseID := "RET"]
   planetSpeedTableLong[
     Speed >= 0 & Speed <= stationaryBoundary['speed', pID],
-    SpeedModeID := "STA"
+    SpeedPhaseID := "STA"
   ]
 }
 

@@ -102,8 +102,8 @@ planetPolarityAssetPriceSideFrequencyPrepare <- function(planetPositionAssetTabl
 #' Prepare planets speed mode / asset price side (buy / sell) frequency statistics.
 #' @param planetPositionAssetTable Daily planets positions with asset prices long table.
 #' @return Planets polarity price category frequency statistics table.
-planetSpeedModeAssetPriceSideFrequencyPrepare <- function(planetPositionAssetTable) {
-  planetPositionAssetTable[, PlanetSpeedPhase := paste0(pID, "_", SpeedModeID)]
+planetSpeedPhaseAssetPriceSideFrequencyPrepare <- function(planetPositionAssetTable) {
+  planetPositionAssetTable[, PlanetSpeedPhase := paste0(pID, "_", SpeedPhaseID)]
   frequencyTable <- factorAssetPriceFrequencyCount(planetPositionAssetTable, "PlanetSpeedPhase")
   pID <- substr(frequencyTable$PlanetSpeedPhase, 1, 2)
   speedPhaseID <- substr(frequencyTable$PlanetSpeedPhase, 4, 6)
@@ -149,10 +149,10 @@ planetPositionsAssetStatsPrepare <- function() {
       paste(symbolID, "planet_element", "buy_sell_count_freq_stats", sep = "-")
     )
 
-    planetsSpeedModeFrequencyStats <- planetSpeedModeAssetPriceSideFrequencyPrepare(planetsPositionsAssetPriceTable)
+    planetsSpeedPhaseFrequencyStats <- planetSpeedPhaseAssetPriceSideFrequencyPrepare(planetsPositionsAssetPriceTable)
     dataTableStatsExport(
       symbolID,
-      planetsSpeedModeFrequencyStats,
+      planetsSpeedPhaseFrequencyStats,
       paste(symbolID, "planet_speed", "buy_sell_count_freq_stats", sep = "-")
     )
   }
