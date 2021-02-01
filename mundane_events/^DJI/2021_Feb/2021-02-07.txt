@@ -1,7 +1,7 @@
 
 DAILY PLANET SPEED PHASE:
 
-          Date speed  Planet SpeedPhase  buy sell daysN BuyDays% SellDays%
+          Date Speed  Planet SpeedPhase  Buy Sell DaysN BuyDays% SellDays%
  1: 2021-02-07  0.37   Ceres     Direct 3050 2476  5526     0.55      0.45
  2: 2021-02-07  0.04  Chiron     Direct 2328 1917  4245     0.55      0.45
  3: 2021-02-07  0.25    Juno     Direct 3005 2537  5542     0.54      0.46
@@ -23,29 +23,29 @@ DAILY PLANET SPEED PHASE:
 
 DAILY PLANET ZODIAC SIGN POSITION:
 
-          Date  Planet     ZodSign  buy sell daysN BuyDays% SellDays%
- 1: 2021-02-07   Ceres      Pisces  428  334   762     0.56      0.44
- 2: 2021-02-07  Chiron       Aries  325  279   604     0.54      0.46
- 3: 2021-02-07    Juno Sagittarius  462  394   856     0.54      0.46
- 4: 2021-02-07 Jupiter    Aquarius  305  244   549     0.56      0.44
- 5: 2021-02-07    Mars      Taurus  296  270   566     0.52      0.48
- 6: 2021-02-07 Mercury    Aquarius  339  288   627     0.54      0.46
- 7: 2021-02-07    Moon Sagittarius  325  280   605     0.54      0.46
- 8: 2021-02-07 Neptune      Pisces 1303 1043  2346     0.56      0.44
- 9: 2021-02-07   NNode      Gemini  270  284   554     0.49      0.51
-10: 2021-02-07  Pallas    Aquarius  528  435   963     0.55      0.45
-11: 2021-02-07  Pholus   Capricorn  318  261   579     0.55      0.45
-12: 2021-02-07   Pluto   Capricorn 1758 1402  3160     0.56      0.44
-13: 2021-02-07  Saturn    Aquarius  333  263   596     0.56      0.44
-14: 2021-02-07   SNode Sagittarius  270  284   554     0.49      0.51
-15: 2021-02-07     Sun    Aquarius  349  250   599     0.58      0.42
-16: 2021-02-07  Uranus      Taurus  324  278   602     0.54      0.46
-17: 2021-02-07   Venus    Aquarius  285  242   527     0.54      0.46
-18: 2021-02-07   Vesta       Virgo  341  266   607     0.56      0.44
+    pID       Date  Planet     ZodSign  Buy Sell DaysN BuyDays% SellDays%
+ 1:  CE 2021-02-07   Ceres      Pisces  428  334   762     0.56      0.44
+ 2:  CH 2021-02-07  Chiron       Aries  325  279   604     0.54      0.46
+ 3:  JN 2021-02-07    Juno Sagittarius  462  394   856     0.54      0.46
+ 4:  JU 2021-02-07 Jupiter    Aquarius  305  244   549     0.56      0.44
+ 5:  MA 2021-02-07    Mars      Taurus  296  270   566     0.52      0.48
+ 6:  ME 2021-02-07 Mercury    Aquarius  339  288   627     0.54      0.46
+ 7:  MO 2021-02-07    Moon Sagittarius  325  280   605     0.54      0.46
+ 8:  NE 2021-02-07 Neptune      Pisces 1303 1043  2346     0.56      0.44
+ 9:  NN 2021-02-07   NNode      Gemini  270  284   554     0.49      0.51
+10:  PA 2021-02-07  Pallas    Aquarius  528  435   963     0.55      0.45
+11:  PH 2021-02-07  Pholus   Capricorn  318  261   579     0.55      0.45
+12:  PL 2021-02-07   Pluto   Capricorn 1758 1402  3160     0.56      0.44
+13:  SA 2021-02-07  Saturn    Aquarius  333  263   596     0.56      0.44
+14:  SN 2021-02-07   SNode Sagittarius  270  284   554     0.49      0.51
+15:  SU 2021-02-07     Sun    Aquarius  349  250   599     0.58      0.42
+16:  UR 2021-02-07  Uranus      Taurus  324  278   602     0.54      0.46
+17:  VE 2021-02-07   Venus    Aquarius  285  242   527     0.54      0.46
+18:  VS 2021-02-07   Vesta       Virgo  341  266   607     0.56      0.44
 
 DAILY PLANETS ASPECTS:
 
-          Date meanOrb minOrb maxOrb startHour endHour exactHour effHours PlanetX PlanetY       Aspect  buy sell daysN BuyDays% SellDays%
+          Date meanOrb minOrb maxOrb startHour endHour exactHour effHours PlanetX PlanetY       Aspect  Buy Sell DaysN BuyDays% SellDays%
  1: 2021-02-07    0.00   0.00   0.00         0      23        23       24   NNode   SNode   Opposition 4009 3313  7322     0.55      0.45
  2: 2021-02-07    0.17   0.00   0.38         0      23         9       24     Sun   Ceres SemiQuintile  116  104   220     0.53      0.47
  3: 2021-02-07    0.31   0.01   0.69         0      23        14       24 Mercury  Chiron   SemiSquare   95   85   180     0.53      0.47
@@ -90,4 +90,4 @@ DAILY PLANETS ASPECTS:
 42: 2021-02-07    1.08   0.95   1.21         0      23        NA       24   Vesta  Saturn SesquiSquare  147  122   269     0.55      0.45
 43: 2021-02-07    1.11   0.96   1.26         0      23        NA       24    Mars    Juno     Quincunx   75   45   120     0.62      0.38
 44: 2021-02-07    1.00   0.99   1.01         0      23        NA       24  Chiron  Pholus       Square  290  226   516     0.56      0.44
-          Date meanOrb minOrb maxOrb startHour endHour exactHour effHours PlanetX PlanetY       Aspect  buy sell daysN BuyDays% SellDays%
+          Date meanOrb minOrb maxOrb startHour endHour exactHour effHours PlanetX PlanetY       Aspect  Buy Sell DaysN BuyDays% SellDays%
