@@ -64,16 +64,15 @@ dailyMundaneEventsSignsReport <- function(reportDate, symbolID) {
   statsPathFileName <- paste0(statsDataDestinationPath(symbolID), sourceFileName, ".csv")
   frequencyTable <- copy(memoFileRead(statsPathFileName))
   frequencyTable[, pID := substr(PlanetZodSign, 1, 2)]
-  frequencyTable[, zsign := substr(PlanetZodSign, 4, 6)]
+  frequencyTable[, ZodSign := substr(PlanetZodSign, 4, 6)]
   frequencyTable[, PlanetZodSign := NULL]
   dailyMundaneEventsPosition <- dailyMundaneEventsPositionLoad()
   reportPlanetsPosition <- dataTableDateColsFilter(
     dailyMundaneEventsPosition,
     reportDate,
-    c('Date', 'pID', 'zsign')
+    c('Date', 'pID', 'ZodSign')
   )
-  dailyReportTable <- merge(reportPlanetsPosition, frequencyTable, by = c('pID', 'zsign'))
-  dailyReportTable[, c('pID', 'zsign') := NULL]
+  dailyReportTable <- merge(reportPlanetsPosition, frequencyTable, by = c('pID', 'ZodSign'))
 }
 
 #' Report the planets speed phase with historical asset price effect frequencies.
@@ -85,15 +84,15 @@ dailyMundaneEventsSpeedPhaseReport <- function(reportDate, symbolID) {
   statsPathFileName <- paste0(statsDataDestinationPath(symbolID), sourceFileName, ".csv")
   frequencyTable <- copy(memoFileRead(statsPathFileName))
   frequencyTable[, pID := substr(PlanetSpeedPhase, 1, 2)]
-  frequencyTable[, speedmode := substr(PlanetSpeedPhase, 4, 6)]
+  frequencyTable[, SpeedMode := substr(PlanetSpeedPhase, 4, 6)]
   dailyMundaneEventsPosition <- dailyMundaneEventsPositionLoad()
   reportPlanetsPosition <- dataTableDateColsFilter(
     dailyMundaneEventsPosition,
     reportDate,
-    c('Date', 'pID', 'speed', 'speedmode')
+    c('Date', 'pID', 'Speed', 'SpeedMode')
   )
-  dailyReportTable <- merge(reportPlanetsPosition, frequencyTable, by = c('pID', 'speedmode'))
-  dailyReportTable[, c('pID', 'speedmode', 'PlanetSpeedPhase') := NULL]
+  dailyReportTable <- merge(reportPlanetsPosition, frequencyTable, by = c('pID', 'SpeedMode'))
+  dailyReportTable[, c('pID', 'SpeedMode', 'PlanetSpeedPhase') := NULL]
 }
 
 #' Report the planets aspects with historical asset price effect frequencies.

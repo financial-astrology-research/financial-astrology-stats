@@ -110,7 +110,7 @@ assetPriceDataPriceAugment <- function(symbolID) {
   # Filter the initial days needed by MAs max period where MA value cannot be determined.
   assetPriceTable <- assetPriceTable[!is.na(OHLCMAF) & !is.na(difflogHLMASxF)]
   labelCuts <- c(-1000000, 0, 1000000)
-  labels <- c('sell', 'buy')
+  labels <- c('Sell', 'Buy')
   assetPriceTable[, OHLCEff := cut(diffOHLC, labelCuts, labels = labels, right = FALSE)]
   assetPriceTable[, OHLCMomEff := cut(OHLCMom, labelCuts, labels = labels, right = FALSE)]
   assetPriceTable[, HLCMomEff := cut(HLCMom, labelCuts, labels = labels, right = FALSE)]

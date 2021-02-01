@@ -53,7 +53,7 @@ longitudeDerivativesPositionTableAugment <- function(planetLongitudeTableLong) {
   decansLonCut <- seq(0, 360, by = 10)
   zodSignDecanGrid <- expand.grid(seq(1, 3), zodiacSignName)
   zodSignDecanNames <- paste0(zodSignDecanGrid$Var1, zodSignDecanGrid$Var2)
-  planetLongitudeTableLong[, Decan := cut(lon, decansLonCut, zodSignDecanNames)]
+  planetLongitudeTableLong[, Decan := cut(Lon, decansLonCut, zodSignDecanNames)]
 
   # Remove zodiac sign number temporal variable.
   planetLongitudeTableLong[, ZodSignN := NULL]
@@ -68,7 +68,7 @@ speedDerivativesPositionTableAugment <- function(planetSpeedTableLong) {
   # https://www.astro.com/astrowiki/en/Stationary_Phase
   planetSpeedBoundary <- planetSpeedTableLong[,
     list(
-      Stationary = round(mean(speed) * 0.2, 2)
+      Stationary = round(mean(Speed) * 0.2, 2)
     ),
     by = "pID"
   ]
@@ -81,11 +81,11 @@ speedDerivativesPositionTableAugment <- function(planetSpeedTableLong) {
     dimnames = list('speed', planetSpeedBoundary$pID)
   )
 
-  planetSpeedTableLong$speedmode <- "DIR"
-  planetSpeedTableLong[speed < 0, speedmode := "RET"]
+  planetSpeedTableLong$SpeedMode <- "DIR"
+  planetSpeedTableLong[Speed < 0, SpeedMode := "RET"]
   planetSpeedTableLong[
-    speed >= 0 & speed <= stationaryBoundary['speed', pID],
-    speedmode := "STA"
+    Speed >= 0 & Speed <= stationaryBoundary['speed', pID],
+    SpeedMode := "STA"
   ]
 }
 
@@ -106,7 +106,7 @@ dailyPlanetsSpeedTablePrepare <- function() {
   planetSpeedTableLong[variable %in% c('NNSP', 'SNSP'), value := 1]
   # Extract planet ID from variable name.
   planetSpeedTableLong[, variable := substr(variable, 1, 2)]
-  setnames(planetSpeedTableLong, c('Date', 'pID', 'speed'))
+  setnames(planetSpeedTableLong, c('Date', 'pID', 'Speed'))
   speedDerivativesPositionTableAugment(planetSpeedTableLong)
 }
 
@@ -128,8 +128,8 @@ dailyPlanetsPositionTablePrepare <- function() {
   planetLongitudeTableLong[, pID := substr(variable, 1, 2)]
   planetLongitudeTableLong[, variable := NULL]
   # Customize columns names.
-  setnames(planetLongitudeTableLong, c('Date', 'lon', 'pID'))
-  setcolorder(planetLongitudeTableLong, c('Date', 'pID', 'lon'))
+  setnames(planetLongitudeTableLong, c('Date', 'Lon', 'pID'))
+  setcolorder(planetLongitudeTableLong, c('Date', 'pID', 'Lon'))
   longitudeDerivativesPositionTableAugment(planetLongitudeTableLong)
 
   # Merge the planets speed columns.
@@ -145,5 +145,3 @@ dailyPlanetsPositionTablePrepare <- function() {
     expandPath("./data/daily_planets_positions_long.csv"), append = F
   )
 }
-
-dailyPlanetsPositionTablePrepare()
