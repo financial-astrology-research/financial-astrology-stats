@@ -109,7 +109,6 @@ dailyPlanetsSpeedTablePrepare <- function() {
 
 
 #' Prepare daily planets longitude position and categorical derivatives: polarity, triplicity, element, sign, etc.
-#' @return Daily planets position data table that includes: longitude and it's categorical derivatives.
 dailyPlanetsPositionTablePrepare <- function() {
   cat("Preparing daily planets position table.\n")
   planetPositionsTable <- loadPlanetsPositionTable("daily")
