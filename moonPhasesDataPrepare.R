@@ -32,19 +32,19 @@ dailyMoonPhaseTablePrepare <- function() {
   dailyMoonSunPositionsTable[, DISMAX := round(DISMAX)]
 
   # Categorize the moon phases.
-  dailyMoonSunPositionsTable[DISMIN <= 1, MoonPhase := 'N']
-  dailyMoonSunPositionsTable[DISMAX >= 179, MoonPhase := 'F']
+  dailyMoonSunPositionsTable[DISMIN <= 1, MoonPhaseID := 'N']
+  dailyMoonSunPositionsTable[DISMAX >= 179, MoonPhaseID := 'F']
 
   # Calculate moon phase sign position.
   zodiacSignName <- zodSignIdsDefinition()
   dailyMoonSunPositionsTable[MOLON == 0, MOLON := 0.1]
   # TODO: using daily data could cause that sign of the exact phase event is different than mean lon.
-  dailyMoonSunPositionsTable[!is.na(MoonPhase), ZodSignN := ceiling(MOLON / 30)]
+  dailyMoonSunPositionsTable[!is.na(MoonPhaseID), ZodSignN := ceiling(MOLON / 30)]
 
   # Fill backward NAs with last moon phase occurrence.
   dailyMoonSunPositionsTable[,
-    MoonPhase := MoonPhase[
-      nafill(replace(.I, is.na(MoonPhase), NA), "locf")
+    MoonPhaseID := MoonPhaseID[
+      nafill(replace(.I, is.na(MoonPhaseID), NA), "locf")
     ]
   ]
 
