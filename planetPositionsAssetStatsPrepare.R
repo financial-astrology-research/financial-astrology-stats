@@ -136,6 +136,19 @@ planetSpeedPhaseAssetPriceSideFrequencyPrepare <- function(planetPositionAssetTa
   )
 }
 
+
+#' Prepare moon phase / asset price side (buy / sell) frequency statistics.
+#' @param moonPhaseAssetTable Daily moon phase with asset prices long table.
+#' @return Planets moon phase / price category frequency statistics table.
+moonPhaseAssetPriceSideFrequencyPrepare <- function(moonPhaseAssetTable) {
+  frequencyTable <- factorAssetPriceFrequencyCount(moonPhaseAssetTable, "MoonPhase")
+  frequencyTable[, MoonPhase := moonPhaseIdToNameMap(MoonPhaseID)]
+  setcolorder(
+    frequencyTable,
+    c('MoonPhaseID', 'MoonPhase', 'Buy', 'Sell', 'DaysN', 'BuyDays%', 'SellDays%')
+  )
+}
+
 #' Calculate planets positions / asset price effect statistics.
 planetPositionsAssetStatsPrepare <- function() {
   watchList <- assetsWatchList()
@@ -182,6 +195,20 @@ planetPositionsAssetStatsPrepare <- function() {
       symbolID,
       planetsSpeedPhaseFrequencyStats,
       paste(symbolID, "planet_speed", "buy_sell_count_freq_stats", sep = "-")
+    )
+  }
+}
+
+#' Calculate moon phases / asset price effect statistics.
+moonPhaseAssetStatsPrepare <- function() {
+  watchList <- assetsWatchList()
+  for (symbolID in watchList$SymbolID) {
+    moonPhaseAssetPriceTable <- moonPhaseAssetPricesDataMerge(symbolID)
+    moonPhaseFrequencyStats <- moonPhaseAssetPriceSideFrequencyPrepare(moonPhaseAssetPriceTable)
+    dataTableStatsExport(
+      symbolID,
+      moonPhaseFrequencyStats,
+      paste(symbolID, "moon_phase", "buy_sell_count_freq_stats", sep = "-")
     )
   }
 }
