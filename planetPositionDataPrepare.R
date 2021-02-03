@@ -1,6 +1,6 @@
-# Title     : Calculate planet position price effect statistics for watchlist assets.
-# Objective : Explore the effect of planet position by: sign polarity, element, triplicity
-#             and zodiac sign.
+# Title     : Prepare daily planet position CSV data table.
+# Objective : Provide planet position data by: zodiac sign, polarity, element, triplicity,
+#             decans, moon mansions, among others.
 # Created by: pablocc
 # Created on: 26/01/2021
 
@@ -109,7 +109,6 @@ dailyPlanetsSpeedTablePrepare <- function() {
 
 
 #' Prepare daily planets longitude position and categorical derivatives: polarity, triplicity, element, sign, etc.
-#' @return Daily planets position data table that includes: longitude and it's categorical derivatives.
 dailyPlanetsPositionTablePrepare <- function() {
   cat("Preparing daily planets position table.\n")
   planetPositionsTable <- loadPlanetsPositionTable("daily")

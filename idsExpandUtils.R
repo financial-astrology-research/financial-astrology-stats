@@ -148,6 +148,14 @@ speedPhaseIdsDefinition <- function() {
   )
 }
 
+#' Definition of moon phases and it's corresponding human readable names.
+moonPhaseIdsDefinition <- function() {
+  c(
+    'Full' = 'F',
+    'New' = 'N'
+  )
+}
+
 #' Generic IDs to name mapping based on definition vector.
 #' @param idsDefinition ID's named vector definition.
 #' @param ids ID's vector to map to names.
@@ -211,4 +219,11 @@ speedPhaseIdToNameMap <- function(ids) {
 #' @return Aspects names vector.
 aspectIdToNameMap <- function(ids) {
   idToNameMap(aspectIdsDefinition(), ids)
+}
+
+#' Map moon phase IDs vector to names.
+#' @param ids Moon phase IDs vector.
+#' @return Moon phase names vector.
+moonPhaseIdToNameMap <- function(ids) {
+  idToNameMap(moonPhaseIdsDefinition(), ids)
 }

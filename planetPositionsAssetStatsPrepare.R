@@ -4,6 +4,8 @@
 # Created by: pablocc
 # Created on: 26/01/2021
 
+library(data.table)
+
 source("./configUtils.R")
 source("./dataExportUtils.R")
 source("./dataMergeUtils.R")
@@ -136,6 +138,38 @@ planetSpeedPhaseAssetPriceSideFrequencyPrepare <- function(planetPositionAssetTa
   )
 }
 
+#' Prepare moon phase / asset price side (buy / sell) frequency statistics.
+#' @param moonPhaseAssetTable Daily moon phase with asset prices table.
+#' @return Planets moon phase / price category frequency statistics table.
+moonPhaseAssetPriceSideFrequencyPrepare <- function(moonPhaseAssetTable) {
+  frequencyTable <- factorAssetPriceFrequencyCount(moonPhaseAssetTable, "MoonPhaseID")
+  frequencyTable[, MoonPhase := moonPhaseIdToNameMap(MoonPhaseID)]
+  setcolorder(
+    frequencyTable,
+    c('MoonPhaseID', 'MoonPhase', 'Buy', 'Sell', 'DaysN', 'BuyDays%', 'SellDays%')
+  )
+}
+
+#' Prepare moon phase within zodiac sign / asset price side (buy / sell) frequency statistics.
+#' @param moonPhaseAssetTable Daily moon phase with asset prices table.
+#' @return Planets moon phase / price category frequency statistics table.
+moonPhaseZodSignAssetPriceSideFrequencyPrepare <- function(moonPhaseAssetTable) {
+  moonPhaseAssetTable[,
+    MoonPhaseZodSignID := paste(MoonPhaseID, sprintf("%02d", ZodSignN), ZodSignID, sep = "_")
+  ]
+
+  frequencyTable <- factorAssetPriceFrequencyCount(moonPhaseAssetTable, "MoonPhaseZodSignID")
+  frequencyTable[, c("MoonPhaseID", "ZodSignN", "ZodSignID") := tstrsplit(MoonPhaseZodSignID, "_", fixed = TRUE)]
+  frequencyTable[, MoonPhase := moonPhaseIdToNameMap(MoonPhaseID)]
+  frequencyTable[, ZodSign := zodSignIdToNameMap(ZodSignID)]
+
+  frequencyTable[, c("MoonPhaseID", "ZodSignN", "ZodSignID") := NULL]
+  setcolorder(
+    frequencyTable,
+    c('MoonPhaseZodSignID', 'MoonPhase', 'ZodSign', 'Buy', 'Sell', 'DaysN', 'BuyDays%', 'SellDays%')
+  )
+}
+
 #' Calculate planets positions / asset price effect statistics.
 planetPositionsAssetStatsPrepare <- function() {
   watchList <- assetsWatchList()
@@ -182,6 +216,28 @@ planetPositionsAssetStatsPrepare <- function() {
       symbolID,
       planetsSpeedPhaseFrequencyStats,
       paste(symbolID, "planet_speed", "buy_sell_count_freq_stats", sep = "-")
+    )
+  }
+}
+
+#' Calculate moon phases / asset price effect statistics.
+moonPhaseAssetStatsPrepare <- function() {
+  watchList <- assetsWatchList()
+  for (symbolID in watchList$SymbolID) {
+    moonPhaseAssetPriceTable <- moonPhaseAssetPricesDataMerge(symbolID)
+
+    moonPhaseFrequencyStats <- moonPhaseAssetPriceSideFrequencyPrepare(moonPhaseAssetPriceTable)
+    dataTableStatsExport(
+      symbolID,
+      moonPhaseFrequencyStats,
+      paste(symbolID, "moon_phase", "buy_sell_count_freq_stats", sep = "-")
+    )
+
+    moonPhaseZodSignFrequencyStats <- moonPhaseZodSignAssetPriceSideFrequencyPrepare(moonPhaseAssetPriceTable)
+    dataTableStatsExport(
+      symbolID,
+      moonPhaseZodSignFrequencyStats,
+      paste(symbolID, "moon_phase_zod_sign", "buy_sell_count_freq_stats", sep = "-")
     )
   }
 }
