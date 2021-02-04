@@ -11,11 +11,21 @@ library(tidyr)
 source("./fileSystemUtilities.R")
 source("./planetAspectsDataPrepare.R")
 
+#' Tropical to sideral longitude conversion with 24 degrees (average XXI century) equinox precession.
+#' @param lon Tropical longitude.
+#' @return Sideral longitude.
+tropicalToSideralConversion <- function(lon) {
+  diffDegree <- -24
+  adjustedLon <- lon + diffDegree
+  adjustedLon[adjustedLon < 0] <- adjustedLon[adjustedLon < 0] + 360
+  return(adjustedLon)
+}
+
 #' Augment planet positions data table with categorical derivatives: polarity, triplicity, elements and so forth.
 #' @param planetLongitudeTableLong Planet longitude positions long data table.
 #' @return Daily planets position table augmented with categorical derivatives.
 longitudeDerivativesPositionTableAugment <- function(planetLongitudeTableLong) {
-  zodSignIdx <- seq(1, 12)
+  zodSignIdx <- sprintf("Z%02d", seq(1, 12))
   zodiacSignID <- c(
     'ARI',
     'TAU',
@@ -34,7 +44,7 @@ longitudeDerivativesPositionTableAugment <- function(planetLongitudeTableLong) {
   # Prevent zero division.
   planetLongitudeTableLong[Lon == 0, Lon := 0.1]
   # Categorize longitude in zodiac signs: https://www.astro.com/astrowiki/en/Zodiac_Sign
-  planetLongitudeTableLong[, ZodSignN := ceiling(Lon / 30)]
+  planetLongitudeTableLong[, ZodSignN := sprintf("Z%02d", ceiling(Lon / 30))]
   planetLongitudeTableLong[, ZodSignID := mapvalues(ZodSignN, zodSignIdx, zodiacSignID)]
 
   # Categorize signs in qualities: https://www.astro.com/astrowiki/en/Quality
@@ -53,7 +63,9 @@ longitudeDerivativesPositionTableAugment <- function(planetLongitudeTableLong) {
   decansLonCut <- seq(0, 360, by = 10)
   zodSignDecanIDGrid <- expand.grid(seq(1, 3), zodiacSignID)
   zodSignDecanID <- paste0(zodSignDecanIDGrid$Var1, zodSignDecanIDGrid$Var2)
-  planetLongitudeTableLong[, DecanID := cut(Lon, decansLonCut, zodSignDecanID)]
+  planetLongitudeTableLong[,
+    DecanID := cut(Lon, decansLonCut, zodSignDecanID, include.lowest = T)
+  ]
 
   # Categorize longitude in Arab Moon Mansions:
   # https://starsandstones.wordpress.com/mansions-of-the-moon/the-mansions-of-the-moon/
@@ -61,8 +73,21 @@ longitudeDerivativesPositionTableAugment <- function(planetLongitudeTableLong) {
     0, 12.85, 25.70, 38.56, 51.41, 64.28, 77.28, 90, 102.85, 115.68, 128.56, 141.41, 154.28, 167.13, 180,
     192.85, 205.70, 218.56, 231.41, 244.28, 257.13, 270, 282.85, 295.70, 308.56, 321.41, 334.28, 347.13, 360.99
   )
-  arabMansionsID <- paste0('AM', seq(1, 28))
-  planetLongitudeTableLong[, ArabMansionID := cut(Lon, arabMansionsLonCut, arabMansionsID)]
+  arabMansionsID <- paste0('AM', sprintf("%02d", seq(1, 28)))
+  planetLongitudeTableLong[,
+    ArabMansionID := cut(Lon, arabMansionsLonCut, arabMansionsID, include.lowest = T)
+  ]
+
+  # Convert longitude from tropical to sideral zodiac.
+  planetLongitudeTableLong[, SidLon := tropicalToSideralConversion(Lon)]
+  # Categorize longitude in Vedic Moon Mansions:
+  # https://vedicastrology.net.au/blog/vedic-articles/the-lunar-mansions-of-vedic-astrology/
+  vedicMansionsLonCut <- seq(0, 360, by = 13.3333333)
+  vedicMansionsLonCut[length(vedicMansionsLonCut)] <- 360.99
+  vedicMansionsID <- paste0('VM', sprintf("%02d", seq(1, 27)))
+  planetLongitudeTableLong[,
+    VedicMansionID := cut(SidLon, vedicMansionsLonCut, vedicMansionsID, include.lowest =  T)
+  ]
 }
 
 #' Augment planets speed data table with categorical derivatives: retrograde, stationary, direct.
@@ -115,7 +140,6 @@ dailyPlanetsSpeedTablePrepare <- function() {
   setnames(planetSpeedTableLong, c('Date', 'pID', 'Speed'))
   speedDerivativesPositionTableAugment(planetSpeedTableLong)
 }
-
 
 #' Prepare daily planets longitude position and categorical derivatives: polarity, triplicity, element, sign, etc.
 dailyPlanetsPositionTablePrepare <- function() {

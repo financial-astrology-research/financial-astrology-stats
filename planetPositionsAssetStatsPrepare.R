@@ -41,12 +41,14 @@ factorAssetPriceFrequencyCount <- function (factorAssetTable, byFactor) {
 #' @param planetPositionAssetTable Daily planets positions with asset prices long table.
 #' @return Planets zodiac sign / price category frequency statistics table.
 planetZodSignAssetPriceSideFrequencyPrepare <- function(planetPositionAssetTable) {
-  planetPositionAssetTable[, PlanetZodSign := paste0(pID, "_", ZodSignID)]
+  planetPositionAssetTable[, PlanetZodSign := paste(pID, ZodSignN, ZodSignID, sep = "_")]
   frequencyTable <- factorAssetPriceFrequencyCount(planetPositionAssetTable, "PlanetZodSign")
   pID <- substr(frequencyTable$PlanetZodSign, 1, 2)
   zodSignID <- substr(frequencyTable$PlanetZodSign, 4, 6)
+  frequencyTable[, c('pID', 'ZodSignN', 'ZodSignID') := tstrsplit(PlanetZodSign, "_", fixed = T)]
   frequencyTable[, Planet := planetIdToNameMap(pID)]
-  frequencyTable[, ZodSign := zodSignIdToNameMap(zodSignID)]
+  frequencyTable[, ZodSign := zodSignIdToNameMap(ZodSignID)]
+  frequencyTable[, c('pID', 'ZodSignN', 'ZodSignID') := NULL]
   setcolorder(
     frequencyTable,
     c('PlanetZodSign', 'Planet', 'ZodSign', 'Buy', 'Sell', 'DaysN', 'BuyDays%', 'SellDays%')
@@ -58,11 +60,11 @@ planetZodSignAssetPriceSideFrequencyPrepare <- function(planetPositionAssetTable
 #' @return Planets decan / price category frequency statistics table.
 planetDecanAssetPriceSideFrequencyPrepare <- function(planetPositionAssetTable) {
   planetPositionAssetTable[,
-    PlanetDecan := paste(pID, sprintf("%02d", ZodSignN), DecanID, sep = "_")
+    PlanetDecan := paste(pID, ZodSignN, DecanID, sep = "_")
   ]
 
   frequencyTable <- factorAssetPriceFrequencyCount(planetPositionAssetTable, "PlanetDecan")
-  frequencyTable[, c("pID", "ZodSignN", "decanID") := tstrsplit(PlanetDecan, "_", fixed = TRUE)]
+  frequencyTable[, c("pID", "ZodSignN", "decanID") := tstrsplit(PlanetDecan, "_", fixed = T)]
   frequencyTable[, Planet := planetIdToNameMap(pID)]
   frequencyTable[, Decan := decanIdToNameMap(decanID)]
   setcolorder(
@@ -138,13 +140,29 @@ planetSpeedPhaseAssetPriceSideFrequencyPrepare <- function(planetPositionAssetTa
   )
 }
 
+#' Prepare planets vedic moon mansion / asset price side (buy / sell) frequency statistics.
+#' @param planetPositionAssetTable Daily planets positions with asset prices long table.
+#' @return Planets vedic mansion / price category frequency statistics table.
+planetVedicMansionAssetPriceSideFrequencyPrepare <- function(planetPositionAssetTable) {
+  planetPositionAssetTable[, PlanetVedicMansion := paste0(pID, "_", VedicMansionID)]
+  frequencyTable <- factorAssetPriceFrequencyCount(planetPositionAssetTable, "PlanetVedicMansion")
+  frequencyTable[, c("pID", "VedicMansionID") := tstrsplit(PlanetVedicMansion, "_", fixed = T)]
+  frequencyTable[, Planet := planetIdToNameMap(pID)]
+  frequencyTable[, VedicMansion := vedicMansionIdToNameMap(VedicMansionID)]
+  setcolorder(
+    frequencyTable,
+    c('PlanetVedicMansion', 'Planet', 'VedicMansion', 'Buy', 'Sell', 'DaysN', 'BuyDays%', 'SellDays%')
+  )
+  frequencyTable[, c('pID', 'VedicMansionID') := NULL]
+}
+
 #' Prepare planets arab moon mansion / asset price side (buy / sell) frequency statistics.
 #' @param planetPositionAssetTable Daily planets positions with asset prices long table.
-#' @return Planets moon mansion / price category frequency statistics table.
+#' @return Planets arab mansion / price category frequency statistics table.
 planetArabMansionAssetPriceSideFrequencyPrepare <- function(planetPositionAssetTable) {
   planetPositionAssetTable[, PlanetArabMansion := paste0(pID, "_", ArabMansionID)]
   frequencyTable <- factorAssetPriceFrequencyCount(planetPositionAssetTable, "PlanetArabMansion")
-  frequencyTable[, c("pID", "ArabMansionID") := tstrsplit(PlanetArabMansion, "_", fixed = TRUE)]
+  frequencyTable[, c("pID", "ArabMansionID") := tstrsplit(PlanetArabMansion, "_", fixed = T)]
   frequencyTable[, Planet := planetIdToNameMap(pID)]
   frequencyTable[, ArabMansion := arabMansionIdToNameMap(ArabMansionID)]
   setcolorder(
@@ -171,11 +189,11 @@ moonPhaseAssetPriceSideFrequencyPrepare <- function(moonPhaseAssetTable) {
 #' @return Planets moon phase / price category frequency statistics table.
 moonPhaseZodSignAssetPriceSideFrequencyPrepare <- function(moonPhaseAssetTable) {
   moonPhaseAssetTable[,
-    MoonPhaseZodSignID := paste(MoonPhaseID, sprintf("%02d", ZodSignN), ZodSignID, sep = "_")
+    MoonPhaseZodSignID := paste(MoonPhaseID, ZodSignN, ZodSignID, sep = "_")
   ]
 
   frequencyTable <- factorAssetPriceFrequencyCount(moonPhaseAssetTable, "MoonPhaseZodSignID")
-  frequencyTable[, c("MoonPhaseID", "ZodSignN", "ZodSignID") := tstrsplit(MoonPhaseZodSignID, "_", fixed = TRUE)]
+  frequencyTable[, c("MoonPhaseID", "ZodSignN", "ZodSignID") := tstrsplit(MoonPhaseZodSignID, "_", fixed = T)]
   frequencyTable[, MoonPhase := moonPhaseIdToNameMap(MoonPhaseID)]
   frequencyTable[, ZodSign := zodSignIdToNameMap(ZodSignID)]
 
@@ -239,6 +257,13 @@ planetPositionsAssetStatsPrepare <- function() {
       symbolID,
       planetsArabMoonMansionFrequencyStats,
       paste(symbolID, "planet_arab_mansion", "buy_sell_count_freq_stats", sep = "-")
+    )
+
+    planetsVedicMoonMansionFrequencyStats <- planetVedicMansionAssetPriceSideFrequencyPrepare(planetsPositionsAssetPriceTable)
+    dataTableStatsExport(
+      symbolID,
+      planetsVedicMoonMansionFrequencyStats,
+      paste(symbolID, "planet_vedic_mansion", "buy_sell_count_freq_stats", sep = "-")
     )
   }
 }

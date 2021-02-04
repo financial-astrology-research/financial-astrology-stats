@@ -159,15 +159,15 @@ moonPhaseIdsDefinition <- function() {
 #' Definition of arab moon mansions human readable names.
 arabMansionIdsDefinition <- function() {
   c(
-    'Saratan' = 'AM1',
-    'Butain' = 'AM2',
-    'Turaija' = 'AM3',
-    'Dabaran' = 'AM4',
-    'Haq\'a' = 'AM5',
-    'Han\'a' = 'AM6',
-    'Dira' = 'AM7',
-    'Natra' = 'AM8',
-    'Tarf(a)' = 'AM9',
+    'Saratan' = 'AM01',
+    'Butain' = 'AM02',
+    'Turaija' = 'AM03',
+    'Dabaran' = 'AM04',
+    'Haq\'a' = 'AM05',
+    'Han\'a' = 'AM06',
+    'Dira' = 'AM07',
+    'Natra' = 'AM08',
+    'Tarf(a)' = 'AM09',
     'Gabha' = 'AM10',
     'Zubra' = 'AM11',
     'Sarfa' = 'AM12',
@@ -187,6 +187,39 @@ arabMansionIdsDefinition <- function() {
     'Muqaddam' = 'AM26',
     'Mu\'ahhar' = 'AM27',
     'Risa' = 'AM28'
+  )
+}
+
+#' Definition of vedic moon mansions human readable names.
+vedicMansionIdsDefinition <- function() {
+  c(
+    'Aswini' = 'VM01',
+    'Bharani' = 'VM02',
+    'Krittica' = 'VM03',
+    'Rohini' = 'VM04',
+    'Mrigashira' = 'VM05',
+    'Ardra' = 'VM06',
+    'Punavasu' = 'VM07',
+    'Pushya' = 'VM08',
+    'Ashlesha' = 'VM09',
+    'Magha' = 'VM10',
+    'PurvaPhalguni' = 'VM11',
+    'UttaraPhalguni' = 'VM12',
+    'Hasta' = 'VM13',
+    'Chitra' = 'VM14',
+    'Swati' = 'VM15',
+    'Vishakha' = 'VM16',
+    'Anuradha' = 'VM17',
+    'Jyeshtha' = 'VM18',
+    'Mula' = 'VM19',
+    'PurvaAshada' = 'VM20',
+    'UttaraAshada' = 'VM21',
+    'Shravana' = 'VM22',
+    'Danishtha' = 'VM23',
+    'Shatabhisha' = 'VM24',
+    'PurvaBhadrapada' = 'VM25',
+    'UttaraBhadrapada' = 'VM26',
+    'Revati' = 'VM27'
   )
 }
 
@@ -267,4 +300,11 @@ moonPhaseIdToNameMap <- function(ids) {
 #' @return Arab mansion names vector.
 arabMansionIdToNameMap <- function(ids) {
   idToNameMap(arabMansionIdsDefinition(), ids)
+}
+
+#' Map vedic moon mansion IDs vector to names.
+#' @param ids Vedic mansion IDs vector.
+#' @return Vedic mansion names vector.
+vedicMansionIdToNameMap <- function(ids) {
+  idToNameMap(vedicMansionIdsDefinition(), ids)
 }
