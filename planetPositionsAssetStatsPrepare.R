@@ -287,5 +287,3 @@ moonPhaseAssetStatsPrepare <- function() {
     )
   }
 }
-
-planetPositionsAssetStatsPrepare()
