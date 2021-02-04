@@ -138,9 +138,25 @@ planetSpeedPhaseAssetPriceSideFrequencyPrepare <- function(planetPositionAssetTa
   )
 }
 
+#' Prepare planets vedic moon mansion / asset price side (buy / sell) frequency statistics.
+#' @param planetPositionAssetTable Daily planets positions with asset prices long table.
+#' @return Planets vedic mansion / price category frequency statistics table.
+planetVedicMansionAssetPriceSideFrequencyPrepare <- function(planetPositionAssetTable) {
+  planetPositionAssetTable[, PlanetVedicMansion := paste0(pID, "_", VedicMansionID)]
+  frequencyTable <- factorAssetPriceFrequencyCount(planetPositionAssetTable, "PlanetVedicMansion")
+  frequencyTable[, c("pID", "VedicMansionID") := tstrsplit(PlanetVedicMansion, "_", fixed = TRUE)]
+  frequencyTable[, Planet := planetIdToNameMap(pID)]
+  frequencyTable[, VedicMansion := vedicMansionIdToNameMap(VedicMansionID)]
+  setcolorder(
+    frequencyTable,
+    c('PlanetVedicMansion', 'Planet', 'VedicMansion', 'Buy', 'Sell', 'DaysN', 'BuyDays%', 'SellDays%')
+  )
+  frequencyTable[, c('pID', 'VedicMansionID') := NULL]
+}
+
 #' Prepare planets arab moon mansion / asset price side (buy / sell) frequency statistics.
 #' @param planetPositionAssetTable Daily planets positions with asset prices long table.
-#' @return Planets moon mansion / price category frequency statistics table.
+#' @return Planets arab mansion / price category frequency statistics table.
 planetArabMansionAssetPriceSideFrequencyPrepare <- function(planetPositionAssetTable) {
   planetPositionAssetTable[, PlanetArabMansion := paste0(pID, "_", ArabMansionID)]
   frequencyTable <- factorAssetPriceFrequencyCount(planetPositionAssetTable, "PlanetArabMansion")
@@ -240,6 +256,13 @@ planetPositionsAssetStatsPrepare <- function() {
       planetsArabMoonMansionFrequencyStats,
       paste(symbolID, "planet_arab_mansion", "buy_sell_count_freq_stats", sep = "-")
     )
+
+    planetsVedicMoonMansionFrequencyStats <- planetVedicMansionAssetPriceSideFrequencyPrepare(planetsPositionsAssetPriceTable)
+    dataTableStatsExport(
+      symbolID,
+      planetsVedicMoonMansionFrequencyStats,
+      paste(symbolID, "planet_vedic_mansion", "buy_sell_count_freq_stats", sep = "-")
+    )
   }
 }
 
@@ -264,3 +287,5 @@ moonPhaseAssetStatsPrepare <- function() {
     )
   }
 }
+
+planetPositionsAssetStatsPrepare()
