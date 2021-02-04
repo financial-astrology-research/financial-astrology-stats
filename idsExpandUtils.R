@@ -190,6 +190,39 @@ arabMansionIdsDefinition <- function() {
   )
 }
 
+#' Definition of vedic moon mansions human readable names.
+vedicMansionIdsDefinition <- function() {
+  c(
+    'Aswini' = 'VM1',
+    'Bharani' = 'VM2',
+    'Krittica' = 'VM3',
+    'Rohini' = 'VM4',
+    'Mrigashira' = 'VM5',
+    'Ardra' = 'VM6',
+    'Punavasu' = 'VM7',
+    'Pushya' = 'VM8',
+    'Ashlesha' = 'VM9',
+    'Magha' = 'VM10',
+    'PurvaPhalguni' = 'VM11',
+    'UttaraPhalguni' = 'VM12',
+    'Hasta' = 'VM13',
+    'Chitra' = 'VM14',
+    'Swati' = 'VM15',
+    'Vishakha' = 'VM16',
+    'Anuradha' = 'VM17',
+    'Jyeshtha' = 'VM18',
+    'Mula' = 'VM19',
+    'PurvaAshada' = 'VM20',
+    'UttaraAshada' = 'VM21',
+    'Shravana' = 'VM22',
+    'Danishtha' = 'VM23',
+    'Shatabhisha' = 'VM24',
+    'PurvaBhadrapada' = 'VM25',
+    'UttaraBhadrapada' = 'VM26',
+    'Revati' = 'VM27'
+  )
+}
+
 #' Generic IDs to name mapping based on definition vector.
 #' @param idsDefinition ID's named vector definition.
 #' @param ids ID's vector to map to names.
@@ -267,4 +300,11 @@ moonPhaseIdToNameMap <- function(ids) {
 #' @return Arab mansion names vector.
 arabMansionIdToNameMap <- function(ids) {
   idToNameMap(arabMansionIdsDefinition(), ids)
+}
+
+#' Map vedic moon mansion IDs vector to names.
+#' @param ids Vedic mansion IDs vector.
+#' @return Vedic mansion names vector.
+vedicMansionIdToNameMap <- function(ids) {
+  idToNameMap(vedicMansionIdsDefinition(), ids)
 }
