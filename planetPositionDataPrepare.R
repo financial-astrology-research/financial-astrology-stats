@@ -63,7 +63,9 @@ longitudeDerivativesPositionTableAugment <- function(planetLongitudeTableLong) {
   decansLonCut <- seq(0, 360, by = 10)
   zodSignDecanIDGrid <- expand.grid(seq(1, 3), zodiacSignID)
   zodSignDecanID <- paste0(zodSignDecanIDGrid$Var1, zodSignDecanIDGrid$Var2)
-  planetLongitudeTableLong[, DecanID := cut(Lon, decansLonCut, zodSignDecanID)]
+  planetLongitudeTableLong[,
+    DecanID := cut(Lon, decansLonCut, zodSignDecanID, include.lowest = T)
+  ]
 
   # Categorize longitude in Arab Moon Mansions:
   # https://starsandstones.wordpress.com/mansions-of-the-moon/the-mansions-of-the-moon/
@@ -72,7 +74,9 @@ longitudeDerivativesPositionTableAugment <- function(planetLongitudeTableLong) {
     192.85, 205.70, 218.56, 231.41, 244.28, 257.13, 270, 282.85, 295.70, 308.56, 321.41, 334.28, 347.13, 360.99
   )
   arabMansionsID <- paste0('AM', sprintf("%02d", seq(1, 28)))
-  planetLongitudeTableLong[, ArabMansionID := cut(Lon, arabMansionsLonCut, arabMansionsID)]
+  planetLongitudeTableLong[,
+    ArabMansionID := cut(Lon, arabMansionsLonCut, arabMansionsID, include.lowest = T)
+  ]
 
   # Convert longitude from tropical to sideral zodiac.
   planetLongitudeTableLong[, SidLon := tropicalToSideralConversion(Lon)]
@@ -81,7 +85,9 @@ longitudeDerivativesPositionTableAugment <- function(planetLongitudeTableLong) {
   vedicMansionsLonCut <- seq(0, 360, by = 13.3333333)
   vedicMansionsLonCut[length(vedicMansionsLonCut)] <- 360.99
   vedicMansionsID <- paste0('VM', sprintf("%02d", seq(1, 27)))
-  planetLongitudeTableLong[, VedicMansionID := cut(SidLon, vedicMansionsLonCut, vedicMansionsID)]
+  planetLongitudeTableLong[,
+    VedicMansionID := cut(SidLon, vedicMansionsLonCut, vedicMansionsID, include.lowest =  T)
+  ]
 }
 
 #' Augment planets speed data table with categorical derivatives: retrograde, stationary, direct.
@@ -134,7 +140,6 @@ dailyPlanetsSpeedTablePrepare <- function() {
   setnames(planetSpeedTableLong, c('Date', 'pID', 'Speed'))
   speedDerivativesPositionTableAugment(planetSpeedTableLong)
 }
-
 
 #' Prepare daily planets longitude position and categorical derivatives: polarity, triplicity, element, sign, etc.
 dailyPlanetsPositionTablePrepare <- function() {
