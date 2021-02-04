@@ -159,34 +159,34 @@ moonPhaseIdsDefinition <- function() {
 #' Definition of arab moon mansions human readable names.
 arabMansionIdsDefinition <- function() {
   c(
-    'AM1' = 'Saratan',
-    'AM2' = 'Butain',
-    'AM3' = 'Turaija',
-    'AM4' = 'Dabaran',
-    'AM5' = 'Haq\'a',
-    'AM6' = 'Han\'a',
-    'AM7' = 'Dira',
-    'AM8' = 'Natra',
-    'AM9' = 'Tarf(a)',
-    'AM10' = 'Gabha',
-    'AM11' = 'Zubra',
-    'AM12' = 'Sarfa',
-    'AM13' = 'Auwa',
-    'AM14' = 'Simak',
-    'AM15' = 'Gafr',
-    'AM16' = 'Zubana',
-    'AM17' = 'Iklik',
-    'AM18' = 'Qualb',
-    'AM19' = 'Saula',
-    'AM20' = 'Na\'a\'im',
-    'AM21' = 'Balda',
-    'AM22' = 'Dabih',
-    'AM23' = 'Bula',
-    'AM24' = 'Su\'ud',
-    'AM25' = 'Ahbija',
-    'AM26' = 'Muqaddam',
-    'AM27' = 'Mu\'ahhar',
-    'AM28' = 'Risa',
+    'Saratan' = 'AM1',
+    'Butain' = 'AM2',
+    'Turaija' = 'AM3',
+    'Dabaran' = 'AM4',
+    'Haq\'a' = 'AM5',
+    'Han\'a' = 'AM6',
+    'Dira' = 'AM7',
+    'Natra' = 'AM8',
+    'Tarf(a)' = 'AM9',
+    'Gabha' = 'AM10',
+    'Zubra' = 'AM11',
+    'Sarfa' = 'AM12',
+    'Auwa' = 'AM13',
+    'Simak' = 'AM14',
+    'Gafr' = 'AM15',
+    'Zubana' = 'AM16',
+    'Iklik' = 'AM17',
+    'Qualb' = 'AM18',
+    'Saula' = 'AM19',
+    'Na\'a\'im' = 'AM20',
+    'Balda' = 'AM21',
+    'Dabih' = 'AM22',
+    'Bula' = 'AM23',
+    'Su\'ud' = 'AM24',
+    'Ahbija' = 'AM25',
+    'Muqaddam' = 'AM26',
+    'Mu\'ahhar' = 'AM27',
+    'Risa' = 'AM28',
   )
 }
 
@@ -266,5 +266,5 @@ moonPhaseIdToNameMap <- function(ids) {
 #' @param ids Arab mansion IDs vector.
 #' @return Arab mansion names vector.
 arabMansionIdToNameMap <- function(ids) {
-  idToNameMap(moonPhaseIdsDefinition(), ids)
+  idToNameMap(arabMansionIdsDefinition(), ids)
 }
