@@ -55,14 +55,14 @@ longitudeDerivativesPositionTableAugment <- function(planetLongitudeTableLong) {
   zodSignDecanID <- paste0(zodSignDecanIDGrid$Var1, zodSignDecanIDGrid$Var2)
   planetLongitudeTableLong[, DecanID := cut(Lon, decansLonCut, zodSignDecanID)]
 
-  # Categorize longitude in Moon Mansions:
+  # Categorize longitude in Arab Moon Mansions:
   # https://starsandstones.wordpress.com/mansions-of-the-moon/the-mansions-of-the-moon/
   arabMansionsLonCut <- c(
     0, 12.85, 25.70, 38.56, 51.41, 64.28, 77.28, 90, 102.85, 115.68, 128.56, 141.41, 154.28, 167.13, 180,
     192.85, 205.70, 218.56, 231.41, 244.28, 257.13, 270, 282.85, 295.70, 308.56, 321.41, 334.28, 347.13, 360.99
   )
   arabMansionsID <- paste0('AM', seq(1, 28))
-  planetLongitudeTableLong[, MansionID := cut(Lon, arabMansionsLonCut, arabMansionsID)]
+  planetLongitudeTableLong[, ArabMansionID := cut(Lon, arabMansionsLonCut, arabMansionsID)]
 }
 
 #' Augment planets speed data table with categorical derivatives: retrograde, stationary, direct.
