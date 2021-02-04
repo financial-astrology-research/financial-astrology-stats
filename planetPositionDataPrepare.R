@@ -79,8 +79,9 @@ longitudeDerivativesPositionTableAugment <- function(planetLongitudeTableLong) {
   # Categorize longitude in Vedic Moon Mansions:
   # https://vedicastrology.net.au/blog/vedic-articles/the-lunar-mansions-of-vedic-astrology/
   vedicMansionsLonCut <- seq(0, 360, by = 13.3333333)
+  vedicMansionsLonCut[length(vedicMansionsLonCut)] <- 360.99
   vedicMansionsID <- paste0('VM', sprintf("%02d", seq(1, 27)))
-  planetLongitudeTableLong[, VedicMansionID := cut(Lon, vedicMansionsLonCut, vedicMansionsID)]
+  planetLongitudeTableLong[, VedicMansionID := cut(SidLon, vedicMansionsLonCut, vedicMansionsID)]
 }
 
 #' Augment planets speed data table with categorical derivatives: retrograde, stationary, direct.
