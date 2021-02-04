@@ -71,7 +71,7 @@ dailyMundaneEventsSignsReport <- function(reportDate, symbolID) {
     c('Date', 'pID', 'ZodSignID')
   )
   dailyReportTable <- merge(reportPlanetsPosition, frequencyTable, by = c('pID', 'ZodSignID'))
-  dailyReportTable[, ZodSignID := NULL]
+  dailyReportTable[, c('pID', 'ZodSignN', 'ZodSignID', 'PlanetZodSign') := NULL]
 }
 
 #' Report the planets speed phase with historical asset price effect frequencies.

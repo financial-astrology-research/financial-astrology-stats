@@ -45,8 +45,10 @@ planetZodSignAssetPriceSideFrequencyPrepare <- function(planetPositionAssetTable
   frequencyTable <- factorAssetPriceFrequencyCount(planetPositionAssetTable, "PlanetZodSign")
   pID <- substr(frequencyTable$PlanetZodSign, 1, 2)
   zodSignID <- substr(frequencyTable$PlanetZodSign, 4, 6)
+  frequencyTable[, c('pID', 'ZodSignN', 'ZodSignID') := tstrsplit(PlanetZodSign, "_", fixed = T)]
   frequencyTable[, Planet := planetIdToNameMap(pID)]
-  frequencyTable[, ZodSign := zodSignIdToNameMap(zodSignID)]
+  frequencyTable[, ZodSign := zodSignIdToNameMap(ZodSignID)]
+  frequencyTable[, c('pID', 'ZodSignN', 'ZodSignID') := NULL]
   setcolorder(
     frequencyTable,
     c('PlanetZodSign', 'Planet', 'ZodSign', 'Buy', 'Sell', 'DaysN', 'BuyDays%', 'SellDays%')
