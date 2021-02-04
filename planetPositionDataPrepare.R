@@ -16,7 +16,7 @@ source("./planetAspectsDataPrepare.R")
 #' @return Daily planets position table augmented with categorical derivatives.
 longitudeDerivativesPositionTableAugment <- function(planetLongitudeTableLong) {
   zodSignIdx <- seq(1, 12)
-  zodiacSignName <- c(
+  zodiacSignID <- c(
     'ARI',
     'TAU',
     'GEM',
@@ -35,25 +35,34 @@ longitudeDerivativesPositionTableAugment <- function(planetLongitudeTableLong) {
   planetLongitudeTableLong[Lon == 0, Lon := 0.1]
   # Categorize longitude in zodiac signs: https://www.astro.com/astrowiki/en/Zodiac_Sign
   planetLongitudeTableLong[, ZodSignN := ceiling(Lon / 30)]
-  planetLongitudeTableLong[, ZodSignID := mapvalues(ZodSignN, zodSignIdx, zodiacSignName)]
+  planetLongitudeTableLong[, ZodSignID := mapvalues(ZodSignN, zodSignIdx, zodiacSignID)]
 
   # Categorize signs in qualities: https://www.astro.com/astrowiki/en/Quality
-  elementName <- rep(c('FIR', 'EAR', 'AIR', 'WAT'), 3)
-  planetLongitudeTableLong[, ElementID := mapvalues(ZodSignN, zodSignIdx, elementName)]
+  elementID <- rep(c('FIR', 'EAR', 'AIR', 'WAT'), 3)
+  planetLongitudeTableLong[, ElementID := mapvalues(ZodSignN, zodSignIdx, elementID)]
 
   # Categorize signs in triplicities: https://www.astro.com/astrowiki/en/TriplicityID
-  triplicityName <- rep(c('CAR', 'FIX', 'MUT'), 4)
-  planetLongitudeTableLong[, TriplicityID := mapvalues(ZodSignN, zodSignIdx, triplicityName)]
+  triplicityID <- rep(c('CAR', 'FIX', 'MUT'), 4)
+  planetLongitudeTableLong[, TriplicityID := mapvalues(ZodSignN, zodSignIdx, triplicityID)]
 
   # Categorize signs in polarities: https://en.wikipedia.org/wiki/Polarity_(astrology)
-  polarityName <- rep(c('POS', 'NEG'), 6)
-  planetLongitudeTableLong[, PolarityID := mapvalues(ZodSignN, zodSignIdx, polarityName)]
+  polarityID <- rep(c('POS', 'NEG'), 6)
+  planetLongitudeTableLong[, PolarityID := mapvalues(ZodSignN, zodSignIdx, polarityID)]
 
   # Categorize longitude in decans: https://www.astro.com/astrowiki/en/DecanID
   decansLonCut <- seq(0, 360, by = 10)
-  zodSignDecanIDGrid <- expand.grid(seq(1, 3), zodiacSignName)
-  zodSignDecanIDNames <- paste0(zodSignDecanIDGrid$Var1, zodSignDecanIDGrid$Var2)
-  planetLongitudeTableLong[, DecanID := cut(Lon, decansLonCut, zodSignDecanIDNames)]
+  zodSignDecanIDGrid <- expand.grid(seq(1, 3), zodiacSignID)
+  zodSignDecanID <- paste0(zodSignDecanIDGrid$Var1, zodSignDecanIDGrid$Var2)
+  planetLongitudeTableLong[, DecanID := cut(Lon, decansLonCut, zodSignDecanID)]
+
+  # Categorize longitude in Moon Mansions:
+  # https://starsandstones.wordpress.com/mansions-of-the-moon/the-mansions-of-the-moon/
+  arabMansionsLonCut <- c(
+    0, 12.85, 25.70, 38.56, 51.41, 64.28, 77.28, 90, 102.85, 115.68, 128.56, 141.41, 154.28, 167.13, 180,
+    192.85, 205.70, 218.56, 231.41, 244.28, 257.13, 270, 282.85, 295.70, 308.56, 321.41, 334.28, 347.13, 360.99
+  )
+  arabMansionsID <- paste0('AM', seq(1, 28))
+  planetLongitudeTableLong[, MansionID := cut(Lon, arabMansionsLonCut, arabMansionsID)]
 }
 
 #' Augment planets speed data table with categorical derivatives: retrograde, stationary, direct.
@@ -141,3 +150,5 @@ dailyPlanetsPositionTablePrepare <- function() {
     expandPath("./data/daily_planets_positions_long.csv"), append = F
   )
 }
+
+dailyPlanetsPositionTablePrepare()
