@@ -18,6 +18,7 @@ tropicalToSideralConversion <- function(lon) {
   diffDegree <- -24
   adjustedLon <- lon + diffDegree
   adjustedLon[adjustedLon < 0] <- adjustedLon[adjustedLon < 0] + 360
+  return(adjustedLon)
 }
 
 #' Augment planet positions data table with categorical derivatives: polarity, triplicity, elements and so forth.
@@ -70,11 +71,16 @@ longitudeDerivativesPositionTableAugment <- function(planetLongitudeTableLong) {
     0, 12.85, 25.70, 38.56, 51.41, 64.28, 77.28, 90, 102.85, 115.68, 128.56, 141.41, 154.28, 167.13, 180,
     192.85, 205.70, 218.56, 231.41, 244.28, 257.13, 270, 282.85, 295.70, 308.56, 321.41, 334.28, 347.13, 360.99
   )
-  arabMansionsID <- paste0('AM', seq(1, 28))
+  arabMansionsID <- paste0('AM', sprintf("%02d", seq(1, 28)))
   planetLongitudeTableLong[, ArabMansionID := cut(Lon, arabMansionsLonCut, arabMansionsID)]
 
-  # Convert to sideral longitude assuming 24 degrees
+  # Convert longitude from tropical to sideral zodiac.
   planetLongitudeTableLong[, SidLon := tropicalToSideralConversion(Lon)]
+  # Categorize longitude in Vedic Moon Mansions:
+  # https://vedicastrology.net.au/blog/vedic-articles/the-lunar-mansions-of-vedic-astrology/
+  vedicMansionsLonCut <- seq(0, 360, by = 13.3333333)
+  vedicMansionsID <- paste0('VM', sprintf("%02d", seq(1, 27)))
+  planetLongitudeTableLong[, VedicMansionID := cut(Lon, vedicMansionsLonCut, vedicMansionsID)]
 }
 
 #' Augment planets speed data table with categorical derivatives: retrograde, stationary, direct.
