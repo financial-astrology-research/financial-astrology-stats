@@ -156,6 +156,40 @@ moonPhaseIdsDefinition <- function() {
   )
 }
 
+#' Definition of arab moon mansions human readable names.
+arabMansionIdsDefinition <- function() {
+  c(
+    'AM1' = 'Saratan',
+    'AM2' = 'Butain',
+    'AM3' = 'Turaija',
+    'AM4' = 'Dabaran',
+    'AM5' = 'Haq\'a',
+    'AM6' = 'Han\'a',
+    'AM7' = 'Dira',
+    'AM8' = 'Natra',
+    'AM9' = 'Tarf(a)',
+    'AM10' = 'Gabha',
+    'AM11' = 'Zubra',
+    'AM12' = 'Sarfa',
+    'AM13' = 'Auwa',
+    'AM14' = 'Simak',
+    'AM15' = 'Gafr',
+    'AM16' = 'Zubana',
+    'AM17' = 'Iklik',
+    'AM18' = 'Qualb',
+    'AM19' = 'Saula',
+    'AM20' = 'Na\'a\'im',
+    'AM21' = 'Balda',
+    'AM22' = 'Dabih',
+    'AM23' = 'Bula',
+    'AM24' = 'Su\'ud',
+    'AM25' = 'Ahbija',
+    'AM26' = 'Muqaddam',
+    'AM27' = 'Mu\'ahhar',
+    'AM28' = 'Risa',
+  )
+}
+
 #' Generic IDs to name mapping based on definition vector.
 #' @param idsDefinition ID's named vector definition.
 #' @param ids ID's vector to map to names.
@@ -225,5 +259,12 @@ aspectIdToNameMap <- function(ids) {
 #' @param ids Moon phase IDs vector.
 #' @return Moon phase names vector.
 moonPhaseIdToNameMap <- function(ids) {
+  idToNameMap(moonPhaseIdsDefinition(), ids)
+}
+
+#' Map arab moon mansion IDs vector to names.
+#' @param ids Arab mansion IDs vector.
+#' @return Arab mansion names vector.
+arabMansionIdToNameMap <- function(ids) {
   idToNameMap(moonPhaseIdsDefinition(), ids)
 }
