@@ -58,7 +58,7 @@ planetZodSignAssetPriceSideFrequencyPrepare <- function(planetPositionAssetTable
 #' @return Planets decan / price category frequency statistics table.
 planetDecanAssetPriceSideFrequencyPrepare <- function(planetPositionAssetTable) {
   planetPositionAssetTable[,
-    PlanetDecan := paste(pID, sprintf("%02d", ZodSignN), DecanID, sep = "_")
+    PlanetDecan := paste(pID, ZodSignN, DecanID, sep = "_")
   ]
 
   frequencyTable <- factorAssetPriceFrequencyCount(planetPositionAssetTable, "PlanetDecan")
@@ -187,7 +187,7 @@ moonPhaseAssetPriceSideFrequencyPrepare <- function(moonPhaseAssetTable) {
 #' @return Planets moon phase / price category frequency statistics table.
 moonPhaseZodSignAssetPriceSideFrequencyPrepare <- function(moonPhaseAssetTable) {
   moonPhaseAssetTable[,
-    MoonPhaseZodSignID := paste(MoonPhaseID, sprintf("%02d", ZodSignN), ZodSignID, sep = "_")
+    MoonPhaseZodSignID := paste(MoonPhaseID, ZodSignN, ZodSignID, sep = "_")
   ]
 
   frequencyTable <- factorAssetPriceFrequencyCount(moonPhaseAssetTable, "MoonPhaseZodSignID")
