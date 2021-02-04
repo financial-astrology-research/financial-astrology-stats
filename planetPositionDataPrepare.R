@@ -25,7 +25,7 @@ tropicalToSideralConversion <- function(lon) {
 #' @param planetLongitudeTableLong Planet longitude positions long data table.
 #' @return Daily planets position table augmented with categorical derivatives.
 longitudeDerivativesPositionTableAugment <- function(planetLongitudeTableLong) {
-  zodSignIdx <- sprintf("%02d", seq(1, 12))
+  zodSignIdx <- sprintf("Z%02d", seq(1, 12))
   zodiacSignID <- c(
     'ARI',
     'TAU',
@@ -44,7 +44,7 @@ longitudeDerivativesPositionTableAugment <- function(planetLongitudeTableLong) {
   # Prevent zero division.
   planetLongitudeTableLong[Lon == 0, Lon := 0.1]
   # Categorize longitude in zodiac signs: https://www.astro.com/astrowiki/en/Zodiac_Sign
-  planetLongitudeTableLong[, ZodSignN := sprintf("%02d", ceiling(Lon / 30))]
+  planetLongitudeTableLong[, ZodSignN := sprintf("Z%02d", ceiling(Lon / 30))]
   planetLongitudeTableLong[, ZodSignID := mapvalues(ZodSignN, zodSignIdx, zodiacSignID)]
 
   # Categorize signs in qualities: https://www.astro.com/astrowiki/en/Quality
