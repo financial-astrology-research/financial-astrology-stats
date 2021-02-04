@@ -41,7 +41,7 @@ factorAssetPriceFrequencyCount <- function (factorAssetTable, byFactor) {
 #' @param planetPositionAssetTable Daily planets positions with asset prices long table.
 #' @return Planets zodiac sign / price category frequency statistics table.
 planetZodSignAssetPriceSideFrequencyPrepare <- function(planetPositionAssetTable) {
-  planetPositionAssetTable[, PlanetZodSign := paste0(pID, "_", ZodSignID)]
+  planetPositionAssetTable[, PlanetZodSign := paste(pID, ZodSignN, ZodSignID, sep = "_")]
   frequencyTable <- factorAssetPriceFrequencyCount(planetPositionAssetTable, "PlanetZodSign")
   pID <- substr(frequencyTable$PlanetZodSign, 1, 2)
   zodSignID <- substr(frequencyTable$PlanetZodSign, 4, 6)
