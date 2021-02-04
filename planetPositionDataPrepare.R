@@ -11,6 +11,15 @@ library(tidyr)
 source("./fileSystemUtilities.R")
 source("./planetAspectsDataPrepare.R")
 
+#' Tropical to sideral longitude conversion with 24 degrees (average XXI century) equinox precession.
+#' @param lon Tropical longitude.
+#' @return Sideral longitude.
+tropicalToSideralConversion <- function(lon) {
+  diffDegree <- -24
+  adjustedLon <- lon + diffDegree
+  adjustedLon[adjustedLon < 0] <- adjustedLon[adjustedLon < 0] + 360
+}
+
 #' Augment planet positions data table with categorical derivatives: polarity, triplicity, elements and so forth.
 #' @param planetLongitudeTableLong Planet longitude positions long data table.
 #' @return Daily planets position table augmented with categorical derivatives.
@@ -63,6 +72,9 @@ longitudeDerivativesPositionTableAugment <- function(planetLongitudeTableLong) {
   )
   arabMansionsID <- paste0('AM', seq(1, 28))
   planetLongitudeTableLong[, ArabMansionID := cut(Lon, arabMansionsLonCut, arabMansionsID)]
+
+  # Convert to sideral longitude assuming 24 degrees
+  planetLongitudeTableLong[, SidLon := tropicalToSideralConversion(Lon)]
 }
 
 #' Augment planets speed data table with categorical derivatives: retrograde, stationary, direct.
@@ -150,3 +162,5 @@ dailyPlanetsPositionTablePrepare <- function() {
     expandPath("./data/daily_planets_positions_long.csv"), append = F
   )
 }
+
+dailyPlanetsPositionTablePrepare()
