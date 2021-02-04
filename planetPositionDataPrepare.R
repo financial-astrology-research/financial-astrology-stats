@@ -150,5 +150,3 @@ dailyPlanetsPositionTablePrepare <- function() {
     expandPath("./data/daily_planets_positions_long.csv"), append = F
   )
 }
-
-dailyPlanetsPositionTablePrepare()

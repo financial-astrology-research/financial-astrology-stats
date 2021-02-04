@@ -186,7 +186,7 @@ arabMansionIdsDefinition <- function() {
     'Ahbija' = 'AM25',
     'Muqaddam' = 'AM26',
     'Mu\'ahhar' = 'AM27',
-    'Risa' = 'AM28',
+    'Risa' = 'AM28'
   )
 }
 
