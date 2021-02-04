@@ -62,7 +62,7 @@ planetDecanAssetPriceSideFrequencyPrepare <- function(planetPositionAssetTable) 
   ]
 
   frequencyTable <- factorAssetPriceFrequencyCount(planetPositionAssetTable, "PlanetDecan")
-  frequencyTable[, c("pID", "ZodSignN", "decanID") := tstrsplit(PlanetDecan, "_", fixed = TRUE)]
+  frequencyTable[, c("pID", "ZodSignN", "decanID") := tstrsplit(PlanetDecan, "_", fixed = T)]
   frequencyTable[, Planet := planetIdToNameMap(pID)]
   frequencyTable[, Decan := decanIdToNameMap(decanID)]
   setcolorder(
@@ -144,7 +144,7 @@ planetSpeedPhaseAssetPriceSideFrequencyPrepare <- function(planetPositionAssetTa
 planetVedicMansionAssetPriceSideFrequencyPrepare <- function(planetPositionAssetTable) {
   planetPositionAssetTable[, PlanetVedicMansion := paste0(pID, "_", VedicMansionID)]
   frequencyTable <- factorAssetPriceFrequencyCount(planetPositionAssetTable, "PlanetVedicMansion")
-  frequencyTable[, c("pID", "VedicMansionID") := tstrsplit(PlanetVedicMansion, "_", fixed = TRUE)]
+  frequencyTable[, c("pID", "VedicMansionID") := tstrsplit(PlanetVedicMansion, "_", fixed = T)]
   frequencyTable[, Planet := planetIdToNameMap(pID)]
   frequencyTable[, VedicMansion := vedicMansionIdToNameMap(VedicMansionID)]
   setcolorder(
@@ -160,7 +160,7 @@ planetVedicMansionAssetPriceSideFrequencyPrepare <- function(planetPositionAsset
 planetArabMansionAssetPriceSideFrequencyPrepare <- function(planetPositionAssetTable) {
   planetPositionAssetTable[, PlanetArabMansion := paste0(pID, "_", ArabMansionID)]
   frequencyTable <- factorAssetPriceFrequencyCount(planetPositionAssetTable, "PlanetArabMansion")
-  frequencyTable[, c("pID", "ArabMansionID") := tstrsplit(PlanetArabMansion, "_", fixed = TRUE)]
+  frequencyTable[, c("pID", "ArabMansionID") := tstrsplit(PlanetArabMansion, "_", fixed = T)]
   frequencyTable[, Planet := planetIdToNameMap(pID)]
   frequencyTable[, ArabMansion := arabMansionIdToNameMap(ArabMansionID)]
   setcolorder(
@@ -191,7 +191,7 @@ moonPhaseZodSignAssetPriceSideFrequencyPrepare <- function(moonPhaseAssetTable) 
   ]
 
   frequencyTable <- factorAssetPriceFrequencyCount(moonPhaseAssetTable, "MoonPhaseZodSignID")
-  frequencyTable[, c("MoonPhaseID", "ZodSignN", "ZodSignID") := tstrsplit(MoonPhaseZodSignID, "_", fixed = TRUE)]
+  frequencyTable[, c("MoonPhaseID", "ZodSignN", "ZodSignID") := tstrsplit(MoonPhaseZodSignID, "_", fixed = T)]
   frequencyTable[, MoonPhase := moonPhaseIdToNameMap(MoonPhaseID)]
   frequencyTable[, ZodSign := zodSignIdToNameMap(ZodSignID)]
 

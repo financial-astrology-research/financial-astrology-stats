@@ -63,9 +63,7 @@ dailyMundaneEventsSignsReport <- function(reportDate, symbolID) {
   sourceFileName <- paste(symbolID, "planet_zodsign", "buy_sell_count_freq_stats", sep = "-")
   statsPathFileName <- paste0(statsDataDestinationPath(symbolID), sourceFileName, ".csv")
   frequencyTable <- copy(memoFileRead(statsPathFileName))
-  frequencyTable[, pID := substr(PlanetZodSign, 1, 2)]
-  frequencyTable[, ZodSignID := substr(PlanetZodSign, 4, 6)]
-  frequencyTable[, PlanetZodSign := NULL]
+  frequencyTable[, c('pID', 'ZodSignN', 'ZodSignID') := tstrsplit(PlanetZodSign, "_", fixed = T)]
   dailyMundaneEventsPosition <- dailyMundaneEventsPositionLoad()
   reportPlanetsPosition <- dataTableDateColsFilter(
     dailyMundaneEventsPosition,
