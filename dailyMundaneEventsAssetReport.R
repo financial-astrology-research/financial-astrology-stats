@@ -27,6 +27,21 @@ dataTableRead <- function(pathFileName) {
 #' Memoized file read with memory cache (persist during current session).
 memoFileRead <- memoise(dataTableRead)
 
+#' Load frequency stats table.
+#' @param symbolID Symbol ID to load frequency stats for.
+#' @param statsID Frequency stats identifier.
+#' @param factorID Factor column ID that was used to compute the frequency stats.
+#' @param factorParts Factor parts names to assign on ID destructure.
+#' @return Frequency stats data table.
+frequencyStatsLoad <- function(symbolID, statsID, factorID = NULL, factorParts = NULL) {
+  sourceFileName <- paste(symbolID, statsID, "buy_sell_count_freq_stats", sep = "-")
+  statsPathFileName <- paste0(statsDataDestinationPath(symbolID), sourceFileName, ".csv")
+  frequencyTable <- copy(memoFileRead(statsPathFileName))
+  if (!is.null(factorID) & !is.null(factorParts)) {
+    frequencyTable[, c(factorParts) := tstrsplit(get(factorID), "_", fixed = T)]
+  }
+}
+
 #' Load daily planets positions data table from CSV.
 #' @return Daily planets positions data table.
 dailyMundaneEventsPositionLoad <- function() {
@@ -119,6 +134,27 @@ dailyMundaneEventsAspectsReport <- function(reportDate, symbolID) {
   dailyReportTable[order(Date, exactHour)]
 }
 
+#' Report the planets decans positions with historical asset price effect frequencies.
+#' @param reportDate The date to generate the report for.
+#' @param symbolID Symbol ID to report frequencies for.
+#' @return Planet decans with price effect frequencies report table.
+dailyMundaneEventsDecansReport <- function(reportDate, symbolID) {
+  frequencyTable <- frequencyStatsLoad(
+    symbolID,
+    "planet_decan",
+    'PlanetDecan',
+    c('pID', 'ZodSignN', 'DecanID')
+  )
+  dailyMundaneEventsPosition <- dailyMundaneEventsPositionLoad()
+  reportPlanetsPosition <- dataTableDateColsFilter(
+    dailyMundaneEventsPosition,
+    reportDate,
+    c('Date', 'pID', 'DecanID')
+  )
+  dailyReportTable <- merge(reportPlanetsPosition, frequencyTable, by = c('pID', 'DecanID'))
+  dailyReportTable[, c('pID', 'ZodSignN', 'DecanID', 'PlanetDecan') := NULL]
+}
+
 #' Generate all planets daily setup with asset price effect stats.
 #' @param reportDate The date to generate the report for.
 #' @param symbolID Symbol ID to report frequencies for.
@@ -127,6 +163,8 @@ dailyMundaneEventsReport <- function(reportDate, symbolID) {
   dailyMundaneEventsSpeedPhaseReport(reportDate, symbolID) %>% print()
   cat("\nDAILY PLANET ZODIAC SIGN POSITION:\n\n")
   dailyMundaneEventsSignsReport(reportDate, symbolID) %>% print()
+  cat("\nDAILY PLANET DECAN POSITION:\n\n")
+  dailyMundaneEventsDecansReport(reportDate, symbolID) %>% print()
   cat("\nDAILY PLANETS ASPECTS:\n\n")
   dailyMundaneEventsAspectsReport(reportDate, symbolID) %>% print()
 }
@@ -150,10 +188,10 @@ interactiveDailyMundaneEventsReport <- function() {
 #' Generate N future daily planets report for all watchlist assets.
 nDailyMundaneEventsReport <- function(daysN = 7) {
   startDate <- Sys.Date()
-  endDate <- Sys.Date() + (daysN-1)
+  endDate <- Sys.Date() + (daysN - 1)
   reportDates <- seq(startDate, endDate, by = "1 day")
   watchList <- assetsWatchList()
-  options(width=200)
+  options(width = 200)
 
   for (symbolID in watchList$SymbolID) {
     for (idx in seq_along(reportDates)) {
