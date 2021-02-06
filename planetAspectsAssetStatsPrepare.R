@@ -14,7 +14,7 @@ source("./idsExpandUtils.R")
 #' Prepare planet aspects / asset price side (buy / sell) frequency statistics.
 #' @param planetAspectsAssetPricesTable Daily planets aspects with asset prices table.
 #' @return Planets aspect price side category frequency statistics table.
-planetAspectsAssetPriceSideFrequencyPrepare <- function(planetAspectsAssetPricesTable) {
+planetAspectsAssetPriceEffectFrequencyPrepare <- function(planetAspectsAssetPricesTable) {
   planetsAspectEffectCountLong <- planetAspectsAssetPricesTable[,
     data.table(table(OHLCEff)), by = "PlanetsAspect"
   ]
@@ -66,7 +66,7 @@ planetAspectsAssetStatsPrepare <- function() {
     planetAspectsAssetPricesTable[, pY := substr(origin, 3, 4)]
     planetAspectsAssetPricesTable[, PlanetsAspect := paste(pX, pY, aspect, sep = "_")]
 
-    planetAspectsEffectCountWide <- planetAspectsAssetPriceSideFrequencyPrepare(planetAspectsAssetPricesTable)
+    planetAspectsEffectCountWide <- planetAspectsAssetPriceEffectFrequencyPrepare(planetAspectsAssetPricesTable)
     dataTableStatsExport(
       symbolID,
       planetAspectsEffectCountWide,
