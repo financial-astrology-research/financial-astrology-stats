@@ -2,6 +2,8 @@
 # Created by: pablocc
 # Created on: 10/01/2021
 
+library(magrittr)
+
 expandPath <- function(path) {
   normalizePath(path.expand(path))
 }
@@ -67,6 +69,14 @@ mundaneEventsDestinationPath <- function(symbolID, reportDate) {
 
 #' Provides machine learning performance reports destination path.
 #' @returns The machine learning performance reports relative destination path.
-machineLearningPerformanceDestinationPath <- function() {
+modelsPerformanceDestinationPath <- function() {
   destinationPath <- paste0(normalizePath('./machine_learning/performance'), "/")
+}
+
+#' Provides latest machine learning performance report path / filename.
+#' @returns The report path and filename.
+modelsLatestPerformancePathFileNameGet <- function() {
+  list.files(modelsPerformanceDestinationPath(), pattern = "*.csv") %>%
+    sort(decreasing = T) %>%
+    head(n = 1)
 }
