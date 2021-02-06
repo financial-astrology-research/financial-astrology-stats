@@ -75,10 +75,12 @@ dataTableDateColsFilter <- function(dataTable, filterDate, selectColNames = NULL
 #' @param symbolID Symbol ID to report frequencies for.
 #' @return Planet positions with price effect frequencies report table.
 dailyMundaneEventsSignsReport <- function(reportDate, symbolID) {
-  sourceFileName <- paste(symbolID, "planet_zodsign", "buy_sell_count_freq_stats", sep = "-")
-  statsPathFileName <- paste0(statsDataDestinationPath(symbolID), sourceFileName, ".csv")
-  frequencyTable <- copy(memoFileRead(statsPathFileName))
-  frequencyTable[, c('pID', 'ZodSignN', 'ZodSignID') := tstrsplit(PlanetZodSign, "_", fixed = T)]
+  frequencyTable <- frequencyStatsLoad(
+    symbolID,
+    "planet_zodsign",
+    'PlanetZodSign',
+    c('pID', 'ZodSignN', 'ZodSignID')
+  )
   dailyMundaneEventsPosition <- dailyMundaneEventsPositionLoad()
   reportPlanetsPosition <- dataTableDateColsFilter(
     dailyMundaneEventsPosition,
@@ -94,11 +96,12 @@ dailyMundaneEventsSignsReport <- function(reportDate, symbolID) {
 #' @param symbolID Symbol ID to report frequencies for.
 #' @return Planet speed phase with price effect frequencies report table.
 dailyMundaneEventsSpeedPhaseReport <- function(reportDate, symbolID) {
-  sourceFileName <- paste(symbolID, "planet_speed", "buy_sell_count_freq_stats", sep = "-")
-  statsPathFileName <- paste0(statsDataDestinationPath(symbolID), sourceFileName, ".csv")
-  frequencyTable <- copy(memoFileRead(statsPathFileName))
-  frequencyTable[, pID := substr(PlanetSpeedPhase, 1, 2)]
-  frequencyTable[, SpeedPhaseID := substr(PlanetSpeedPhase, 4, 6)]
+  frequencyTable <- frequencyStatsLoad(
+    symbolID,
+    "planet_speed",
+    'PlanetSpeedPhase',
+    c('pID', 'SpeedPhaseID')
+  )
   dailyMundaneEventsPosition <- dailyMundaneEventsPositionLoad()
   reportPlanetsPosition <- dataTableDateColsFilter(
     dailyMundaneEventsPosition,
@@ -114,13 +117,12 @@ dailyMundaneEventsSpeedPhaseReport <- function(reportDate, symbolID) {
 #' @param symbolID Symbol ID to report frequencies for.
 #' @return Planet positions with price effect frequencies report table.
 dailyMundaneEventsAspectsReport <- function(reportDate, symbolID) {
-  sourceFileName <- paste(symbolID, "planets_aspects", "buy_sell_count_freq_stats", sep = "-")
-  statsPathFileName <- paste0(statsDataDestinationPath(symbolID), sourceFileName, ".csv")
-  frequencyTable <- copy(memoFileRead(statsPathFileName))
-  frequencyTable[, pX := substr(PlanetsAspect, 1, 2)]
-  frequencyTable[, pY := substr(PlanetsAspect, 3, 4)]
-  frequencyTable[, aspect := substr(PlanetsAspect, 6, 10)]
-  frequencyTable[, PlanetsAspect := NULL]
+  frequencyTable <- frequencyStatsLoad(
+    symbolID,
+    "planets_aspects",
+    'PlanetsAspect',
+    c('pX', 'pY', 'aspect')
+  )
   dailyMundaneEventsAspects <- dailyMundaneEventsAspectsLoad()
   reportPlanetsAspects <- dataTableDateColsFilter(dailyMundaneEventsAspects, reportDate)
   # Filter only the exact orb aspects.
@@ -130,7 +132,7 @@ dailyMundaneEventsAspectsReport <- function(reportDate, symbolID) {
     frequencyTable,
     by = c('pX', 'pY', 'aspect')
   )
-  dailyReportTable[, c('pX', 'pY', 'aspect', 'origin') := NULL]
+  dailyReportTable[, c('pX', 'pY', 'aspect', 'origin', 'PlanetsAspect') := NULL]
   dailyReportTable[order(Date, exactHour)]
 }
 
@@ -204,3 +206,5 @@ nDailyMundaneEventsReport <- function(daysN = 7) {
     }
   }
 }
+
+nDailyMundaneEventsReport()
