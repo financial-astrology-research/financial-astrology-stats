@@ -64,3 +64,9 @@ mundaneEventsDestinationPath <- function(symbolID, reportDate) {
   destinationPath <- paste0("./mundane_events/", symbolID, "/", yearMonth, "/")
   destinationPathCreate(destinationPath)
 }
+
+#' Provides machine learning performance reports destination path.
+#' @returns The machine learning performance reports relative destination path.
+machineLearningPerformanceDestinationPath <- function() {
+  destinationPath <- paste0(normalizePath('./machine_learning/performance'), "/")
+}
