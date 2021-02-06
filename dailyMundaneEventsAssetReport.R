@@ -193,6 +193,21 @@ dailyMundaneEventsArabMansionReport <- function(reportDate, symbolID) {
     frequencyStatsColumnsSelect(c('Planet', 'ArabMansion'))
 }
 
+#' Report the planets vedic mansions positions with historical asset price effect frequencies.
+#' @param reportDate The date to generate the report for.
+#' @param symbolID Symbol ID to report frequencies for.
+#' @return Planet vedic mansions with price effect frequencies report table.
+dailyMundaneEventsVedicMansionReport <- function(reportDate, symbolID) {
+  dailyMundaneEventsPositionLoad() %>%
+    assetPriceEffectFrequencyStatsReport(
+      symbolID,
+      "planet_vedic_mansion",
+      'PlanetVedicMansion',
+      c('pID', 'VedicMansionID'),
+      reportDate
+    ) %>%
+    frequencyStatsColumnsSelect(c('Planet', 'VedicMansion'))
+}
 
 #' Generate all planets daily setup with asset price effect stats.
 #' @param reportDate The date to generate the report for.
@@ -206,6 +221,8 @@ dailyMundaneEventsReport <- function(reportDate, symbolID) {
   dailyMundaneEventsDecansReport(reportDate, symbolID) %>% print()
   cat("\nPLANET ARAB MANSION POSITION:\n\n")
   dailyMundaneEventsArabMansionReport(reportDate, symbolID) %>% print()
+  cat("\nPLANET VEDIC MANSION POSITION:\n\n")
+  dailyMundaneEventsVedicMansionReport(reportDate, symbolID) %>% print()
   cat("\nPLANETS ASPECTS:\n\n")
   dailyMundaneEventsAspectsReport(reportDate, symbolID) %>% print()
 }
