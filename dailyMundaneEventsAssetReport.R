@@ -6,6 +6,7 @@
 library(data.table)
 library(magrittr)
 library(memoise)
+library(stringr)
 
 source("./configUtils.R")
 source("./fileSystemUtilities.R")
@@ -241,6 +242,35 @@ dailyMundaneEventsVedicMansionReport <- function(reportDate, symbolID) {
     frequencyStatsColumnsSelect(c('Planet', 'VedicMansion'))
 }
 
+#' Report the top performers machine learning models predictions.
+#' @param reportDate The date to generate the report for.
+#' @param symbolID Symbol ID to report frequencies for.
+#' @return Models expected percent change or probabilities and signal report table.
+dailyMundaneEventsPredictionsReport <- function(reportDate, symbolID) {
+  modelsPerformanceReport <- dataTableRead(
+    modelsLatestPerformancePathFileNameGet()
+  )
+
+  allPredictions <- data.table()
+  topPerformers <- modelsPerformanceReport[Symbol == symbolID][order(-Rank)] %>% head(5)
+  for (predictPathFilename in topPerformers$PredictFile) {
+    predictionsTable <- dataTableRead(paste0(modelsPredictionDestinationPath(), predictPathFilename))
+    columnNames <- colnames(predictionsTable)
+    selectColumns <- columnNames[grep("EffUp|DiffPred|EffPred", columnNames)] %>% c('Date', .)
+    reportDatePredictions <- predictionsTable[Date == reportDate, ..selectColumns]
+    reportDatePredictions[, ModelID := str_replace(predictPathFilename, '.csv', '')]
+    setcolorder(reportDatePredictions, c('ModelID', selectColumns))
+    setnames(reportDatePredictions, c('ModelID', 'Date', 'P1', 'P2', 'P3', 'P4', 'P5', 'Signal'))
+    allPredictions <- rbind(allPredictions, reportDatePredictions)
+  }
+
+  if (nrow(allPredictions) == 0) {
+    allPredictions <- data.table(cbind(Model = "Not available"))
+  }
+
+  return(allPredictions)
+}
+
 #' Generate all planets daily setup with asset price effect stats.
 #' @param reportDate The date to generate the report for.
 #' @param symbolID Symbol ID to report frequencies for.
@@ -261,6 +291,8 @@ dailyMundaneEventsReport <- function(reportDate, symbolID) {
   dailyMundaneEventsVedicMansionReport(reportDate, symbolID) %>% print()
   cat("\nPLANETS ASPECTS:\n\n")
   dailyMundaneEventsAspectsReport(reportDate, symbolID) %>% print()
+  cat("\nMACHINE LEARNING PREDICTIONS:\n\n")
+  dailyMundaneEventsPredictionsReport(reportDate, symbolID) %>% print(row.names = F)
 }
 
 #' Interactive input to specify symbol ID and date used for daily planets report.
@@ -298,5 +330,3 @@ nDailyMundaneEventsReport <- function(daysN = 7) {
     }
   }
 }
-
-nDailyMundaneEventsReport()
