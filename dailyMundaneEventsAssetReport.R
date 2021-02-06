@@ -177,17 +177,36 @@ dailyMundaneEventsDecansReport <- function(reportDate, symbolID) {
     frequencyStatsColumnsSelect(c('Planet', 'Decan'))
 }
 
+#' Report the planets arab mansions positions with historical asset price effect frequencies.
+#' @param reportDate The date to generate the report for.
+#' @param symbolID Symbol ID to report frequencies for.
+#' @return Planet arab mansions with price effect frequencies report table.
+dailyMundaneEventsArabMansionReport <- function(reportDate, symbolID) {
+  dailyMundaneEventsPositionLoad() %>%
+    assetPriceEffectFrequencyStatsReport(
+      symbolID,
+      "planet_arab_mansion",
+      'PlanetArabMansion',
+      c('pID', 'ArabMansionID'),
+      reportDate
+    ) %>%
+    frequencyStatsColumnsSelect(c('Planet', 'ArabMansion'))
+}
+
+
 #' Generate all planets daily setup with asset price effect stats.
 #' @param reportDate The date to generate the report for.
 #' @param symbolID Symbol ID to report frequencies for.
 dailyMundaneEventsReport <- function(reportDate, symbolID) {
-  cat("\nDAILY PLANET SPEED PHASE:\n\n")
+  cat("\nPLANET SPEED PHASE:\n\n")
   dailyMundaneEventsSpeedPhaseReport(reportDate, symbolID) %>% print()
-  cat("\nDAILY PLANET ZODIAC SIGN POSITION:\n\n")
+  cat("\nPLANET ZODIAC SIGN POSITION:\n\n")
   dailyMundaneEventsSignsReport(reportDate, symbolID) %>% print()
-  cat("\nDAILY PLANET DECAN POSITION:\n\n")
+  cat("\nPLANET DECAN POSITION:\n\n")
   dailyMundaneEventsDecansReport(reportDate, symbolID) %>% print()
-  cat("\nDAILY PLANETS ASPECTS:\n\n")
+  cat("\nPLANET ARAB MANSION POSITION:\n\n")
+  dailyMundaneEventsArabMansionReport(reportDate, symbolID) %>% print()
+  cat("\nPLANETS ASPECTS:\n\n")
   dailyMundaneEventsAspectsReport(reportDate, symbolID) %>% print()
 }
 
