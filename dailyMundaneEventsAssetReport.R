@@ -6,6 +6,7 @@
 library(data.table)
 library(magrittr)
 library(memoise)
+library(stringr)
 
 source("./configUtils.R")
 source("./fileSystemUtilities.R")
@@ -250,26 +251,24 @@ dailyMundaneEventsPredictionsReport <- function(reportDate, symbolID) {
     modelsLatestPerformancePathFileNameGet()
   )
 
-  predictionsCount <- 0
+  allPredictions <- data.table()
   topPerformers <- modelsPerformanceReport[Symbol == symbolID][order(-Rank)] %>% head(5)
   for (predictPathFilename in topPerformers$PredictFile) {
     predictionsTable <- dataTableRead(paste0(modelsPredictionDestinationPath(), predictPathFilename))
     columnNames <- colnames(predictionsTable)
     selectColumns <- columnNames[grep("EffUp|DiffPred|EffPred", columnNames)] %>% c('Date', .)
     reportDatePredictions <- predictionsTable[Date == reportDate, ..selectColumns]
-    reportDatePredictions[, ModelID := predictPathFilename]
+    reportDatePredictions[, ModelID := str_replace(predictPathFilename, '.csv', '')]
     setcolorder(reportDatePredictions, c('ModelID', selectColumns))
-
-    if (nrow(reportDatePredictions) > 0) {
-      predictionsCount <- predictionsCount + 1
-    }
-
-    print(reportDatePredictions, row.names = F)
+    setnames(reportDatePredictions, c('ModelID', 'Date', 'P1', 'P2', 'P3', 'P4', 'P5', 'Signal'))
+    allPredictions <- rbind(allPredictions, reportDatePredictions)
   }
 
-  if (predictionsCount == 0) {
-    cat("\nPredictions not available\n")
+  if (nrow(allPredictions) == 0) {
+    allPredictions <- data.table(cbind(Model = "Not available"))
   }
+
+  return(allPredictions)
 }
 
 #' Generate all planets daily setup with asset price effect stats.
@@ -293,7 +292,7 @@ dailyMundaneEventsReport <- function(reportDate, symbolID) {
   cat("\nPLANETS ASPECTS:\n\n")
   dailyMundaneEventsAspectsReport(reportDate, symbolID) %>% print()
   cat("\nMACHINE LEARNING PREDICTIONS:\n\n")
-  dailyMundaneEventsPredictionsReport(reportDate, symbolID)
+  dailyMundaneEventsPredictionsReport(reportDate, symbolID) %>% print(row.names = F)
 }
 
 #' Interactive input to specify symbol ID and date used for daily planets report.
