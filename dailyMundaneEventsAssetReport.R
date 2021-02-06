@@ -241,6 +241,37 @@ dailyMundaneEventsVedicMansionReport <- function(reportDate, symbolID) {
     frequencyStatsColumnsSelect(c('Planet', 'VedicMansion'))
 }
 
+#' Report the top performers machine learning models predictions.
+#' @param reportDate The date to generate the report for.
+#' @param symbolID Symbol ID to report frequencies for.
+#' @return Models expected percent change or probabilities and signal report table.
+dailyMundaneEventsPredictionsReport <- function(reportDate, symbolID) {
+  modelsPerformanceReport <- dataTableRead(
+    modelsLatestPerformancePathFileNameGet()
+  )
+
+  predictionsCount <- 0
+  topPerformers <- modelsPerformanceReport[Symbol == symbolID][order(-Rank)] %>% head(5)
+  for (predictPathFilename in topPerformers$PredictFile) {
+    predictionsTable <- dataTableRead(paste0(modelsPredictionDestinationPath(), predictPathFilename))
+    columnNames <- colnames(predictionsTable)
+    selectColumns <- columnNames[grep("EffUp|DiffPred|EffPred", columnNames)] %>% c('Date', .)
+    reportDatePredictions <- predictionsTable[Date == reportDate, ..selectColumns]
+    reportDatePredictions[, ModelID := predictPathFilename]
+    setcolorder(reportDatePredictions, c('ModelID', selectColumns))
+
+    if (nrow(reportDatePredictions) > 0) {
+      predictionsCount <- predictionsCount + 1
+    }
+
+    print(reportDatePredictions, row.names = F)
+  }
+
+  if (predictionsCount == 0) {
+    cat("\nPredictions not available\n")
+  }
+}
+
 #' Generate all planets daily setup with asset price effect stats.
 #' @param reportDate The date to generate the report for.
 #' @param symbolID Symbol ID to report frequencies for.
@@ -261,6 +292,8 @@ dailyMundaneEventsReport <- function(reportDate, symbolID) {
   dailyMundaneEventsVedicMansionReport(reportDate, symbolID) %>% print()
   cat("\nPLANETS ASPECTS:\n\n")
   dailyMundaneEventsAspectsReport(reportDate, symbolID) %>% print()
+  cat("\nMACHINE LEARNING PREDICTIONS:\n\n")
+  dailyMundaneEventsPredictionsReport(reportDate, symbolID)
 }
 
 #' Interactive input to specify symbol ID and date used for daily planets report.
