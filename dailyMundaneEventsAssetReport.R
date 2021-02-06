@@ -110,6 +110,22 @@ assetPriceEffectFrequencyStatsReport <- function(
   dailyReportTable <- merge(reportDateEvents, frequencyTable, by = factorParts)
 }
 
+#' Report the planets rythm positions with historical asset price effect frequencies.
+#' @param reportDate The date to generate the report for.
+#' @param symbolID Symbol ID to report frequencies for.
+#' @return Planet rythm positions with price effect frequencies report table.
+dailyMundaneEventsRythmReport <- function(reportDate, symbolID) {
+  dailyMundaneEventsPositionLoad() %>%
+    assetPriceEffectFrequencyStatsReport(
+      symbolID,
+      "planet_triplicity",
+      'PlanetTriplicity',
+      c('pID', 'TriplicityID'),
+      reportDate
+    ) %>%
+    frequencyStatsColumnsSelect(c('Planet', 'Triplicity'))
+}
+
 #' Report the planets element positions with historical asset price effect frequencies.
 #' @param reportDate The date to generate the report for.
 #' @param symbolID Symbol ID to report frequencies for.
@@ -231,6 +247,8 @@ dailyMundaneEventsVedicMansionReport <- function(reportDate, symbolID) {
 dailyMundaneEventsReport <- function(reportDate, symbolID) {
   cat("\nPLANET SPEED PHASE:\n\n")
   dailyMundaneEventsSpeedPhaseReport(reportDate, symbolID) %>% print()
+  cat("\nPLANET RYTHM POSITION:\n\n")
+  dailyMundaneEventsRythmReport(reportDate, symbolID) %>% print()
   cat("\nPLANET ELEMENT POSITION:\n\n")
   dailyMundaneEventsElementReport(reportDate, symbolID) %>% print()
   cat("\nPLANET ZODIAC SIGN POSITION:\n\n")
