@@ -67,6 +67,12 @@ mundaneEventsDestinationPath <- function(symbolID, reportDate) {
   destinationPathCreate(destinationPath)
 }
 
+#' Provides machine learning predictions destination path.
+#' @returns The machine learning predictions relative destination path.
+modelsPredictionsDestinationPath <- function() {
+  destinationPath <- paste0(normalizePath('./machine_learning/predictions'), "/")
+}
+
 #' Provides machine learning performance reports destination path.
 #' @returns The machine learning performance reports relative destination path.
 modelsPerformanceDestinationPath <- function() {
@@ -78,5 +84,6 @@ modelsPerformanceDestinationPath <- function() {
 modelsLatestPerformancePathFileNameGet <- function() {
   list.files(modelsPerformanceDestinationPath(), pattern = "*.csv") %>%
     sort(decreasing = T) %>%
-    head(n = 1)
+    head(n = 1) %>%
+    paste0(modelsPerformanceDestinationPath(), .)
 }
