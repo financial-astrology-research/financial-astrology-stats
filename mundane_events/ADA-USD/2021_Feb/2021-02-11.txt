@@ -214,14 +214,9 @@ PLANETS ASPECTS:
 
 MACHINE LEARNING PREDICTIONS:
 
-                                  ModelID       Date DiffPred1 DiffPred2 DiffPred3 DiffPred4 DiffPred5 EffPred
- ADA-USD-predict-ensamble-gakknn-PABB.csv 2021-02-11  0.028037 0.0868122  0.079007  0.014822  -0.02344     buy
-                                  ModelID       Date DiffPred1 DiffPred2  DiffPred3  DiffPred4  DiffPred5 EffPred
- ADA-USD-predict-ensamble-gakknn-MIHA.csv 2021-02-11 -0.019729 -0.028551 -0.0161015 -0.0230446 -0.0175548    sell
-                                  ModelID       Date DiffPred1 DiffPred2  DiffPred3  DiffPred4  DiffPred5 EffPred
- ADA-USD-predict-ensamble-gakknn-VDIA.csv 2021-02-11  -0.04993 -0.059384 -0.0456109 -0.0488278 -0.0166523    sell
-                                ModelID       Date DiffPred1 DiffPred2 DiffPred3 DiffPred4 DiffPred5 EffPred
- ADA-USD-predict-ensamble-gakknn-MC.csv 2021-02-11  0.048108  0.031238 0.0460159   0.03744  0.029494     buy
-                               ModelID       Date EffUpP1 EffUpP2 EffUpP3 EffUpP4 EffUpP5 EffPred
- ADA-USD-predict-kknnLDDD-ensamble.csv 2021-02-11       1       1       1       1       1     buy
-NULL
+                              ModelID       Date        P1         P2         P3         P4         P5 Signal
+ ADA-USD-predict-ensamble-gakknn-PABB 2021-02-11  0.028037  0.0868122  0.0790070  0.0148220 -0.0234400    buy
+ ADA-USD-predict-ensamble-gakknn-MIHA 2021-02-11 -0.019729 -0.0285510 -0.0161015 -0.0230446 -0.0175548   sell
+ ADA-USD-predict-ensamble-gakknn-VDIA 2021-02-11 -0.049930 -0.0593840 -0.0456109 -0.0488278 -0.0166523   sell
+   ADA-USD-predict-ensamble-gakknn-MC 2021-02-11  0.048108  0.0312380  0.0460159  0.0374400  0.0294940    buy
+    ADA-USD-predict-kknnLDDD-ensamble 2021-02-11  1.000000  1.0000000  1.0000000  1.0000000  1.0000000    buy

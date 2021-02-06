@@ -218,14 +218,9 @@ PLANETS ASPECTS:
 
 MACHINE LEARNING PREDICTIONS:
 
-                                 ModelID       Date DiffPred1 DiffPred2 DiffPred3 DiffPred4 DiffPred5 EffPred
- ZRX-USD-predict-ensamble-gakknn-VEE.csv 2021-02-09 -0.008747  -0.00109 -0.008367 -0.020078 -0.001568    sell
-                                    ModelID       Date DiffPred1 DiffPred2 DiffPred3 DiffPred4 DiffPred5 EffPred
- ZRX-USD-predict-ensamble-gakknn-VACGBD.csv 2021-02-09 0.0034352 -0.039332 0.0009264 -0.043408 -0.024412    sell
-                                    ModelID       Date DiffPred1 DiffPred2 DiffPred3  DiffPred4 DiffPred5 EffPred
- ZRX-USD-predict-ensamble-gakknn-VACGBE.csv 2021-02-09 -0.035991 -0.034966  0.012645 -0.0360505 -0.045431    sell
-                                  ModelID       Date DiffPred1 DiffPred2 DiffPred3  DiffPred4 DiffPred5 EffPred
- ZRX-USD-predict-ensamble-gakknn-VACF.csv 2021-02-09 -0.063421 -0.065705 -0.063421 -0.0682152 -0.068667    sell
-                                ModelID       Date DiffPred1 DiffPred2 DiffPred3 DiffPred4 DiffPred5 EffPred
- ZRX-USD-predict-ensamble-gakknn-PC.csv 2021-02-09 0.0165349  0.007608  0.016535  0.016535  0.016535     buy
-NULL
+                                ModelID       Date         P1        P2         P3         P4        P5 Signal
+    ZRX-USD-predict-ensamble-gakknn-VEE 2021-02-09 -0.0087470 -0.001090 -0.0083670 -0.0200780 -0.001568   sell
+ ZRX-USD-predict-ensamble-gakknn-VACGBD 2021-02-09  0.0034352 -0.039332  0.0009264 -0.0434080 -0.024412   sell
+ ZRX-USD-predict-ensamble-gakknn-VACGBE 2021-02-09 -0.0359910 -0.034966  0.0126450 -0.0360505 -0.045431   sell
+   ZRX-USD-predict-ensamble-gakknn-VACF 2021-02-09 -0.0634210 -0.065705 -0.0634210 -0.0682152 -0.068667   sell
+     ZRX-USD-predict-ensamble-gakknn-PC 2021-02-09  0.0165349  0.007608  0.0165350  0.0165350  0.016535    buy

@@ -216,14 +216,9 @@ PLANETS ASPECTS:
 
 MACHINE LEARNING PREDICTIONS:
 
-                                    ModelID       Date  DiffPred1 DiffPred2 DiffPred3 DiffPred4  DiffPred5 EffPred
- DASH-USD-predict-ensamble-gakknn-MIFCB.csv 2021-02-11 -0.0232816 -0.010099 -0.000771 -0.017729 -0.0171609    sell
-                                 ModelID       Date DiffPred1  DiffPred2 DiffPred3 DiffPred4  DiffPred5 EffPred
- DASH-USD-predict-ensamble-gakknn-VE.csv 2021-02-11 -0.068856 -0.0487045 -0.054195 -0.066791 -0.0123943    sell
-                                  ModelID       Date DiffPred1 DiffPred2 DiffPred3  DiffPred4 DiffPred5 EffPred
- DASH-USD-predict-ensamble-gakknn-NAC.csv 2021-02-11 -0.063731 -0.054096 -0.054661 -0.0178645 -0.014366    sell
-                                  ModelID       Date DiffPred1 DiffPred2 DiffPred3 DiffPred4 DiffPred5 EffPred
- DASH-USD-predict-ensamble-gakknn-VEA.csv 2021-02-11  0.049005  0.058518 0.0370227  0.058518  0.023853     buy
-                                  ModelID       Date DiffPred1 DiffPred2 DiffPred3 DiffPred4 DiffPred5 EffPred
- DASH-USD-predict-ensamble-gakknn-VDE.csv 2021-02-11  0.053471 -0.019026  0.053619 -0.020162 -0.032057    sell
-NULL
+                                ModelID       Date         P1         P2         P3         P4         P5 Signal
+ DASH-USD-predict-ensamble-gakknn-MIFCB 2021-02-11 -0.0232816 -0.0100990 -0.0007710 -0.0177290 -0.0171609   sell
+    DASH-USD-predict-ensamble-gakknn-VE 2021-02-11 -0.0688560 -0.0487045 -0.0541950 -0.0667910 -0.0123943   sell
+   DASH-USD-predict-ensamble-gakknn-NAC 2021-02-11 -0.0637310 -0.0540960 -0.0546610 -0.0178645 -0.0143660   sell
+   DASH-USD-predict-ensamble-gakknn-VEA 2021-02-11  0.0490050  0.0585180  0.0370227  0.0585180  0.0238530    buy
+   DASH-USD-predict-ensamble-gakknn-VDE 2021-02-11  0.0534710 -0.0190260  0.0536190 -0.0201620 -0.0320570   sell

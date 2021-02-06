@@ -214,14 +214,9 @@ PLANETS ASPECTS:
 
 MACHINE LEARNING PREDICTIONS:
 
-                                 ModelID       Date DiffPred1 DiffPred2 DiffPred3 DiffPred4 DiffPred5 EffPred
- BAT-USD-predict-ensamble-gakknn-MCB.csv 2021-02-11  -0.01545   -0.0099 -0.017925    -0.015   -0.0153    sell
-                              ModelID       Date EffUpP1 EffUpP2 EffUpP3 EffUpP4 EffUpP5 EffPred
- BAT-USD-predict-kknnLDB-ensamble.csv 2021-02-11       1  0.4636       1       0       1    sell
-                                 ModelID       Date DiffPred1 DiffPred2 DiffPred3 DiffPred4 DiffPred5 EffPred
- BAT-USD-predict-ensamble-gakknn-VDA.csv 2021-02-11  0.034906  0.034993  0.012616  0.034906   0.03057     buy
-                                   ModelID       Date DiffPred1 DiffPred2 DiffPred3 DiffPred4 DiffPred5 EffPred
- BAT-USD-predict-ensamble-gakknn-UADBD.csv 2021-02-11  0.004008  0.004946 -0.087066  0.001861 -0.031008     buy
-                                    ModelID       Date DiffPred1 DiffPred2 DiffPred3 DiffPred4 DiffPred5 EffPred
- BAT-USD-predict-ensamble-gakknn-VDIDCC.csv 2021-02-11  0.038395   0.05067  0.035755    0.0616  0.066439     buy
-NULL
+                                ModelID       Date        P1        P2        P3        P4        P5 Signal
+    BAT-USD-predict-ensamble-gakknn-MCB 2021-02-11 -0.015450 -0.009900 -0.017925 -0.015000 -0.015300   sell
+       BAT-USD-predict-kknnLDB-ensamble 2021-02-11  1.000000  0.463600  1.000000  0.000000  1.000000   sell
+    BAT-USD-predict-ensamble-gakknn-VDA 2021-02-11  0.034906  0.034993  0.012616  0.034906  0.030570    buy
+  BAT-USD-predict-ensamble-gakknn-UADBD 2021-02-11  0.004008  0.004946 -0.087066  0.001861 -0.031008    buy
+ BAT-USD-predict-ensamble-gakknn-VDIDCC 2021-02-11  0.038395  0.050670  0.035755  0.061600  0.066439    buy

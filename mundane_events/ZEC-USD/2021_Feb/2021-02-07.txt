@@ -219,13 +219,8 @@ PLANETS ASPECTS:
 
 MACHINE LEARNING PREDICTIONS:
 
-                                 ModelID       Date  DiffPred1 DiffPred2  DiffPred3  DiffPred4 DiffPred5 EffPred
- ZEC-USD-predict-ensamble-gakknn-NAC.csv 2021-02-07 -0.0268543 -0.014869 -0.0220508 -0.0144204 -0.020314    sell
-                                 ModelID       Date DiffPred1 DiffPred2 DiffPred3 DiffPred4 DiffPred5 EffPred
- ZEC-USD-predict-ensamble-gakknn-MEE.csv 2021-02-07  0.023443   0.02524  0.015848 0.0279986 0.0173851     buy
-Empty data.table (0 rows and 8 cols): ModelID,Date,DiffPred1,DiffPred2,DiffPred3,DiffPred4...
-                                 ModelID       Date  DiffPred1 DiffPred2  DiffPred3  DiffPred4  DiffPred5 EffPred
- ZEC-USD-predict-ensamble-gakknn-RBA.csv 2021-02-07 -0.0103337  -0.00925 -0.0028019 -0.0254751 -0.0209319    sell
-                                 ModelID       Date DiffPred1 DiffPred2 DiffPred3 DiffPred4 DiffPred5 EffPred
- ZEC-USD-predict-ensamble-gakknn-MEN.csv 2021-02-07 -0.036498 -0.024311 -0.015785 -0.029356 -0.036498    sell
-NULL
+                             ModelID       Date         P1        P2         P3         P4         P5 Signal
+ ZEC-USD-predict-ensamble-gakknn-NAC 2021-02-07 -0.0268543 -0.014869 -0.0220508 -0.0144204 -0.0203140   sell
+ ZEC-USD-predict-ensamble-gakknn-MEE 2021-02-07  0.0234430  0.025240  0.0158480  0.0279986  0.0173851    buy
+ ZEC-USD-predict-ensamble-gakknn-RBA 2021-02-07 -0.0103337 -0.009250 -0.0028019 -0.0254751 -0.0209319   sell
+ ZEC-USD-predict-ensamble-gakknn-MEN 2021-02-07 -0.0364980 -0.024311 -0.0157850 -0.0293560 -0.0364980   sell

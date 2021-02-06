@@ -218,13 +218,8 @@ PLANETS ASPECTS:
 
 MACHINE LEARNING PREDICTIONS:
 
-Empty data.table (0 rows and 8 cols): ModelID,Date,DiffPred1,DiffPred2,DiffPred3,DiffPred4...
-                              ModelID       Date EffUpP1 EffUpP2 EffUpP3 EffUpP4 EffUpP5 EffPred
- BAT-USD-predict-kknnLDB-ensamble.csv 2021-02-07       0  0.5121       0       1       0    sell
-                                 ModelID       Date DiffPred1 DiffPred2 DiffPred3 DiffPred4 DiffPred5 EffPred
- BAT-USD-predict-ensamble-gakknn-VDA.csv 2021-02-07 -0.042057 -0.017032  0.023454  0.014443  -0.04129    sell
-                                   ModelID       Date DiffPred1 DiffPred2 DiffPred3 DiffPred4 DiffPred5 EffPred
- BAT-USD-predict-ensamble-gakknn-UADBD.csv 2021-02-07 -0.021224 -0.001469   7.8e-05  0.006684  0.005144     buy
-                                    ModelID       Date DiffPred1 DiffPred2 DiffPred3 DiffPred4 DiffPred5 EffPred
- BAT-USD-predict-ensamble-gakknn-VDIDCC.csv 2021-02-07  0.002401 -0.033986  0.019222   0.04183 -0.016428    sell
-NULL
+                                ModelID       Date        P1        P2       P3       P4        P5 Signal
+       BAT-USD-predict-kknnLDB-ensamble 2021-02-07  0.000000  0.512100 0.000000 1.000000  0.000000   sell
+    BAT-USD-predict-ensamble-gakknn-VDA 2021-02-07 -0.042057 -0.017032 0.023454 0.014443 -0.041290   sell
+  BAT-USD-predict-ensamble-gakknn-UADBD 2021-02-07 -0.021224 -0.001469 0.000078 0.006684  0.005144    buy
+ BAT-USD-predict-ensamble-gakknn-VDIDCC 2021-02-07  0.002401 -0.033986 0.019222 0.041830 -0.016428   sell

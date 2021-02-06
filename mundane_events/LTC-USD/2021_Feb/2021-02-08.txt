@@ -220,14 +220,9 @@ PLANETS ASPECTS:
 
 MACHINE LEARNING PREDICTIONS:
 
-                               ModelID       Date EffUpP1 EffUpP2 EffUpP3 EffUpP4  EffUpP5 EffPred
- LTC-USD-predict-kknnLDDF-ensamble.csv 2021-02-08       1       1   0.691 0.82874 0.240334     buy
-                                 ModelID       Date DiffPred1 DiffPred2 DiffPred3 DiffPred4 DiffPred5 EffPred
- LTC-USD-predict-ensamble-gakknn-UAD.csv 2021-02-08 -0.007042  -0.01215 0.0452259  0.035482  0.059171     buy
-                                    ModelID       Date DiffPred1 DiffPred2 DiffPred3 DiffPred4 DiffPred5 EffPred
- LTC-USD-predict-ensamble-gakknn-VDIBCF.csv 2021-02-08 0.0202817  0.027467 0.0228935  0.022271 0.0027109     buy
-                                 ModelID       Date  DiffPred1 DiffPred2 DiffPred3 DiffPred4   DiffPred5 EffPred
- LTC-USD-predict-ensamble-gakknn-UBD.csv 2021-02-08 0.00083404 -0.006352 -0.005103 -0.007832 -0.01330055    sell
-                                 ModelID       Date DiffPred1 DiffPred2 DiffPred3  DiffPred4 DiffPred5 EffPred
- LTC-USD-predict-ensamble-gakknn-MEB.csv 2021-02-08 -0.018762 -0.017044 -0.005995 -0.0090064 -0.012309    sell
-NULL
+                                ModelID       Date          P1        P2         P3         P4          P5 Signal
+      LTC-USD-predict-kknnLDDF-ensamble 2021-02-08  1.00000000  1.000000  0.6910000  0.8287400  0.24033400    buy
+    LTC-USD-predict-ensamble-gakknn-UAD 2021-02-08 -0.00704200 -0.012150  0.0452259  0.0354820  0.05917100    buy
+ LTC-USD-predict-ensamble-gakknn-VDIBCF 2021-02-08  0.02028170  0.027467  0.0228935  0.0222710  0.00271090    buy
+    LTC-USD-predict-ensamble-gakknn-UBD 2021-02-08  0.00083404 -0.006352 -0.0051030 -0.0078320 -0.01330055   sell
+    LTC-USD-predict-ensamble-gakknn-MEB 2021-02-08 -0.01876200 -0.017044 -0.0059950 -0.0090064 -0.01230900   sell

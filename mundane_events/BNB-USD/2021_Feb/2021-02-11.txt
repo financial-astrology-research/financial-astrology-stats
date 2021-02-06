@@ -214,14 +214,9 @@ PLANETS ASPECTS:
 
 MACHINE LEARNING PREDICTIONS:
 
-                               ModelID       Date EffUpP1 EffUpP2 EffUpP3 EffUpP4 EffUpP5 EffPred
- BNB-USD-predict-kknnLDDA-ensamble.csv 2021-02-11  0.4961  0.2403       0 0.24033       0    sell
-                                      ModelID       Date DiffPred1 DiffPred2 DiffPred3  DiffPred4 DiffPred5 EffPred
- BNB-USD-predict-ensamble-gakknn-MAABBAAB.csv 2021-02-11  -0.00295  0.001465  0.007841 -0.0147749 -0.008109    sell
-                                ModelID       Date DiffPred1 DiffPred2 DiffPred3 DiffPred4 DiffPred5 EffPred
- BNB-USD-predict-ensamble-gakknn-NB.csv 2021-02-11 -0.018668 -0.018316 -0.005053  0.009838 -0.002944    sell
-                                     ModelID       Date DiffPred1 DiffPred2 DiffPred3 DiffPred4 DiffPred5 EffPred
- BNB-USD-predict-ensamble-gakknn-VACGBFA.csv 2021-02-11 0.0525835  0.026205  0.049051  0.076681  0.055386     buy
-                                      ModelID       Date DiffPred1  DiffPred2 DiffPred3 DiffPred4 DiffPred5 EffPred
- BNB-USD-predict-ensamble-gakknn-VACGBFCL.csv 2021-02-11  0.027604 -0.0183299  0.027604 -0.026266 0.0893805     buy
-NULL
+                                  ModelID       Date         P1         P2        P3         P4         P5 Signal
+        BNB-USD-predict-kknnLDDA-ensamble 2021-02-11  0.4961000  0.2403000  0.000000  0.2403300  0.0000000   sell
+ BNB-USD-predict-ensamble-gakknn-MAABBAAB 2021-02-11 -0.0029500  0.0014650  0.007841 -0.0147749 -0.0081090   sell
+       BNB-USD-predict-ensamble-gakknn-NB 2021-02-11 -0.0186680 -0.0183160 -0.005053  0.0098380 -0.0029440   sell
+  BNB-USD-predict-ensamble-gakknn-VACGBFA 2021-02-11  0.0525835  0.0262050  0.049051  0.0766810  0.0553860    buy
+ BNB-USD-predict-ensamble-gakknn-VACGBFCL 2021-02-11  0.0276040 -0.0183299  0.027604 -0.0262660  0.0893805    buy

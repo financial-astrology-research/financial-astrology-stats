@@ -215,14 +215,9 @@ PLANETS ASPECTS:
 
 MACHINE LEARNING PREDICTIONS:
 
-                                    ModelID       Date DiffPred1 DiffPred2 DiffPred3 DiffPred4 DiffPred5 EffPred
- EOS-USD-predict-ensamble-gakknn-VDIDCC.csv 2021-02-06  0.028878  0.058482  0.029474  0.052545  0.057642     buy
-                               ModelID       Date EffUpP1 EffUpP2 EffUpP3 EffUpP4  EffUpP5 EffPred
- EOS-USD-predict-kknnLDDF-ensamble.csv 2021-02-06  0.6464       1       1 0.66867 0.668669     buy
-                                  ModelID       Date  DiffPred1 DiffPred2 DiffPred3  DiffPred4 DiffPred5 EffPred
- EOS-USD-predict-ensamble-gakknn-MIHF.csv 2021-02-06 -0.0333687 -0.031047 -0.031677 -0.0335564 -0.032996    sell
-                                 ModelID       Date DiffPred1 DiffPred2 DiffPred3 DiffPred4  DiffPred5 EffPred
- EOS-USD-predict-ensamble-gakknn-VGC.csv 2021-02-06 -0.051366   -0.0378 -0.027244 -0.027165 -0.0547499    sell
-                                   ModelID       Date DiffPred1  DiffPred2  DiffPred3 DiffPred4 DiffPred5 EffPred
- EOS-USD-predict-ensamble-gakknn-VDIDA.csv 2021-02-06 -0.050207 -0.0330567 -0.0274428 -0.025379 -0.034608    sell
-NULL
+                                ModelID       Date         P1         P2         P3         P4         P5 Signal
+ EOS-USD-predict-ensamble-gakknn-VDIDCC 2021-02-06  0.0288780  0.0584820  0.0294740  0.0525450  0.0576420    buy
+      EOS-USD-predict-kknnLDDF-ensamble 2021-02-06  0.6464000  1.0000000  1.0000000  0.6686700  0.6686690    buy
+   EOS-USD-predict-ensamble-gakknn-MIHF 2021-02-06 -0.0333687 -0.0310470 -0.0316770 -0.0335564 -0.0329960   sell
+    EOS-USD-predict-ensamble-gakknn-VGC 2021-02-06 -0.0513660 -0.0378000 -0.0272440 -0.0271650 -0.0547499   sell
+  EOS-USD-predict-ensamble-gakknn-VDIDA 2021-02-06 -0.0502070 -0.0330567 -0.0274428 -0.0253790 -0.0346080   sell

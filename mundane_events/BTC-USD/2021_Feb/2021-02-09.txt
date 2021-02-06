@@ -219,14 +219,9 @@ PLANETS ASPECTS:
 
 MACHINE LEARNING PREDICTIONS:
 
-                                 ModelID       Date DiffPred1  DiffPred2 DiffPred3 DiffPred4  DiffPred5 EffPred
- BTC-USD-predict-ensamble-gakknn-RBD.csv 2021-02-09 -0.019431 -0.0206008 -0.020278 -0.021282 -0.0162963    sell
-                                   ModelID       Date DiffPred1  DiffPred2 DiffPred3 DiffPred4  DiffPred5 EffPred
- BTC-USD-predict-ensamble-gakknn-MAABC.csv 2021-02-09 -0.009608 -0.0065724 -0.011661 -0.011302 -0.0139386    sell
-                                ModelID       Date DiffPred1 DiffPred2 DiffPred3 DiffPred4 DiffPred5 EffPred
- BTC-USD-predict-ensamble-gakknn-MB.csv 2021-02-09 0.0155793  0.020419 0.0160605 0.0112894 0.0121361     buy
-                                 ModelID       Date DiffPred1   DiffPred2 DiffPred3 DiffPred4 DiffPred5 EffPred
- BTC-USD-predict-ensamble-gakknn-MBD.csv 2021-02-09 -0.009996 -0.00857065 -0.010118 -0.007202 -0.012667    sell
-                               ModelID       Date EffUpP1 EffUpP2 EffUpP3 EffUpP4  EffUpP5 EffPred
- BTC-USD-predict-kknnLDJA-ensamble.csv 2021-02-09  0.5282  0.4402  0.4913 0.40604 0.781721    sell
-NULL
+                               ModelID       Date         P1          P2         P3         P4         P5 Signal
+   BTC-USD-predict-ensamble-gakknn-RBD 2021-02-09 -0.0194310 -0.02060080 -0.0202780 -0.0212820 -0.0162963   sell
+ BTC-USD-predict-ensamble-gakknn-MAABC 2021-02-09 -0.0096080 -0.00657240 -0.0116610 -0.0113020 -0.0139386   sell
+    BTC-USD-predict-ensamble-gakknn-MB 2021-02-09  0.0155793  0.02041900  0.0160605  0.0112894  0.0121361    buy
+   BTC-USD-predict-ensamble-gakknn-MBD 2021-02-09 -0.0099960 -0.00857065 -0.0101180 -0.0072020 -0.0126670   sell
+     BTC-USD-predict-kknnLDJA-ensamble 2021-02-09  0.5282000  0.44020000  0.4913000  0.4060400  0.7817210   sell

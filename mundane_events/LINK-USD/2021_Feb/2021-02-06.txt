@@ -215,14 +215,9 @@ PLANETS ASPECTS:
 
 MACHINE LEARNING PREDICTIONS:
 
-                                 ModelID       Date DiffPred1 DiffPred2 DiffPred3 DiffPred4 DiffPred5 EffPred
- LINK-USD-predict-ensamble-gakknn-VF.csv 2021-02-06  0.020049 -0.015392 -0.086553 -0.019421 -0.034298    sell
-                                  ModelID       Date DiffPred1 DiffPred2 DiffPred3 DiffPred4 DiffPred5 EffPred
- LINK-USD-predict-ensamble-gakknn-MAC.csv 2021-02-06  0.043793  0.050318  0.052977 0.0529774  0.013466     buy
-                                    ModelID       Date DiffPred1 DiffPred2 DiffPred3 DiffPred4 DiffPred5 EffPred
- LINK-USD-predict-ensamble-gakknn-VACGE.csv 2021-02-06 0.1097231  0.105747  0.106698  0.055695  0.092972     buy
-                                   ModelID       Date DiffPred1 DiffPred2 DiffPred3 DiffPred4 DiffPred5 EffPred
- LINK-USD-predict-ensamble-gakknn-VACC.csv 2021-02-06  0.052024  0.106566  0.058625  0.060133  0.135381     buy
-                                     ModelID       Date DiffPred1 DiffPred2 DiffPred3 DiffPred4 DiffPred5 EffPred
- LINK-USD-predict-ensamble-gakknn-VACGBE.csv 2021-02-06 0.0491625  0.045313  0.054404  0.031695 0.0542937     buy
-NULL
+                                 ModelID       Date        P1        P2        P3         P4         P5 Signal
+     LINK-USD-predict-ensamble-gakknn-VF 2021-02-06 0.0200490 -0.015392 -0.086553 -0.0194210 -0.0342980   sell
+    LINK-USD-predict-ensamble-gakknn-MAC 2021-02-06 0.0437930  0.050318  0.052977  0.0529774  0.0134660    buy
+  LINK-USD-predict-ensamble-gakknn-VACGE 2021-02-06 0.1097231  0.105747  0.106698  0.0556950  0.0929720    buy
+   LINK-USD-predict-ensamble-gakknn-VACC 2021-02-06 0.0520240  0.106566  0.058625  0.0601330  0.1353810    buy
+ LINK-USD-predict-ensamble-gakknn-VACGBE 2021-02-06 0.0491625  0.045313  0.054404  0.0316950  0.0542937    buy
