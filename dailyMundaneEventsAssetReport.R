@@ -110,11 +110,27 @@ assetPriceEffectFrequencyStatsReport <- function(
   dailyReportTable <- merge(reportDateEvents, frequencyTable, by = factorParts)
 }
 
-#' Report the planets zodiacal positions with historical asset price effect frequencies.
+#' Report the planets element positions with historical asset price effect frequencies.
 #' @param reportDate The date to generate the report for.
 #' @param symbolID Symbol ID to report frequencies for.
-#' @return Planet positions with price effect frequencies report table.
-dailyMundaneEventsSignsReport <- function(reportDate, symbolID) {
+#' @return Planet element positions with price effect frequencies report table.
+dailyMundaneEventsElementReport <- function(reportDate, symbolID) {
+  dailyMundaneEventsPositionLoad() %>%
+    assetPriceEffectFrequencyStatsReport(
+      symbolID,
+      "planet_element",
+      'PlanetElement',
+      c('pID', 'ElementID'),
+      reportDate
+    ) %>%
+    frequencyStatsColumnsSelect(c('Planet', 'Element'))
+}
+
+#' Report the planets zodiac sign positions with historical asset price effect frequencies.
+#' @param reportDate The date to generate the report for.
+#' @param symbolID Symbol ID to report frequencies for.
+#' @return Planet zodiac sign positions with price effect frequencies report table.
+dailyMundaneEventsZodSignsReport <- function(reportDate, symbolID) {
   dailyMundaneEventsPositionLoad() %>%
     assetPriceEffectFrequencyStatsReport(
       symbolID,
@@ -215,8 +231,10 @@ dailyMundaneEventsVedicMansionReport <- function(reportDate, symbolID) {
 dailyMundaneEventsReport <- function(reportDate, symbolID) {
   cat("\nPLANET SPEED PHASE:\n\n")
   dailyMundaneEventsSpeedPhaseReport(reportDate, symbolID) %>% print()
+  cat("\nPLANET ELEMENT POSITION:\n\n")
+  dailyMundaneEventsElementReport(reportDate, symbolID) %>% print()
   cat("\nPLANET ZODIAC SIGN POSITION:\n\n")
-  dailyMundaneEventsSignsReport(reportDate, symbolID) %>% print()
+  dailyMundaneEventsZodSignsReport(reportDate, symbolID) %>% print()
   cat("\nPLANET DECAN POSITION:\n\n")
   dailyMundaneEventsDecansReport(reportDate, symbolID) %>% print()
   cat("\nPLANET ARAB MANSION POSITION:\n\n")
