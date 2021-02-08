@@ -58,17 +58,17 @@ predictionsPerformanceMetricsCalculate <- function(predictFilename) {
   filenameParts <- unlist(strsplit(predictFilename, "-"))
   symbolId <- paste(filenameParts[1], filenameParts[2], sep = "-")
   startDate <- as.Date(format(Sys.Date() - 210, "%Y-%m-01"))
-  securityDataTest <- fread(paste0("./data/tmp/", symbolId, "--augmented.csv"))
-  securityDataTest[, Date := as.Date(Date)]
+  assetDataTable <- fread(paste0("./data/tmp/", symbolId, "--augmented.csv"))
+  assetDataTable[, Date := as.Date(Date)]
   # Filter the period of model unseen data, not used for training.
-  securityDataTest <- securityDataTest[Date >= startDate]
+  assetDataTable <- assetDataTable[Date >= startDate]
   predictPath <- paste0(modelsPredictionDestinationPath(), predictFilename)
   predictFileInfo <- file.info(predictPath)
   dailyIndicator <- fread(predictPath)
   dailyIndicator[, Date := as.Date(Date)]
   dailyIndicator[, YearMonth := format(Date, "%Y-%m")]
   dailyIndicator <- merge(
-    securityDataTest[, c('Date', 'OHLCMid', 'OHLCEff')],
+    assetDataTable[, c('Date', 'OHLCMid', 'OHLCEff')],
     dailyIndicator,
     by = "Date"
   )
@@ -115,7 +115,7 @@ predictionsPerformanceMetricsCalculate <- function(predictFilename) {
   return(reportData)
 }
 
-watchListPriceDataFetch()
+#watchListPriceDataFetch()
 predictionsMetadataCreate()
 predictFiles <- list.files(modelsPredictionDestinationPath(), pattern = "*.csv")
 testResults <- setDT(rbindlist(lapply(predictFiles, predictionsPerformanceMetricsCalculate)))
