@@ -118,14 +118,6 @@ predictFiles <- list.files(modelsPredictionDestinationPath(), pattern = "*.csv")
 testResults <- setDT(rbindlist(lapply(predictFiles, predictionsPerformanceMetricsReport)))
 testResults <- testResults[order(Symbol, -Rank)]
 
-# Remove models predictions with low rank (poor accuracy / stability).
-worstPredictFiles <- testResults[Rank <= 0.5]$PredictFile
-if (length(worstPredictFiles) > 0) {
-  deleteResults <- worstPredictFiles %>%
-    paste0(modelsPredictionDestinationPath(), .) %>%
-    file.remove()
-}
-
 reportDate <- format(Sys.Date(), "%Y-%m-%d")
 modelsPredictSummaryFilename <- paste0(
   modelsPerformanceDestinationPath(),
