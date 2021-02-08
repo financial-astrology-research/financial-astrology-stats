@@ -1,65 +1,119 @@
 # Title     : Generate models predictions accuracy and stability performance report.
 
-library(magrittr)
-library(psych)
 library(data.table)
+library(magrittr)
+library(plyr)
+library(psych)
 
+source("./dataLoadUtils.R")
 source("./fileSystemUtilities.R")
 source("./planetAspectsAssetsPriceDataPrepare.R")
 
-testPredictAccuracy <- function(predictFilename) {
-  cat("Processing: ", predictFilename, "\n")
-  filenameParts <- unlist(strsplit(predictFilename, "-"))
-  symbolId <- paste(filenameParts[1], filenameParts[2], sep = "-")
-  startDate <- as.Date(format(Sys.Date() - 210, "%Y-%m-01"))
-  securityDataTest <- fread(paste0("./data/tmp/", symbolId, "--augmented.csv"))
-  securityDataTest[, Date := as.Date(Date)]
-  # Filter the period of model unseen data, not used for training.
-  securityDataTest <- securityDataTest[Date >= startDate]
+#' Get models predictions filenames list.
+#' @return Filenames (without path) list.
+modelsPredictionsFileNameList <- function() {
+  list.files(modelsPredictionDestinationPath(), pattern = "*.csv")
+}
 
-  predictPath <- paste0(modelsPredictionDestinationPath(), predictFilename)
-  predictFileInfo <- file.info(predictPath)
-  dailyIndicator <- fread(predictPath)
-
-  dailyIndicator[, Date := as.Date(Date)]
-  dailyIndicator[, YearMonth := format(Date, "%Y-%m")]
-  dailyIndicator <- merge(
-    securityDataTest[, c('Date', 'OHLCMid', 'OHLCEff')],
-    dailyIndicator,
-    by = "Date"
-  )
-
-  calculateAccuracy <- function(monthlyData) {
-    categoryLevels = c("buy", "sell")
-    confusionData <- table(
-      actualclass = factor(monthlyData$OHLCEff, levels = categoryLevels),
-      predictedclass = factor(monthlyData$EffPred, levels = categoryLevels)
-    ) %>% caret::confusionMatrix()
-
-    accuracy <- confusionData$overall['Accuracy']
-    prevalence <- confusionData$byClass['Prevalence']
-
-    list(
-      N = nrow(monthlyData),
-      Accuracy = accuracy,
-      Prevalence = prevalence
-    )
+#' Generate models predictions metadata file.
+predictionsMetadataCreate <- function() {
+  destinationPathFileName <- paste0(modelsPerformanceDestinationPath(), "models_prediction_metadata.csv")
+  predictFilesMetadataPrepare <- function() {
+    lapply(modelsPredictionsFileNameList(), function(predictFile) {
+      predictFileInfo <- file.info(paste0(modelsPredictionDestinationPath(), predictFile))
+      createDate <- predictFileInfo$mtime
+      list(
+        ModelID = predictFile,
+        CreateDate = createDate
+      )
+    })
   }
 
-  accuracyTest <- dailyIndicator[, calculateAccuracy(.SD), by = "YearMonth"]
-  # Filter months that don't have at least N observations yet.
-  accuracyTest <- accuracyTest[N >= 7]
+  if (!file.exists(destinationPathFileName)) {
+    metadataTable <- rbindlist(predictFilesMetadataPrepare())
+    fwrite(metadataTable, destinationPathFileName)
+    cat("Models metadata file exported to: ", destinationPathFileName, "\n")
+  }
+}
 
+#' Calculate monthly data (daily) predictions accuracy and prevalence.
+#' @param monthlyData Model predictions data table rows for a given year/month.
+#' @return List with number rows (N), Accuracy and Prevalence metrics.
+accuracyCalculate <- function(monthlyData) {
+  categoryLevels <- c("Buy", "Sell")
+  confusionData <- table(
+    actualclass = factor(monthlyData$OHLCEff, levels = categoryLevels),
+    predictedclass = factor(monthlyData$EffPred, levels = categoryLevels)
+  ) %>% caret::confusionMatrix()
+
+  accuracy <- confusionData$overall['Accuracy']
+  prevalence <- confusionData$byClass['Prevalence']
+
+  list(
+    N = nrow(monthlyData),
+    Accuracy = accuracy,
+    Prevalence = prevalence
+  )
+}
+
+#' Extract symbol ID from predictions filename.
+#' @param predictionsFileName Model predictions filename (without path).
+#' @return Symbol ID.
+predictionsFileNameSymbolIdExtract <- function(predictionsFileName) {
+  fileNameParts <- unlist(strsplit(predictionsFileName, "-"))
+  paste(fileNameParts[1], fileNameParts[2], sep = "-")
+}
+
+#' Get model predictions creation date from models metadata table.
+#' @param predictionsFileName The model predictions filename.
+#' @return Model predictions create date.
+modelPredictionsCreateDateGet <- function(predictionsFileName) {
+  modelPredictionsMetadata <- modelPredictionsMetadataLoad()
+  metadata <- modelPredictionsMetadata[ModelID == predictionsFileName]
+  createDate <- ''
+
+  if (nrow(metadata) > 0) {
+    createDate <- metadata$CreateDate
+  }
+
+  return(createDate)
+}
+
+#' Load and combine model predictions and asset price effect actuals data table.
+#' @return Model predictions with price effect actuals data table.
+modelPredictionsWithActualsLoad <- function(predictionsFileName, startDate) {
+  symbolId <- predictionsFileNameSymbolIdExtract(predictionsFileName)
+  assetDataTable <- assetAgumentedDataLoad(symbolId, startDate)
+  modelPredictions <- modelPredictionsLoad(predictionsFileName)
+  modelPredictions <- merge(
+    assetDataTable[, c('Date', 'OHLCMid', 'OHLCEff')],
+    modelPredictions,
+    by = "Date"
+  )
+}
+
+#' Calculate machine learning model predictions performance metrics.
+#' @param predictionsFileName Model predictions filename to calculate metrics for.
+#' @return Data table with model predictions performance metrics.
+predictionsPerformanceMetricsCalculate <- function(predictionsFileName) {
+  cat("Processing: ", predictionsFileName, "\n")
+  symbolId <- predictionsFileNameSymbolIdExtract(predictionsFileName)
+  createDate <- modelPredictionsCreateDateGet(predictionsFileName)
+  startDate <- as.Date(format(Sys.Date() - 210, "%Y-%m-01"))
+  modelPredictions <- modelPredictionsWithActualsLoad(predictionsFileName, startDate)
+  # Calculate accuracy by year/month days observations.
+  accuracyTest <- modelPredictions[, accuracyCalculate(.SD), by = list(YearMonth)]
+  # Filter months that don't have at least N observations yet.
+  accuracyTest <- accuracyTest[N >= 10]
   # Calculate descriptive statistics for Accuracy / Prevalence.
   descriptives6m <- round(describe(head(accuracyTest[, c('Accuracy', 'Prevalence')], 6)), 3)
   descriptives3m <- round(describe(tail(accuracyTest[, c('Accuracy', 'Prevalence')], 3)), 3)
   descriptives2m <- round(describe(tail(accuracyTest[, c('Accuracy', 'Prevalence')], 2)), 3)
   descriptives1m <- round(describe(tail(accuracyTest[, c('Accuracy', 'Prevalence')], 1)), 3)
-  createDate <- predictFileInfo$mtime
   prodDays <- as.numeric(difftime(Sys.Date(), as.Date(createDate), units = "days"))
 
   reportData <- data.table(
-    PredictFile = predictFilename,
+    PredictFile = predictionsFileName,
     Symbol = symbolId,
     Created = createDate,
     ProdDays = prodDays,
@@ -81,30 +135,31 @@ testPredictAccuracy <- function(predictFilename) {
 
   reportData$Rank <- with(
     reportData,
-    ((Acc3m / (1 + AccSD3m) ^ 2) + (Acc2m / (1 + AccSD2m) ^ 2) + Acc1m) / 3
+    ((Acc3m / (1 + AccSD3m)^2) +
+      (Acc2m / (1 + AccSD2m)^2) +
+      Acc1m) / 3
   )
 
   return(reportData)
 }
 
-watchListPriceDataFetch()
-predictFiles <- list.files(modelsPredictionDestinationPath(), pattern = "*.csv")
-testResults <- setDT(rbindlist(lapply(predictFiles, testPredictAccuracy)))
-testResults <- testResults[order(Symbol, -Rank)]
+#' Generate machine learning models performance report and save into CSV table.
+modelsPredictionsPerformanceReport <- function() {
+  planetsAspectsAssetsPriceDataPrepare()
+  predictionsMetadataCreate()
+  testResults <- lapply(modelsPredictionsFileNameList(), predictionsPerformanceMetricsCalculate) %>%
+    rbindlist() %>%
+    setDT()
+  testResults <- testResults[order(Symbol, -Rank)]
 
-# Remove models predictions with low rank (poor accuracy / stability).
-worstPredictFiles <- testResults[Rank <= 0.5]$PredictFile
-if (length(worstPredictFiles) > 0) {
-  deleteResults <- worstPredictFiles %>%
-    paste0(modelsPredictionDestinationPath(), .) %>%
-    file.remove()
+  reportDate <- format(Sys.Date(), "%Y-%m-%d")
+  modelsPredictSummaryFilename <- paste0(
+    modelsPerformanceDestinationPath(),
+    "models-predict-performance-", reportDate, ".csv"
+  )
+
+  fwrite(testResults, modelsPredictSummaryFilename)
+  cat("Models performance report exported to:", modelsPredictSummaryFilename, "\n")
 }
 
-reportDate <- format(Sys.Date(), "%Y-%m-%d")
-modelsPredictSummaryFilename <- paste0(
-  modelsPerformanceDestinationPath(),
-  "models-predict-performance-", reportDate, ".csv"
-)
-
-fwrite(testResults, modelsPredictSummaryFilename)
-cat("Models performance report exported to:", modelsPredictSummaryFilename, "\n")
+modelsPredictionsPerformanceReport()
