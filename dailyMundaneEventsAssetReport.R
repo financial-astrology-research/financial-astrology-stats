@@ -59,10 +59,10 @@ assetPriceEffectFrequencyStatsReport <- function(
 
   reportDateEvents <- dataTableDateColsFilter(
     dailyMundaneEventsTable,
-    reportDate,
+    reportDate
   )
 
-  dailyReportTable <- merge(reportDateEvents, frequencyTable, by = factorParts)
+  merge(reportDateEvents, frequencyTable, by = factorParts)
 }
 
 #' Report the planets rythm positions with historical asset price effect frequencies.
@@ -196,6 +196,38 @@ dailyMundaneEventsVedicMansionReport <- function(reportDate, symbolID) {
     frequencyStatsColumnsSelect(c('Planet', 'VedicMansion'))
 }
 
+#' Report the moon phases with historical asset price effect frequencies.
+#' @param reportDate The date to generate the report for.
+#' @param symbolID Symbol ID to report frequencies for.
+#' @return Moon phases with price effect frequencies report table.
+dailyMundaneEventsMoonPhaseReport <- function(reportDate, symbolID) {
+  dailyMoonPhasesLoad() %>%
+    assetPriceEffectFrequencyStatsReport(
+      symbolID,
+      'moon_phase',
+      'MoonPhaseID',
+      'MoonPhaseID',
+      reportDate
+    ) %>%
+    frequencyStatsColumnsSelect(c('MoonPhase'))
+}
+
+#' Report the moon phases in zodiac signs with historical asset price effect frequencies.
+#' @param reportDate The date to generate the report for.
+#' @param symbolID Symbol ID to report frequencies for.
+#' @return Moon phases in zodiac signs with price effect frequencies report table.
+dailyMundaneEventsMoonPhaseZodSignsReport <- function(reportDate, symbolID) {
+  dailyMoonPhasesLoad() %>%
+    assetPriceEffectFrequencyStatsReport(
+      symbolID,
+      'moon_phase_zod_sign',
+      'MoonPhaseZodSignID',
+      c('MoonPhaseID', 'ZodSignN', 'ZodSignID'),
+      reportDate
+    ) %>%
+    frequencyStatsColumnsSelect(c('MoonPhase', 'ZodSign'))
+}
+
 #' Report the top performers machine learning models predictions.
 #' @param reportDate The date to generate the report for.
 #' @param symbolID Symbol ID to report frequencies for.
@@ -212,7 +244,7 @@ dailyMundaneEventsPredictionsReport <- function(reportDate, symbolID) {
     columnNames <- colnames(predictionsTable)
     selectColumns <- columnNames[grep("EffUp|DiffPred|EffPred", columnNames)] %>% c('Date', .)
     reportDatePredictions <- predictionsTable[Date == reportDate, ..selectColumns]
-    reportDatePredictions[, ModelID := str_replace(predictPathFilename, '.csv', '')]
+    reportDatePredictions[, ModelID := str_replace(predictionsFileName, '.csv', '')]
     setcolorder(reportDatePredictions, c('ModelID', selectColumns))
     setnames(reportDatePredictions, c('ModelID', 'Date', 'P1', 'P2', 'P3', 'P4', 'P5', 'Signal'))
     allPredictions <- rbind(allPredictions, reportDatePredictions)
@@ -231,18 +263,22 @@ dailyMundaneEventsPredictionsReport <- function(reportDate, symbolID) {
 dailyMundaneEventsReport <- function(reportDate, symbolID) {
   cat("\nPLANET SPEED PHASE:\n\n")
   dailyMundaneEventsSpeedPhaseReport(reportDate, symbolID) %>% print()
-  cat("\nPLANET RYTHM POSITION:\n\n")
+  cat("\nPLANET RYTHM:\n\n")
   dailyMundaneEventsRythmReport(reportDate, symbolID) %>% print()
-  cat("\nPLANET ELEMENT POSITION:\n\n")
+  cat("\nPLANET ELEMENT:\n\n")
   dailyMundaneEventsElementReport(reportDate, symbolID) %>% print()
-  cat("\nPLANET ZODIAC SIGN POSITION:\n\n")
+  cat("\nPLANET ZODIAC SIGN:\n\n")
   dailyMundaneEventsZodSignsReport(reportDate, symbolID) %>% print()
-  cat("\nPLANET DECAN POSITION:\n\n")
+  cat("\nPLANET DECAN:\n\n")
   dailyMundaneEventsDecansReport(reportDate, symbolID) %>% print()
-  cat("\nPLANET ARAB MANSION POSITION:\n\n")
+  cat("\nPLANET ARAB MANSION:\n\n")
   dailyMundaneEventsArabMansionReport(reportDate, symbolID) %>% print()
-  cat("\nPLANET VEDIC MANSION POSITION:\n\n")
+  cat("\nPLANET VEDIC MANSION:\n\n")
   dailyMundaneEventsVedicMansionReport(reportDate, symbolID) %>% print()
+  cat("\nLAST MOON PHASE:\n\n")
+  dailyMundaneEventsMoonPhaseReport(reportDate, symbolID) %>% print()
+  cat("\nLAST MOON PHASE IN ZODIAC SIGN:\n\n")
+  dailyMundaneEventsMoonPhaseZodSignsReport(reportDate, symbolID) %>% print()
   cat("\nPLANETS ASPECTS:\n\n")
   dailyMundaneEventsAspectsReport(reportDate, symbolID) %>% print()
   cat("\nMACHINE LEARNING PREDICTIONS:\n\n")

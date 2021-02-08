@@ -5,6 +5,7 @@
 
 library(data.table)
 library(memoise)
+library(plyr)
 
 source("./fileSystemUtilities.R")
 
@@ -36,35 +37,56 @@ assetPriceEffectFrequencyStatsLoad <- function(symbolID, statsID, factorID = NUL
   statsPathFileName <- paste0(statsDataDestinationPath(symbolID), sourceFileName, ".csv")
   frequencyTable <- copy(memoFileRead(statsPathFileName))
   if (!is.null(factorID) & !is.null(factorParts)) {
-    frequencyTable[, c(factorParts) := tstrsplit(get(factorID), "_", fixed = T)]
+    if (length(factorParts) > 1) {
+      frequencyTable[, c(factorParts) := tstrsplit(get(factorID), "_", fixed = T)]
+    }
+    else {
+      frequencyTable[, c(factorParts) := get(factorID)]
+    }
   }
 }
 
 #' Load daily planets positions data table from CSV.
 #' @return Daily planets positions data table.
 dailyMundaneEventsPositionLoad <- function() {
-  planetPositionsPathFileName <- paste0(astroDataDestinationPath(), "daily_planets_positions_long.csv")
-  memoFileRead(planetPositionsPathFileName)
+  destinationPathFileName <- paste0(astroDataDestinationPath(), "daily_planets_positions_long.csv")
+  memoFileRead(destinationPathFileName)
+}
+
+#' Load daily moon phase (new/full) and zodiac sign position data table from CSV.
+#' @return Daily moon phase positions data table.
+dailyMoonPhasesLoad <- function() {
+  destinationPathFileName <- paste0(astroDataDestinationPath(), "daily_moon_phase_positions.csv")
+  memoFileRead(destinationPathFileName)
 }
 
 #' Load daily planets aspects data table from CSV.
 #' @return Daily planets positions data table.
 dailyMundaneEventsAspectsLoad <- function() {
-  planetsAspectsPathFileName <- paste0(astroDataDestinationPath(), "aspects_all_planets_pablo_aspects_set_long.csv")
-  memoFileRead(planetsAspectsPathFileName)
+  destinationPathFileName <- paste0(astroDataDestinationPath(), "aspects_all_planets_pablo_aspects_set_long.csv")
+  memoFileRead(destinationPathFileName)
 }
 
 #' Load models predictions data table from CSV.
 #' @return Daily predictions data table.
 modelPredictionsLoad <- function(predictionsFileName) {
-  modelPredictions <- memoFileRead(paste0(modelsPredictionDestinationPath(), predictionsFileName))
+  destinationPathFileName <- paste0(modelsPredictionDestinationPath(), predictionsFileName)
+  modelPredictions <- memoFileRead(destinationPathFileName)
   modelPredictions[, Date := as.Date(Date)]
   modelPredictions[, YearMonth := format(Date, "%Y-%m")]
+  modelPredictions[, EffPred := as.factor(EffPred)]
+
   # Normalize factors that are case sensitive for comparison.
-  categoryLevels <- c("Buy", "Sell")
-  modelPredictions[,
-    EffPred := mapvalues(EffPred, tolower(categoryLevels), categoryLevels)
-  ]
+  categoryLevelsMap <- function(EffPred) {
+    categoryLevels <- c("Buy", "Sell")
+    ifelse(
+      all(categoryLevels %in% levels(EffPred)),
+      mapvalues(EffPred, tolower(categoryLevels), categoryLevels),
+      EffPred
+    )
+  }
+
+  modelPredictions[, EffPred := categoryLevelsMap(EffPred)]
 }
 
 #' Load models predictions metadata table from CSV.
