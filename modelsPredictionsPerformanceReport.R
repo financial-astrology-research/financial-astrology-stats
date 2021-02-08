@@ -1,8 +1,9 @@
 # Title     : Generate models predictions accuracy and stability performance report.
 
-library(magrittr)
-library(psych)
 library(data.table)
+library(magrittr)
+library(plyr)
+library(psych)
 
 source("./fileSystemUtilities.R")
 source("./planetAspectsAssetsPriceDataPrepare.R")
@@ -34,7 +35,7 @@ predictionsMetadataCreate <- function() {
 #' @param monthlyData Model predictions data table rows for a given year/month.
 #' @return List with number rows (N), Accuracy and Prevalence metrics.
 accuracyCalculate <- function(monthlyData) {
-  categoryLevels <- c("buy", "sell")
+  categoryLevels <- c("Buy", "Sell")
   confusionData <- table(
     actualclass = factor(monthlyData$OHLCEff, levels = categoryLevels),
     predictedclass = factor(monthlyData$EffPred, levels = categoryLevels)
@@ -72,6 +73,11 @@ predictionsPerformanceMetricsCalculate <- function(predictFilename) {
     dailyIndicator,
     by = "Date"
   )
+  # Normalize factors that are case sensitive for comparison.
+  categoryLevels <- c("Buy", "Sell")
+  dailyIndicator[,
+    EffPred := mapvalues(EffPred, tolower(categoryLevels), categoryLevels)
+  ]
 
   accuracyTest <- dailyIndicator[, accuracyCalculate(.SD), by = list(YearMonth)]
   # Filter months that don't have at least N observations yet.
