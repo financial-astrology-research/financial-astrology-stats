@@ -5,28 +5,11 @@
 
 library(data.table)
 library(magrittr)
-library(memoise)
 library(stringr)
 
 source("./configUtils.R")
 source("./fileSystemUtilities.R")
-
-#' Load CSV data table.
-#' @param pathFileName CSV file name including absolute or relative path.
-#' @return A data table.
-dataTableRead <- function(pathFileName) {
-  dataTable <- fread(pathFileName)
-  columnNames <- colnames(dataTable)
-  # Set date as primary key when column exists.
-  if ("Date" %in% columnNames) {
-    setkey(dataTable, Date)
-  }
-
-  return(dataTable)
-}
-
-#' Memoized file read with memory cache (persist during current session).
-memoFileRead <- memoise(dataTableRead)
+source("./dataLoadUtils.R")
 
 #' Select columns from frequency stats report table.
 #' @param reportTable Asset frequency stats report table.
