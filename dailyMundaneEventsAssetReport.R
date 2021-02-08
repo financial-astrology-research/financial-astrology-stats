@@ -59,7 +59,7 @@ assetPriceEffectFrequencyStatsReport <- function(
 
   reportDateEvents <- dataTableDateColsFilter(
     dailyMundaneEventsTable,
-    reportDate,
+    reportDate
   )
 
   dailyReportTable <- merge(reportDateEvents, frequencyTable, by = factorParts)
@@ -212,7 +212,7 @@ dailyMundaneEventsPredictionsReport <- function(reportDate, symbolID) {
     columnNames <- colnames(predictionsTable)
     selectColumns <- columnNames[grep("EffUp|DiffPred|EffPred", columnNames)] %>% c('Date', .)
     reportDatePredictions <- predictionsTable[Date == reportDate, ..selectColumns]
-    reportDatePredictions[, ModelID := str_replace(predictPathFilename, '.csv', '')]
+    reportDatePredictions[, ModelID := str_replace(predictionsFileName, '.csv', '')]
     setcolorder(reportDatePredictions, c('ModelID', selectColumns))
     setnames(reportDatePredictions, c('ModelID', 'Date', 'P1', 'P2', 'P3', 'P4', 'P5', 'Signal'))
     allPredictions <- rbind(allPredictions, reportDatePredictions)
@@ -284,3 +284,5 @@ nDailyMundaneEventsReport <- function(daysN = 7) {
     }
   }
 }
+
+nDailyMundaneEventsReport()

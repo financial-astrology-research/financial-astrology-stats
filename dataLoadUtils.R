@@ -5,6 +5,7 @@
 
 library(data.table)
 library(memoise)
+library(plyr)
 
 source("./fileSystemUtilities.R")
 
@@ -68,11 +69,19 @@ modelPredictionsLoad <- function(predictionsFileName) {
   modelPredictions <- memoFileRead(destinationPathFileName)
   modelPredictions[, Date := as.Date(Date)]
   modelPredictions[, YearMonth := format(Date, "%Y-%m")]
+  modelPredictions[, EffPred := as.factor(EffPred)]
+
   # Normalize factors that are case sensitive for comparison.
-  categoryLevels <- c("Buy", "Sell")
-  modelPredictions[,
-    EffPred := mapvalues(EffPred, tolower(categoryLevels), categoryLevels)
-  ]
+  categoryLevelsMap <- function(EffPred) {
+    categoryLevels <- c("Buy", "Sell")
+    ifelse(
+      all(categoryLevels %in% levels(EffPred)),
+      mapvalues(EffPred, tolower(categoryLevels), categoryLevels),
+      EffPred
+    )
+  }
+
+  modelPredictions[, EffPred := categoryLevelsMap(EffPred)]
 }
 
 #' Load models predictions metadata table from CSV.
