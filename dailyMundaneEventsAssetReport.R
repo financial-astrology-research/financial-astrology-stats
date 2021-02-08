@@ -5,88 +5,112 @@
 
 library(data.table)
 library(magrittr)
-library(memoise)
+library(stringr)
 
 source("./configUtils.R")
 source("./fileSystemUtilities.R")
+source("./dataLoadUtils.R")
 
-#' Load CSV data table.
-#' @param pathFileName CSV file name including absolute or relative path.
-#' @return A data table.
-dataTableRead <- function(pathFileName) {
-  dataTable <- fread(pathFileName)
-  columnNames <- colnames(dataTable)
-  # Set date as primary key when column exists.
-  if ("Date" %in% columnNames) {
-    setkey(dataTable, Date)
-  }
-
-  return(dataTable)
+#' Select columns from frequency stats report table.
+#' @param reportTable Asset frequency stats report table.
+#' @param columnNames Factor parts column names to select.
+#' @return Report data table selected columns data.
+frequencyStatsColumnsSelect <- function(reportTable, factorParts) {
+  selectCols <- c('Date', factorParts, 'Buy', 'Sell', 'DaysN', 'BuyDays%', 'SellDays%')
+  reportTable[,
+    .SD,
+    .SDcols = selectCols
+  ]
 }
 
-#' Memoized file read with memory cache (persist during current session).
-memoFileRead <- memoise(dataTableRead)
+#' Sorb frequency stats report table by columns.
+#' @param reportTable Asset frequency stats report table.
+#' @param columnNames Sort column.
+#' @return Report data table sorted by column names.
+frequencyStatsColumnSort <- function(reportTable, columnNames) {
+  reportTable[order(get(columnNames))]
+}
+
+#' Filter data table rows by date.
+#' @param dataTable Data table to subset from.
+#' @param filterDate Date to use for filtering.
+#' @return Data table subset with rows that match Date and selected columns.
+dataTableDateColsFilter <- function(dataTable, filterDate) {
+  dataTable[Date == as.character(filterDate)]
+}
 
 #' Load frequency stats table.
+#' @param dailyMundaneEventsTable Daily mundane events table to extract date report from.
 #' @param symbolID Symbol ID to load frequency stats for.
 #' @param statsID Frequency stats identifier.
 #' @param factorID Factor column ID that was used to compute the frequency stats.
 #' @param factorParts Factor parts names to assign on ID destructure.
+#' @param reportDate Date to generate report for.
 #' @return Frequency stats data table.
-frequencyStatsLoad <- function(symbolID, statsID, factorID = NULL, factorParts = NULL) {
-  sourceFileName <- paste(symbolID, statsID, "buy_sell_count_freq_stats", sep = "-")
-  statsPathFileName <- paste0(statsDataDestinationPath(symbolID), sourceFileName, ".csv")
-  frequencyTable <- copy(memoFileRead(statsPathFileName))
-  if (!is.null(factorID) & !is.null(factorParts)) {
-    frequencyTable[, c(factorParts) := tstrsplit(get(factorID), "_", fixed = T)]
-  }
+assetPriceEffectFrequencyStatsReport <- function(
+  dailyMundaneEventsTable, symbolID, statsID, factorID, factorParts, reportDate
+) {
+  frequencyTable <- assetPriceEffectFrequencyStatsLoad(
+    symbolID,
+    statsID,
+    factorID,
+    factorParts
+  )
+
+  reportDateEvents <- dataTableDateColsFilter(
+    dailyMundaneEventsTable,
+    reportDate
+  )
+
+  merge(reportDateEvents, frequencyTable, by = factorParts)
 }
 
-#' Load daily planets positions data table from CSV.
-#' @return Daily planets positions data table.
-dailyMundaneEventsPositionLoad <- function() {
-  planetPositionsPathFileName <- paste0(astroDataDestinationPath(), "daily_planets_positions_long.csv")
-  memoFileRead(planetPositionsPathFileName)
-}
-
-#' Load daily planets aspects data table from CSV.
-#' @return Daily planets positions data table.
-dailyMundaneEventsAspectsLoad <- function() {
-  planetsAspectsPathFileName <- paste0(astroDataDestinationPath(), "aspects_all_planets_pablo_aspects_set_long.csv")
-  memoFileRead(planetsAspectsPathFileName)
-}
-
-#' Filter data table rows by date value and return select columns.
-#' @param dataTable Data table to subset from.
-#' @param filterDate Date to use for filtering.
-#' @param selectColNames Columns names to return.
-#' @return Data table subset with rows that match Date and selected columns.
-dataTableDateColsFilter <- function(dataTable, filterDate, selectColNames = NULL) {
-  if (is.null(selectColNames)) {
-    selectColNames <- colnames(dataTable)
-  }
-
-  # Convert date to string for faster lookup through index.
-  dataTable[Date == as.character(filterDate), ..selectColNames]
-}
-
-#' Report the planets zodiacal positions with historical asset price effect frequencies.
+#' Report the planets rythm positions with historical asset price effect frequencies.
 #' @param reportDate The date to generate the report for.
 #' @param symbolID Symbol ID to report frequencies for.
-#' @return Planet positions with price effect frequencies report table.
-dailyMundaneEventsSignsReport <- function(reportDate, symbolID) {
-  sourceFileName <- paste(symbolID, "planet_zodsign", "buy_sell_count_freq_stats", sep = "-")
-  statsPathFileName <- paste0(statsDataDestinationPath(symbolID), sourceFileName, ".csv")
-  frequencyTable <- copy(memoFileRead(statsPathFileName))
-  frequencyTable[, c('pID', 'ZodSignN', 'ZodSignID') := tstrsplit(PlanetZodSign, "_", fixed = T)]
-  dailyMundaneEventsPosition <- dailyMundaneEventsPositionLoad()
-  reportPlanetsPosition <- dataTableDateColsFilter(
-    dailyMundaneEventsPosition,
-    reportDate,
-    c('Date', 'pID', 'ZodSignID')
-  )
-  dailyReportTable <- merge(reportPlanetsPosition, frequencyTable, by = c('pID', 'ZodSignID'))
-  dailyReportTable[, c('pID', 'ZodSignN', 'ZodSignID', 'PlanetZodSign') := NULL]
+#' @return Planet rythm positions with price effect frequencies report table.
+dailyMundaneEventsRythmReport <- function(reportDate, symbolID) {
+  dailyMundaneEventsPositionLoad() %>%
+    assetPriceEffectFrequencyStatsReport(
+      symbolID,
+      "planet_triplicity",
+      'PlanetTriplicity',
+      c('pID', 'TriplicityID'),
+      reportDate
+    ) %>%
+    frequencyStatsColumnsSelect(c('Planet', 'Triplicity'))
+}
+
+#' Report the planets element positions with historical asset price effect frequencies.
+#' @param reportDate The date to generate the report for.
+#' @param symbolID Symbol ID to report frequencies for.
+#' @return Planet element positions with price effect frequencies report table.
+dailyMundaneEventsElementReport <- function(reportDate, symbolID) {
+  dailyMundaneEventsPositionLoad() %>%
+    assetPriceEffectFrequencyStatsReport(
+      symbolID,
+      "planet_element",
+      'PlanetElement',
+      c('pID', 'ElementID'),
+      reportDate
+    ) %>%
+    frequencyStatsColumnsSelect(c('Planet', 'Element'))
+}
+
+#' Report the planets zodiac sign positions with historical asset price effect frequencies.
+#' @param reportDate The date to generate the report for.
+#' @param symbolID Symbol ID to report frequencies for.
+#' @return Planet zodiac sign positions with price effect frequencies report table.
+dailyMundaneEventsZodSignsReport <- function(reportDate, symbolID) {
+  dailyMundaneEventsPositionLoad() %>%
+    assetPriceEffectFrequencyStatsReport(
+      symbolID,
+      "planet_zodsign",
+      'PlanetZodSign',
+      c('pID', 'ZodSignN', 'ZodSignID'),
+      reportDate
+    ) %>%
+    frequencyStatsColumnsSelect(c('Planet', 'ZodSign'))
 }
 
 #' Report the planets speed phase with historical asset price effect frequencies.
@@ -94,19 +118,15 @@ dailyMundaneEventsSignsReport <- function(reportDate, symbolID) {
 #' @param symbolID Symbol ID to report frequencies for.
 #' @return Planet speed phase with price effect frequencies report table.
 dailyMundaneEventsSpeedPhaseReport <- function(reportDate, symbolID) {
-  sourceFileName <- paste(symbolID, "planet_speed", "buy_sell_count_freq_stats", sep = "-")
-  statsPathFileName <- paste0(statsDataDestinationPath(symbolID), sourceFileName, ".csv")
-  frequencyTable <- copy(memoFileRead(statsPathFileName))
-  frequencyTable[, pID := substr(PlanetSpeedPhase, 1, 2)]
-  frequencyTable[, SpeedPhaseID := substr(PlanetSpeedPhase, 4, 6)]
-  dailyMundaneEventsPosition <- dailyMundaneEventsPositionLoad()
-  reportPlanetsPosition <- dataTableDateColsFilter(
-    dailyMundaneEventsPosition,
-    reportDate,
-    c('Date', 'pID', 'Speed', 'SpeedPhaseID')
-  )
-  dailyReportTable <- merge(reportPlanetsPosition, frequencyTable, by = c('pID', 'SpeedPhaseID'))
-  dailyReportTable[, c('pID', 'SpeedPhaseID', 'PlanetSpeedPhase') := NULL]
+  dailyMundaneEventsPositionLoad() %>%
+    assetPriceEffectFrequencyStatsReport(
+      symbolID,
+      "planet_speed",
+      'PlanetSpeedPhase',
+      c('pID', 'SpeedPhaseID'),
+      reportDate
+    ) %>%
+    frequencyStatsColumnsSelect(c('Planet', 'Speed', 'SpeedPhase'))
 }
 
 #' Report the planets aspects with historical asset price effect frequencies.
@@ -114,24 +134,18 @@ dailyMundaneEventsSpeedPhaseReport <- function(reportDate, symbolID) {
 #' @param symbolID Symbol ID to report frequencies for.
 #' @return Planet positions with price effect frequencies report table.
 dailyMundaneEventsAspectsReport <- function(reportDate, symbolID) {
-  sourceFileName <- paste(symbolID, "planets_aspects", "buy_sell_count_freq_stats", sep = "-")
-  statsPathFileName <- paste0(statsDataDestinationPath(symbolID), sourceFileName, ".csv")
-  frequencyTable <- copy(memoFileRead(statsPathFileName))
-  frequencyTable[, pX := substr(PlanetsAspect, 1, 2)]
-  frequencyTable[, pY := substr(PlanetsAspect, 3, 4)]
-  frequencyTable[, aspect := substr(PlanetsAspect, 6, 10)]
-  frequencyTable[, PlanetsAspect := NULL]
-  dailyMundaneEventsAspects <- dailyMundaneEventsAspectsLoad()
-  reportPlanetsAspects <- dataTableDateColsFilter(dailyMundaneEventsAspects, reportDate)
-  # Filter only the exact orb aspects.
-  reportPlanetsAspects <- reportPlanetsAspects[minOrb <= 1]
-  dailyReportTable <- merge(
-    reportPlanetsAspects,
-    frequencyTable,
-    by = c('pX', 'pY', 'aspect')
-  )
-  dailyReportTable[, c('pX', 'pY', 'aspect', 'origin') := NULL]
-  dailyReportTable[order(Date, exactHour)]
+  dailyMundaneEventsAspectsLoad() %>%
+    assetPriceEffectFrequencyStatsReport(
+      symbolID,
+      "planets_aspects",
+      'PlanetsAspect',
+      c('pX', 'pY', 'aspect'),
+      reportDate
+    ) %>%
+    frequencyStatsColumnsSelect(
+      c('meanOrb', 'minOrb', 'maxOrb', 'startHour', 'endHour', 'exactHour', 'effHours', 'PlanetX', 'Aspect', 'PlanetY')
+    ) %>%
+    frequencyStatsColumnSort('exactHour')
 }
 
 #' Report the planets decans positions with historical asset price effect frequencies.
@@ -139,34 +153,136 @@ dailyMundaneEventsAspectsReport <- function(reportDate, symbolID) {
 #' @param symbolID Symbol ID to report frequencies for.
 #' @return Planet decans with price effect frequencies report table.
 dailyMundaneEventsDecansReport <- function(reportDate, symbolID) {
-  frequencyTable <- frequencyStatsLoad(
-    symbolID,
-    "planet_decan",
-    'PlanetDecan',
-    c('pID', 'ZodSignN', 'DecanID')
+  dailyMundaneEventsPositionLoad() %>%
+    assetPriceEffectFrequencyStatsReport(
+      symbolID,
+      "planet_decan",
+      'PlanetDecan',
+      c('pID', 'ZodSignN', 'DecanID'),
+      reportDate
+    ) %>%
+    frequencyStatsColumnsSelect(c('Planet', 'Decan'))
+}
+
+#' Report the planets arab mansions positions with historical asset price effect frequencies.
+#' @param reportDate The date to generate the report for.
+#' @param symbolID Symbol ID to report frequencies for.
+#' @return Planet arab mansions with price effect frequencies report table.
+dailyMundaneEventsArabMansionReport <- function(reportDate, symbolID) {
+  dailyMundaneEventsPositionLoad() %>%
+    assetPriceEffectFrequencyStatsReport(
+      symbolID,
+      "planet_arab_mansion",
+      'PlanetArabMansion',
+      c('pID', 'ArabMansionID'),
+      reportDate
+    ) %>%
+    frequencyStatsColumnsSelect(c('Planet', 'ArabMansion'))
+}
+
+#' Report the planets vedic mansions positions with historical asset price effect frequencies.
+#' @param reportDate The date to generate the report for.
+#' @param symbolID Symbol ID to report frequencies for.
+#' @return Planet vedic mansions with price effect frequencies report table.
+dailyMundaneEventsVedicMansionReport <- function(reportDate, symbolID) {
+  dailyMundaneEventsPositionLoad() %>%
+    assetPriceEffectFrequencyStatsReport(
+      symbolID,
+      "planet_vedic_mansion",
+      'PlanetVedicMansion',
+      c('pID', 'VedicMansionID'),
+      reportDate
+    ) %>%
+    frequencyStatsColumnsSelect(c('Planet', 'VedicMansion'))
+}
+
+#' Report the moon phases with historical asset price effect frequencies.
+#' @param reportDate The date to generate the report for.
+#' @param symbolID Symbol ID to report frequencies for.
+#' @return Moon phases with price effect frequencies report table.
+dailyMundaneEventsMoonPhaseReport <- function(reportDate, symbolID) {
+  dailyMoonPhasesLoad() %>%
+    assetPriceEffectFrequencyStatsReport(
+      symbolID,
+      'moon_phase',
+      'MoonPhaseID',
+      'MoonPhaseID',
+      reportDate
+    ) %>%
+    frequencyStatsColumnsSelect(c('MoonPhase'))
+}
+
+#' Report the moon phases in zodiac signs with historical asset price effect frequencies.
+#' @param reportDate The date to generate the report for.
+#' @param symbolID Symbol ID to report frequencies for.
+#' @return Moon phases in zodiac signs with price effect frequencies report table.
+dailyMundaneEventsMoonPhaseZodSignsReport <- function(reportDate, symbolID) {
+  dailyMoonPhasesLoad() %>%
+    assetPriceEffectFrequencyStatsReport(
+      symbolID,
+      'moon_phase_zod_sign',
+      'MoonPhaseZodSignID',
+      c('MoonPhaseID', 'ZodSignN', 'ZodSignID'),
+      reportDate
+    ) %>%
+    frequencyStatsColumnsSelect(c('MoonPhase', 'ZodSign'))
+}
+
+#' Report the top performers machine learning models predictions.
+#' @param reportDate The date to generate the report for.
+#' @param symbolID Symbol ID to report frequencies for.
+#' @return Models expected percent change or probabilities and signal report table.
+dailyMundaneEventsPredictionsReport <- function(reportDate, symbolID) {
+  modelsPerformanceReport <- dataTableRead(
+    modelsLatestPerformancePathFileNameGet()
   )
-  dailyMundaneEventsPosition <- dailyMundaneEventsPositionLoad()
-  reportPlanetsPosition <- dataTableDateColsFilter(
-    dailyMundaneEventsPosition,
-    reportDate,
-    c('Date', 'pID', 'DecanID')
-  )
-  dailyReportTable <- merge(reportPlanetsPosition, frequencyTable, by = c('pID', 'DecanID'))
-  dailyReportTable[, c('pID', 'ZodSignN', 'DecanID', 'PlanetDecan') := NULL]
+
+  allPredictions <- data.table()
+  topPerformers <- modelsPerformanceReport[Symbol == symbolID][order(-Rank)] %>% head(5)
+  for (predictionsFileName in topPerformers$PredictFile) {
+    predictionsTable <- modelPredictionsLoad(predictionsFileName)
+    columnNames <- colnames(predictionsTable)
+    selectColumns <- columnNames[grep("EffUp|DiffPred|EffPred", columnNames)] %>% c('Date', .)
+    reportDatePredictions <- predictionsTable[Date == reportDate, ..selectColumns]
+    reportDatePredictions[, ModelID := str_replace(predictionsFileName, '.csv', '')]
+    setcolorder(reportDatePredictions, c('ModelID', selectColumns))
+    setnames(reportDatePredictions, c('ModelID', 'Date', 'P1', 'P2', 'P3', 'P4', 'P5', 'Signal'))
+    allPredictions <- rbind(allPredictions, reportDatePredictions)
+  }
+
+  if (nrow(allPredictions) == 0) {
+    allPredictions <- data.table(cbind(Model = "Not available"))
+  }
+
+  return(allPredictions)
 }
 
 #' Generate all planets daily setup with asset price effect stats.
 #' @param reportDate The date to generate the report for.
 #' @param symbolID Symbol ID to report frequencies for.
 dailyMundaneEventsReport <- function(reportDate, symbolID) {
-  cat("\nDAILY PLANET SPEED PHASE:\n\n")
+  cat("\nPLANET SPEED PHASE:\n\n")
   dailyMundaneEventsSpeedPhaseReport(reportDate, symbolID) %>% print()
-  cat("\nDAILY PLANET ZODIAC SIGN POSITION:\n\n")
-  dailyMundaneEventsSignsReport(reportDate, symbolID) %>% print()
-  cat("\nDAILY PLANET DECAN POSITION:\n\n")
+  cat("\nPLANET RYTHM:\n\n")
+  dailyMundaneEventsRythmReport(reportDate, symbolID) %>% print()
+  cat("\nPLANET ELEMENT:\n\n")
+  dailyMundaneEventsElementReport(reportDate, symbolID) %>% print()
+  cat("\nPLANET ZODIAC SIGN:\n\n")
+  dailyMundaneEventsZodSignsReport(reportDate, symbolID) %>% print()
+  cat("\nPLANET DECAN:\n\n")
   dailyMundaneEventsDecansReport(reportDate, symbolID) %>% print()
-  cat("\nDAILY PLANETS ASPECTS:\n\n")
+  cat("\nPLANET ARAB MANSION:\n\n")
+  dailyMundaneEventsArabMansionReport(reportDate, symbolID) %>% print()
+  cat("\nPLANET VEDIC MANSION:\n\n")
+  dailyMundaneEventsVedicMansionReport(reportDate, symbolID) %>% print()
+  cat("\nLAST MOON PHASE:\n\n")
+  dailyMundaneEventsMoonPhaseReport(reportDate, symbolID) %>% print()
+  cat("\nLAST MOON PHASE IN ZODIAC SIGN:\n\n")
+  dailyMundaneEventsMoonPhaseZodSignsReport(reportDate, symbolID) %>% print()
+  cat("\nPLANETS ASPECTS:\n\n")
   dailyMundaneEventsAspectsReport(reportDate, symbolID) %>% print()
+  cat("\nMACHINE LEARNING PREDICTIONS:\n\n")
+  dailyMundaneEventsPredictionsReport(reportDate, symbolID) %>% print(row.names = F)
 }
 
 #' Interactive input to specify symbol ID and date used for daily planets report.

@@ -7,13 +7,14 @@
 library(data.table)
 library(psych)
 
+source("./dataExportUtils.R")
 source("./fileSystemUtilities.R")
 source("./idsExpandUtils.R")
 
 #' Prepare planet aspects / asset price side (buy / sell) frequency statistics.
 #' @param planetAspectsAssetPricesTable Daily planets aspects with asset prices table.
 #' @return Planets aspect price side category frequency statistics table.
-planetAspectsAssetPriceSideFrequencyPrepare <- function(planetAspectsAssetPricesTable) {
+planetAspectsAssetPriceEffectFrequencyPrepare <- function(planetAspectsAssetPricesTable) {
   planetsAspectEffectCountLong <- planetAspectsAssetPricesTable[,
     data.table(table(CEff)), by = "PlanetsAspect"
   ]
@@ -34,12 +35,12 @@ planetAspectsAssetPriceSideFrequencyPrepare <- function(planetAspectsAssetPrices
     by = "PlanetsAspect"
   ]
 
-  pX <- substr(frequencyTable$PlanetsAspect, 1, 2)
-  pY <- substr(frequencyTable$PlanetsAspect, 3, 4)
-  aspect <- substr(frequencyTable$PlanetsAspect, 6, 10)
+  idParts <- c('pX', 'pY', 'aspect')
+  frequencyTable[, c(idParts) := tstrsplit(PlanetsAspect, "_", fixed = T)]
   frequencyTable[, PlanetX := planetIdToNameMap(pX)]
   frequencyTable[, PlanetY := planetIdToNameMap(pY)]
   frequencyTable[, Aspect := aspectIdToNameMap(aspect)]
+  frequencyTable[, c(idParts) := NULL]
   setcolorder(
     frequencyTable,
     c('PlanetsAspect', 'PlanetX', 'PlanetY', 'Aspect', 'Buy', 'Sell', 'DaysN', 'BuyDays%', 'SellDays%')
@@ -61,9 +62,11 @@ planetAspectsAssetStatsPrepare <- function() {
     filenameParts <- unlist(strsplit(planetAspectsAssetPricesFile, "--"))
     symbolID <- filenameParts[1]
     planetAspectsAssetPricesTable <- fread(paste0("./data/tmp/", planetAspectsAssetPricesFile))
-    planetAspectsAssetPricesTable[, PlanetsAspect := paste0(origin, "_", aspect)]
+    planetAspectsAssetPricesTable[, pX := substr(origin, 1, 2)]
+    planetAspectsAssetPricesTable[, pY := substr(origin, 3, 4)]
+    planetAspectsAssetPricesTable[, PlanetsAspect := paste(pX, pY, aspect, sep = "_")]
 
-    planetAspectsEffectCountWide <- planetAspectsAssetPriceSideFrequencyPrepare(planetAspectsAssetPricesTable)
+    planetAspectsEffectCountWide <- planetAspectsAssetPriceEffectFrequencyPrepare(planetAspectsAssetPricesTable)
     dataTableStatsExport(
       symbolID,
       planetAspectsEffectCountWide,
