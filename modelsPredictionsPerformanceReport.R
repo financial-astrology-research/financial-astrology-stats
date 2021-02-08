@@ -10,6 +10,7 @@ source("./planetAspectsAssetsPriceDataPrepare.R")
 #' Generate models predictions metadata file.
 predictionsMetadataCreate <- function() {
   destinationPathFileName <- paste0(modelsPerformanceDestinationPath(), "models_prediction_metadata.csv")
+
   predictFilesMetadataPrepare <- function() {
     predictFiles <- list.files(modelsPredictionDestinationPath(), pattern = "*.csv")
     lapply(predictFiles, function(predictFile) {
@@ -29,10 +30,30 @@ predictionsMetadataCreate <- function() {
   }
 }
 
+#' Calculate monthly data (daily) predictions accuracy and prevalence.
+#' @param monthlyData Model predictions data table rows for a given year/month.
+#' @return List with number rows (N), Accuracy and Prevalence metrics.
+accuracyCalculate <- function(monthlyData) {
+  categoryLevels <- c("buy", "sell")
+  confusionData <- table(
+    actualclass = factor(monthlyData$OHLCEff, levels = categoryLevels),
+    predictedclass = factor(monthlyData$EffPred, levels = categoryLevels)
+  ) %>% caret::confusionMatrix()
+
+  accuracy <- confusionData$overall['Accuracy']
+  prevalence <- confusionData$byClass['Prevalence']
+
+  list(
+    N = nrow(monthlyData),
+    Accuracy = accuracy,
+    Prevalence = prevalence
+  )
+}
+
 #' Calculate machine learning model predictions performance metrics.
 #' @param predictFilename Model predictions filename to calculate metrics for.
 #' @return Data table with model predictions performance metrics.
-predictionsPerformanceMetricsReport <- function(predictFilename) {
+predictionsPerformanceMetricsCalculate <- function(predictFilename) {
   cat("Processing: ", predictFilename, "\n")
   filenameParts <- unlist(strsplit(predictFilename, "-"))
   symbolId <- paste(filenameParts[1], filenameParts[2], sep = "-")
@@ -41,11 +62,9 @@ predictionsPerformanceMetricsReport <- function(predictFilename) {
   securityDataTest[, Date := as.Date(Date)]
   # Filter the period of model unseen data, not used for training.
   securityDataTest <- securityDataTest[Date >= startDate]
-
   predictPath <- paste0(modelsPredictionDestinationPath(), predictFilename)
   predictFileInfo <- file.info(predictPath)
   dailyIndicator <- fread(predictPath)
-
   dailyIndicator[, Date := as.Date(Date)]
   dailyIndicator[, YearMonth := format(Date, "%Y-%m")]
   dailyIndicator <- merge(
@@ -54,27 +73,9 @@ predictionsPerformanceMetricsReport <- function(predictFilename) {
     by = "Date"
   )
 
-  calculateAccuracy <- function(monthlyData) {
-    categoryLevels = c("buy", "sell")
-    confusionData <- table(
-      actualclass = factor(monthlyData$OHLCEff, levels = categoryLevels),
-      predictedclass = factor(monthlyData$EffPred, levels = categoryLevels)
-    ) %>% caret::confusionMatrix()
-
-    accuracy <- confusionData$overall['Accuracy']
-    prevalence <- confusionData$byClass['Prevalence']
-
-    list(
-      N = nrow(monthlyData),
-      Accuracy = accuracy,
-      Prevalence = prevalence
-    )
-  }
-
-  accuracyTest <- dailyIndicator[, calculateAccuracy(.SD), by = "YearMonth"]
+  accuracyTest <- dailyIndicator[, accuracyCalculate(.SD), by = list(YearMonth)]
   # Filter months that don't have at least N observations yet.
   accuracyTest <- accuracyTest[N >= 10]
-
   # Calculate descriptive statistics for Accuracy / Prevalence.
   descriptives6m <- round(describe(head(accuracyTest[, c('Accuracy', 'Prevalence')], 6)), 3)
   descriptives3m <- round(describe(tail(accuracyTest[, c('Accuracy', 'Prevalence')], 3)), 3)
@@ -106,7 +107,9 @@ predictionsPerformanceMetricsReport <- function(predictFilename) {
 
   reportData$Rank <- with(
     reportData,
-    ((Acc3m / (1 + AccSD3m) ^ 2) + (Acc2m / (1 + AccSD2m) ^ 2) + Acc1m) / 3
+    ((Acc3m / (1 + AccSD3m)^2) +
+      (Acc2m / (1 + AccSD2m)^2) +
+      Acc1m) / 3
   )
 
   return(reportData)
@@ -115,7 +118,7 @@ predictionsPerformanceMetricsReport <- function(predictFilename) {
 watchListPriceDataFetch()
 predictionsMetadataCreate()
 predictFiles <- list.files(modelsPredictionDestinationPath(), pattern = "*.csv")
-testResults <- setDT(rbindlist(lapply(predictFiles, predictionsPerformanceMetricsReport)))
+testResults <- setDT(rbindlist(lapply(predictFiles, predictionsPerformanceMetricsCalculate)))
 testResults <- testResults[order(Symbol, -Rank)]
 
 reportDate <- format(Sys.Date(), "%Y-%m-%d")
