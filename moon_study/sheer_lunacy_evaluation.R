@@ -11,8 +11,8 @@ library(purrr)
 library(tidyr)
 source('../util/astro_utils.R')
 
-symbol <- "^DJI"
-start_date <-  "2009-01-08"
+symbol <- "^FTSE"
+start_date <-  "1980-01-08"
 end_date <- "2010-01-28"
 path <- '../data/tmp/'
 
@@ -77,13 +77,18 @@ strategy <- price_data %>%
   fill(invested) %>% 
   mutate('ratio_base':=lead(!!price_col)/!!price_col) %>% 
   mutate(ratio_strategy=ifelse(invested, ratio_base, 1)) %>% 
-  mutate(ratio_strategy=ifelse(is.na(ratio_strategy), 1, ratio_strategy)) %>% 
+  mutate(ratio_strategy=ifelse(is.na(ratio_strategy), 1, ratio_strategy)) %>%
+  mutate(ratio_strategy2=ifelse(1-invested, ratio_base, 1)) %>% # strategy2 is the opposite strategy
+  mutate(ratio_strategy2=ifelse(is.na(ratio_strategy2), 1, ratio_strategy2)) %>% 
+  filter(!is.na(invested)) %>% # start with first new moon
   mutate(base_performance=cumprod(ratio_base),
-         strategy_performance=cumprod(ratio_strategy)) 
+         strategy_performance=cumprod(ratio_strategy),
+         strategy2_performance=cumprod(ratio_strategy2)) 
 
 performance <- strategy %>% 
   summarize(base=prod(ratio_base, na.rm=T),
-            moon_strategy=prod(ratio_strategy, na.rm=T))
+            moon_strategy=prod(ratio_strategy, na.rm=T),
+            moon_strategy2=prod(ratio_strategy2, na.rm=T))
 
 print(performance)
 

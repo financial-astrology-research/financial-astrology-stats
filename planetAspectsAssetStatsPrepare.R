@@ -15,12 +15,12 @@ source("./idsExpandUtils.R")
 #' @return Planets aspect price side category frequency statistics table.
 planetAspectsAssetPriceSideFrequencyPrepare <- function(planetAspectsAssetPricesTable) {
   planetsAspectEffectCountLong <- planetAspectsAssetPricesTable[,
-    data.table(table(OHLCEff)), by = "PlanetsAspect"
+    data.table(table(CEff)), by = "PlanetsAspect"
   ]
 
   frequencyTable <- dcast(
     planetsAspectEffectCountLong,
-    PlanetsAspect ~ OHLCEff,
+    PlanetsAspect ~ CEff,
     value.var = "N",
     fill = 0
   )
@@ -50,7 +50,7 @@ planetAspectsAssetPriceSideFrequencyPrepare <- function(planetAspectsAssetPrices
 #' @param planetAspectsAssetPricesTable Daily planets aspects with asset prices table.
 #' @return Planets aspect price descriptive statistics table.
 planetAspectsAssetPriceDescriptivesPrepare <- function(planetAspectsAssetPricesTable) {
-  planetAspectsAssetPricesTable[, round(describe(diffOHLC), 3), by = "PlanetsAspect"]
+  planetAspectsAssetPricesTable[, round(describe(diffC), 3), by = "PlanetsAspect"]
 }
 
 planetAspectsAssetStatsPrepare <- function() {

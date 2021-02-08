@@ -1,0 +1,237 @@
+---
+title: "Statistics Evaluation"
+author: "Thilo Notz"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+knitr::opts_chunk$set(message = FALSE)
+library(readr)
+library(dplyr)
+library(knitr)
+library(purrr)
+library(scales)
+library(tidyr)
+# to install metap:
+# install.packages('BiocManager')
+# BiocManager::install()
+# BiocManager::install('multtest')
+# install.packages('metap')
+library(metap)
+```
+
+# Introduction
+
+Statistics of correlation between up/down moves and astrological features have been calculated with the goal of finding connections between e.g. a certain aspect and buy/sell days. We investigate whether the calculated frequencies, do have statistical significance.
+To this end, a test is performed that compares the performance of the statistics against randomness. 
+
+It has been noted, that there are some features, that show a high frequency of correlation (e.g. greater than 70%) over a period of time. The arising question is, whether this is just a product of chance or does the model have indeed predictive power. Even though such a high correlation seems very unlikely, there is a chance, that due to the large number of considered aspects/features, there are some outliers, that just by chance, show a high correlation over the considered time span.
+
+To this end, we compare each aspect to the corresponding random behaviour and determine the p-value. The p-value is the probability, for each frequency to occur under the null hypothesis. The p-value is calculated using a two sided binomial test, since the actual probability could be higher or lower than the observed frequency.
+
+To check, if the overall result could be random, the p-values are combined using Fisher's-Method (https://en.wikipedia.org/wiki/Fisher%27s_method).
+ 
+## Assumptions
+
+Null hypothesis: We assume that the frequency buy/sell-days is equal to that of the underlying asset for all features.
+
+According to the Null-hypothesis the models are described by a binomial distribution, with probability equal to the market frequency of buy days. We will make use of Fisher's method for combining p-values. 
+
+We assume that the observations are independent. This is actually not true, because there can be aspects that often occur at the same time, e.g. while Neptune and Pluto are in a sextile aspect, a sextile aspect to Pluto is an aspect to Neptune simultaneously. Since this will only affect certain aspects, we will ignore this. If there is a significant result, the dependencies must be analysed further.
+
+The test checks, if the result is plausible under the assumption of the null hypothesis. The alternative hypothesis is that the null hypothesis is not true, i.e. the frequency is not equal to that of the underlying asset for some features. 
+
+
+## Example AAPL
+
+Determine the real market frequency of the symbol.
+
+```{r load_reports, results="asis"}
+
+path_market <- '../data/tmp/'
+
+
+getActualFrequency <- function(symbol) {
+
+  filename_market <- paste0(path_market, symbol, '--augmented.csv')
+  market_data <- read_delim(filename_market, delim=',')
+  n_days <- dim(market_data)[1]
+  frequency <- sum(market_data$CEff == 'Buy') / n_days
+  return(frequency)
+}
+
+symbol = '^IXIC'
+actualFrequency <- getActualFrequency(symbol)
+cat(paste0('Observed frequency of buy days for ', symbol, ' is ', label_percent(accuracy=0.01)(actualFrequency)))
+```
+
+Load the statistics for the symbol. Then for each aspect/feature, we determine the p-value based on the binomial distribution and the approximation by the normal distribution.
+
+
+```{r}
+loadAndAugmentStats <- function(symbol, file, actualFrequency) {
+  filename_stats <- paste0(getwd(), '/', symbol, '/', symbol, file)
+  stats <- read_delim(filename_stats, delim=',')
+  p = actualFrequency # Note, if you use p=0.5, the result will be significant for some symbol. You have to use the market frequency.
+  binom_partial = function(x,n) {
+    pbinom(x,n, prob=p)
+  }
+  norm_partial = function(x,n) {
+    pnorm((x+0.5-n*p)/sqrt(n*p*(1-p))) # with continuity adjustment
+  }
+  binom_test_pvalue = function(x,n) {
+    p <- actualFrequency
+    test <- binom.test(x, n, p, alternative='two.sided')
+    test$p.value
+  }
+  stats <- stats %>% mutate(pvalue_binom = map2_dbl(Buy, DaysN, binom_test_pvalue )
+                            #pvalue_norm = 1 - map2_dbl(Buy - 1, DaysN, norm_partial), # substract one buy day, because we want to know the prob    for at least this number or more
+                )
+  
+}
+file <- '-planets_aspects-buy_sell_count_freq_stats.csv'
+stats <- loadAndAugmentStats(symbol, file, actualFrequency)
+```
+
+We can combine the p-values according to Fisher's method.
+
+```{r, results="asis"}
+
+confidence_level <- 0.99
+pvalues <- stats$pvalue_binom
+
+test <- sumlog(pvalues)
+cat(paste0('The p-value is using Fisher"s p-value combination method is ', test$p, '.\n\n'))
+if(test$p < 1-confidence_level) {
+  cat('We have to reject the hypothesis that the results are random.\n\n')
+} else {
+  cat('We cannot reject the hypothesis that the results are random.\n\n')
+}
+
+hist(pvalues, breaks=50, main=paste0('Histogram of p-values for ', symbol))
+```
+
+
+
+```{r}
+hist(stats$`BuyDays%`, breaks=50)
+```
+
+# Analysis for all symbols 
+
+## Preparation
+
+The same test is run in the following for all symbols and features.
+
+**Important**: We check each symbol/feature type combination individually. Again, due to the multitude of checks, there can be results that appear not random. There will be final check at the end, that checks for randomness over all results.
+
+```{r, results="asis"}
+symbols=c("ADA-USD",
+          "BAT-USD",
+          "BNB-USD",
+          "BTC-USD",
+          "DASH-USD",
+          "EOS-USD",
+          "LINK-USD",
+          "LTC-USD",
+          "ZEC-USD",
+          "ZRX-USD",
+          "^DJI",
+          "^FTSE",
+          "^IBEX",
+          "^IXIC",
+          "^N225",
+          "^NSEBANK",
+          "^NSEI",
+          "AAPL",
+          "AMZN",
+          "AXP",
+          "CAT",
+          "KO",
+          "MSFT",
+          "AUDUSD=X",
+          "EURUSD=X",
+          "GBPUSD=X",
+          "USDCAD=X",
+          "USDJPY=X")
+
+files <-c( '-planets_aspects-buy_sell_count_freq_stats.csv',
+            '-planet_zodsign-buy_sell_count_freq_stats.csv',
+            '-planet_triplicity-buy_sell_count_freq_stats.csv',
+            '-planet_speed-buy_sell_count_freq_stats.csv',
+            '-planet_polarity-buy_sell_count_freq_stats.csv')
+
+all_pvalues = c()
+all_buyDaysPercent = c()
+for (symbol in symbols){
+  cat(paste0('### Testing symbol **', symbol,'**'))
+  cat('\n\n')
+  actualFrequency <- getActualFrequency(symbol)
+  cat(paste0('Observed actual frequency of buy days for ', symbol, ' is ', label_percent(accuracy=0.01)(actualFrequency)))
+  cat('\n\n')
+  first = T
+  for (file in files) {
+    filename_stats <- paste0(getwd(), '/', symbol, '/', symbol, file)
+    if(first) {
+      stats <- read_delim(filename_stats, delim=',')
+      first <- F
+    } else {
+      stats <- read_delim(filename_stats, delim=',') %>% bind_rows(stats)
+    }
+  }
+  
+  binom_test_pvalue = function(x,n) {
+    p <- actualFrequency
+    test <- binom.test(x, n, p, alternative='two.sided')
+    test$p.value
+  }
+  
+  stats <- stats %>% 
+    replace_na(list(PlanetPolarity='', PlanetSpeedPhase='', PlanetTriplicity='', PlanetZodSign='', PlanetsAspect='')) %>% 
+    mutate(feature = paste0(PlanetPolarity, PlanetSpeedPhase, PlanetTriplicity, PlanetZodSign, PlanetsAspect)) %>% 
+    mutate(pvalue_binom = map2_dbl(Buy, DaysN, binom_test_pvalue))
+  
+  
+
+  pvalues <- stats$pvalue_binom
+  test <- sumlog(pvalues)
+  cat(paste0('The p-value combined p-value for ', symbol, ' is: ', test$p, '.\n\n'))
+  if(test$p < 1-confidence_level) {
+    cat('-> **NOT random**\n\n')
+  } else {
+    cat('-> *random*\n\n')
+  }
+    
+  all_pvalues = c(all_pvalues, pvalues)
+  all_buyDaysPercent = c(all_buyDaysPercent, stats$`BuyDays%`)
+  
+  cat('\n\n')
+  cat('\n\n')
+}
+```
+
+## Combined Test
+
+We combine the collected statistics for all symbols and features. This tests, if the overall distribution could be random.
+
+```{r, results="asis"}
+# combined test
+
+combined_test <- sumlog(all_pvalues)
+
+cat(paste0('*The p-value combined p-value for the combined test is: ', test$p, '.*\n'))
+    if(test$p < 1-confidence_level) {
+      cat('**We have to reject the hypothesis that the results are random!**\n')
+    } else {
+      cat('**We cannot reject the hypothesis that the results are random.**\n')
+    }
+hist(all_pvalues)
+
+hist(all_buyDaysPercent, breaks=50)
+```
+
+## Interpretation
+
+As of 08/02/2021: The results do not differ significantly from random results.
+
