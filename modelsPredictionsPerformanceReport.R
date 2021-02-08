@@ -11,7 +11,6 @@ source("./planetAspectsAssetsPriceDataPrepare.R")
 #' Generate models predictions metadata file.
 predictionsMetadataCreate <- function() {
   destinationPathFileName <- paste0(modelsPerformanceDestinationPath(), "models_prediction_metadata.csv")
-
   predictFilesMetadataPrepare <- function() {
     predictFiles <- list.files(modelsPredictionDestinationPath(), pattern = "*.csv")
     lapply(predictFiles, function(predictFile) {
@@ -51,19 +50,26 @@ accuracyCalculate <- function(monthlyData) {
   )
 }
 
+#' Extract symbol ID from predictions filename.
+#' @param predictionsFileName Model predictions filename (without path).
+#' @return Symbol ID.
+predictionsFileNameSymbolIdExtract <- function(predictionsFileName) {
+  fileNameParts <- unlist(strsplit(predictionsFileName, "-"))
+  paste(fileNameParts[1], fileNameParts[2], sep = "-")
+}
+
 #' Calculate machine learning model predictions performance metrics.
-#' @param predictFilename Model predictions filename to calculate metrics for.
+#' @param predictionsFileName Model predictions filename to calculate metrics for.
 #' @return Data table with model predictions performance metrics.
-predictionsPerformanceMetricsCalculate <- function(predictFilename) {
-  cat("Processing: ", predictFilename, "\n")
-  filenameParts <- unlist(strsplit(predictFilename, "-"))
-  symbolId <- paste(filenameParts[1], filenameParts[2], sep = "-")
+predictionsPerformanceMetricsCalculate <- function(predictionsFileName) {
+  cat("Processing: ", predictionsFileName, "\n")
+  symbolId <- predictionsFileNameSymbolIdExtract(predictionsFileName)
   startDate <- as.Date(format(Sys.Date() - 210, "%Y-%m-01"))
   assetDataTable <- fread(paste0("./data/tmp/", symbolId, "--augmented.csv"))
   assetDataTable[, Date := as.Date(Date)]
   # Filter the period of model unseen data, not used for training.
   assetDataTable <- assetDataTable[Date >= startDate]
-  predictPath <- paste0(modelsPredictionDestinationPath(), predictFilename)
+  predictPath <- paste0(modelsPredictionDestinationPath(), predictionsFileName)
   predictFileInfo <- file.info(predictPath)
   dailyIndicator <- fread(predictPath)
   dailyIndicator[, Date := as.Date(Date)]
@@ -91,7 +97,7 @@ predictionsPerformanceMetricsCalculate <- function(predictFilename) {
   prodDays <- as.numeric(difftime(Sys.Date(), as.Date(createDate), units = "days"))
 
   reportData <- data.table(
-    PredictFile = predictFilename,
+    PredictFile = predictionsFileName,
     Symbol = symbolId,
     Created = createDate,
     ProdDays = prodDays,
@@ -121,10 +127,10 @@ predictionsPerformanceMetricsCalculate <- function(predictFilename) {
   return(reportData)
 }
 
-#watchListPriceDataFetch()
+planetsAspectsAssetsPriceDataPrepare()
 predictionsMetadataCreate()
-predictFiles <- list.files(modelsPredictionDestinationPath(), pattern = "*.csv")
-testResults <- setDT(rbindlist(lapply(predictFiles, predictionsPerformanceMetricsCalculate)))
+predictionsFileNames <- list.files(modelsPredictionDestinationPath(), pattern = "*.csv")
+testResults <- setDT(rbindlist(lapply(predictionsFileNames, predictionsPerformanceMetricsCalculate)))
 testResults <- testResults[order(Symbol, -Rank)]
 
 reportDate <- format(Sys.Date(), "%Y-%m-%d")
