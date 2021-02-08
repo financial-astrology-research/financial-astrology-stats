@@ -79,22 +79,29 @@ modelPredictionsCreateDateGet <- function(predictionsFileName) {
   return(createDate)
 }
 
-#' Calculate machine learning model predictions performance metrics.
-#' @param predictionsFileName Model predictions filename to calculate metrics for.
-#' @return Data table with model predictions performance metrics.
-predictionsPerformanceMetricsCalculate <- function(predictionsFileName) {
-  cat("Processing: ", predictionsFileName, "\n")
+#' Load and combine model predictions and asset price effect actuals data table.
+#' @return Model predictions with price effect actuals data table.
+modelPredictionsWithActualsLoad <- function(predictionsFileName, startDate) {
   symbolId <- predictionsFileNameSymbolIdExtract(predictionsFileName)
-  startDate <- as.Date(format(Sys.Date() - 210, "%Y-%m-01"))
-  assetDataTable <- assetAgumentedDataLoad(startDate)
-  createDate <- modelPredictionsCreateDateGet(predictionsFileName)
+  assetDataTable <- assetAgumentedDataLoad(symbolId, startDate)
   modelPredictions <- modelPredictionsLoad(predictionsFileName)
   modelPredictions <- merge(
     assetDataTable[, c('Date', 'OHLCMid', 'OHLCEff')],
     modelPredictions,
     by = "Date"
   )
+}
 
+#' Calculate machine learning model predictions performance metrics.
+#' @param predictionsFileName Model predictions filename to calculate metrics for.
+#' @return Data table with model predictions performance metrics.
+predictionsPerformanceMetricsCalculate <- function(predictionsFileName) {
+  cat("Processing: ", predictionsFileName, "\n")
+  symbolId <- predictionsFileNameSymbolIdExtract(predictionsFileName)
+  createDate <- modelPredictionsCreateDateGet(predictionsFileName)
+  startDate <- as.Date(format(Sys.Date() - 210, "%Y-%m-01"))
+  modelPredictions <- modelPredictionsWithActualsLoad(predictionsFileName, startDate)
+  # Calculate accuracy by year/month days observations.
   accuracyTest <- modelPredictions[, accuracyCalculate(.SD), by = list(YearMonth)]
   # Filter months that don't have at least N observations yet.
   accuracyTest <- accuracyTest[N >= 10]
