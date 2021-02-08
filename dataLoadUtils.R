@@ -63,7 +63,20 @@ modelPredictionsLoad <- function(predictionsFileName) {
 }
 
 #' Load models predictions metadata table from CSV.
+#' @return Models predictions metadata data table.
 modelPredictionsMetadataLoad <- function() {
   destinationPathFileName <- paste0(modelsPerformanceDestinationPath(), "models_prediction_metadata.csv")
   memoFileRead(destinationPathFileName)
+}
+
+#' Load asset augmented (price derivations features) data table from CSV.
+#' @return Asset price augmented data table.
+assetAgumentedDataLoad <- function(symbolID, startDate = NULL) {
+  destinationPathFileName <- paste0(assetsDataDestinationPath(), symbolID, "--augmented.csv")
+  assetDataTable <- memoFileRead(destinationPathFileName)
+  assetDataTable[, Date := as.Date(Date)]
+
+  if (!is.null(startDate)) {
+    assetDataTable <- assetDataTable[Date >= startDate]
+  }
 }

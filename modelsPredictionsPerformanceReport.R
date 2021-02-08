@@ -81,10 +81,7 @@ predictionsPerformanceMetricsCalculate <- function(predictionsFileName) {
   cat("Processing: ", predictionsFileName, "\n")
   symbolId <- predictionsFileNameSymbolIdExtract(predictionsFileName)
   startDate <- as.Date(format(Sys.Date() - 210, "%Y-%m-01"))
-  assetDataTable <- fread(paste0("./data/tmp/", symbolId, "--augmented.csv"))
-  assetDataTable[, Date := as.Date(Date)]
-  # Filter the period of model unseen data, not used for training.
-  assetDataTable <- assetDataTable[Date >= startDate]
+  assetDataTable <- assetDataAugmentedLoad(startDate)
   createDate <- modelPredictionsCreateDateGet(predictionsFileName)
   modelPredictions <- modelPredictionsLoad(predictionsFileName)
   modelPredictions <- merge(
