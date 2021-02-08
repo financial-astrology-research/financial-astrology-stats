@@ -43,21 +43,29 @@ assetPriceEffectFrequencyStatsLoad <- function(symbolID, statsID, factorID = NUL
 #' Load daily planets positions data table from CSV.
 #' @return Daily planets positions data table.
 dailyMundaneEventsPositionLoad <- function() {
-  planetPositionsPathFileName <- paste0(astroDataDestinationPath(), "daily_planets_positions_long.csv")
-  memoFileRead(planetPositionsPathFileName)
+  destinationPathFileName <- paste0(astroDataDestinationPath(), "daily_planets_positions_long.csv")
+  memoFileRead(destinationPathFileName)
+}
+
+#' Load daily moon phase (new/full) and zodiac sign position data table from CSV.
+#' @return Daily moon phase positions data table.
+dailyMoonPhasesLoad <- function() {
+  destinationPathFileName <- paste0(astroDataDestinationPath(), "daily_moon_phase_positions.csv")
+  memoFileRead(destinationPathFileName)
 }
 
 #' Load daily planets aspects data table from CSV.
 #' @return Daily planets positions data table.
 dailyMundaneEventsAspectsLoad <- function() {
-  planetsAspectsPathFileName <- paste0(astroDataDestinationPath(), "aspects_all_planets_pablo_aspects_set_long.csv")
-  memoFileRead(planetsAspectsPathFileName)
+  destinationPathFileName <- paste0(astroDataDestinationPath(), "aspects_all_planets_pablo_aspects_set_long.csv")
+  memoFileRead(destinationPathFileName)
 }
 
 #' Load models predictions data table from CSV.
 #' @return Daily predictions data table.
 modelPredictionsLoad <- function(predictionsFileName) {
-  modelPredictions <- memoFileRead(paste0(modelsPredictionDestinationPath(), predictionsFileName))
+  destinationPathFileName <- paste0(modelsPredictionDestinationPath(), predictionsFileName)
+  modelPredictions <- memoFileRead(destinationPathFileName)
   modelPredictions[, Date := as.Date(Date)]
   modelPredictions[, YearMonth := format(Date, "%Y-%m")]
   # Normalize factors that are case sensitive for comparison.
