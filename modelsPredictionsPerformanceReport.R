@@ -5,6 +5,7 @@ library(magrittr)
 library(plyr)
 library(psych)
 
+source("./dataLoadUtils.R")
 source("./fileSystemUtilities.R")
 source("./planetAspectsAssetsPriceDataPrepare.R")
 
@@ -69,23 +70,19 @@ predictionsPerformanceMetricsCalculate <- function(predictionsFileName) {
   assetDataTable[, Date := as.Date(Date)]
   # Filter the period of model unseen data, not used for training.
   assetDataTable <- assetDataTable[Date >= startDate]
-  predictPath <- paste0(modelsPredictionDestinationPath(), predictionsFileName)
-  predictFileInfo <- file.info(predictPath)
-  dailyIndicator <- fread(predictPath)
-  dailyIndicator[, Date := as.Date(Date)]
-  dailyIndicator[, YearMonth := format(Date, "%Y-%m")]
-  dailyIndicator <- merge(
+  modelPredictions <- modelPredictionsLoad(predictionsFileName)
+  modelPredictions <- merge(
     assetDataTable[, c('Date', 'OHLCMid', 'OHLCEff')],
-    dailyIndicator,
+    modelPredictions,
     by = "Date"
   )
   # Normalize factors that are case sensitive for comparison.
   categoryLevels <- c("Buy", "Sell")
-  dailyIndicator[,
+  modelPredictions[,
     EffPred := mapvalues(EffPred, tolower(categoryLevels), categoryLevels)
   ]
 
-  accuracyTest <- dailyIndicator[, accuracyCalculate(.SD), by = list(YearMonth)]
+  accuracyTest <- modelPredictions[, accuracyCalculate(.SD), by = list(YearMonth)]
   # Filter months that don't have at least N observations yet.
   accuracyTest <- accuracyTest[N >= 10]
   # Calculate descriptive statistics for Accuracy / Prevalence.

@@ -57,5 +57,7 @@ dailyMundaneEventsAspectsLoad <- function() {
 #' Load models predictions data table from CSV.
 #' @return Daily predictions data table.
 modelPredictionsLoad <- function(predictionsFileName) {
-  memoFileRead(paste0(modelsPredictionDestinationPath(), predictionsFileName))
+  modelPredictions <- memoFileRead(paste0(modelsPredictionDestinationPath(), predictionsFileName))
+  modelPredictions[, Date := as.Date(Date)]
+  modelPredictions[, YearMonth := format(Date, "%Y-%m")]
 }
