@@ -60,6 +60,11 @@ modelPredictionsLoad <- function(predictionsFileName) {
   modelPredictions <- memoFileRead(paste0(modelsPredictionDestinationPath(), predictionsFileName))
   modelPredictions[, Date := as.Date(Date)]
   modelPredictions[, YearMonth := format(Date, "%Y-%m")]
+  # Normalize factors that are case sensitive for comparison.
+  categoryLevels <- c("Buy", "Sell")
+  modelPredictions[,
+    EffPred := mapvalues(EffPred, tolower(categoryLevels), categoryLevels)
+  ]
 }
 
 #' Load models predictions metadata table from CSV.

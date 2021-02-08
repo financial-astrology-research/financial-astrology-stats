@@ -89,11 +89,6 @@ predictionsPerformanceMetricsCalculate <- function(predictionsFileName) {
     modelPredictions,
     by = "Date"
   )
-  # Normalize factors that are case sensitive for comparison.
-  categoryLevels <- c("Buy", "Sell")
-  modelPredictions[,
-    EffPred := mapvalues(EffPred, tolower(categoryLevels), categoryLevels)
-  ]
 
   accuracyTest <- modelPredictions[, accuracyCalculate(.SD), by = list(YearMonth)]
   # Filter months that don't have at least N observations yet.
