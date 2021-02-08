@@ -131,17 +131,22 @@ predictionsPerformanceMetricsCalculate <- function(predictionsFileName) {
   return(reportData)
 }
 
-planetsAspectsAssetsPriceDataPrepare()
-predictionsMetadataCreate()
-predictionsFileNames <- list.files(modelsPredictionDestinationPath(), pattern = "*.csv")
-testResults <- setDT(rbindlist(lapply(predictionsFileNames, predictionsPerformanceMetricsCalculate)))
-testResults <- testResults[order(Symbol, -Rank)]
+#' Generate machine learning models performance report and save into CSV table.
+modelsPredictionsPerformanceReport <- function() {
+  planetsAspectsAssetsPriceDataPrepare()
+  predictionsMetadataCreate()
+  predictionsFileNames <- list.files(modelsPredictionDestinationPath(), pattern = "*.csv")
+  testResults <- setDT(rbindlist(lapply(predictionsFileNames, predictionsPerformanceMetricsCalculate)))
+  testResults <- testResults[order(Symbol, -Rank)]
 
-reportDate <- format(Sys.Date(), "%Y-%m-%d")
-modelsPredictSummaryFilename <- paste0(
-  modelsPerformanceDestinationPath(),
-  "models-predict-performance-", reportDate, ".csv"
-)
+  reportDate <- format(Sys.Date(), "%Y-%m-%d")
+  modelsPredictSummaryFilename <- paste0(
+    modelsPerformanceDestinationPath(),
+    "models-predict-performance-", reportDate, ".csv"
+  )
 
-fwrite(testResults, modelsPredictSummaryFilename)
-cat("Models performance report exported to:", modelsPredictSummaryFilename, "\n")
+  fwrite(testResults, modelsPredictSummaryFilename)
+  cat("Models performance report exported to:", modelsPredictSummaryFilename, "\n")
+}
+
+modelsPredictionsPerformanceReport()
