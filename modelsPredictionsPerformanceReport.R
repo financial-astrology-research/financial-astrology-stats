@@ -7,7 +7,10 @@ library(data.table)
 source("./fileSystemUtilities.R")
 source("./planetAspectsAssetsPriceDataPrepare.R")
 
-testPredictAccuracy <- function(predictFilename) {
+#' Calculate machine learning model predictions performance metrics.
+#' @param predictFilename Model predictions filename to calculate metrics for.
+#' @return Data table with model predictions performance metrics.
+predictionsPerformanceMetricsReport <- function(predictFilename) {
   cat("Processing: ", predictFilename, "\n")
   filenameParts <- unlist(strsplit(predictFilename, "-"))
   symbolId <- paste(filenameParts[1], filenameParts[2], sep = "-")
@@ -48,7 +51,7 @@ testPredictAccuracy <- function(predictFilename) {
 
   accuracyTest <- dailyIndicator[, calculateAccuracy(.SD), by = "YearMonth"]
   # Filter months that don't have at least N observations yet.
-  accuracyTest <- accuracyTest[N >= 7]
+  accuracyTest <- accuracyTest[N >= 10]
 
   # Calculate descriptive statistics for Accuracy / Prevalence.
   descriptives6m <- round(describe(head(accuracyTest[, c('Accuracy', 'Prevalence')], 6)), 3)
@@ -89,7 +92,7 @@ testPredictAccuracy <- function(predictFilename) {
 
 watchListPriceDataFetch()
 predictFiles <- list.files(modelsPredictionDestinationPath(), pattern = "*.csv")
-testResults <- setDT(rbindlist(lapply(predictFiles, testPredictAccuracy)))
+testResults <- setDT(rbindlist(lapply(predictFiles, predictionsPerformanceMetricsReport)))
 testResults <- testResults[order(Symbol, -Rank)]
 
 # Remove models predictions with low rank (poor accuracy / stability).
