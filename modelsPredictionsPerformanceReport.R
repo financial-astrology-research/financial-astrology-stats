@@ -59,6 +59,21 @@ predictionsFileNameSymbolIdExtract <- function(predictionsFileName) {
   paste(fileNameParts[1], fileNameParts[2], sep = "-")
 }
 
+#' Get model predictions creation date from models metadata table.
+#' @param predictionsFileName The model predictions filename.
+#' @return Model predictions create date.
+modelPredictionsCreateDateGet <- function(predictionsFileName) {
+  modelPredictionsMetadata <- modelPredictionsMetadataLoad()
+  metadata <- modelPredictionsMetadata[ModelID == predictionsFileName]
+  createDate <- ''
+
+  if (nrow(metadata) > 0) {
+    createDate <- metadata$CreateDate
+  }
+
+  return(createDate)
+}
+
 #' Calculate machine learning model predictions performance metrics.
 #' @param predictionsFileName Model predictions filename to calculate metrics for.
 #' @return Data table with model predictions performance metrics.
@@ -70,6 +85,7 @@ predictionsPerformanceMetricsCalculate <- function(predictionsFileName) {
   assetDataTable[, Date := as.Date(Date)]
   # Filter the period of model unseen data, not used for training.
   assetDataTable <- assetDataTable[Date >= startDate]
+  createDate <- modelPredictionsCreateDateGet(predictionsFileName)
   modelPredictions <- modelPredictionsLoad(predictionsFileName)
   modelPredictions <- merge(
     assetDataTable[, c('Date', 'OHLCMid', 'OHLCEff')],
@@ -90,7 +106,6 @@ predictionsPerformanceMetricsCalculate <- function(predictionsFileName) {
   descriptives3m <- round(describe(tail(accuracyTest[, c('Accuracy', 'Prevalence')], 3)), 3)
   descriptives2m <- round(describe(tail(accuracyTest[, c('Accuracy', 'Prevalence')], 2)), 3)
   descriptives1m <- round(describe(tail(accuracyTest[, c('Accuracy', 'Prevalence')], 1)), 3)
-  createDate <- predictFileInfo$mtime
   prodDays <- as.numeric(difftime(Sys.Date(), as.Date(createDate), units = "days"))
 
   reportData <- data.table(

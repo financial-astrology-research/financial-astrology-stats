@@ -61,3 +61,9 @@ modelPredictionsLoad <- function(predictionsFileName) {
   modelPredictions[, Date := as.Date(Date)]
   modelPredictions[, YearMonth := format(Date, "%Y-%m")]
 }
+
+#' Load models predictions metadata table from CSV.
+modelPredictionsMetadataLoad <- function() {
+  destinationPathFileName <- paste0(modelsPerformanceDestinationPath(), "models_prediction_metadata.csv")
+  memoFileRead(destinationPathFileName)
+}
