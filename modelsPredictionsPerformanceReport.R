@@ -7,6 +7,28 @@ library(data.table)
 source("./fileSystemUtilities.R")
 source("./planetAspectsAssetsPriceDataPrepare.R")
 
+#' Generate models predictions metadata file.
+predictionsMetadataCreate <- function() {
+  destinationPathFileName <- paste0(modelsPerformanceDestinationPath(), "models_prediction_metadata.csv")
+  predictFilesMetadataPrepare <- function() {
+    predictFiles <- list.files(modelsPredictionDestinationPath(), pattern = "*.csv")
+    lapply(predictFiles, function(predictFile) {
+      predictFileInfo <- file.info(paste0(modelsPredictionDestinationPath(), predictFile))
+      createDate <- predictFileInfo$mtime
+      list(
+        ModelID = predictFile,
+        CreateDate = createDate
+      )
+    })
+  }
+
+  if (!file.exists(destinationPathFileName)) {
+    metadataTable <- rbindlist(predictFilesMetadataPrepare())
+    fwrite(metadataTable, destinationPathFileName)
+    cat("Models metadata file exported to: ", destinationPathFileName, "\n")
+  }
+}
+
 #' Calculate machine learning model predictions performance metrics.
 #' @param predictFilename Model predictions filename to calculate metrics for.
 #' @return Data table with model predictions performance metrics.
@@ -91,6 +113,7 @@ predictionsPerformanceMetricsReport <- function(predictFilename) {
 }
 
 watchListPriceDataFetch()
+predictionsMetadataCreate()
 predictFiles <- list.files(modelsPredictionDestinationPath(), pattern = "*.csv")
 testResults <- setDT(rbindlist(lapply(predictFiles, predictionsPerformanceMetricsReport)))
 testResults <- testResults[order(Symbol, -Rank)]
