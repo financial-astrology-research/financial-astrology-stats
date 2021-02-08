@@ -9,12 +9,17 @@ source("./dataLoadUtils.R")
 source("./fileSystemUtilities.R")
 source("./planetAspectsAssetsPriceDataPrepare.R")
 
+#' Get models predictions filenames list.
+#' @return Filenames (without path) list.
+modelsPredictionsFileNameList <- function() {
+  list.files(modelsPredictionDestinationPath(), pattern = "*.csv")
+}
+
 #' Generate models predictions metadata file.
 predictionsMetadataCreate <- function() {
   destinationPathFileName <- paste0(modelsPerformanceDestinationPath(), "models_prediction_metadata.csv")
   predictFilesMetadataPrepare <- function() {
-    predictFiles <- list.files(modelsPredictionDestinationPath(), pattern = "*.csv")
-    lapply(predictFiles, function(predictFile) {
+    lapply(modelsPredictionsFileNameList(), function(predictFile) {
       predictFileInfo <- file.info(paste0(modelsPredictionDestinationPath(), predictFile))
       createDate <- predictFileInfo$mtime
       list(
@@ -81,7 +86,7 @@ predictionsPerformanceMetricsCalculate <- function(predictionsFileName) {
   cat("Processing: ", predictionsFileName, "\n")
   symbolId <- predictionsFileNameSymbolIdExtract(predictionsFileName)
   startDate <- as.Date(format(Sys.Date() - 210, "%Y-%m-01"))
-  assetDataTable <- assetDataAugmentedLoad(startDate)
+  assetDataTable <- assetAgumentedDataLoad(startDate)
   createDate <- modelPredictionsCreateDateGet(predictionsFileName)
   modelPredictions <- modelPredictionsLoad(predictionsFileName)
   modelPredictions <- merge(
@@ -135,8 +140,9 @@ predictionsPerformanceMetricsCalculate <- function(predictionsFileName) {
 modelsPredictionsPerformanceReport <- function() {
   planetsAspectsAssetsPriceDataPrepare()
   predictionsMetadataCreate()
-  predictionsFileNames <- list.files(modelsPredictionDestinationPath(), pattern = "*.csv")
-  testResults <- setDT(rbindlist(lapply(predictionsFileNames, predictionsPerformanceMetricsCalculate)))
+  testResults <- lapply(modelsPredictionsFileNameList(), predictionsPerformanceMetricsCalculate) %>%
+    rbindlist() %>%
+    setDT()
   testResults <- testResults[order(Symbol, -Rank)]
 
   reportDate <- format(Sys.Date(), "%Y-%m-%d")
