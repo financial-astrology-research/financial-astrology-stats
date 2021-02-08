@@ -62,7 +62,7 @@ assetPriceEffectFrequencyStatsReport <- function(
     reportDate
   )
 
-  dailyReportTable <- merge(reportDateEvents, frequencyTable, by = factorParts)
+  merge(reportDateEvents, frequencyTable, by = factorParts)
 }
 
 #' Report the planets rythm positions with historical asset price effect frequencies.
@@ -196,6 +196,22 @@ dailyMundaneEventsVedicMansionReport <- function(reportDate, symbolID) {
     frequencyStatsColumnsSelect(c('Planet', 'VedicMansion'))
 }
 
+#' Report the moon phases with historical asset price effect frequencies.
+#' @param reportDate The date to generate the report for.
+#' @param symbolID Symbol ID to report frequencies for.
+#' @return Moon phases with price effect frequencies report table.
+dailyMundaneEventsMoonPhaseReport <- function(reportDate, symbolID) {
+  dailyMoonPhasesLoad() %>%
+    assetPriceEffectFrequencyStatsReport(
+      symbolID,
+      'moon_phase',
+      'MoonPhaseID',
+      'MoonPhaseID',
+      reportDate
+    ) %>%
+    frequencyStatsColumnsSelect(c('MoonPhase'))
+}
+
 #' Report the top performers machine learning models predictions.
 #' @param reportDate The date to generate the report for.
 #' @param symbolID Symbol ID to report frequencies for.
@@ -243,6 +259,8 @@ dailyMundaneEventsReport <- function(reportDate, symbolID) {
   dailyMundaneEventsArabMansionReport(reportDate, symbolID) %>% print()
   cat("\nPLANET VEDIC MANSION POSITION:\n\n")
   dailyMundaneEventsVedicMansionReport(reportDate, symbolID) %>% print()
+  cat("\nMOON PHASE:\n\n")
+  dailyMundaneEventsMoonPhaseReport(reportDate, symbolID) %>% print()
   cat("\nPLANETS ASPECTS:\n\n")
   dailyMundaneEventsAspectsReport(reportDate, symbolID) %>% print()
   cat("\nMACHINE LEARNING PREDICTIONS:\n\n")

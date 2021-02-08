@@ -37,7 +37,12 @@ assetPriceEffectFrequencyStatsLoad <- function(symbolID, statsID, factorID = NUL
   statsPathFileName <- paste0(statsDataDestinationPath(symbolID), sourceFileName, ".csv")
   frequencyTable <- copy(memoFileRead(statsPathFileName))
   if (!is.null(factorID) & !is.null(factorParts)) {
-    frequencyTable[, c(factorParts) := tstrsplit(get(factorID), "_", fixed = T)]
+    if (length(factorParts) > 1) {
+      frequencyTable[, c(factorParts) := tstrsplit(get(factorID), "_", fixed = T)]
+    }
+    else {
+      frequencyTable[, c(factorParts) := get(factorID)]
+    }
   }
 }
 
