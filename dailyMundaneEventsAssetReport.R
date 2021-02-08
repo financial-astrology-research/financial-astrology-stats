@@ -35,7 +35,7 @@ frequencyStatsColumnSort <- function(reportTable, columnNames) {
 #' @param dataTable Data table to subset from.
 #' @param filterDate Date to use for filtering.
 #' @return Data table subset with rows that match Date and selected columns.
-dataTableDateColsFilter <- function(dataTable, filterDate, selectColNames = NULL) {
+dataTableDateColsFilter <- function(dataTable, filterDate) {
   dataTable[Date == as.character(filterDate)]
 }
 
@@ -207,8 +207,8 @@ dailyMundaneEventsPredictionsReport <- function(reportDate, symbolID) {
 
   allPredictions <- data.table()
   topPerformers <- modelsPerformanceReport[Symbol == symbolID][order(-Rank)] %>% head(5)
-  for (predictPathFilename in topPerformers$PredictFile) {
-    predictionsTable <- dataTableRead(paste0(modelsPredictionDestinationPath(), predictPathFilename))
+  for (predictionsFileName in topPerformers$PredictFile) {
+    predictionsTable <- modelPredictionsLoad(predictionsFileName)
     columnNames <- colnames(predictionsTable)
     selectColumns <- columnNames[grep("EffUp|DiffPred|EffPred", columnNames)] %>% c('Date', .)
     reportDatePredictions <- predictionsTable[Date == reportDate, ..selectColumns]

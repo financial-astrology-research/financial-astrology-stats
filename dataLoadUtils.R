@@ -6,6 +6,8 @@
 library(data.table)
 library(memoise)
 
+source("./fileSystemUtilities.R")
+
 #' Load CSV data table.
 #' @param pathFileName CSV file name including absolute or relative path.
 #' @return A data table.
@@ -50,4 +52,10 @@ dailyMundaneEventsPositionLoad <- function() {
 dailyMundaneEventsAspectsLoad <- function() {
   planetsAspectsPathFileName <- paste0(astroDataDestinationPath(), "aspects_all_planets_pablo_aspects_set_long.csv")
   memoFileRead(planetsAspectsPathFileName)
+}
+
+#' Load models predictions data table from CSV.
+#' @return Daily predictions data table.
+modelPredictionsLoad <- function(predictionsFileName) {
+  memoFileRead(paste0(modelsPredictionDestinationPath(), predictionsFileName))
 }
