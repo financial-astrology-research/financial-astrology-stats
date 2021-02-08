@@ -320,5 +320,3 @@ nDailyMundaneEventsReport <- function(daysN = 7) {
     }
   }
 }
-
-nDailyMundaneEventsReport()
