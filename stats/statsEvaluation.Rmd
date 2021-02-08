@@ -61,7 +61,7 @@ getActualFrequency <- function(symbol) {
   return(frequency)
 }
 
-symbol = '^IXIC'
+symbol = 'AAPL'
 actualFrequency <- getActualFrequency(symbol)
 cat(paste0('Observed frequency of buy days for ', symbol, ' is ', label_percent(accuracy=0.01)(actualFrequency)))
 ```
