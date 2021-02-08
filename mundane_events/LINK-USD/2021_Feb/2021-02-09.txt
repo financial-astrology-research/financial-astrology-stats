@@ -152,6 +152,16 @@ PLANET VEDIC MANSION POSITION:
 17: 2021-02-09   Venus         Shravana  15   19    34     0.44      0.56
 18: 2021-02-09   Vesta    PurvaPhalguni  36   24    60     0.60      0.40
 
+MOON PHASE:
+
+         Date MoonPhase Buy Sell DaysN BuyDays% SellDays%
+1: 2021-02-09      Full 307  305   612      0.5       0.5
+
+LAST MOON PHASE ZODIAC SIGN POSITION:
+
+         Date MoonPhase ZodSign Buy Sell DaysN BuyDays% SellDays%
+1: 2021-02-09      Full     Leo  33   35    68     0.49      0.51
+
 PLANETS ASPECTS:
 
           Date meanOrb minOrb maxOrb startHour endHour exactHour effHours PlanetX       Aspect PlanetY Buy Sell DaysN BuyDays% SellDays%
@@ -218,9 +228,9 @@ PLANETS ASPECTS:
 
 MACHINE LEARNING PREDICTIONS:
 
-                                 ModelID       Date         P1        P2        P3         P4         P5 Signal
-     LINK-USD-predict-ensamble-gakknn-VF 2021-02-09  0.0383910  0.042048  0.074051  0.0675360  0.0363050    buy
-    LINK-USD-predict-ensamble-gakknn-MAC 2021-02-09 -0.0212240 -0.017763 -0.011146 -0.0145149 -0.0195660   sell
-  LINK-USD-predict-ensamble-gakknn-VACGE 2021-02-09 -0.0670249 -0.048252 -0.057649 -0.0669660 -0.0760600   sell
-   LINK-USD-predict-ensamble-gakknn-VACC 2021-02-09 -0.0541620 -0.051211 -0.037500 -0.0267810 -0.0442200   sell
- LINK-USD-predict-ensamble-gakknn-VACGBE 2021-02-09 -0.1018475 -0.097404 -0.097739 -0.1069320 -0.1032459   sell
+                                   ModelID       Date         P1         P2        P3         P4         P5 Signal
+  LINK-USD-predict-ensamble-gakknn-VACGBFC 2021-02-09 -0.0804700 -0.1081411 -0.070626 -0.0790070 -0.1009464   sell
+      LINK-USD-predict-ensamble-gakknn-MAC 2021-02-09 -0.0212240 -0.0177630 -0.011146 -0.0145149 -0.0195660    buy
+ LINK-USD-predict-ensamble-gakknn-VACGBFCL 2021-02-09 -0.0956384 -0.0807160 -0.111246 -0.0940390 -0.0940385   sell
+    LINK-USD-predict-ensamble-gakknn-VACGE 2021-02-09 -0.0670249 -0.0482520 -0.057649 -0.0669660 -0.0760600   sell
+     LINK-USD-predict-ensamble-gakknn-VACC 2021-02-09 -0.0541620 -0.0512110 -0.037500 -0.0267810 -0.0442200   sell

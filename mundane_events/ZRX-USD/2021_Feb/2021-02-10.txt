@@ -152,6 +152,16 @@ PLANET VEDIC MANSION POSITION:
 17: 2021-02-10   Venus         Shravana  19   15    34     0.56      0.44
 18: 2021-02-10   Vesta    PurvaPhalguni  39   33    72     0.54      0.46
 
+MOON PHASE:
+
+         Date MoonPhase Buy Sell DaysN BuyDays% SellDays%
+1: 2021-02-10      Full 294  334   628     0.47      0.53
+
+LAST MOON PHASE ZODIAC SIGN POSITION:
+
+         Date MoonPhase ZodSign Buy Sell DaysN BuyDays% SellDays%
+1: 2021-02-10      Full     Leo  31   37    68     0.46      0.54
+
 PLANETS ASPECTS:
 
           Date meanOrb minOrb maxOrb startHour endHour exactHour effHours PlanetX       Aspect PlanetY Buy Sell DaysN BuyDays% SellDays%
@@ -217,9 +227,9 @@ PLANETS ASPECTS:
 
 MACHINE LEARNING PREDICTIONS:
 
-                                ModelID       Date         P1        P2         P3         P4        P5 Signal
-    ZRX-USD-predict-ensamble-gakknn-VEE 2021-02-10 -0.0254080 -0.052470 -0.0487040 -0.0508200 -0.049968   sell
- ZRX-USD-predict-ensamble-gakknn-VACGBD 2021-02-10  0.0464947 -0.042349 -0.0219849  0.0363910  0.039136   sell
- ZRX-USD-predict-ensamble-gakknn-VACGBE 2021-02-10  0.0352480  0.043348  0.0483250  0.0297743  0.032296    buy
-   ZRX-USD-predict-ensamble-gakknn-VACF 2021-02-10  0.0123680 -0.011898  0.0123680 -0.0157429 -0.015743   sell
-     ZRX-USD-predict-ensamble-gakknn-PC 2021-02-10  0.0261110  0.026658  0.0150410  0.0216900  0.017193    buy
+                                 ModelID       Date         P1        P2         P3         P4         P5 Signal
+     ZRX-USD-predict-ensamble-gakknn-UAC 2021-02-10 -0.0605330  0.012479  0.0020440 -0.0046400  0.0213600    buy
+      ZRX-USD-predict-ensamble-gakknn-MH 2021-02-10 -0.0049577  0.036227 -0.0071275 -0.0164780  0.0358807   sell
+  ZRX-USD-predict-ensamble-gakknn-VACGBD 2021-02-10  0.0464947 -0.042349 -0.0219849  0.0363910  0.0391360    buy
+ ZRX-USD-predict-ensamble-gakknn-VACGBFC 2021-02-10  0.0644100  0.062670  0.0557160  0.0639380  0.0504070   sell
+    ZRX-USD-predict-ensamble-gakknn-VACF 2021-02-10  0.0123680 -0.011898  0.0123680 -0.0157429 -0.0157430    buy

@@ -153,6 +153,16 @@ PLANET VEDIC MANSION POSITION:
 17: 2021-02-08   Venus         Shravana   32   35    67     0.48      0.52
 18: 2021-02-08   Vesta    PurvaPhalguni   55   33    88     0.62      0.38
 
+MOON PHASE:
+
+         Date MoonPhase Buy Sell DaysN BuyDays% SellDays%
+1: 2021-02-08      Full 562  600  1162     0.48      0.52
+
+LAST MOON PHASE ZODIAC SIGN POSITION:
+
+         Date MoonPhase ZodSign Buy Sell DaysN BuyDays% SellDays%
+1: 2021-02-08      Full     Leo  65   65   130      0.5       0.5
+
 PLANETS ASPECTS:
 
           Date meanOrb minOrb maxOrb startHour endHour exactHour effHours PlanetX       Aspect PlanetY  Buy Sell DaysN BuyDays% SellDays%
@@ -222,7 +232,7 @@ MACHINE LEARNING PREDICTIONS:
 
                                 ModelID       Date         P1         P2         P3         P4        P5 Signal
  DASH-USD-predict-ensamble-gakknn-MIFCB 2021-02-08  0.0290495  0.0240060 -0.0153120  0.0233620  0.022959    buy
-    DASH-USD-predict-ensamble-gakknn-VE 2021-02-08  0.0273930  0.0315432  0.0424970  0.0529660  0.031206    buy
-   DASH-USD-predict-ensamble-gakknn-NAC 2021-02-08 -0.0129670 -0.0072920 -0.0113890  0.0077303 -0.018983   sell
+   DASH-USD-predict-ensamble-gakknn-NAC 2021-02-08 -0.0129670 -0.0072920 -0.0113890  0.0077303 -0.018983    buy
+    DASH-USD-predict-ensamble-gakknn-VE 2021-02-08  0.0273930  0.0315432  0.0424970  0.0529660  0.031206   sell
    DASH-USD-predict-ensamble-gakknn-VEA 2021-02-08  0.0108040  0.0004860 -0.0100938  0.0128040  0.009549    buy
    DASH-USD-predict-ensamble-gakknn-VDE 2021-02-08  0.0536200 -0.0043580 -0.0205130 -0.0045340  0.000420    buy

@@ -153,6 +153,16 @@ PLANET VEDIC MANSION POSITION:
 17: 2021-02-12   Venus         Shravana   34   33    67     0.51      0.49
 18: 2021-02-12   Vesta    PurvaPhalguni   64   24    88     0.73      0.27
 
+MOON PHASE:
+
+         Date MoonPhase Buy Sell DaysN BuyDays% SellDays%
+1: 2021-02-12       New 667  499  1166     0.57      0.43
+
+LAST MOON PHASE ZODIAC SIGN POSITION:
+
+         Date MoonPhase  ZodSign Buy Sell DaysN BuyDays% SellDays%
+1: 2021-02-12       New Aquarius  50   24    74     0.68      0.32
+
 PLANETS ASPECTS:
 
           Date meanOrb minOrb maxOrb startHour endHour exactHour effHours PlanetX       Aspect PlanetY  Buy Sell DaysN BuyDays% SellDays%
@@ -208,9 +218,9 @@ PLANETS ASPECTS:
 
 MACHINE LEARNING PREDICTIONS:
 
-                               ModelID       Date         P1          P2        P3         P4         P5 Signal
-   BTC-USD-predict-ensamble-gakknn-RBD 2021-02-12  0.0035600 -0.00184870 -0.002953  0.0062750  0.0014330   sell
- BTC-USD-predict-ensamble-gakknn-MAABC 2021-02-12  0.0018630  0.01679310 -0.004206 -0.0085750 -0.0062646   sell
-    BTC-USD-predict-ensamble-gakknn-MB 2021-02-12  0.0085965  0.01044600  0.010153  0.0080626  0.0047011    buy
-   BTC-USD-predict-ensamble-gakknn-MBD 2021-02-12 -0.0141820 -0.01597426 -0.017748 -0.0178330 -0.0164914   sell
-     BTC-USD-predict-kknnLDJA-ensamble 2021-02-12  0.6721000  0.10970000  0.114000  0.0775800  0.1509450   sell
+                               ModelID       Date        P1          P2        P3         P4         P5 Signal
+   BTC-USD-predict-ensamble-gakknn-RBD 2021-02-12  0.003560 -0.00184870 -0.002953  0.0062750  0.0014330   sell
+     BTC-USD-predict-kknnLDJB-ensamble 2021-02-12  0.188600  0.00000000  0.229800  0.0000000  0.0663420    buy
+   BTC-USD-predict-ensamble-gakknn-MBD 2021-02-12 -0.014182 -0.01597426 -0.017748 -0.0178330 -0.0164914    buy
+   BTC-USD-predict-ensamble-gakknn-RBC 2021-02-12 -0.008911 -0.00891100 -0.006738 -0.0070922 -0.0089110    buy
+ BTC-USD-predict-ensamble-gakknn-MAABC 2021-02-12  0.001863  0.01679310 -0.004206 -0.0085750 -0.0062646    buy

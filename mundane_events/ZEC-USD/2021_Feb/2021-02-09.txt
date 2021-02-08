@@ -153,6 +153,16 @@ PLANET VEDIC MANSION POSITION:
 17: 2021-02-09   Venus         Shravana  18   27    45     0.40      0.60
 18: 2021-02-09   Vesta    PurvaPhalguni  49   39    88     0.56      0.44
 
+MOON PHASE:
+
+         Date MoonPhase Buy Sell DaysN BuyDays% SellDays%
+1: 2021-02-09      Full 343  434   777     0.44      0.56
+
+LAST MOON PHASE ZODIAC SIGN POSITION:
+
+         Date MoonPhase ZodSign Buy Sell DaysN BuyDays% SellDays%
+1: 2021-02-09      Full     Leo  34   50    84      0.4       0.6
+
 PLANETS ASPECTS:
 
           Date meanOrb minOrb maxOrb startHour endHour exactHour effHours PlanetX       Aspect PlanetY Buy Sell DaysN BuyDays% SellDays%
@@ -220,7 +230,7 @@ PLANETS ASPECTS:
 MACHINE LEARNING PREDICTIONS:
 
                              ModelID       Date         P1        P2         P3         P4         P5 Signal
- ZEC-USD-predict-ensamble-gakknn-NAC 2021-02-09 -0.0101512  0.001415 -0.0043426  0.0007510 -0.0138450   sell
+ ZEC-USD-predict-ensamble-gakknn-NAC 2021-02-09 -0.0101512  0.001415 -0.0043426  0.0007510 -0.0138450    buy
  ZEC-USD-predict-ensamble-gakknn-MEE 2021-02-09 -0.0076330 -0.016553 -0.0123140 -0.0200619  0.0089019   sell
  ZEC-USD-predict-ensamble-gakknn-RBA 2021-02-09  0.0159015  0.021734  0.0149539  0.0141308  0.0440084    buy
- ZEC-USD-predict-ensamble-gakknn-MEN 2021-02-09  0.0047840 -0.000670 -0.0093030 -0.0063660 -0.0080060   sell
+  ZEC-USD-predict-ensamble-gakknn-TA 2021-02-09  0.0271790  0.024543  0.0002110  0.0079380  0.0798170   sell

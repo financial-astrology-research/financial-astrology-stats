@@ -151,6 +151,16 @@ PLANET VEDIC MANSION POSITION:
 17: 2021-02-12   Venus         Shravana  15   19    34     0.44      0.56
 18: 2021-02-12   Vesta    PurvaPhalguni  36   24    60     0.60      0.40
 
+MOON PHASE:
+
+         Date MoonPhase Buy Sell DaysN BuyDays% SellDays%
+1: 2021-02-12       New 337  280   617     0.55      0.45
+
+LAST MOON PHASE ZODIAC SIGN POSITION:
+
+         Date MoonPhase  ZodSign Buy Sell DaysN BuyDays% SellDays%
+1: 2021-02-12       New Aquarius  29   16    45     0.64      0.36
+
 PLANETS ASPECTS:
 
           Date meanOrb minOrb maxOrb startHour endHour exactHour effHours PlanetX       Aspect PlanetY Buy Sell DaysN BuyDays% SellDays%
@@ -206,9 +216,9 @@ PLANETS ASPECTS:
 
 MACHINE LEARNING PREDICTIONS:
 
-                                 ModelID       Date         P1        P2        P3         P4         P5 Signal
-     LINK-USD-predict-ensamble-gakknn-VF 2021-02-12 -0.0689010 -0.036551 -0.005865 -0.0381730  0.0189580   sell
-    LINK-USD-predict-ensamble-gakknn-MAC 2021-02-12 -0.0024480 -0.003695  0.000972  0.0040372 -0.0011400    buy
-  LINK-USD-predict-ensamble-gakknn-VACGE 2021-02-12  0.0357301  0.005322  0.000379  0.0080040  0.0395520    buy
-   LINK-USD-predict-ensamble-gakknn-VACC 2021-02-12  0.1031720  0.087177  0.032551  0.1026160  0.0193030    buy
- LINK-USD-predict-ensamble-gakknn-VACGBE 2021-02-12 -0.0131946 -0.008954 -0.033560 -0.0682140  0.0395644    buy
+                                   ModelID       Date         P1         P2        P3        P4         P5 Signal
+  LINK-USD-predict-ensamble-gakknn-VACGBFC 2021-02-12 -0.0753300 -0.0242477 -0.075718 0.0242150 -0.0170905   sell
+      LINK-USD-predict-ensamble-gakknn-MAC 2021-02-12 -0.0024480 -0.0036950  0.000972 0.0040372 -0.0011400    buy
+ LINK-USD-predict-ensamble-gakknn-VACGBFCL 2021-02-12 -0.0622151 -0.0160280  0.040111 0.0040170 -0.0143105   sell
+    LINK-USD-predict-ensamble-gakknn-VACGE 2021-02-12  0.0357301  0.0053220  0.000379 0.0080040  0.0395520   sell
+     LINK-USD-predict-ensamble-gakknn-VACC 2021-02-12  0.1031720  0.0871770  0.032551 0.1026160  0.0193030   sell

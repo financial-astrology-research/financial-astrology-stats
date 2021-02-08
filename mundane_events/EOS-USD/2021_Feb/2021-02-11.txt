@@ -151,6 +151,16 @@ PLANET VEDIC MANSION POSITION:
 17: 2021-02-11   Venus         Shravana  19   15    34     0.56      0.44
 18: 2021-02-11   Vesta    PurvaPhalguni  41   47    88     0.47      0.53
 
+MOON PHASE:
+
+         Date MoonPhase Buy Sell DaysN BuyDays% SellDays%
+1: 2021-02-11       New 356  300   656     0.54      0.46
+
+LAST MOON PHASE ZODIAC SIGN POSITION:
+
+         Date MoonPhase  ZodSign Buy Sell DaysN BuyDays% SellDays%
+1: 2021-02-11       New Aquarius  30   15    45     0.67      0.33
+
 PLANETS ASPECTS:
 
           Date meanOrb minOrb maxOrb startHour endHour exactHour effHours PlanetX       Aspect PlanetY Buy Sell DaysN BuyDays% SellDays%
@@ -214,9 +224,9 @@ PLANETS ASPECTS:
 
 MACHINE LEARNING PREDICTIONS:
 
-                                ModelID       Date         P1         P2         P3         P4         P5 Signal
- EOS-USD-predict-ensamble-gakknn-VDIDCC 2021-02-11 -0.0493920 -0.0554080 -0.0504820 -0.0452180 -0.0453400   sell
-      EOS-USD-predict-kknnLDDF-ensamble 2021-02-11  0.9475000  1.0000000  1.0000000  0.9764300  1.0000000    buy
-   EOS-USD-predict-ensamble-gakknn-MIHF 2021-02-11 -0.0140164 -0.0156700 -0.0235510 -0.0169354 -0.0031600   sell
-    EOS-USD-predict-ensamble-gakknn-VGC 2021-02-11  0.0005550  0.0149270  0.0224090  0.0307020 -0.0016577    buy
-  EOS-USD-predict-ensamble-gakknn-VDIDA 2021-02-11  0.0276280  0.0660849  0.0627223  0.0626020  0.0472070    buy
+                                   ModelID       Date        P1         P2        P3         P4         P5 Signal
+    EOS-USD-predict-ensamble-gakknn-VDIDCC 2021-02-11 -0.049392 -0.0554080 -0.050482 -0.0452180 -0.0453400   sell
+         EOS-USD-predict-kknnLDDF-ensamble 2021-02-11  0.947500  1.0000000  1.000000  0.9764300  1.0000000    buy
+ EOS-USD-predict-ensamble-gakknn-MAABBAADA 2021-02-11 -0.008863  0.0006231  0.007332  0.0030374  0.0012040    buy
+  EOS-USD-predict-ensamble-gakknn-VACGBFCK 2021-02-11 -0.090949 -0.0009090 -0.056012 -0.0255810  0.0042560    buy
+       EOS-USD-predict-ensamble-gakknn-VGC 2021-02-11  0.000555  0.0149270  0.022409  0.0307020 -0.0016577    buy

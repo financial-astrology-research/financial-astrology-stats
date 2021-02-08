@@ -151,6 +151,16 @@ PLANET VEDIC MANSION POSITION:
 17: 2021-02-11   Venus         Shravana  18   16    34     0.53      0.47
 18: 2021-02-11   Vesta    PurvaPhalguni  34   26    60     0.57      0.43
 
+MOON PHASE:
+
+         Date MoonPhase Buy Sell DaysN BuyDays% SellDays%
+1: 2021-02-11       New 302  304   606      0.5       0.5
+
+LAST MOON PHASE ZODIAC SIGN POSITION:
+
+         Date MoonPhase  ZodSign Buy Sell DaysN BuyDays% SellDays%
+1: 2021-02-11       New Aquarius  26   19    45     0.58      0.42
+
 PLANETS ASPECTS:
 
           Date meanOrb minOrb maxOrb startHour endHour exactHour effHours PlanetX       Aspect PlanetY Buy Sell DaysN BuyDays% SellDays%
@@ -214,9 +224,9 @@ PLANETS ASPECTS:
 
 MACHINE LEARNING PREDICTIONS:
 
-                              ModelID       Date        P1         P2         P3         P4         P5 Signal
- ADA-USD-predict-ensamble-gakknn-PABB 2021-02-11  0.028037  0.0868122  0.0790070  0.0148220 -0.0234400    buy
- ADA-USD-predict-ensamble-gakknn-MIHA 2021-02-11 -0.019729 -0.0285510 -0.0161015 -0.0230446 -0.0175548   sell
- ADA-USD-predict-ensamble-gakknn-VDIA 2021-02-11 -0.049930 -0.0593840 -0.0456109 -0.0488278 -0.0166523   sell
-   ADA-USD-predict-ensamble-gakknn-MC 2021-02-11  0.048108  0.0312380  0.0460159  0.0374400  0.0294940    buy
-    ADA-USD-predict-kknnLDDD-ensamble 2021-02-11  1.000000  1.0000000  1.0000000  1.0000000  1.0000000    buy
+                               ModelID       Date        P1         P2         P3         P4         P5 Signal
+    ADA-USD-predict-ensamble-gakknn-MC 2021-02-11  0.048108  0.0312380  0.0460159  0.0374400  0.0294940   sell
+  ADA-USD-predict-ensamble-gakknn-PABB 2021-02-11  0.028037  0.0868122  0.0790070  0.0148220 -0.0234400   sell
+  ADA-USD-predict-ensamble-gakknn-VDIA 2021-02-11 -0.049930 -0.0593840 -0.0456109 -0.0488278 -0.0166523   sell
+  ADA-USD-predict-ensamble-gakknn-MIHA 2021-02-11 -0.019729 -0.0285510 -0.0161015 -0.0230446 -0.0175548    buy
+ ADA-USD-predict-ensamble-gakknn-MIHDB 2021-02-11 -0.005013 -0.0162060 -0.0204750 -0.0204749 -0.0214680   sell

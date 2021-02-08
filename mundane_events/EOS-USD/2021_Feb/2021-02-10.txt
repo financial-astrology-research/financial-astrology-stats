@@ -152,6 +152,16 @@ PLANET VEDIC MANSION POSITION:
 17: 2021-02-10   Venus         Shravana  19   15    34     0.56      0.44
 18: 2021-02-10   Vesta    PurvaPhalguni  41   47    88     0.47      0.53
 
+MOON PHASE:
+
+         Date MoonPhase Buy Sell DaysN BuyDays% SellDays%
+1: 2021-02-10      Full 296  358   654     0.45      0.55
+
+LAST MOON PHASE ZODIAC SIGN POSITION:
+
+         Date MoonPhase ZodSign Buy Sell DaysN BuyDays% SellDays%
+1: 2021-02-10      Full     Leo  39   29    68     0.57      0.43
+
 PLANETS ASPECTS:
 
           Date meanOrb minOrb maxOrb startHour endHour exactHour effHours PlanetX       Aspect PlanetY Buy Sell DaysN BuyDays% SellDays%
@@ -217,9 +227,9 @@ PLANETS ASPECTS:
 
 MACHINE LEARNING PREDICTIONS:
 
-                                ModelID       Date         P1         P2         P3         P4         P5 Signal
- EOS-USD-predict-ensamble-gakknn-VDIDCC 2021-02-10 -0.0401470 -0.0438330 -0.0300800 -0.0339740 -0.0304510   sell
-      EOS-USD-predict-kknnLDDF-ensamble 2021-02-10  0.4061000  0.0000000  0.0000000  0.2506000  0.3548970   sell
-   EOS-USD-predict-ensamble-gakknn-MIHF 2021-02-10 -0.0108655 -0.0107280 -0.0089630 -0.0103181 -0.0125790   sell
-    EOS-USD-predict-ensamble-gakknn-VGC 2021-02-10 -0.0470100  0.0030940  0.0210890  0.0144550  0.0028516    buy
-  EOS-USD-predict-ensamble-gakknn-VDIDA 2021-02-10  0.0501100  0.0546477  0.0582533  0.0532500  0.0514010    buy
+                                   ModelID       Date        P1         P2        P3         P4         P5 Signal
+    EOS-USD-predict-ensamble-gakknn-VDIDCC 2021-02-10 -0.040147 -0.0438330 -0.030080 -0.0339740 -0.0304510   sell
+         EOS-USD-predict-kknnLDDF-ensamble 2021-02-10  0.406100  0.0000000  0.000000  0.2506000  0.3548970    buy
+ EOS-USD-predict-ensamble-gakknn-MAABBAADA 2021-02-10  0.021497  0.0028261  0.029862  0.0054947  0.0294000    buy
+  EOS-USD-predict-ensamble-gakknn-VACGBFCK 2021-02-10 -0.036655  0.0188290 -0.026380  0.0128180  0.0141250    buy
+       EOS-USD-predict-ensamble-gakknn-VGC 2021-02-10 -0.047010  0.0030940  0.021089  0.0144550  0.0028516    buy

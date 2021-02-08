@@ -153,6 +153,16 @@ PLANET VEDIC MANSION POSITION:
 17: 2021-02-09   Venus         Shravana   34   33    67     0.51      0.49
 18: 2021-02-09   Vesta    PurvaPhalguni   64   24    88     0.73      0.27
 
+MOON PHASE:
+
+         Date MoonPhase Buy Sell DaysN BuyDays% SellDays%
+1: 2021-02-09      Full 620  542  1162     0.53      0.47
+
+LAST MOON PHASE ZODIAC SIGN POSITION:
+
+         Date MoonPhase ZodSign Buy Sell DaysN BuyDays% SellDays%
+1: 2021-02-09      Full     Leo  68   62   130     0.52      0.48
+
 PLANETS ASPECTS:
 
           Date meanOrb minOrb maxOrb startHour endHour exactHour effHours PlanetX       Aspect PlanetY  Buy Sell DaysN BuyDays% SellDays%
@@ -219,9 +229,9 @@ PLANETS ASPECTS:
 
 MACHINE LEARNING PREDICTIONS:
 
-                               ModelID       Date         P1          P2         P3         P4         P5 Signal
-   BTC-USD-predict-ensamble-gakknn-RBD 2021-02-09 -0.0194310 -0.02060080 -0.0202780 -0.0212820 -0.0162963   sell
- BTC-USD-predict-ensamble-gakknn-MAABC 2021-02-09 -0.0096080 -0.00657240 -0.0116610 -0.0113020 -0.0139386   sell
-    BTC-USD-predict-ensamble-gakknn-MB 2021-02-09  0.0155793  0.02041900  0.0160605  0.0112894  0.0121361    buy
-   BTC-USD-predict-ensamble-gakknn-MBD 2021-02-09 -0.0099960 -0.00857065 -0.0101180 -0.0072020 -0.0126670   sell
-     BTC-USD-predict-kknnLDJA-ensamble 2021-02-09  0.5282000  0.44020000  0.4913000  0.4060400  0.7817210   sell
+                               ModelID       Date        P1          P2        P3         P4         P5 Signal
+   BTC-USD-predict-ensamble-gakknn-RBD 2021-02-09 -0.019431 -0.02060080 -0.020278 -0.0212820 -0.0162963   sell
+     BTC-USD-predict-kknnLDJB-ensamble 2021-02-09  0.395000  1.00000000  0.328600  0.0000000  0.5572150    buy
+   BTC-USD-predict-ensamble-gakknn-MBD 2021-02-09 -0.009996 -0.00857065 -0.010118 -0.0072020 -0.0126670    buy
+   BTC-USD-predict-ensamble-gakknn-RBC 2021-02-09 -0.041821 -0.02442600 -0.035484 -0.0298782 -0.0360200    buy
+ BTC-USD-predict-ensamble-gakknn-MAABC 2021-02-09 -0.009608 -0.00657240 -0.011661 -0.0113020 -0.0139386    buy

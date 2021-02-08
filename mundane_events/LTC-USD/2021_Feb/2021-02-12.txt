@@ -153,6 +153,16 @@ PLANET VEDIC MANSION POSITION:
 17: 2021-02-12   Venus         Shravana   32   35    67     0.48      0.52
 18: 2021-02-12   Vesta    PurvaPhalguni   58   30    88     0.66      0.34
 
+MOON PHASE:
+
+         Date MoonPhase Buy Sell DaysN BuyDays% SellDays%
+1: 2021-02-12       New 592  574  1166     0.51      0.49
+
+LAST MOON PHASE ZODIAC SIGN POSITION:
+
+         Date MoonPhase  ZodSign Buy Sell DaysN BuyDays% SellDays%
+1: 2021-02-12       New Aquarius  46   28    74     0.62      0.38
+
 PLANETS ASPECTS:
 
           Date meanOrb minOrb maxOrb startHour endHour exactHour effHours PlanetX       Aspect PlanetY  Buy Sell DaysN BuyDays% SellDays%
@@ -208,9 +218,9 @@ PLANETS ASPECTS:
 
 MACHINE LEARNING PREDICTIONS:
 
-                                ModelID       Date          P1        P2         P3         P4          P5 Signal
-      LTC-USD-predict-kknnLDDF-ensamble 2021-02-12  1.00000000  1.000000  0.6792000  0.6791600  0.59389800    buy
-    LTC-USD-predict-ensamble-gakknn-UAD 2021-02-12 -0.00931400 -0.001620 -0.0092293  0.0014820 -0.00427200   sell
- LTC-USD-predict-ensamble-gakknn-VDIBCF 2021-02-12 -0.07745450 -0.071774 -0.0438636 -0.0753770 -0.06653900   sell
-    LTC-USD-predict-ensamble-gakknn-UBD 2021-02-12 -0.01235513 -0.013033 -0.0130330 -0.0151490 -0.01375603   sell
-    LTC-USD-predict-ensamble-gakknn-MEB 2021-02-12  0.00554100  0.000342  0.0165970  0.0158125  0.02081800    buy
+                                  ModelID       Date          P1         P2         P3          P4          P5 Signal
+        LTC-USD-predict-kknnLDDF-ensamble 2021-02-12  1.00000000  1.0000000  0.6792000  0.67916000  0.59389800   sell
+      LTC-USD-predict-ensamble-gakknn-UAD 2021-02-12 -0.00931400 -0.0016200 -0.0092293  0.00148200 -0.00427200    buy
+   LTC-USD-predict-ensamble-gakknn-VDIBCF 2021-02-12 -0.07745450 -0.0717740 -0.0438636 -0.07537700 -0.06653900    buy
+ LTC-USD-predict-ensamble-gakknn-MAABBAAB 2021-02-12 -0.01850150 -0.0075964 -0.0170810 -0.01094746 -0.01784520    buy
+      LTC-USD-predict-ensamble-gakknn-UBD 2021-02-12 -0.01235513 -0.0130330 -0.0130330 -0.01514900 -0.01375603   sell

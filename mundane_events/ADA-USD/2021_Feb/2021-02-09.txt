@@ -152,6 +152,16 @@ PLANET VEDIC MANSION POSITION:
 17: 2021-02-09   Venus         Shravana  18   16    34     0.53      0.47
 18: 2021-02-09   Vesta    PurvaPhalguni  34   26    60     0.57      0.43
 
+MOON PHASE:
+
+         Date MoonPhase Buy Sell DaysN BuyDays% SellDays%
+1: 2021-02-09      Full 298  314   612     0.49      0.51
+
+LAST MOON PHASE ZODIAC SIGN POSITION:
+
+         Date MoonPhase ZodSign Buy Sell DaysN BuyDays% SellDays%
+1: 2021-02-09      Full     Leo  32   36    68     0.47      0.53
+
 PLANETS ASPECTS:
 
           Date meanOrb minOrb maxOrb startHour endHour exactHour effHours PlanetX       Aspect PlanetY Buy Sell DaysN BuyDays% SellDays%
@@ -218,9 +228,9 @@ PLANETS ASPECTS:
 
 MACHINE LEARNING PREDICTIONS:
 
-                              ModelID       Date       P1        P2        P3        P4         P5 Signal
- ADA-USD-predict-ensamble-gakknn-PABB 2021-02-09 0.028037 0.0868122 0.0790070 0.0148220 -0.0234400    buy
- ADA-USD-predict-ensamble-gakknn-MIHA 2021-02-09 0.018337 0.0064700 0.0113414 0.0095088  0.0063323    buy
- ADA-USD-predict-ensamble-gakknn-VDIA 2021-02-09 0.023721 0.0327277 0.0302893 0.0029611  0.0212949    buy
-   ADA-USD-predict-ensamble-gakknn-MC 2021-02-09 0.024075 0.0500070 0.0321248 0.0287440  0.0373000    buy
-    ADA-USD-predict-kknnLDDD-ensamble 2021-02-09 0.000000 1.0000000 0.0000000 1.0000000  0.0000000   sell
+                               ModelID       Date        P1         P2         P3         P4         P5 Signal
+    ADA-USD-predict-ensamble-gakknn-MC 2021-02-09  0.024075  0.0500070  0.0321248  0.0287440  0.0373000   sell
+  ADA-USD-predict-ensamble-gakknn-PABB 2021-02-09  0.028037  0.0868122  0.0790070  0.0148220 -0.0234400   sell
+  ADA-USD-predict-ensamble-gakknn-VDIA 2021-02-09  0.023721  0.0327277  0.0302893  0.0029611  0.0212949   sell
+  ADA-USD-predict-ensamble-gakknn-MIHA 2021-02-09  0.018337  0.0064700  0.0113414  0.0095088  0.0063323    buy
+ ADA-USD-predict-ensamble-gakknn-MIHDB 2021-02-09 -0.004043 -0.0048550 -0.0061280 -0.0112459  0.0003660   sell

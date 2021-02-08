@@ -151,6 +151,16 @@ PLANET VEDIC MANSION POSITION:
 17: 2021-02-11   Venus         Shravana  18   16    34     0.53      0.47
 18: 2021-02-11   Vesta    PurvaPhalguni  62   26    88     0.70      0.30
 
+MOON PHASE:
+
+         Date MoonPhase Buy Sell DaysN BuyDays% SellDays%
+1: 2021-02-11       New 355  291   646     0.55      0.45
+
+LAST MOON PHASE ZODIAC SIGN POSITION:
+
+         Date MoonPhase  ZodSign Buy Sell DaysN BuyDays% SellDays%
+1: 2021-02-11       New Aquarius  31   14    45     0.69      0.31
+
 PLANETS ASPECTS:
 
           Date meanOrb minOrb maxOrb startHour endHour exactHour effHours PlanetX       Aspect PlanetY Buy Sell DaysN BuyDays% SellDays%
@@ -214,9 +224,9 @@ PLANETS ASPECTS:
 
 MACHINE LEARNING PREDICTIONS:
 
-                                  ModelID       Date         P1         P2        P3         P4         P5 Signal
-        BNB-USD-predict-kknnLDDA-ensamble 2021-02-11  0.4961000  0.2403000  0.000000  0.2403300  0.0000000   sell
- BNB-USD-predict-ensamble-gakknn-MAABBAAB 2021-02-11 -0.0029500  0.0014650  0.007841 -0.0147749 -0.0081090   sell
-       BNB-USD-predict-ensamble-gakknn-NB 2021-02-11 -0.0186680 -0.0183160 -0.005053  0.0098380 -0.0029440   sell
-  BNB-USD-predict-ensamble-gakknn-VACGBFA 2021-02-11  0.0525835  0.0262050  0.049051  0.0766810  0.0553860    buy
- BNB-USD-predict-ensamble-gakknn-VACGBFCL 2021-02-11  0.0276040 -0.0183299  0.027604 -0.0262660  0.0893805    buy
+                                  ModelID       Date         P1         P2        P3         P4        P5 Signal
+        BNB-USD-predict-kknnLDDA-ensamble 2021-02-11  0.4961000  0.2403000  0.000000  0.2403300  0.000000    buy
+ BNB-USD-predict-ensamble-gakknn-MAABBAAB 2021-02-11 -0.0029500  0.0014650  0.007841 -0.0147749 -0.008109    buy
+       BNB-USD-predict-ensamble-gakknn-NB 2021-02-11 -0.0186680 -0.0183160 -0.005053  0.0098380 -0.002944   sell
+  BNB-USD-predict-ensamble-gakknn-VACGBFA 2021-02-11  0.0525835  0.0262050  0.049051  0.0766810  0.055386    buy
+      BNB-USD-predict-ensamble-gakknn-MEC 2021-02-11 -0.0197150 -0.0059369 -0.017485 -0.0027810 -0.005937    buy

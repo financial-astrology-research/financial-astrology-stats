@@ -153,6 +153,16 @@ PLANET VEDIC MANSION POSITION:
 17: 2021-02-11   Venus         Shravana   32   35    67     0.48      0.52
 18: 2021-02-11   Vesta    PurvaPhalguni   58   30    88     0.66      0.34
 
+MOON PHASE:
+
+         Date MoonPhase Buy Sell DaysN BuyDays% SellDays%
+1: 2021-02-11       New 592  574  1166     0.51      0.49
+
+LAST MOON PHASE ZODIAC SIGN POSITION:
+
+         Date MoonPhase  ZodSign Buy Sell DaysN BuyDays% SellDays%
+1: 2021-02-11       New Aquarius  46   28    74     0.62      0.38
+
 PLANETS ASPECTS:
 
           Date meanOrb minOrb maxOrb startHour endHour exactHour effHours PlanetX       Aspect PlanetY  Buy Sell DaysN BuyDays% SellDays%
@@ -216,9 +226,9 @@ PLANETS ASPECTS:
 
 MACHINE LEARNING PREDICTIONS:
 
-                                ModelID       Date          P1        P2         P3        P4          P5 Signal
-      LTC-USD-predict-kknnLDDF-ensamble 2021-02-11  1.00000000  1.000000  1.0000000  1.000000  0.98381900    buy
-    LTC-USD-predict-ensamble-gakknn-UAD 2021-02-11  0.03631200  0.025280  0.0275075  0.035147  0.02527600    buy
- LTC-USD-predict-ensamble-gakknn-VDIBCF 2021-02-11  0.02778850  0.022316  0.0234536  0.034505  0.01876200    buy
-    LTC-USD-predict-ensamble-gakknn-UBD 2021-02-11  0.00725208  0.006024  0.0058250  0.005602  0.00793365    buy
-    LTC-USD-predict-ensamble-gakknn-MEB 2021-02-11 -0.02505300 -0.025053 -0.0251870 -0.027859 -0.02244600   sell
+                                  ModelID       Date          P1         P2         P3          P4          P5 Signal
+        LTC-USD-predict-kknnLDDF-ensamble 2021-02-11  1.00000000  1.0000000  1.0000000  1.00000000  0.98381900   sell
+      LTC-USD-predict-ensamble-gakknn-UAD 2021-02-11  0.03631200  0.0252800  0.0275075  0.03514700  0.02527600    buy
+   LTC-USD-predict-ensamble-gakknn-VDIBCF 2021-02-11  0.02778850  0.0223160  0.0234536  0.03450500  0.01876200    buy
+ LTC-USD-predict-ensamble-gakknn-MAABBAAB 2021-02-11 -0.00349050 -0.0122107 -0.0026140 -0.00549783 -0.01952590    buy
+      LTC-USD-predict-ensamble-gakknn-UBD 2021-02-11  0.00725208  0.0060240  0.0058250  0.00560200  0.00793365   sell

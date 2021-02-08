@@ -151,6 +151,16 @@ PLANET VEDIC MANSION POSITION:
 17: 2021-02-11   Venus         Shravana  20   14    34     0.59      0.41
 18: 2021-02-11   Vesta    PurvaPhalguni  55   33    88     0.62      0.38
 
+MOON PHASE:
+
+         Date MoonPhase Buy Sell DaysN BuyDays% SellDays%
+1: 2021-02-11       New 342  329   671     0.51      0.49
+
+LAST MOON PHASE ZODIAC SIGN POSITION:
+
+         Date MoonPhase  ZodSign Buy Sell DaysN BuyDays% SellDays%
+1: 2021-02-11       New Aquarius  28   17    45     0.62      0.38
+
 PLANETS ASPECTS:
 
           Date meanOrb minOrb maxOrb startHour endHour exactHour effHours PlanetX       Aspect PlanetY Buy Sell DaysN BuyDays% SellDays%
@@ -214,9 +224,9 @@ PLANETS ASPECTS:
 
 MACHINE LEARNING PREDICTIONS:
 
-                                ModelID       Date        P1        P2        P3        P4        P5 Signal
-    BAT-USD-predict-ensamble-gakknn-MCB 2021-02-11 -0.015450 -0.009900 -0.017925 -0.015000 -0.015300   sell
-       BAT-USD-predict-kknnLDB-ensamble 2021-02-11  1.000000  0.463600  1.000000  0.000000  1.000000   sell
-    BAT-USD-predict-ensamble-gakknn-VDA 2021-02-11  0.034906  0.034993  0.012616  0.034906  0.030570    buy
-  BAT-USD-predict-ensamble-gakknn-UADBD 2021-02-11  0.004008  0.004946 -0.087066  0.001861 -0.031008    buy
- BAT-USD-predict-ensamble-gakknn-VDIDCC 2021-02-11  0.038395  0.050670  0.035755  0.061600  0.066439    buy
+                               ModelID       Date       P1       P2        P3        P4        P5 Signal
+   BAT-USD-predict-ensamble-gakknn-VDA 2021-02-11 0.034906 0.034993  0.012616  0.034906  0.030570    buy
+      BAT-USD-predict-kknnLDB-ensamble 2021-02-11 1.000000 0.463600  1.000000  0.000000  1.000000    buy
+      BAT-USD-predict-kknnLDL-ensamble 2021-02-11 0.000000 0.000000  0.181900  0.000000  0.000000    buy
+ BAT-USD-predict-ensamble-gakknn-VACGC 2021-02-11 0.017858 0.033618  0.020250 -0.020001  0.015607    buy
+ BAT-USD-predict-ensamble-gakknn-UADBD 2021-02-11 0.004008 0.004946 -0.087066  0.001861 -0.031008   sell
