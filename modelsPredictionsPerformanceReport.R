@@ -36,6 +36,9 @@ predictionsMetadataCreate <- function() {
   }
 }
 
+
+
+
 #' Calculate monthly data (daily) predictions accuracy and prevalence.
 #' @param monthlyData Model predictions data table rows for a given year/month.
 #' @return List with number rows (N), Accuracy and Prevalence metrics.
@@ -86,7 +89,7 @@ modelPredictionsWithActualsLoad <- function(predictionsFileName, startDate) {
   assetDataTable <- assetAgumentedDataLoad(symbolId, startDate)
   modelPredictions <- modelPredictionsLoad(predictionsFileName)
   modelPredictions <- merge(
-    assetDataTable[, c('Date', 'OHLCMid', 'OHLCEff')],
+    assetDataTable[, c('Date', 'OHLCMid', 'OHLCEff', 'CEff')],
     modelPredictions,
     by = "Date"
   )
@@ -101,22 +104,39 @@ predictionsPerformanceMetricsCalculate <- function(predictionsFileName) {
   createDate <- modelPredictionsCreateDateGet(predictionsFileName)
   startDate <- as.Date(format(Sys.Date() - 210, "%Y-%m-01"))
   modelPredictions <- modelPredictionsWithActualsLoad(predictionsFileName, startDate)
+  
+  
   # Calculate accuracy by year/month days observations.
   accuracyTest <- modelPredictions[, accuracyCalculate(.SD), by = list(YearMonth)]
   # Filter months that don't have at least N observations yet.
   accuracyTest <- accuracyTest[N >= 10]
+  
+  # calculate accuracy from create date
+  prodData <- modelPredictions[modelPredictions$Date >= createDate]
+  prodCorrectPredictions <- sum(prodData$EffPred == prodData$OHLCEff)
+  prodAccuracy <- prodCorrectPredictions/length(prodData$OHLCEff)
+  prodPrevalence <- sum(prodData$EffPred=='Buy')/length(prodData$OHLCEff)
+  
+  # calculate frequency of underlying asset in the time frame
+  actualFrequency <- sum(prodData$OHLCEff=='Buy')/length(prodData$OHLCEff)
+  
+  
   # Calculate descriptive statistics for Accuracy / Prevalence.
   descriptives6m <- round(describe(head(accuracyTest[, c('Accuracy', 'Prevalence')], 6)), 3)
   descriptives3m <- round(describe(tail(accuracyTest[, c('Accuracy', 'Prevalence')], 3)), 3)
   descriptives2m <- round(describe(tail(accuracyTest[, c('Accuracy', 'Prevalence')], 2)), 3)
   descriptives1m <- round(describe(tail(accuracyTest[, c('Accuracy', 'Prevalence')], 1)), 3)
-  prodDays <- as.numeric(difftime(Sys.Date(), as.Date(createDate), units = "days"))
+  prodDays <- length(prodData$OHLCEff)
 
   reportData <- data.table(
     PredictFile = predictionsFileName,
     Symbol = symbolId,
     Created = createDate,
     ProdDays = prodDays,
+    actFrequency = actualFrequency,
+    AccProd = prodAccuracy,
+    correctProdDays = prodCorrectPredictions,
+    PrevProd = prodPrevalence,
     Acc6m = descriptives6m$mean[1],
     Acc3m = descriptives3m$mean[1],
     Acc2m = descriptives2m$mean[1],

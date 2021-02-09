@@ -1,0 +1,122 @@
+---
+title: "Performance Evaluation"
+author: "Thilo Notz"
+output:
+  html_document: default
+  pdf_document: default
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+knitr::opts_chunk$set(message = FALSE)
+library(readr)
+library(dplyr)
+library(knitr)
+library(purrr)
+# to install metap:
+# install.packages('BiocManager')
+# BiocManager::install()
+# BiocManager::install('multtest')
+# install.packages('metap')
+library(metap)
+```
+
+## Introduction
+
+We investigate the performance of various machine learning models, that are intended to predict market behavior based on planetary locations.
+To this end, a test is performed that compares the performance of the models against random prediction. 
+
+It has been noted, that there are some models, that show a high accuracy (e.g. greater than 70%) over a period of time. The arising question is, whether this is just a product of chance or does the model have indeed predictive power? Even though such a high accuracy seems very unlikely, there is a chance, that due to the large number of considered model, there are some outliers, that just by chance, show a high accuracy for a limited time.
+
+To this end, we compare each model to the corresponding random behavior and determine the p-value. The p-value is the probability, to obtain at least the given accuracy, provided the model just makes random predictions. 
+
+The p-values are combined using Fisher's-Method (https://en.wikipedia.org/wiki/Fisher%27s_method) to get an overall view about the results.
+
+## Assumptions
+
+Null hypothesis: We assume each model makes accurate predictions with a probability, that is estimated from the prevalence and the actual market behaviour. I.e. (prevalence*frequency-market-up-moves + (1-prevalance)*(1-frequency-market-up-moves)). If the result of the study is significant and models indeed perform better than random, a more sophisticated analysis should be performed.
+
+According to the Null-hypothesis the models are described by a binomial distribution. Hence we can use the binomial test with one sided alternative hypothesis to determine p-values.
+
+## Preparation
+
+First we load the performance report.
+
+```{r load_reports, results="asis"}
+date <- '2021-02-09'
+path <- 'performance/'
+filename <- paste0(path, 'models-predict-performance-', date,'.csv')
+
+data <- read_delim(filename, delim=',')
+data %>% head(n=5) %>% kable
+```
+
+Now for each model, we determine the p-value based on the binomial distribution and the approximation by the normal distribution.
+
+```{r}
+
+binom_test_pvalue = function(x,n) {
+    p <- actualFrequency
+    test <- binom.test(x, n, p, alternative='two.sided')
+    test$p.value
+}
+probs = c()
+pvalues = c()
+for (row in 1:nrow(data)) {
+  correctDays <- data[row, 'correctProdDays'][[1,1]]
+  prodDays <- data[row, 'ProdDays'][[1,1]]
+  actFrequency <- data[row, 'actFrequency'][[1,1]]
+  prevalence <- data[row, 'PrevProd'][[1,1]]
+  p = actFrequency*prevalence + (1-actFrequency)*(1-prevalence)
+  test <- binom.test(correctDays, prodDays, p, alternative='greater')
+  pvalue <- test$p.value
+  probs = c(probs, p)
+  pvalues <- c(pvalues, pvalue)
+}
+data$prob = probs
+data$pvalue = pvalues
+data %>% select(PredictFile, Created, ProdDays, actFrequency, PrevProd, AccProd, correctProdDays, prob, pvalue) %>% 
+  head(n=10) %>% kable
+```
+
+We combine the p-values according to Fisher's method.
+
+```{r, results="asis"}
+confidence_level <- 0.95
+
+test <- sumlog(pvalues)
+cat(paste0('The p-value is: ', test$p))
+cat('\n\n')
+if(test$p < 1-confidence_level) {
+  cat('**We have to reject the hypothesis that the results are random.**')
+} else {
+  cat('**We cannot reject the hypothesis that the results are random.**')
+}
+```
+
+```{r}
+
+hist(pvalues, breaks=30)
+
+```
+
+The probability to predict the correct outcome under the assumption of indepencence is: 
+
+P(Buy)*P(PredictBuy) + P(Sell)*P(PredictSell)
+
+i.e.
+
+actualFrequency*prevalence + (1-actualFrequency)*(1-prevalence).
+
+The following histogram shows the distribution of probabilities.
+
+```{r}
+hist(probs, breaks=50)
+
+
+```
+
+## Interpretation
+
+As of 2021-02-09: The outcome of the models cannot be distinguished statistically from random behaviour. The probability of predicting the 
+correct outcome is around 0.5 for most of the models.
