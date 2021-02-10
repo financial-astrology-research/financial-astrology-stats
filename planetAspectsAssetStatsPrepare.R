@@ -10,6 +10,8 @@ library(psych)
 source("./dataExportUtils.R")
 source("./fileSystemUtilities.R")
 source("./idsExpandUtils.R")
+source("./planetAspectsAggregateUtils.R")
+source("./planetPositionsAssetStatsPrepare.R")
 
 #' Prepare planet aspects / asset price side (buy / sell) frequency statistics.
 #' @param planetAspectsAssetPricesTable Daily planets aspects with asset prices table.
@@ -54,6 +56,28 @@ planetAspectsAssetPriceDescriptivesPrepare <- function(planetAspectsAssetPricesT
   planetAspectsAssetPricesTable[, round(describe(diffOHLC), 3), by = "PlanetsAspect"]
 }
 
+#' Prepare planet receiver aspects count / asset price side (buy / sell) frequency statistics.
+#' @param planetReceiverAspectsCountAssetPrice Planet receiver aspects count with asset prices table.
+#' @return Planet receiver aspects count category frequency statistics table.
+planetReceiverAspectsCountFrequencyPrepare <- function(planetReceiverAspectsCountAssetPrice) {
+  planetReceiverAspectsCountAssetPrice[,
+    PlanetAspectsCount := paste(pID, CountRange, sep = "_")
+  ]
+
+  frequencyTable <- factorAssetPriceEffectFrequencyCount(
+    planetReceiverAspectsCountAssetPrice,
+    "PlanetAspectsCount"
+  )
+
+  frequencyTable[, c("pID", "CountRange") := tstrsplit(PlanetAspectsCount, "_", fixed = T)]
+  frequencyTable[, Planet := planetIdToNameMap(pID)]
+  frequencyTable[, c("pID") := NULL]
+  setcolorder(
+    frequencyTable,
+    c('PlanetAspectsCount', 'Planet', 'CountRange', 'Buy', 'Sell', 'DaysN', 'BuyDays%', 'SellDays%')
+  )
+}
+
 planetAspectsAssetStatsPrepare <- function() {
   # TODO: Extract data tmp path composition to FS utilities and use here.
   planetAspectsAssetPricesFiles <- list.files("./data/tmp", pattern = "*aspects_set_long.csv")
@@ -66,17 +90,22 @@ planetAspectsAssetStatsPrepare <- function() {
     planetAspectsAssetPricesTable[, pY := substr(origin, 3, 4)]
     planetAspectsAssetPricesTable[, PlanetsAspect := paste(pX, pY, aspect, sep = "_")]
 
-    planetAspectsEffectCountWide <- planetAspectsAssetPriceEffectFrequencyPrepare(planetAspectsAssetPricesTable)
     dataTableStatsExport(
       symbolID,
-      planetAspectsEffectCountWide,
+      planetAspectsAssetPriceEffectFrequencyPrepare(planetAspectsAssetPricesTable),
       paste(symbolID, "planets_aspects", "buy_sell_count_freq_stats", sep = "-")
     )
 
-    planetAspectsPriceDescriptives <- planetAspectsAssetPriceDescriptivesPrepare(planetAspectsAssetPricesTable)
+    planetReceiverAspectCountAssetPrice <- planetReceiverAspectsCountAssetPricePrepare(symbolID)
     dataTableStatsExport(
       symbolID,
-      planetAspectsPriceDescriptives,
+      planetReceiverAspectsCountFrequencyPrepare(planetReceiverAspectCountAssetPrice),
+      paste(symbolID, "planet_receiver_aspects", "buy_sell_count_freq_stats", sep = "-")
+    )
+
+    dataTableStatsExport(
+      symbolID,
+      planetAspectsAssetPriceDescriptivesPrepare(planetAspectsAssetPricesTable),
       paste(symbolID, "planets_aspects", "price_descriptive_stats", sep = "-")
     )
   }

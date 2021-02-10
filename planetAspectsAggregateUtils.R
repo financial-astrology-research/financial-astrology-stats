@@ -40,7 +40,7 @@ dailyPlanetReceiverAspectCount <- function(dailyAspectsTable) {
 }
 
 #' Prepare daily planet receiver aspects count range factors with asset augmented data.
-assetPlanetReceiverAspectCountPrepare <- function(symbolID) {
+planetReceiverAspectsCountAssetPricePrepare <- function(symbolID) {
   dailyAspectsTable <- dailyMundaneEventsAspectsLoad()
   dailyPlanetReceiverAspectsCount <- dailyPlanetReceiverAspectCount(dailyAspectsTable)
   assetAugmentedData <- assetAgumentedDataLoad(symbolID)
@@ -65,7 +65,7 @@ assetPlanetReceiverAspectCountPrepare <- function(symbolID) {
 
   merge(
     dailyPlanetReceiverAspectsCountLong,
-    assetAugmentedData[c('Date', '')],
+    assetAugmentedData,
     by = "Date"
   )
 }
