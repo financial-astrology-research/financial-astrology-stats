@@ -103,7 +103,9 @@ assetAgumentedDataLoad <- function(symbolID, startDate = NULL) {
   assetDataTable <- memoFileRead(destinationPathFileName)
   assetDataTable[, Date := as.Date(Date)]
 
-  if (!is.null(startDate)) {
-    assetDataTable <- assetDataTable[Date >= startDate]
+  if (is.null(startDate)) {
+    return(assetDataTable)
   }
+
+  assetDataTable[Date >= startDate]
 }
