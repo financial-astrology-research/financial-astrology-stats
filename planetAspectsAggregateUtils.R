@@ -40,33 +40,33 @@ factorDailyAggregateCount <- function(dataTable, byFactor) {
 #' Aggregate aspects as total count of planet receiver.
 #' @param dailyPlanetAspects Daily planet aspects long data table.
 #' @return Receiver planet aspects count by aspect type data table.
-dailyPlanetReceiverAspectCount <- function(dailyAspectsTable) {
+dailyPlanetReceiverAspectsCount <- function(dailyAspectsTable) {
   # Prepare categorical variables for correct labeling on table wide transformation.
   dailyAspectsTable[, aspect := as.character(paste("a", aspect, sep = ""))]
   factorDailyAggregateCount(dailyAspectsTable, "pY")
 }
 
 #' Cut in count range groups the aspect counts features.
-#' @param aspectCountTable Aspect count wide table.
+#' @param aspectsCountTable Aspect count wide table.
 #' @param countColumnNames Count features column names.
 #' @return Aspects count table counts as range groups factors.
-aspectCountTableWideCut <- function(aspectCountTable, countColumnNames) {
+aspectsCountTableWideCut <- function(aspectsCountTable, countColumnNames) {
   # Group counts in cuts of 3 aspects.
   cutLabels <- c('00-00', '01-03', '04-07', '08-20')
   countCuts <- c(-1, 0, 3, 7, 20)
-  aspectCountTable[,
+  aspectsCountTable[,
     c(countColumnNames) := lapply(.SD, function(x) cut(x, countCuts, cutLabels, include.lowest = T)),
     .SDcols = countColumnNames
   ]
 }
 
 #' Transform aspect count wide table to long table.
-#' @param aspectCountTable Aspect count wide table.
+#' @param aspectsCountTable Aspect count wide table.
 #' @param countColumnNames Count features column names.
 #' @return Aspect count long table.
-aspectCountTableLongTransform <- function(aspectCountTable, countColumnNames) {
+aspectsCountTableLongTransform <- function(aspectsCountTable, countColumnNames) {
   melt(
-    aspectCountTable,
+    aspectsCountTable,
     id.var = 'Date',
     variable.name = 'pID',
     value.name = 'CountRange',
@@ -77,14 +77,14 @@ aspectCountTableLongTransform <- function(aspectCountTable, countColumnNames) {
 #' Prepare daily planet receiver aspects count range factors with asset augmented data.
 planetReceiverAspectsCountAssetPricePrepare <- function(symbolID) {
   dailyAspectsTable <- dailyMundaneEventsAspectsLoad()
-  dailyPlanetReceiverAspectsCount <- dailyPlanetReceiverAspectCount(dailyAspectsTable)
+  dailyPlanetReceiverAspectsCount <- dailyPlanetReceiverAspectsCount(dailyAspectsTable)
   assetAugmentedData <- assetAgumentedDataLoad(symbolID)
   columnNames <- colnames(dailyPlanetReceiverAspectsCount)
   countColumnNames <- columnNames[2:length(columnNames)]
-  aspectCountTableWideCut(dailyPlanetReceiverAspectsCount, countColumnNames)
+  aspectsCountTableWideCut(dailyPlanetReceiverAspectsCount, countColumnNames)
 
   merge(
-    aspectCountTableLongTransform(dailyPlanetReceiverAspectsCount, countColumnNames),
+    aspectsCountTableLongTransform(dailyPlanetReceiverAspectsCount, countColumnNames),
     assetAugmentedData,
     by = "Date"
   )
