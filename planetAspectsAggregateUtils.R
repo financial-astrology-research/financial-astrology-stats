@@ -48,8 +48,8 @@ planetReceiverAspectsCountAssetPricePrepare <- function(symbolID) {
   selectColumns <- columnNames[2:length(columnNames)]
 
   # Group counts in cuts of 3 aspects.
-  cutLabels <- c('None', '1-3', '4-6', '7-9', '10-12', '13-15', '15-18', '19-21')
-  countCuts <- c(-1, 0, seq(3, 21, by = 3))
+  cutLabels <- c('None', '1-3', '4-10', '11-20')
+  countCuts <- c(-1, 0, 3, 10, 20)
   dailyPlanetReceiverAspectsCount[,
     c(selectColumns) := lapply(.SD, function(x) cut(x, countCuts, cutLabels, include.lowest = T)),
     .SDcols = selectColumns
