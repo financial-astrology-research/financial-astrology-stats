@@ -74,18 +74,28 @@ aspectsCountTableLongTransform <- function(aspectsCountTable, countColumnNames) 
   )
 }
 
-#' Prepare daily planet receiver aspects count range factors with asset augmented data.
-planetReceiverAspectsCountAssetPricePrepare <- function(symbolID) {
-  dailyAspectsTable <- dailyMundaneEventsAspectsLoad()
-  dailyPlanetReceiverAspectsCount <- dailyPlanetReceiverAspectsCount(dailyAspectsTable)
+#' Mere planets aspect count with asset price table.
+#' @param aspectsCountTable Aspect count wide table.
+#' @param symbolID Asset symbol ID.
+#' @return Planet aspects count with asset price data table.
+planetAspectsCountAssetPriceMerge <- function(aspectsCountTable, symbolID) {
   assetAugmentedData <- assetAgumentedDataLoad(symbolID)
-  columnNames <- colnames(dailyPlanetReceiverAspectsCount)
+  columnNames <- colnames(aspectsCountTable)
   countColumnNames <- columnNames[2:length(columnNames)]
-  aspectsCountTableWideCut(dailyPlanetReceiverAspectsCount, countColumnNames)
+  aspectsCountTableWideCut(aspectsCountTable, countColumnNames)
 
   merge(
-    aspectsCountTableLongTransform(dailyPlanetReceiverAspectsCount, countColumnNames),
+    aspectsCountTableLongTransform(aspectsCountTable, countColumnNames),
     assetAugmentedData,
     by = "Date"
   )
+}
+
+#' Prepare daily planet receiver aspects count range factors with asset augmented data.
+#' @param symbolID Asset symbol ID.
+#' @return Planet aspects count with asset price data table.
+planetReceiverAspectsCountAssetPricePrepare <- function(symbolID) {
+  dailyMundaneEventsAspectsLoad() %>%
+    dailyPlanetReceiverAspectsCount() %>%
+    planetAspectsCountAssetPriceMerge(symbolID)
 }
