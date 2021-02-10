@@ -4,6 +4,7 @@
 # Created on: 10/02/2021
 
 library(data.table)
+library(gtools)
 
 source("./dataLoadUtils.R")
 
@@ -52,11 +53,9 @@ dailyPlanetAspectsByFactorCount <- function(dailyAspectsTable, byFactor) {
 #' @param countColumnNames Count features column names.
 #' @return Aspects count table counts as range groups factors.
 aspectsCountTableWideCut <- function(aspectsCountTable, countColumnNames) {
-  # Group counts in cuts of 3 aspects.
-  cutLabels <- c('00-00', '01-03', '04-07', '08-20')
-  countCuts <- c(-1, 0, 3, 7, 20)
+  # Group counts in quantiles.
   aspectsCountTable[,
-    c(countColumnNames) := lapply(.SD, function(x) cut(x, countCuts, cutLabels, include.lowest = T)),
+    c(countColumnNames) := lapply(.SD, function(x) quantcut(x, q = 4)),
     .SDcols = countColumnNames
   ]
 }
