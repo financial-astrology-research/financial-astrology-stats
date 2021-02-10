@@ -56,16 +56,16 @@ planetAspectsAssetPriceDescriptivesPrepare <- function(planetAspectsAssetPricesT
   planetAspectsAssetPricesTable[, round(describe(diffOHLC), 3), by = "PlanetsAspect"]
 }
 
-#' Prepare planet receiver aspects count / asset price side (buy / sell) frequency statistics.
-#' @param planetReceiverAspectsCountAssetPrice Planet receiver aspects count with asset prices table.
+#' Prepare planet aspects count / asset price side (buy / sell) frequency statistics.
+#' @param planetAspectsCountAssetPrice Planet receiver aspects count with asset prices table.
 #' @return Planet receiver aspects count category frequency statistics table.
-planetReceiverAspectsCountFrequencyPrepare <- function(planetReceiverAspectsCountAssetPrice) {
-  planetReceiverAspectsCountAssetPrice[,
+planetAspectsCountFrequencyPrepare <- function(planetAspectsCountAssetPrice) {
+  planetAspectsCountAssetPrice[,
     PlanetAspectsCount := paste(pID, CountRange, sep = "_")
   ]
 
   frequencyTable <- factorAssetPriceEffectFrequencyCount(
-    planetReceiverAspectsCountAssetPrice,
+    planetAspectsCountAssetPrice,
     "PlanetAspectsCount"
   )
 
@@ -99,8 +99,15 @@ planetAspectsAssetStatsPrepare <- function() {
     planetReceiverAspectCountAssetPrice <- planetReceiverAspectsCountAssetPricePrepare(symbolID)
     dataTableStatsExport(
       symbolID,
-      planetReceiverAspectsCountFrequencyPrepare(planetReceiverAspectCountAssetPrice),
+      planetAspectsCountFrequencyPrepare(planetReceiverAspectCountAssetPrice),
       paste(symbolID, "planet_receiver_aspects", "buy_sell_count_freq_stats", sep = "-")
+    )
+
+    planetEmitterAspectCountAssetPrice <- planetEmitterAspectsCountAssetPricePrepare(symbolID)
+    dataTableStatsExport(
+      symbolID,
+      planetAspectsCountFrequencyPrepare(planetEmitterAspectCountAssetPrice),
+      paste(symbolID, "planet_emitter_aspects", "buy_sell_count_freq_stats", sep = "-")
     )
 
     dataTableStatsExport(
