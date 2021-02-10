@@ -18,25 +18,32 @@ countTableBinaryTransform <- function(countTable) {
   ]
 }
 
-#' Aggregate aspects as total count of planet receiver.
-#' @param dailyPlanetAspects Daily planet aspects long data table.
-#' @return Receiver planet aspects count by aspect type data table.
-dailyPlanetReceiverAspectCount <- function(dailyAspectsTable) {
-  # Prepare categorical variables for correct labeling on table wide transformation.
-  dailyAspectsTable <- dailyAspectsTable[, aspect := as.character(paste("a", aspect, sep = ""))]
-  dailyAspectsTable <- dailyAspectsTable[, pY := as.character(pY)]
+#' Aggregate data table factor by events count.
+#' @param dataTable A data table.
+#' @param byFactor The factor to use for count aggregate.
+factorDailyAggregateCount <- function(dataTable, byFactor) {
+  dataTableCopy <- copy(dataTable)
+  dataTableCopy <- dataTableCopy[, c(byFactor) := as.character(get(byFactor))]
   # Arrange aspects factors as table wide format.
   dailyAspectsCount <- dcast(
-    dailyAspectsTable,
-    Date ~ pY,
+    dataTableCopy,
+    Date ~ get(byFactor),
     fun.aggregate = length,
     value.var = "aspect",
     fill = 0
   )
   setDT(dailyAspectsCount)
-  dailyAspectsCount[, Date := as.Date(Date)]
 
-  return(dailyAspectsCount)
+  dailyAspectsCount[, Date := as.Date(Date)]
+}
+
+#' Aggregate aspects as total count of planet receiver.
+#' @param dailyPlanetAspects Daily planet aspects long data table.
+#' @return Receiver planet aspects count by aspect type data table.
+dailyPlanetReceiverAspectCount <- function(dailyAspectsTable) {
+  # Prepare categorical variables for correct labeling on table wide transformation.
+  dailyAspectsTable[, aspect := as.character(paste("a", aspect, sep = ""))]
+  factorDailyAggregateCount(dailyAspectsTable, "pY")
 }
 
 #' Prepare daily planet receiver aspects count range factors with asset augmented data.
