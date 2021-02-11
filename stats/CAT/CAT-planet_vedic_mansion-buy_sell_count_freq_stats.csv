@@ -23,7 +23,7 @@ CE_VM21,Ceres,UttaraAshada,265,266,531,0.5,0.5
 CE_VM22,Ceres,Shravana,271,246,517,0.52,0.48
 CE_VM23,Ceres,Danishtha,280,269,549,0.51,0.49
 CE_VM24,Ceres,Shatabhisha,363,297,660,0.55,0.45
-CE_VM25,Ceres,PurvaBhadrapada,254,269,523,0.49,0.51
+CE_VM25,Ceres,PurvaBhadrapada,257,269,526,0.49,0.51
 CE_VM26,Ceres,UttaraBhadrapada,268,250,518,0.52,0.48
 CE_VM27,Ceres,Revati,270,258,528,0.51,0.49
 CH_VM01,Chiron,Aswini,455,443,898,0.51,0.49
@@ -51,7 +51,7 @@ CH_VM22,Chiron,Shravana,303,290,593,0.51,0.49
 CH_VM23,Chiron,Danishtha,331,325,656,0.5,0.5
 CH_VM24,Chiron,Shatabhisha,436,420,856,0.51,0.49
 CH_VM25,Chiron,PurvaBhadrapada,454,400,854,0.53,0.47
-CH_VM26,Chiron,UttaraBhadrapada,643,582,1225,0.52,0.48
+CH_VM26,Chiron,UttaraBhadrapada,646,582,1228,0.53,0.47
 CH_VM27,Chiron,Revati,484,439,923,0.52,0.48
 JN_VM01,Juno,Aswini,177,150,327,0.54,0.46
 JN_VM02,Juno,Bharani,135,141,276,0.49,0.51
@@ -70,7 +70,7 @@ JN_VM14,Juno,Chitra,380,371,751,0.51,0.49
 JN_VM15,Juno,Swati,351,361,712,0.49,0.51
 JN_VM16,Juno,Vishakha,381,389,770,0.49,0.51
 JN_VM17,Juno,Anuradha,371,363,734,0.51,0.49
-JN_VM18,Juno,Jyeshtha,332,342,674,0.49,0.51
+JN_VM18,Juno,Jyeshtha,335,342,677,0.49,0.51
 JN_VM19,Juno,Mula,325,312,637,0.51,0.49
 JN_VM20,Juno,PurvaAshada,316,274,590,0.54,0.46
 JN_VM21,Juno,UttaraAshada,244,275,519,0.47,0.53
@@ -101,14 +101,14 @@ JU_VM18,Jupiter,Jyeshtha,334,275,609,0.55,0.45
 JU_VM19,Jupiter,Mula,223,217,440,0.51,0.49
 JU_VM20,Jupiter,PurvaAshada,326,378,704,0.46,0.54
 JU_VM21,Jupiter,UttaraAshada,213,186,399,0.53,0.47
-JU_VM22,Jupiter,Shravana,296,285,581,0.51,0.49
+JU_VM22,Jupiter,Shravana,299,285,584,0.51,0.49
 JU_VM23,Jupiter,Danishtha,217,178,395,0.55,0.45
 JU_VM24,Jupiter,Shatabhisha,151,140,291,0.52,0.48
 JU_VM25,Jupiter,PurvaBhadrapada,295,284,579,0.51,0.49
 JU_VM26,Jupiter,UttaraBhadrapada,150,135,285,0.53,0.47
 JU_VM27,Jupiter,Revati,213,160,373,0.57,0.43
 MA_VM01,Mars,Aswini,245,241,486,0.5,0.5
-MA_VM02,Mars,Bharani,262,208,470,0.56,0.44
+MA_VM02,Mars,Bharani,265,208,473,0.56,0.44
 MA_VM03,Mars,Krittica,231,223,454,0.51,0.49
 MA_VM04,Mars,Rohini,248,231,479,0.52,0.48
 MA_VM05,Mars,Mrigashira,245,253,498,0.49,0.51
@@ -156,7 +156,7 @@ ME_VM19,Mercury,Mula,273,237,510,0.54,0.46
 ME_VM20,Mercury,PurvaAshada,269,238,507,0.53,0.47
 ME_VM21,Mercury,UttaraAshada,256,227,483,0.53,0.47
 ME_VM22,Mercury,Shravana,253,230,483,0.52,0.48
-ME_VM23,Mercury,Danishtha,256,238,494,0.52,0.48
+ME_VM23,Mercury,Danishtha,259,238,497,0.52,0.48
 ME_VM24,Mercury,Shatabhisha,254,226,480,0.53,0.47
 ME_VM25,Mercury,PurvaBhadrapada,236,246,482,0.49,0.51
 ME_VM26,Mercury,UttaraBhadrapada,243,219,462,0.53,0.47
@@ -179,9 +179,9 @@ MO_VM15,Moon,Swati,248,240,488,0.51,0.49
 MO_VM16,Moon,Vishakha,252,209,461,0.55,0.45
 MO_VM17,Moon,Anuradha,251,227,478,0.53,0.47
 MO_VM18,Moon,Jyeshtha,226,251,477,0.47,0.53
-MO_VM19,Moon,Mula,249,226,475,0.52,0.48
-MO_VM20,Moon,PurvaAshada,255,227,482,0.53,0.47
-MO_VM21,Moon,UttaraAshada,257,224,481,0.53,0.47
+MO_VM19,Moon,Mula,250,226,476,0.53,0.47
+MO_VM20,Moon,PurvaAshada,256,227,483,0.53,0.47
+MO_VM21,Moon,UttaraAshada,258,224,482,0.54,0.46
 MO_VM22,Moon,Shravana,239,248,487,0.49,0.51
 MO_VM23,Moon,Danishtha,254,224,478,0.53,0.47
 MO_VM24,Moon,Shatabhisha,257,224,481,0.53,0.47
@@ -196,11 +196,11 @@ NE_VM21,Neptune,UttaraAshada,799,747,1546,0.52,0.48
 NE_VM22,Neptune,Shravana,789,745,1534,0.51,0.49
 NE_VM23,Neptune,Danishtha,784,736,1520,0.52,0.48
 NE_VM24,Neptune,Shatabhisha,788,729,1517,0.52,0.48
-NE_VM25,Neptune,PurvaBhadrapada,388,347,735,0.53,0.47
+NE_VM25,Neptune,PurvaBhadrapada,391,347,738,0.53,0.47
 NN_VM01,NNode,Aswini,188,161,349,0.54,0.46
 NN_VM02,NNode,Bharani,188,157,345,0.54,0.46
 NN_VM03,NNode,Krittica,172,178,350,0.49,0.51
-NN_VM04,NNode,Rohini,178,173,351,0.51,0.49
+NN_VM04,NNode,Rohini,181,173,354,0.51,0.49
 NN_VM05,NNode,Mrigashira,249,272,521,0.48,0.52
 NN_VM06,NNode,Ardra,256,264,520,0.49,0.51
 NN_VM07,NNode,Punavasu,248,273,521,0.48,0.52
@@ -246,7 +246,7 @@ PA_VM19,Pallas,Mula,267,244,511,0.52,0.48
 PA_VM20,Pallas,PurvaAshada,300,291,591,0.51,0.49
 PA_VM21,Pallas,UttaraAshada,368,365,733,0.5,0.5
 PA_VM22,Pallas,Shravana,392,349,741,0.53,0.47
-PA_VM23,Pallas,Danishtha,441,354,795,0.55,0.45
+PA_VM23,Pallas,Danishtha,444,354,798,0.56,0.44
 PA_VM24,Pallas,Shatabhisha,408,424,832,0.49,0.51
 PA_VM25,Pallas,PurvaBhadrapada,365,355,720,0.51,0.49
 PA_VM26,Pallas,UttaraBhadrapada,321,319,640,0.5,0.5
@@ -269,7 +269,7 @@ PH_VM15,Pholus,Swati,272,316,588,0.46,0.54
 PH_VM16,Pholus,Vishakha,410,359,769,0.53,0.47
 PH_VM17,Pholus,Anuradha,545,500,1045,0.52,0.48
 PH_VM18,Pholus,Jyeshtha,752,726,1478,0.51,0.49
-PH_VM19,Pholus,Mula,786,687,1473,0.53,0.47
+PH_VM19,Pholus,Mula,789,687,1476,0.53,0.47
 PH_VM23,Pholus,Danishtha,180,169,349,0.52,0.48
 PH_VM24,Pholus,Shatabhisha,679,638,1317,0.52,0.48
 PH_VM25,Pholus,PurvaBhadrapada,433,431,864,0.5,0.5
@@ -284,7 +284,7 @@ PL_VM17,Pluto,Anuradha,730,692,1422,0.51,0.49
 PL_VM18,Pluto,Jyeshtha,716,667,1383,0.52,0.48
 PL_VM19,Pluto,Mula,819,787,1606,0.51,0.49
 PL_VM20,Pluto,PurvaAshada,880,808,1688,0.52,0.48
-PL_VM21,Pluto,UttaraAshada,313,270,583,0.54,0.46
+PL_VM21,Pluto,UttaraAshada,316,270,586,0.54,0.46
 SA_VM01,Saturn,Aswini,161,155,316,0.51,0.49
 SA_VM02,Saturn,Bharani,211,242,453,0.47,0.53
 SA_VM03,Saturn,Krittica,262,247,509,0.51,0.49
@@ -306,7 +306,7 @@ SA_VM18,Saturn,Jyeshtha,323,259,582,0.55,0.45
 SA_VM19,Saturn,Mula,314,274,588,0.53,0.47
 SA_VM20,Saturn,PurvaAshada,345,329,674,0.51,0.49
 SA_VM21,Saturn,UttaraAshada,290,286,576,0.5,0.5
-SA_VM22,Saturn,Shravana,160,155,315,0.51,0.49
+SA_VM22,Saturn,Shravana,163,155,318,0.51,0.49
 SA_VM23,Saturn,Danishtha,186,139,325,0.57,0.43
 SA_VM24,Saturn,Shatabhisha,133,133,266,0.5,0.5
 SA_VM25,Saturn,PurvaBhadrapada,142,125,267,0.53,0.47
@@ -329,7 +329,7 @@ SN_VM14,SNode,Chitra,176,173,349,0.5,0.5
 SN_VM15,SNode,Swati,199,149,348,0.57,0.43
 SN_VM16,SNode,Vishakha,184,161,345,0.53,0.47
 SN_VM17,SNode,Anuradha,163,186,349,0.47,0.53
-SN_VM18,SNode,Jyeshtha,220,220,440,0.5,0.5
+SN_VM18,SNode,Jyeshtha,223,220,443,0.5,0.5
 SN_VM19,SNode,Mula,240,278,518,0.46,0.54
 SN_VM20,SNode,PurvaAshada,276,247,523,0.53,0.47
 SN_VM21,SNode,UttaraAshada,230,290,520,0.44,0.56
@@ -361,12 +361,12 @@ SU_VM19,Sun,Mula,248,175,423,0.59,0.41
 SU_VM20,Sun,PurvaAshada,228,206,434,0.53,0.47
 SU_VM21,Sun,UttaraAshada,226,239,465,0.49,0.51
 SU_VM22,Sun,Shravana,272,214,486,0.56,0.44
-SU_VM23,Sun,Danishtha,241,202,443,0.54,0.46
+SU_VM23,Sun,Danishtha,244,202,446,0.55,0.45
 SU_VM24,Sun,Shatabhisha,239,230,469,0.51,0.49
 SU_VM25,Sun,PurvaBhadrapada,246,242,488,0.5,0.5
 SU_VM26,Sun,UttaraBhadrapada,238,237,475,0.5,0.5
 SU_VM27,Sun,Revati,242,227,469,0.52,0.48
-UR_VM01,Uranus,Aswini,468,400,868,0.54,0.46
+UR_VM01,Uranus,Aswini,471,400,871,0.54,0.46
 UR_VM02,Uranus,Bharani,79,67,146,0.54,0.46
 UR_VM13,Uranus,Hasta,318,302,620,0.51,0.49
 UR_VM14,Uranus,Chitra,368,362,730,0.5,0.5
@@ -404,7 +404,7 @@ VE_VM18,Venus,Jyeshtha,203,186,389,0.52,0.48
 VE_VM19,Venus,Mula,211,180,391,0.54,0.46
 VE_VM20,Venus,PurvaAshada,255,201,456,0.56,0.44
 VE_VM21,Venus,UttaraAshada,323,299,622,0.52,0.48
-VE_VM22,Venus,Shravana,242,230,472,0.51,0.49
+VE_VM22,Venus,Shravana,245,230,475,0.52,0.48
 VE_VM23,Venus,Danishtha,203,187,390,0.52,0.48
 VE_VM24,Venus,Shatabhisha,220,171,391,0.56,0.44
 VE_VM25,Venus,PurvaBhadrapada,213,195,408,0.52,0.48
@@ -420,7 +420,7 @@ VS_VM07,Vesta,Punavasu,346,265,611,0.57,0.43
 VS_VM08,Vesta,Pushya,270,258,528,0.51,0.49
 VS_VM09,Vesta,Ashlesha,263,259,522,0.5,0.5
 VS_VM10,Vesta,Magha,270,257,527,0.51,0.49
-VS_VM11,Vesta,PurvaPhalguni,215,238,453,0.47,0.53
+VS_VM11,Vesta,PurvaPhalguni,218,238,456,0.48,0.52
 VS_VM12,Vesta,UttaraPhalguni,227,197,424,0.54,0.46
 VS_VM13,Vesta,Hasta,224,259,483,0.46,0.54
 VS_VM14,Vesta,Chitra,247,214,461,0.54,0.46
