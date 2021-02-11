@@ -141,3 +141,18 @@ planetAspectsCountAssetPricePrepare <- function(symbolID) {
     dailyPlanetAspectsByFactorCount("pID") %>%
     planetAspectsCountAssetPriceMerge("pID", symbolID)
 }
+
+#' Prepare daily planet (emitted and received) aspect types count range factors with asset augmented data.
+#' @param symbolID Asset symbol ID.
+#' @return Planet aspect types count with asset price data table.
+planetAspectTypesCountAssetPricePrepare <- function(symbolID) {
+  dailyMundaneEventsAspectsLoad() %>%
+    melt(
+      id.var = c('Date', 'aspect'),
+      variable.name = 'origin',
+      value.name = 'pID',
+      measure.var = c('pX', 'pY'),
+    ) %>%
+    dailyPlanetAspectsByFactorCount("pID + aspect") %>%
+    planetAspectsCountAssetPriceMerge("PlanetAspect", symbolID)
+}

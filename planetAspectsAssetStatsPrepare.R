@@ -153,6 +153,13 @@ planetAspectsAssetStatsPrepare <- function() {
       paste(symbolID, "planet_aspects", "buy_sell_count_freq_stats", sep = "-")
     )
 
+    planetAspectTypesCountAssetPrice <- planetAspectTypesCountAssetPricePrepare(symbolID)
+    dataTableStatsExport(
+      symbolID,
+      planetAspectTypesCountFrequencyPrepare(planetAspectTypesCountAssetPrice),
+      paste(symbolID, "planet_aspect_types", "buy_sell_count_freq_stats", sep = "-")
+    )
+
     dataTableStatsExport(
       symbolID,
       planetAspectsAssetPriceDescriptivesPrepare(planetAspectsAssetPricesTable),
@@ -160,5 +167,3 @@ planetAspectsAssetStatsPrepare <- function() {
     )
   }
 }
-
-planetAspectsAssetStatsPrepare()
