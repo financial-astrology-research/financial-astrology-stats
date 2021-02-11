@@ -57,7 +57,7 @@ planetAspectsAssetPriceDescriptivesPrepare <- function(planetAspectsAssetPricesT
 }
 
 #' Prepare planet aspects count / asset price side (buy / sell) frequency statistics.
-#' @param planetAspectsCountAssetPrice Planet receiver aspects count with asset prices table.
+#' @param planetAspectsCountAssetPrice Planet aspects count with asset prices table.
 #' @return Planet receiver aspects count category frequency statistics table.
 planetAspectsCountFrequencyPrepare <- function(planetAspectsCountAssetPrice) {
   planetAspectsCountAssetPrice[,
@@ -75,6 +75,28 @@ planetAspectsCountFrequencyPrepare <- function(planetAspectsCountAssetPrice) {
   setcolorder(
     frequencyTable,
     c('PlanetAspectsCount', 'Planet', 'CountRange', 'Buy', 'Sell', 'DaysN', 'BuyDays%', 'SellDays%')
+  )
+}
+
+#' Prepare planet aspect type count / asset price side (buy / sell) frequency statistics.
+#' @param planetAspectsCountAssetPrice Planet aspect types count with asset prices table.
+#' @return Planet aspect types count category frequency statistics table.
+planetAspectTypesCountFrequencyPrepare <- function(planetAspectsCountAssetPrice) {
+  planetAspectsCountAssetPrice[,
+    PlanetAspectCountRange := paste(PlanetAspect, CountRange, sep = "_")
+  ]
+
+  frequencyTable <- factorAssetPriceEffectFrequencyCount(
+    planetAspectsCountAssetPrice,
+    "PlanetAspectCountRange"
+  )
+
+  frequencyTable[, c("pID", "Aspect", "CountRange") := tstrsplit(PlanetAspectCountRange, "_", fixed = T)]
+  frequencyTable[, Planet := planetIdToNameMap(pID)]
+  frequencyTable[, c("pID") := NULL]
+  setcolorder(
+    frequencyTable,
+    c('PlanetAspectCountRange', 'Planet', 'Aspect', 'CountRange', 'Buy', 'Sell', 'DaysN', 'BuyDays%', 'SellDays%')
   )
 }
 
@@ -103,6 +125,13 @@ planetAspectsAssetStatsPrepare <- function() {
       paste(symbolID, "planet_receiver_aspects", "buy_sell_count_freq_stats", sep = "-")
     )
 
+    planetReceiverAspectTypesCountAssetPrice <- planetReceiverAspectTypesCountAssetPricePrepare(symbolID)
+    dataTableStatsExport(
+      symbolID,
+      planetAspectTypesCountFrequencyPrepare(planetReceiverAspectTypesCountAssetPrice),
+      paste(symbolID, "planet_receiver_aspect_types", "buy_sell_count_freq_stats", sep = "-")
+    )
+
     planetEmitterAspectsCountAssetPrice <- planetEmitterAspectsCountAssetPricePrepare(symbolID)
     dataTableStatsExport(
       symbolID,
@@ -110,10 +139,10 @@ planetAspectsAssetStatsPrepare <- function() {
       paste(symbolID, "planet_emitter_aspects", "buy_sell_count_freq_stats", sep = "-")
     )
 
-    planetEmitterAspectTypesCountAssetPrice <- planetEmitterAspectsCountAssetPricePrepare(symbolID)
+    planetEmitterAspectTypesCountAssetPrice <- planetEmitterAspectTypesCountAssetPricePrepare(symbolID)
     dataTableStatsExport(
       symbolID,
-      planetAspectsCountFrequencyPrepare(planetEmitterAspectTypesCountAssetPrice),
+      planetAspectTypesCountFrequencyPrepare(planetEmitterAspectTypesCountAssetPrice),
       paste(symbolID, "planet_emitter_aspect_types", "buy_sell_count_freq_stats", sep = "-")
     )
 
@@ -124,4 +153,3 @@ planetAspectsAssetStatsPrepare <- function() {
     )
   }
 }
-planetAspectsAssetStatsPrepare()
