@@ -23,11 +23,9 @@ countTableBinaryTransform <- function(countTable) {
 #' @param dataTable A data table.
 #' @param byFactor The factor to use for count aggregate.
 factorDailyAggregateCount <- function(dataTable, byFactor) {
-  dataTableCopy <- copy(dataTable)
-  dataTableCopy <- dataTableCopy[, c(byFactor) := as.character(get(byFactor))]
   # Arrange aspects factors as table wide format.
   dailyAspectsCount <- dcast(
-    dataTableCopy,
+    dataTable,
     formula(paste('Date ~', byFactor)),
     fun.aggregate = length,
     value.var = "aspect",
@@ -43,9 +41,9 @@ factorDailyAggregateCount <- function(dataTable, byFactor) {
 #' @param byFactor The factor to use for count aggregate.
 #' @return Receiver planet aspects count by aspect type data table.
 dailyPlanetAspectsByFactorCount <- function(dailyAspectsTable, byFactor) {
-  # Prepare categorical variables for correct labeling on table wide transformation.
-  dailyAspectsTable[, aspect := as.character(paste("a", aspect, sep = ""))]
-  factorDailyAggregateCount(dailyAspectsTable, byFactor)
+  # Prevent mutation of original table.
+  dailyAspectsTableCopy <- copy(dailyAspectsTable)
+  factorDailyAggregateCount(dailyAspectsTableCopy, byFactor)
 }
 
 #' Cut in count range groups the aspect counts features.
@@ -106,5 +104,14 @@ planetReceiverAspectsCountAssetPricePrepare <- function(symbolID) {
 planetEmitterAspectsCountAssetPricePrepare <- function(symbolID) {
   dailyMundaneEventsAspectsLoad() %>%
     dailyPlanetAspectsByFactorCount("pX") %>%
+    planetAspectsCountAssetPriceMerge(symbolID)
+}
+
+#' Prepare daily planet emitter aspect types count range factors with asset augmented data.
+#' @param symbolID Asset symbol ID.
+#' @return Planet aspects types count with asset price data table.
+planetEmitterAspectTypesCountAssetPricePrepare <- function(symbolID) {
+  dailyMundaneEventsAspectsLoad() %>%
+    dailyPlanetAspectsByFactorCount("pX + aspect") %>%
     planetAspectsCountAssetPriceMerge(symbolID)
 }

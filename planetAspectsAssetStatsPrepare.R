@@ -96,18 +96,25 @@ planetAspectsAssetStatsPrepare <- function() {
       paste(symbolID, "planets_aspects", "buy_sell_count_freq_stats", sep = "-")
     )
 
-    planetReceiverAspectCountAssetPrice <- planetReceiverAspectsCountAssetPricePrepare(symbolID)
+    planetReceiverAspectsCountAssetPrice <- planetReceiverAspectsCountAssetPricePrepare(symbolID)
     dataTableStatsExport(
       symbolID,
-      planetAspectsCountFrequencyPrepare(planetReceiverAspectCountAssetPrice),
+      planetAspectsCountFrequencyPrepare(planetReceiverAspectsCountAssetPrice),
       paste(symbolID, "planet_receiver_aspects", "buy_sell_count_freq_stats", sep = "-")
     )
 
-    planetEmitterAspectCountAssetPrice <- planetEmitterAspectsCountAssetPricePrepare(symbolID)
+    planetEmitterAspectsCountAssetPrice <- planetEmitterAspectsCountAssetPricePrepare(symbolID)
     dataTableStatsExport(
       symbolID,
-      planetAspectsCountFrequencyPrepare(planetEmitterAspectCountAssetPrice),
+      planetAspectsCountFrequencyPrepare(planetEmitterAspectsCountAssetPrice),
       paste(symbolID, "planet_emitter_aspects", "buy_sell_count_freq_stats", sep = "-")
+    )
+
+    planetEmitterAspectTypesCountAssetPrice <- planetEmitterAspectsCountAssetPricePrepare(symbolID)
+    dataTableStatsExport(
+      symbolID,
+      planetAspectsCountFrequencyPrepare(planetEmitterAspectTypesCountAssetPrice),
+      paste(symbolID, "planet_emitter_aspect_types", "buy_sell_count_freq_stats", sep = "-")
     )
 
     dataTableStatsExport(
@@ -117,3 +124,4 @@ planetAspectsAssetStatsPrepare <- function() {
     )
   }
 }
+planetAspectsAssetStatsPrepare()
