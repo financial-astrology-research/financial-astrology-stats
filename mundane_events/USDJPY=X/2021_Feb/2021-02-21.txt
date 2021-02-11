@@ -165,57 +165,38 @@ LAST MOON PHASE IN ZODIAC SIGN:
 PLANETS ASPECTS:
 
           Date meanOrb minOrb maxOrb startHour endHour exactHour effHours PlanetX       Aspect PlanetY  Buy Sell DaysN BuyDays% SellDays%
- 1: 2021-02-21    0.98   0.29   1.67         0       3         0        4    Moon    BiSeptile     Sun  235  210   445     0.53      0.47
- 2: 2021-02-21    0.83   0.21   1.72         0       4         1        5    Moon  Conjunction   NNode  129  103   232     0.56      0.44
- 3: 2021-02-21    0.83   0.21   1.72         0       4         1        5    Moon   Opposition   SNode  129  103   232     0.56      0.44
- 4: 2021-02-21    0.89   0.07   1.60         0       6         3        7    Moon       Square   Vesta  234  205   439     0.53      0.47
- 5: 2021-02-21    0.99   0.25   1.73         1       8         5        8    Moon   Opposition    Juno  102  119   221     0.46      0.54
- 6: 2021-02-21    1.00   0.05   1.96         2       9         6        8    Moon     Quintile  Chiron  247  227   474     0.52      0.48
- 7: 2021-02-21    1.01   0.08   1.93         5      12         8        8    Moon       Square Neptune  245  216   461     0.53      0.47
- 8: 2021-02-21    1.01   0.07   1.95         4      11         8        8    Moon   BiQuintile   Pluto  228  234   462     0.49      0.51
- 9: 2021-02-21    1.00   0.24   1.77        10      17        13        8    Moon SesquiSquare  Saturn  239  228   467     0.51      0.49
-10: 2021-02-21    1.01   0.07   1.95         9      16        13        8    Moon   SemiSquare  Uranus  245  231   476     0.51      0.49
-11: 2021-02-21    0.27   0.01   0.59         0      23        13       24     Sun    BiSeptile   NNode   76   72   148     0.51      0.49
-12: 2021-02-21    1.08   0.05   1.97        12      20        16        9    Moon  SemiSextile    Mars  229  224   453     0.51      0.49
-13: 2021-02-21    0.99   0.14   1.84        15      22        19        8    Moon        Trine  Pallas  245  228   473     0.52      0.48
-14: 2021-02-21    1.03   0.16   1.99        15      23        19        9    Moon        Trine   Venus  208  223   431     0.48      0.52
-15: 2021-02-21    0.18   0.01   0.42         0      23        20       24 Mercury    BiSeptile    Mars   73   90   163     0.45      0.55
-16: 2021-02-21    0.88   0.09   1.61        17      23        20        7    Moon SesquiSquare Mercury  213  227   440     0.48      0.52
-17: 2021-02-21    1.02   0.13   1.90        16      23        20        8    Moon     Quincunx   Pluto  227  236   463     0.49      0.51
-18: 2021-02-21    0.33   0.01   0.75         0      23        20       24   Venus  Conjunction  Pallas   45   47    92     0.49      0.51
-19: 2021-02-21    0.46   0.00   1.02         0      23        20       24   Venus     Quintile  Uranus   77   79   156     0.49      0.51
-20: 2021-02-21    0.13   0.00   0.27         0      23        22       24  Pallas     Quintile  Uranus   65   62   127     0.51      0.49
-21: 2021-02-21    0.18   0.04   0.31         0      23        23       24 Mercury   BiQuintile   Vesta   42   34    76     0.55      0.45
-22: 2021-02-21    0.00   0.00   0.00         0      23        23       24   NNode   Opposition   SNode 3181 3090  6271     0.51      0.49
-23: 2021-02-21    0.22   0.15   0.29         0      23        NA       24   Ceres   SemiSquare Jupiter   75   67   142     0.53      0.47
-24: 2021-02-21    1.12   1.10   1.14         0      23        NA       24   Ceres SemiQuintile  Pallas  286  240   526     0.54      0.46
-25: 2021-02-21    0.97   0.76   1.17         0      23        NA       24   Ceres    BiSeptile   SNode   94   93   187     0.50      0.50
-26: 2021-02-21    1.24   1.08   1.41         0      23        NA       24   Ceres SemiQuintile  Uranus   93   68   161     0.58      0.42
-27: 2021-02-21    1.30   1.28   1.31         0      23        NA       24  Chiron       Square  Pholus  273  270   543     0.50      0.50
-28: 2021-02-21    0.98   0.97   1.00         0      23        NA       24  Chiron     Quintile   Pluto  213  225   438     0.49      0.51
-29: 2021-02-21    0.50   0.49   0.51         0      23        NA       24  Chiron  SemiSextile  Uranus 1364 1337  2701     0.50      0.50
-30: 2021-02-21    1.09   1.01   1.17         0      23        NA       24    Juno    BiSeptile   Ceres   64   80   144     0.44      0.56
-31: 2021-02-21    1.78   1.70   1.87         0      23        NA       24    Juno       Square Neptune   55   83   138     0.40      0.60
-32: 2021-02-21    1.64   1.55   1.73         0      23        NA       24    Juno SemiQuintile   Pluto   97  100   197     0.49      0.51
-33: 2021-02-21    0.91   0.81   1.00         0      23        NA       24 Jupiter SemiQuintile Neptune   71   81   152     0.47      0.53
-34: 2021-02-21    1.25   1.12   1.39         0      23        NA       24 Jupiter        Trine   NNode   75   98   173     0.43      0.57
-35: 2021-02-21    1.25   1.12   1.39         0      23        NA       24 Jupiter      Sextile   SNode   75   98   173     0.43      0.57
-36: 2021-02-21    1.89   1.78   2.00         0      10        NA       11    Mars   SemiSquare  Chiron   65   65   130     0.50      0.50
-37: 2021-02-21    1.34   1.23   1.46         0      23        NA       24    Mars       Square  Pallas  106  100   206     0.51      0.49
-38: 2021-02-21    1.84   1.69   1.99        10      23        NA       14    Mars        Trine   Pluto   66   53   119     0.55      0.45
-39: 2021-02-21    0.51   0.49   0.53         0      23        NA       24 Mercury SemiQuintile  Pholus   94   82   176     0.53      0.47
-40: 2021-02-21    0.61   0.46   0.76         0      23        NA       24  Pallas  SemiSextile   Pluto   90   75   165     0.55      0.45
-41: 2021-02-21    0.80   0.77   0.83         0      23        NA       24  Saturn      Sextile  Chiron   13    6    19     0.68      0.32
-42: 2021-02-21    0.30   0.26   0.34         0      23        NA       24  Saturn       Square  Uranus   46   48    94     0.49      0.51
-43: 2021-02-21    1.23   0.75   1.70         0      23        NA       24     Sun SemiQuintile   Pluto   82   72   154     0.53      0.47
-44: 2021-02-21    1.79   1.78   1.80         0      23        NA       24  Uranus        Trine  Pholus  251  240   491     0.51      0.49
-45: 2021-02-21    1.49   1.48   1.49         0      23        NA       24  Uranus    BiSeptile   Pluto  166  170   336     0.49      0.51
-46: 2021-02-21    0.81   0.39   1.23         0      23        NA       24   Venus SemiQuintile   Ceres   97   85   182     0.53      0.47
-47: 2021-02-21    1.04   0.71   1.36         0      23        NA       24   Venus       Square    Mars   77   81   158     0.49      0.51
-48: 2021-02-21    0.92   0.33   1.51         0      23        NA       24   Venus  SemiSextile   Pluto   81   77   158     0.51      0.49
-49: 2021-02-21    0.97   0.76   1.18         0      23        NA       24   Vesta       Square    Juno  131  101   232     0.56      0.44
-50: 2021-02-21    1.09   1.00   1.17         0      23        NA       24   Vesta       Square   NNode  107   84   191     0.56      0.44
-51: 2021-02-21    1.09   1.00   1.17         0      23        NA       24   Vesta       Square   SNode  107   84   191     0.56      0.44
+ 1: 2021-02-21    0.51   0.07   0.95         1       4         3        4    Moon       Square   Vesta  140  139   279     0.50      0.50
+ 2: 2021-02-21    0.50   0.25   0.75         3       6         5        4    Moon   Opposition    Juno   61   76   137     0.45      0.55
+ 3: 2021-02-21    0.50   0.05   0.96         4       7         6        4    Moon     Quintile  Chiron  151  139   290     0.52      0.48
+ 4: 2021-02-21    0.50   0.08   0.93         7      10         8        4    Moon       Square Neptune  143  118   261     0.55      0.45
+ 5: 2021-02-21    0.50   0.07   0.94         6       9         8        4    Moon   BiQuintile   Pluto  118  116   234     0.50      0.50
+ 6: 2021-02-21    0.50   0.24   0.77        12      15        13        4    Moon SesquiSquare  Saturn  144  141   285     0.51      0.49
+ 7: 2021-02-21    0.50   0.07   0.94        11      14        13        4    Moon   SemiSquare  Uranus  143  133   276     0.52      0.48
+ 8: 2021-02-21    0.27   0.01   0.59         0      23        13       24     Sun    BiSeptile   NNode   43   43    86     0.50      0.50
+ 9: 2021-02-21    0.48   0.05   0.92        15      18        16        4    Moon  SemiSextile    Mars  150  159   309     0.49      0.51
+10: 2021-02-21    0.50   0.14   0.85        17      20        19        4    Moon        Trine  Pallas  156  144   300     0.52      0.48
+11: 2021-02-21    0.46   0.16   0.76        17      20        19        4    Moon        Trine   Venus  144  155   299     0.48      0.52
+12: 2021-02-21    0.18   0.01   0.42         0      23        20       24 Mercury    BiSeptile    Mars   47   53   100     0.47      0.53
+13: 2021-02-21    0.51   0.09   0.92        19      22        20        4    Moon SesquiSquare Mercury  141  155   296     0.48      0.52
+14: 2021-02-21    0.51   0.13   0.89        18      21        20        4    Moon     Quincunx   Pluto  120  121   241     0.50      0.50
+15: 2021-02-21    0.33   0.01   0.75         0      23        20       24   Venus  Conjunction  Pallas   24   22    46     0.52      0.48
+16: 2021-02-21    0.43   0.00   0.97         1      23        20       23   Venus     Quintile  Uranus   41   43    84     0.49      0.51
+17: 2021-02-21    0.13   0.00   0.27         0      23        22       24  Pallas     Quintile  Uranus   38   39    77     0.49      0.51
+18: 2021-02-21    0.18   0.04   0.31         0      23        23       24 Mercury   BiQuintile   Vesta   25   17    42     0.60      0.40
+19: 2021-02-21    0.00   0.00   0.00         0      23        23       24   NNode   Opposition   SNode 3181 3090  6271     0.51      0.49
+20: 2021-02-21    0.22   0.15   0.29         0      23        NA       24   Ceres   SemiSquare Jupiter   39   31    70     0.56      0.44
+21: 2021-02-21    0.88   0.76   0.99         0      13        NA       14   Ceres    BiSeptile   SNode   44   47    91     0.48      0.52
+22: 2021-02-21    0.98   0.97   1.00         0      23        NA       24  Chiron     Quintile   Pluto  101  102   203     0.50      0.50
+23: 2021-02-21    0.50   0.49   0.51         0      23        NA       24  Chiron  SemiSextile  Uranus  818  765  1583     0.52      0.48
+24: 2021-02-21    0.91   0.81   1.00         0      23        NA       24 Jupiter SemiQuintile Neptune   36   43    79     0.46      0.54
+25: 2021-02-21    0.51   0.49   0.53         0      23        NA       24 Mercury SemiQuintile  Pholus   50   50   100     0.50      0.50
+26: 2021-02-21    0.61   0.46   0.76         0      23        NA       24  Pallas  SemiSextile   Pluto   43   32    75     0.57      0.43
+27: 2021-02-21    0.80   0.77   0.83         0      23        NA       24  Saturn      Sextile  Chiron    9    3    12     0.75      0.25
+28: 2021-02-21    0.30   0.26   0.34         0      23        NA       24  Saturn       Square  Uranus   18   25    43     0.42      0.58
+29: 2021-02-21    0.69   0.39   0.97         0      16        NA       17   Venus SemiQuintile   Ceres   59   40    99     0.60      0.40
+30: 2021-02-21    0.85   0.71   0.99         0      10        NA       11   Venus       Square    Mars   37   45    82     0.45      0.55
+31: 2021-02-21    0.66   0.33   1.00        10      23        NA       14   Venus  SemiSextile   Pluto   48   46    94     0.51      0.49
+32: 2021-02-21    0.88   0.76   0.99         0      13        NA       14   Vesta       Square    Juno   71   38   109     0.65      0.35
           Date meanOrb minOrb maxOrb startHour endHour exactHour effHours PlanetX       Aspect PlanetY  Buy Sell DaysN BuyDays% SellDays%
 
 MACHINE LEARNING PREDICTIONS:
