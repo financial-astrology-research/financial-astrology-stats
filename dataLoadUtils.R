@@ -4,6 +4,7 @@
 # Created on: 08/02/2021
 
 library(data.table)
+library(magrittr)
 library(memoise)
 library(plyr)
 
@@ -79,11 +80,7 @@ modelPredictionsLoad <- function(predictionsFileName) {
   # Normalize factors that are case sensitive for comparison.
   categoryLevelsMap <- function(EffPred) {
     categoryLevels <- c("Buy", "Sell")
-    ifelse(
-      all(categoryLevels %in% levels(EffPred)),
-      mapvalues(EffPred, tolower(categoryLevels), categoryLevels),
-      EffPred
-    )
+    mapvalues(EffPred, tolower(categoryLevels), categoryLevels, warn_missing = F)
   }
 
   modelPredictions[, EffPred := categoryLevelsMap(EffPred)]
@@ -103,7 +100,9 @@ assetAgumentedDataLoad <- function(symbolID, startDate = NULL) {
   assetDataTable <- memoFileRead(destinationPathFileName)
   assetDataTable[, Date := as.Date(Date)]
 
-  if (!is.null(startDate)) {
-    assetDataTable <- assetDataTable[Date >= startDate]
+  if (is.null(startDate)) {
+    return(assetDataTable)
   }
+
+  assetDataTable[Date >= startDate]
 }
