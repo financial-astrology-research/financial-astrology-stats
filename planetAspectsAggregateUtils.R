@@ -28,7 +28,7 @@ factorDailyAggregateCount <- function(dataTable, byFactor) {
   # Arrange aspects factors as table wide format.
   dailyAspectsCount <- dcast(
     dataTableCopy,
-    Date ~ get(byFactor),
+    formula(paste('Date ~', byFactor)),
     fun.aggregate = length,
     value.var = "aspect",
     fill = 0
