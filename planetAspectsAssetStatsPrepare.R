@@ -93,6 +93,7 @@ planetAspectTypesCountFrequencyPrepare <- function(planetAspectsCountAssetPrice)
 
   frequencyTable[, c("pID", "Aspect", "CountRange") := tstrsplit(PlanetAspectCountRange, "_", fixed = T)]
   frequencyTable[, Planet := planetIdToNameMap(pID)]
+  frequencyTable[, Aspect := aspectIdToNameMap(Aspect)]
   frequencyTable[, c("pID") := NULL]
   setcolorder(
     frequencyTable,
