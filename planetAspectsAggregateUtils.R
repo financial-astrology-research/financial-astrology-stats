@@ -79,7 +79,7 @@ aspectsCountTableLongTransform <- function(aspectsCountTable, variableName, coun
 #' @param symbolID Asset symbol ID.
 #' @return Planet aspects count with asset price data table.
 planetAspectsCountAssetPriceMerge <- function(aspectsCountTable, variableName, symbolID) {
-  assetAugmentedData <- assetAgumentedDataLoad(symbolID)
+  assetAugmentedData <- assetAugmentedDataLoad(symbolID)
   columnNames <- colnames(aspectsCountTable)
   countColumnNames <- columnNames[2:length(columnNames)]
   aspectsCountTableWideCut(aspectsCountTable, countColumnNames)
@@ -95,7 +95,7 @@ planetAspectsCountAssetPriceMerge <- function(aspectsCountTable, variableName, s
 #' @param symbolID Asset symbol ID.
 #' @return Planet receiver aspects count with asset price data table.
 planetReceiverAspectsCountAssetPricePrepare <- function(symbolID) {
-  dailyMundaneEventsAspectsLoad() %>%
+  dailyPlanetAspectsLoad() %>%
     dailyPlanetAspectsByFactorCount("pY") %>%
     planetAspectsCountAssetPriceMerge("pID", symbolID)
 }
@@ -104,7 +104,7 @@ planetReceiverAspectsCountAssetPricePrepare <- function(symbolID) {
 #' @param symbolID Asset symbol ID.
 #' @return Planet receiver aspect types count with asset price data table.
 planetReceiverAspectTypesCountAssetPricePrepare <- function(symbolID) {
-  dailyMundaneEventsAspectsLoad() %>%
+  dailyPlanetAspectsLoad() %>%
     dailyPlanetAspectsByFactorCount("pY + aspect") %>%
     planetAspectsCountAssetPriceMerge("PlanetAspect", symbolID)
 }
@@ -113,7 +113,7 @@ planetReceiverAspectTypesCountAssetPricePrepare <- function(symbolID) {
 #' @param symbolID Asset symbol ID.
 #' @return Planet emitter aspects count with asset price data table.
 planetEmitterAspectsCountAssetPricePrepare <- function(symbolID) {
-  dailyMundaneEventsAspectsLoad() %>%
+  dailyPlanetAspectsLoad() %>%
     dailyPlanetAspectsByFactorCount("pX") %>%
     planetAspectsCountAssetPriceMerge("pID", symbolID)
 }
@@ -122,7 +122,7 @@ planetEmitterAspectsCountAssetPricePrepare <- function(symbolID) {
 #' @param symbolID Asset symbol ID.
 #' @return Planet emitter aspects types count with asset price data table.
 planetEmitterAspectTypesCountAssetPricePrepare <- function(symbolID) {
-  dailyMundaneEventsAspectsLoad() %>%
+  dailyPlanetAspectsLoad() %>%
     dailyPlanetAspectsByFactorCount("pX + aspect") %>%
     planetAspectsCountAssetPriceMerge("PlanetAspect", symbolID)
 }
@@ -131,7 +131,7 @@ planetEmitterAspectTypesCountAssetPricePrepare <- function(symbolID) {
 #' @param symbolID Asset symbol ID.
 #' @return Planet aspects count with asset price data table.
 planetAspectsCountAssetPricePrepare <- function(symbolID) {
-  dailyMundaneEventsAspectsLoad() %>%
+  dailyPlanetAspectsLoad() %>%
   melt(
     id.var = c('Date', 'aspect'),
     variable.name = 'origin',
@@ -146,7 +146,7 @@ planetAspectsCountAssetPricePrepare <- function(symbolID) {
 #' @param symbolID Asset symbol ID.
 #' @return Planet aspect types count with asset price data table.
 planetAspectTypesCountAssetPricePrepare <- function(symbolID) {
-  dailyMundaneEventsAspectsLoad() %>%
+  dailyPlanetAspectsLoad() %>%
     melt(
       id.var = c('Date', 'aspect'),
       variable.name = 'origin',

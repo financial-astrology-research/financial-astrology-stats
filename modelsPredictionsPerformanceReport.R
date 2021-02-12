@@ -83,7 +83,7 @@ modelPredictionsCreateDateGet <- function(predictionsFileName) {
 #' @return Model predictions with price effect actuals data table.
 modelPredictionsWithActualsLoad <- function(predictionsFileName, startDate) {
   symbolId <- predictionsFileNameSymbolIdExtract(predictionsFileName)
-  assetDataTable <- assetAgumentedDataLoad(symbolId, startDate)
+  assetDataTable <- assetAugmentedDataLoad(symbolId, startDate)
   modelPredictions <- modelPredictionsLoad(predictionsFileName)
   modelPredictions <- merge(
     assetDataTable[, c('Date', 'OHLCMid', 'OHLCEff')],
