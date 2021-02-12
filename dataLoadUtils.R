@@ -49,9 +49,10 @@ assetPriceEffectFrequencyStatsLoad <- function(symbolID, statsID, factorID = NUL
 
 #' Load daily planets positions data table from CSV.
 #' @return Daily planets positions data table.
-dailyMundaneEventsPositionLoad <- function() {
+dailyPlanetPositionLoad <- function() {
   destinationPathFileName <- paste0(astroDataDestinationPath(), "daily_planets_positions_long.csv")
-  memoFileRead(destinationPathFileName)
+  dailyPlanetPosition <- memoFileRead(destinationPathFileName)
+  dailyPlanetPosition[, Date := as.Date(Date)]
 }
 
 #' Load daily moon phase (new/full) and zodiac sign position data table from CSV.
@@ -63,7 +64,7 @@ dailyMoonPhasesLoad <- function() {
 
 #' Load daily planets aspects data table from CSV.
 #' @return Daily planets positions data table.
-dailyMundaneEventsAspectsLoad <- function() {
+dailyPlanetAspectsLoad <- function() {
   destinationPathFileName <- paste0(astroDataDestinationPath(), "aspects_all_planets_pablo_aspects_set_long.csv")
   memoFileRead(destinationPathFileName)
 }
@@ -95,7 +96,7 @@ modelPredictionsMetadataLoad <- function() {
 
 #' Load asset augmented (price derivations features) data table from CSV.
 #' @return Asset price augmented data table.
-assetAgumentedDataLoad <- function(symbolID, startDate = NULL) {
+assetAugmentedDataLoad <- function(symbolID, startDate = NULL) {
   destinationPathFileName <- paste0(assetsDataDestinationPath(), symbolID, "--augmented.csv")
   assetDataTable <- memoFileRead(destinationPathFileName)
   assetDataTable[, Date := as.Date(Date)]

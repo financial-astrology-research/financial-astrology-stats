@@ -70,7 +70,7 @@ assetPriceEffectFrequencyStatsReport <- function(
 #' @param symbolID Symbol ID to report frequencies for.
 #' @return Planet rythm positions with price effect frequencies report table.
 dailyMundaneEventsRythmReport <- function(reportDate, symbolID) {
-  dailyMundaneEventsPositionLoad() %>%
+  dailyPlanetPositionLoad() %>%
     assetPriceEffectFrequencyStatsReport(
       symbolID,
       "planet_triplicity",
@@ -86,7 +86,7 @@ dailyMundaneEventsRythmReport <- function(reportDate, symbolID) {
 #' @param symbolID Symbol ID to report frequencies for.
 #' @return Planet element positions with price effect frequencies report table.
 dailyMundaneEventsElementReport <- function(reportDate, symbolID) {
-  dailyMundaneEventsPositionLoad() %>%
+  dailyPlanetPositionLoad() %>%
     assetPriceEffectFrequencyStatsReport(
       symbolID,
       "planet_element",
@@ -102,7 +102,7 @@ dailyMundaneEventsElementReport <- function(reportDate, symbolID) {
 #' @param symbolID Symbol ID to report frequencies for.
 #' @return Planet zodiac sign positions with price effect frequencies report table.
 dailyMundaneEventsZodSignsReport <- function(reportDate, symbolID) {
-  dailyMundaneEventsPositionLoad() %>%
+  dailyPlanetPositionLoad() %>%
     assetPriceEffectFrequencyStatsReport(
       symbolID,
       "planet_zodsign",
@@ -118,7 +118,7 @@ dailyMundaneEventsZodSignsReport <- function(reportDate, symbolID) {
 #' @param symbolID Symbol ID to report frequencies for.
 #' @return Planet speed phase with price effect frequencies report table.
 dailyMundaneEventsSpeedPhaseReport <- function(reportDate, symbolID) {
-  dailyMundaneEventsPositionLoad() %>%
+  dailyPlanetPositionLoad() %>%
     assetPriceEffectFrequencyStatsReport(
       symbolID,
       "planet_speed",
@@ -134,7 +134,7 @@ dailyMundaneEventsSpeedPhaseReport <- function(reportDate, symbolID) {
 #' @param symbolID Symbol ID to report frequencies for.
 #' @return Planet positions with price effect frequencies report table.
 dailyMundaneEventsAspectsReport <- function(reportDate, symbolID) {
-  dailyMundaneEventsAspectsLoad() %>%
+  dailyPlanetAspectsLoad() %>%
     assetPriceEffectFrequencyStatsReport(
       symbolID,
       "planets_aspects",
@@ -153,7 +153,7 @@ dailyMundaneEventsAspectsReport <- function(reportDate, symbolID) {
 #' @param symbolID Symbol ID to report frequencies for.
 #' @return Planet decans with price effect frequencies report table.
 dailyMundaneEventsDecansReport <- function(reportDate, symbolID) {
-  dailyMundaneEventsPositionLoad() %>%
+  dailyPlanetPositionLoad() %>%
     assetPriceEffectFrequencyStatsReport(
       symbolID,
       "planet_decan",
@@ -169,7 +169,7 @@ dailyMundaneEventsDecansReport <- function(reportDate, symbolID) {
 #' @param symbolID Symbol ID to report frequencies for.
 #' @return Planet arab mansions with price effect frequencies report table.
 dailyMundaneEventsArabMansionReport <- function(reportDate, symbolID) {
-  dailyMundaneEventsPositionLoad() %>%
+  dailyPlanetPositionLoad() %>%
     assetPriceEffectFrequencyStatsReport(
       symbolID,
       "planet_arab_mansion",
@@ -185,7 +185,7 @@ dailyMundaneEventsArabMansionReport <- function(reportDate, symbolID) {
 #' @param symbolID Symbol ID to report frequencies for.
 #' @return Planet vedic mansions with price effect frequencies report table.
 dailyMundaneEventsVedicMansionReport <- function(reportDate, symbolID) {
-  dailyMundaneEventsPositionLoad() %>%
+  dailyPlanetPositionLoad() %>%
     assetPriceEffectFrequencyStatsReport(
       symbolID,
       "planet_vedic_mansion",
