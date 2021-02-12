@@ -1,5 +1,5 @@
 # Title     : Prepare daily planet position CSV data table.
-# Objective : Provide planet position data by: zodiac sign, polarity, element, triplicity,
+# Objective : Provide planet position data by: zodiac sign, polarity, element, quality,
 #             decans, moon mansions, among others.
 # Created by: pablocc
 # Created on: 26/01/2021
@@ -21,7 +21,7 @@ tropicalToSideralConversion <- function(lon) {
   return(adjustedLon)
 }
 
-#' Augment planet positions data table with categorical derivatives: polarity, triplicity, elements and so forth.
+#' Augment planet positions data table with categorical derivatives: polarity, quality, elements and so forth.
 #' @param planetLongitudeTableLong Planet longitude positions long data table.
 #' @return Daily planets position table augmented with categorical derivatives.
 longitudeDerivativesPositionTableAugment <- function(planetLongitudeTableLong) {
@@ -51,9 +51,9 @@ longitudeDerivativesPositionTableAugment <- function(planetLongitudeTableLong) {
   elementID <- rep(c('FIR', 'EAR', 'AIR', 'WAT'), 3)
   planetLongitudeTableLong[, ElementID := mapvalues(ZodSignN, zodSignIdx, elementID)]
 
-  # Categorize signs in triplicities: https://www.astro.com/astrowiki/en/TriplicityID
-  triplicityID <- rep(c('CAR', 'FIX', 'MUT'), 4)
-  planetLongitudeTableLong[, TriplicityID := mapvalues(ZodSignN, zodSignIdx, triplicityID)]
+  # Categorize signs in triplicities: https://www.astro.com/astrowiki/en/QualityID
+  qualityID <- rep(c('CAR', 'FIX', 'MUT'), 4)
+  planetLongitudeTableLong[, QualityID := mapvalues(ZodSignN, zodSignIdx, qualityID)]
 
   # Categorize signs in polarities: https://en.wikipedia.org/wiki/Polarity_(astrology)
   polarityID <- rep(c('POS', 'NEG'), 6)
@@ -141,7 +141,7 @@ dailyPlanetsSpeedTablePrepare <- function() {
   speedDerivativesPositionTableAugment(planetSpeedTableLong)
 }
 
-#' Prepare daily planets longitude position and categorical derivatives: polarity, triplicity, element, sign, etc.
+#' Prepare daily planets longitude position and categorical derivatives: polarity, quality, element, sign, etc.
 dailyPlanetsPositionTablePrepare <- function() {
   cat("Preparing daily planets position table.\n")
   planetPositionsTable <- loadPlanetsPositionTable("daily")

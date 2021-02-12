@@ -73,12 +73,12 @@ dailyMundaneEventsRythmReport <- function(reportDate, symbolID) {
   dailyPlanetPositionLoad() %>%
     assetPriceEffectFrequencyStatsReport(
       symbolID,
-      "planet_triplicity",
-      'PlanetTriplicity',
-      c('pID', 'TriplicityID'),
+      "planet_quality",
+      'PlanetQuality',
+      c('pID', 'QualityID'),
       reportDate
     ) %>%
-    frequencyStatsColumnsSelect(c('Planet', 'Triplicity'))
+    frequencyStatsColumnsSelect(c('Planet', 'Quality'))
 }
 
 #' Report the planets element positions with historical asset price effect frequencies.
