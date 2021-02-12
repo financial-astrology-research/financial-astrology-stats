@@ -51,7 +51,8 @@ assetPriceEffectFrequencyStatsLoad <- function(symbolID, statsID, factorID = NUL
 #' @return Daily planets positions data table.
 dailyPlanetPositionLoad <- function() {
   destinationPathFileName <- paste0(astroDataDestinationPath(), "daily_planets_positions_long.csv")
-  memoFileRead(destinationPathFileName)
+  dailyPlanetPosition <- memoFileRead(destinationPathFileName)
+  dailyPlanetPosition[, Date := as.Date(Date)]
 }
 
 #' Load daily moon phase (new/full) and zodiac sign position data table from CSV.

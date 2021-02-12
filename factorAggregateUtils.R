@@ -3,6 +3,8 @@
 # Created by: pablocc
 # Created on: 12/02/2021
 
+library(gtools)
+
 #' Transform a categorical count table into binary (0,1) feature activation table, >=1 is 1 <=0 is 0.
 #' @param countTable A data table where features count events occurrences.
 #' @return An events count table transformed to binary representation.

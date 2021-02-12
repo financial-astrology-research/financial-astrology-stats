@@ -3,6 +3,8 @@
 # Created by: pablocc
 # Created on: 12/02/2021
 
+source("./factorAggregateUtils.R")
+
 #' Aggregate daily planet positions factor as total count.
 #' @param dailyPlanetPositionTable Daily planet positions long data table.
 #' @param byFactor The factor to use for count aggregate.

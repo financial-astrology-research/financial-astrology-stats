@@ -4,7 +4,6 @@
 # Created on: 10/02/2021
 
 library(data.table)
-library(gtools)
 
 source("./dataLoadUtils.R")
 source("factorAggregateUtils.R")
