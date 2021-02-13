@@ -5,14 +5,14 @@
 
 source("./factorAggregateUtils.R")
 
-#' Aggregate daily planet positions factor as total count.
+#' Aggregate daily planet positions variable count by factor.
 #' @param dailyPlanetPositionTable Daily planet positions long data table.
 #' @param byFactor The factor to use for count aggregate.
-#' @return Planet positions count by factor data table.
-dailyPlanetElementsByFactorCount <- function(dailyPlanetPositionTable, byFactor) {
+#' @return Planet positions variable count by factor data table.
+dailyPlanetVariableByFactorCount <- function(dailyPlanetPositionTable, byFactor) {
   # Prevent mutation of original table.
   dailyPlanetPositionTableCopy <- copy(dailyPlanetPositionTable)
-  dailyFactorCountAggregate(dailyPlanetPositionTableCopy, "ElementID", byFactor)
+  dailyFactorCountAggregate(dailyPlanetPositionTableCopy, byFactor, byFactor)
 }
 
 #' Prepare daily planet in elements count range factors with asset augmented data.
@@ -20,7 +20,7 @@ dailyPlanetElementsByFactorCount <- function(dailyPlanetPositionTable, byFactor)
 #' @return Planet in elements count factors with asset price data table.
 planetElementsCountAssetPricePrepare <- function(symbolID) {
   dailyPlanetPositionLoad() %>%
-    dailyPlanetElementsByFactorCount("ElementID") %>%
+    dailyPlanetVariableByFactorCount("ElementID") %>%
     factorCountAssetPriceMerge("PlanetElement", symbolID)
 }
 
@@ -29,6 +29,6 @@ planetElementsCountAssetPricePrepare <- function(symbolID) {
 #' @return Planet in qualities count factors with asset price data table.
 planetQualitiesCountAssetPricePrepare <- function(symbolID) {
   dailyPlanetPositionLoad() %>%
-    dailyPlanetElementsByFactorCount("QualityID") %>%
+    dailyPlanetVariableByFactorCount("QualityID") %>%
     factorCountAssetPriceMerge("PlanetQuality", symbolID)
 }
