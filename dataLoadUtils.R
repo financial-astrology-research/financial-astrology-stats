@@ -59,14 +59,16 @@ dailyPlanetPositionLoad <- function() {
 #' @return Daily moon phase positions data table.
 dailyMoonPhasesLoad <- function() {
   destinationPathFileName <- paste0(astroDataDestinationPath(), "daily_moon_phase_positions.csv")
-  memoFileRead(destinationPathFileName)
+  dailyMoonPhases <- memoFileRead(destinationPathFileName)
+  dailyMoonPhases[, Date := as.Date(Date)]
 }
 
 #' Load daily planets aspects data table from CSV.
 #' @return Daily planets positions data table.
 dailyPlanetAspectsLoad <- function() {
   destinationPathFileName <- paste0(astroDataDestinationPath(), "aspects_all_planets_pablo_aspects_set_long.csv")
-  memoFileRead(destinationPathFileName)
+  dailyPlanetAspects <- memoFileRead(destinationPathFileName)
+  dailyPlanetAspects[, Date := as.Date(Date)]
 }
 
 #' Load models predictions data table from CSV.
