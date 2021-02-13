@@ -203,9 +203,9 @@ moonPhaseZodSignAssetPriceSideFrequencyPrepare <- function(moonPhaseAssetTable) 
   )
 }
 
-#' Prepare planet in elment count / asset price side (buy / sell) frequency statistics.
-#' @param planetElementCountAssetPrice Planet element count with asset prices table.
-#' @return Planet in element count category frequency statistics table.
+#' Prepare planet in elements count / asset price side (buy / sell) frequency statistics.
+#' @param planetElementCountAssetPrice Planet elements count with asset prices table.
+#' @return Planet in elements count category frequency statistics table.
 planetElementsCountFrequencyPrepare <- function(planetElementCountAssetPrice) {
   planetElementCountAssetPrice[,
     PlanetElementCountRange := paste(PlanetElement, CountRange, sep = "_")
@@ -221,6 +221,27 @@ planetElementsCountFrequencyPrepare <- function(planetElementCountAssetPrice) {
   setcolorder(
     frequencyTable,
     c('PlanetElementCountRange', 'Element', 'CountRange', 'Buy', 'Sell', 'DaysN', 'BuyDays%', 'SellDays%')
+  )
+}
+
+#' Prepare planet in qualities count / asset price side (buy / sell) frequency statistics.
+#' @param planetQualityCountAssetPrice Planet qualities count with asset prices table.
+#' @return Planet in qualities count category frequency statistics table.
+planetQualitiesCountFrequencyPrepare <- function(planetQualityCountAssetPrice) {
+  planetQualityCountAssetPrice[,
+    PlanetQualityCountRange := paste(PlanetQuality, CountRange, sep = "_")
+  ]
+
+  frequencyTable <- factorAssetPriceEffectFrequencyCount(
+    planetQualityCountAssetPrice,
+    "PlanetQualityCountRange"
+  )
+
+  frequencyTable[, c("Element", "CountRange") := tstrsplit(PlanetQualityCountRange, "_", fixed = T)]
+  frequencyTable[, Quality := qualityIdToNameMap(Element)]
+  setcolorder(
+    frequencyTable,
+    c('PlanetQualityCountRange', 'Quality', 'CountRange', 'Buy', 'Sell', 'DaysN', 'BuyDays%', 'SellDays%')
   )
 }
 
@@ -256,6 +277,14 @@ planetPositionsAssetStatsPrepare <- function() {
       symbolID,
       planetsQualityFrequencyStats,
       paste(symbolID, "planet_quality", "buy_sell_count_freq_stats", sep = "-")
+    )
+
+    planetQualitiesCountFrequencyStats <- planetQualitiesCountAssetPricePrepare(symbolID) %>%
+      planetQualitiesCountFrequencyPrepare()
+    dataTableStatsExport(
+      symbolID,
+      planetQualitiesCountFrequencyStats,
+      paste(symbolID, "planet_qualities", "buy_sell_count_freq_stats", sep = "-")
     )
 
     planetsElementFrequencyStats <- planetElementAssetPriceSideFrequencyPrepare(planetsPositionsAssetPriceTable)

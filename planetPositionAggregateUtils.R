@@ -23,3 +23,12 @@ planetElementsCountAssetPricePrepare <- function(symbolID) {
     dailyPlanetElementsByFactorCount("ElementID") %>%
     factorCountAssetPriceMerge("PlanetElement", symbolID)
 }
+
+#' Prepare daily planet in qualities count range factors with asset augmented data.
+#' @param symbolID Asset symbol ID.
+#' @return Planet in qualities count factors with asset price data table.
+planetQualitiesCountAssetPricePrepare <- function(symbolID) {
+  dailyPlanetPositionLoad() %>%
+    dailyPlanetElementsByFactorCount("QualityID") %>%
+    factorCountAssetPriceMerge("PlanetQuality", symbolID)
+}
