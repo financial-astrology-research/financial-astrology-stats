@@ -21,7 +21,7 @@ CE_JU_a150,Ceres,Jupiter,Quincunx,87,96,183,0.48,0.52
 CE_JU_a180,Ceres,Jupiter,Opposition,54,55,109,0.5,0.5
 CE_JU_a30,Ceres,Jupiter,SemiSextile,114,119,233,0.49,0.51
 CE_JU_a36,Ceres,Jupiter,SemiQuintile,169,144,313,0.54,0.46
-CE_JU_a45,Ceres,Jupiter,SemiSquare,93,97,190,0.49,0.51
+CE_JU_a45,Ceres,Jupiter,SemiSquare,95,97,192,0.49,0.51
 CE_JU_a60,Ceres,Jupiter,Sextile,99,93,192,0.52,0.48
 CE_JU_a72,Ceres,Jupiter,Quintile,105,113,218,0.48,0.52
 CE_JU_a90,Ceres,Jupiter,Square,103,91,194,0.53,0.47
@@ -53,7 +53,7 @@ CE_NN_a72,Ceres,NNode,Quintile,86,98,184,0.47,0.53
 CE_NN_a90,Ceres,NNode,Square,137,136,273,0.5,0.5
 CE_PA_a103,Ceres,Pallas,BiSeptile,31,28,59,0.53,0.47
 CE_PA_a30,Ceres,Pallas,SemiSextile,516,492,1008,0.51,0.49
-CE_PA_a36,Ceres,Pallas,SemiQuintile,444,386,830,0.53,0.47
+CE_PA_a36,Ceres,Pallas,SemiQuintile,446,386,832,0.54,0.46
 CE_PA_a45,Ceres,Pallas,SemiSquare,385,412,797,0.48,0.52
 CE_PA_a60,Ceres,Pallas,Sextile,185,155,340,0.54,0.46
 CE_PA_a72,Ceres,Pallas,Quintile,85,102,187,0.45,0.55
@@ -81,7 +81,7 @@ CE_PL_a180,Ceres,Pluto,Opposition,43,40,83,0.52,0.48
 CE_PL_a30,Ceres,Pluto,SemiSextile,131,120,251,0.52,0.48
 CE_PL_a36,Ceres,Pluto,SemiQuintile,135,123,258,0.52,0.48
 CE_PL_a45,Ceres,Pluto,SemiSquare,121,122,243,0.5,0.5
-CE_PL_a60,Ceres,Pluto,Sextile,119,101,220,0.54,0.46
+CE_PL_a60,Ceres,Pluto,Sextile,121,101,222,0.55,0.45
 CE_PL_a72,Ceres,Pluto,Quintile,146,131,277,0.53,0.47
 CE_PL_a90,Ceres,Pluto,Square,104,73,177,0.59,0.41
 CE_SA_a0,Ceres,Saturn,Conjunction,43,42,85,0.51,0.49
@@ -141,7 +141,7 @@ CH_PH_a36,Chiron,Pholus,SemiQuintile,224,188,412,0.54,0.46
 CH_PH_a45,Chiron,Pholus,SemiSquare,409,400,809,0.51,0.49
 CH_PH_a60,Chiron,Pholus,Sextile,167,153,320,0.52,0.48
 CH_PH_a72,Chiron,Pholus,Quintile,240,213,453,0.53,0.47
-CH_PH_a90,Chiron,Pholus,Square,291,233,524,0.56,0.44
+CH_PH_a90,Chiron,Pholus,Square,293,233,526,0.56,0.44
 CH_PL_a0,Chiron,Pluto,Conjunction,58,45,103,0.56,0.44
 CH_PL_a103,Chiron,Pluto,BiSeptile,48,50,98,0.49,0.51
 CH_PL_a120,Chiron,Pluto,Trine,68,75,143,0.48,0.52
@@ -152,7 +152,7 @@ CH_PL_a30,Chiron,Pluto,SemiSextile,124,83,207,0.6,0.4
 CH_PL_a36,Chiron,Pluto,SemiQuintile,192,174,366,0.52,0.48
 CH_PL_a45,Chiron,Pluto,SemiSquare,156,181,337,0.46,0.54
 CH_PL_a60,Chiron,Pluto,Sextile,276,245,521,0.53,0.47
-CH_PL_a72,Chiron,Pluto,Quintile,244,221,465,0.52,0.48
+CH_PL_a72,Chiron,Pluto,Quintile,246,221,467,0.53,0.47
 CH_PL_a90,Chiron,Pluto,Square,55,39,94,0.59,0.41
 CH_UR_a103,Chiron,Uranus,BiSeptile,37,32,69,0.54,0.46
 CH_UR_a120,Chiron,Uranus,Trine,56,38,94,0.6,0.4
@@ -160,7 +160,7 @@ CH_UR_a135,Chiron,Uranus,SesquiSquare,40,27,67,0.6,0.4
 CH_UR_a144,Chiron,Uranus,BiQuintile,78,72,150,0.52,0.48
 CH_UR_a150,Chiron,Uranus,Quincunx,46,49,95,0.48,0.52
 CH_UR_a180,Chiron,Uranus,Opposition,167,162,329,0.51,0.49
-CH_UR_a30,Chiron,Uranus,SemiSextile,1375,1233,2608,0.53,0.47
+CH_UR_a30,Chiron,Uranus,SemiSextile,1377,1233,2610,0.53,0.47
 CH_UR_a36,Chiron,Uranus,SemiQuintile,225,212,437,0.51,0.49
 CH_UR_a45,Chiron,Uranus,SemiSquare,128,117,245,0.52,0.48
 CH_UR_a60,Chiron,Uranus,Sextile,67,78,145,0.46,0.54
@@ -223,7 +223,7 @@ JN_NN_a120,Juno,NNode,Trine,71,73,144,0.49,0.51
 JN_NN_a135,Juno,NNode,SesquiSquare,131,126,257,0.51,0.49
 JN_NN_a144,Juno,NNode,BiQuintile,112,118,230,0.49,0.51
 JN_NN_a150,Juno,NNode,Quincunx,130,109,239,0.54,0.46
-JN_NN_a180,Juno,NNode,Opposition,86,61,147,0.59,0.41
+JN_NN_a180,Juno,NNode,Opposition,88,61,149,0.59,0.41
 JN_NN_a30,Juno,NNode,SemiSextile,111,113,224,0.5,0.5
 JN_NN_a36,Juno,NNode,SemiQuintile,101,126,227,0.44,0.56
 JN_NN_a45,Juno,NNode,SemiSquare,132,112,244,0.54,0.46
@@ -279,7 +279,7 @@ JN_SA_a45,Juno,Saturn,SemiSquare,97,97,194,0.5,0.5
 JN_SA_a60,Juno,Saturn,Sextile,108,105,213,0.51,0.49
 JN_SA_a72,Juno,Saturn,Quintile,130,123,253,0.51,0.49
 JN_SA_a90,Juno,Saturn,Square,109,104,213,0.51,0.49
-JN_SN_a0,Juno,SNode,Conjunction,86,61,147,0.59,0.41
+JN_SN_a0,Juno,SNode,Conjunction,88,61,149,0.59,0.41
 JN_SN_a103,Juno,SNode,BiSeptile,96,78,174,0.55,0.45
 JN_SN_a120,Juno,SNode,Trine,166,191,357,0.46,0.54
 JN_SN_a135,Juno,SNode,SesquiSquare,132,112,244,0.54,0.46
@@ -326,7 +326,7 @@ JU_NE_a144,Jupiter,Neptune,BiQuintile,120,101,221,0.54,0.46
 JU_NE_a150,Jupiter,Neptune,Quincunx,142,145,287,0.49,0.51
 JU_NE_a180,Jupiter,Neptune,Opposition,77,79,156,0.49,0.51
 JU_NE_a30,Jupiter,Neptune,SemiSextile,90,80,170,0.53,0.47
-JU_NE_a36,Jupiter,Neptune,SemiQuintile,125,122,247,0.51,0.49
+JU_NE_a36,Jupiter,Neptune,SemiQuintile,127,122,249,0.51,0.49
 JU_NE_a45,Jupiter,Neptune,SemiSquare,122,108,230,0.53,0.47
 JU_NE_a60,Jupiter,Neptune,Sextile,103,110,213,0.48,0.52
 JU_NE_a72,Jupiter,Neptune,Quintile,158,137,295,0.54,0.46
@@ -352,7 +352,7 @@ JU_PH_a144,Jupiter,Pholus,BiQuintile,136,125,261,0.52,0.48
 JU_PH_a150,Jupiter,Pholus,Quincunx,132,123,255,0.52,0.48
 JU_PH_a180,Jupiter,Pholus,Opposition,60,70,130,0.46,0.54
 JU_PH_a30,Jupiter,Pholus,SemiSextile,106,120,226,0.47,0.53
-JU_PH_a36,Jupiter,Pholus,SemiQuintile,137,176,313,0.44,0.56
+JU_PH_a36,Jupiter,Pholus,SemiQuintile,139,176,315,0.44,0.56
 JU_PH_a45,Jupiter,Pholus,SemiSquare,131,149,280,0.47,0.53
 JU_PH_a60,Jupiter,Pholus,Sextile,116,100,216,0.54,0.46
 JU_PH_a72,Jupiter,Pholus,Quintile,139,126,265,0.52,0.48
@@ -471,7 +471,7 @@ MA_NE_a180,Mars,Neptune,Opposition,61,64,125,0.49,0.51
 MA_NE_a30,Mars,Neptune,SemiSextile,107,114,221,0.48,0.52
 MA_NE_a36,Mars,Neptune,SemiQuintile,151,99,250,0.6,0.4
 MA_NE_a45,Mars,Neptune,SemiSquare,142,124,266,0.53,0.47
-MA_NE_a60,Mars,Neptune,Sextile,113,82,195,0.58,0.42
+MA_NE_a60,Mars,Neptune,Sextile,115,82,197,0.58,0.42
 MA_NE_a72,Mars,Neptune,Quintile,92,110,202,0.46,0.54
 MA_NE_a90,Mars,Neptune,Square,128,123,251,0.51,0.49
 MA_NN_a0,Mars,NNode,Conjunction,80,65,145,0.55,0.45
@@ -481,7 +481,7 @@ MA_NN_a135,Mars,NNode,SesquiSquare,107,94,201,0.53,0.47
 MA_NN_a144,Mars,NNode,BiQuintile,123,91,214,0.57,0.43
 MA_NN_a150,Mars,NNode,Quincunx,111,103,214,0.52,0.48
 MA_NN_a180,Mars,NNode,Opposition,69,66,135,0.51,0.49
-MA_NN_a30,Mars,NNode,SemiSextile,122,104,226,0.54,0.46
+MA_NN_a30,Mars,NNode,SemiSextile,123,104,227,0.54,0.46
 MA_NN_a36,Mars,NNode,SemiQuintile,116,106,222,0.52,0.48
 MA_NN_a45,Mars,NNode,SemiSquare,100,100,200,0.5,0.5
 MA_NN_a60,Mars,NNode,Sextile,106,124,230,0.46,0.54
@@ -503,7 +503,7 @@ MA_PA_a90,Mars,Pallas,Square,135,144,279,0.48,0.52
 MA_PH_a0,Mars,Pholus,Conjunction,62,61,123,0.5,0.5
 MA_PH_a103,Mars,Pholus,BiSeptile,139,126,265,0.52,0.48
 MA_PH_a120,Mars,Pholus,Trine,108,110,218,0.5,0.5
-MA_PH_a135,Mars,Pholus,SesquiSquare,125,71,196,0.64,0.36
+MA_PH_a135,Mars,Pholus,SesquiSquare,127,71,198,0.64,0.36
 MA_PH_a144,Mars,Pholus,BiQuintile,112,124,236,0.47,0.53
 MA_PH_a150,Mars,Pholus,Quincunx,120,105,225,0.53,0.47
 MA_PH_a180,Mars,Pholus,Opposition,46,54,100,0.46,0.54
@@ -527,7 +527,7 @@ MA_PL_a60,Mars,Pluto,Sextile,111,112,223,0.5,0.5
 MA_PL_a72,Mars,Pluto,Quintile,127,120,247,0.51,0.49
 MA_PL_a90,Mars,Pluto,Square,143,109,252,0.57,0.43
 MA_SA_a0,Mars,Saturn,Conjunction,67,54,121,0.55,0.45
-MA_SA_a103,Mars,Saturn,BiSeptile,95,95,190,0.5,0.5
+MA_SA_a103,Mars,Saturn,BiSeptile,97,95,192,0.51,0.49
 MA_SA_a120,Mars,Saturn,Trine,109,95,204,0.53,0.47
 MA_SA_a135,Mars,Saturn,SesquiSquare,111,87,198,0.56,0.44
 MA_SA_a144,Mars,Saturn,BiQuintile,120,107,227,0.53,0.47
@@ -544,7 +544,7 @@ MA_SN_a103,Mars,SNode,BiSeptile,160,182,342,0.47,0.53
 MA_SN_a120,Mars,SNode,Trine,106,124,230,0.46,0.54
 MA_SN_a135,Mars,SNode,SesquiSquare,100,100,200,0.5,0.5
 MA_SN_a144,Mars,SNode,BiQuintile,116,105,221,0.52,0.48
-MA_SN_a150,Mars,SNode,Quincunx,122,104,226,0.54,0.46
+MA_SN_a150,Mars,SNode,Quincunx,123,104,227,0.54,0.46
 MA_SN_a180,Mars,SNode,Opposition,80,65,145,0.55,0.45
 MA_SN_a30,Mars,SNode,SemiSextile,111,103,214,0.52,0.48
 MA_SN_a36,Mars,SNode,SemiQuintile,123,91,214,0.57,0.43
@@ -567,7 +567,7 @@ MA_UR_a72,Mars,Uranus,Quintile,119,108,227,0.52,0.48
 MA_UR_a90,Mars,Uranus,Square,128,119,247,0.52,0.48
 MA_VS_a0,Mars,Vesta,Conjunction,64,60,124,0.52,0.48
 MA_VS_a103,Mars,Vesta,BiSeptile,95,96,191,0.5,0.5
-MA_VS_a120,Mars,Vesta,Trine,146,133,279,0.52,0.48
+MA_VS_a120,Mars,Vesta,Trine,148,133,281,0.53,0.47
 MA_VS_a135,Mars,Vesta,SesquiSquare,102,85,187,0.55,0.45
 MA_VS_a144,Mars,Vesta,BiQuintile,124,88,212,0.58,0.42
 MA_VS_a150,Mars,Vesta,Quincunx,144,110,254,0.57,0.43
@@ -614,7 +614,7 @@ ME_JN_a180,Mercury,Juno,Opposition,48,33,81,0.59,0.41
 ME_JN_a30,Mercury,Juno,SemiSextile,177,147,324,0.55,0.45
 ME_JN_a36,Mercury,Juno,SemiQuintile,168,166,334,0.5,0.5
 ME_JN_a45,Mercury,Juno,SemiSquare,163,146,309,0.53,0.47
-ME_JN_a60,Mercury,Juno,Sextile,162,141,303,0.53,0.47
+ME_JN_a60,Mercury,Juno,Sextile,164,141,305,0.54,0.46
 ME_JN_a72,Mercury,Juno,Quintile,136,135,271,0.5,0.5
 ME_JN_a90,Mercury,Juno,Square,138,120,258,0.53,0.47
 ME_JU_a0,Mercury,Jupiter,Conjunction,77,60,137,0.56,0.44
@@ -642,7 +642,7 @@ ME_MA_a36,Mercury,Mars,SemiQuintile,171,166,337,0.51,0.49
 ME_MA_a45,Mercury,Mars,SemiSquare,203,227,430,0.47,0.53
 ME_MA_a60,Mercury,Mars,Sextile,149,142,291,0.51,0.49
 ME_MA_a72,Mercury,Mars,Quintile,181,148,329,0.55,0.45
-ME_MA_a90,Mercury,Mars,Square,127,117,244,0.52,0.48
+ME_MA_a90,Mercury,Mars,Square,128,117,245,0.52,0.48
 ME_NE_a0,Mercury,Neptune,Conjunction,55,73,128,0.43,0.57
 ME_NE_a103,Mercury,Neptune,BiSeptile,115,112,227,0.51,0.49
 ME_NE_a120,Mercury,Neptune,Trine,136,117,253,0.54,0.46
@@ -651,14 +651,14 @@ ME_NE_a144,Mercury,Neptune,BiQuintile,114,109,223,0.51,0.49
 ME_NE_a150,Mercury,Neptune,Quincunx,108,105,213,0.51,0.49
 ME_NE_a180,Mercury,Neptune,Opposition,65,59,124,0.52,0.48
 ME_NE_a30,Mercury,Neptune,SemiSextile,140,125,265,0.53,0.47
-ME_NE_a36,Mercury,Neptune,SemiQuintile,140,125,265,0.53,0.47
+ME_NE_a36,Mercury,Neptune,SemiQuintile,141,125,266,0.53,0.47
 ME_NE_a45,Mercury,Neptune,SemiSquare,137,115,252,0.54,0.46
 ME_NE_a60,Mercury,Neptune,Sextile,126,101,227,0.56,0.44
 ME_NE_a72,Mercury,Neptune,Quintile,149,132,281,0.53,0.47
 ME_NE_a90,Mercury,Neptune,Square,141,135,276,0.51,0.49
 ME_NN_a0,Mercury,NNode,Conjunction,74,54,128,0.58,0.42
 ME_NN_a103,Mercury,NNode,BiSeptile,91,115,206,0.44,0.56
-ME_NN_a120,Mercury,NNode,Trine,226,220,446,0.51,0.49
+ME_NN_a120,Mercury,NNode,Trine,228,220,448,0.51,0.49
 ME_NN_a135,Mercury,NNode,SesquiSquare,160,160,320,0.5,0.5
 ME_NN_a144,Mercury,NNode,BiQuintile,144,149,293,0.49,0.51
 ME_NN_a150,Mercury,NNode,Quincunx,122,94,216,0.56,0.44
@@ -731,7 +731,7 @@ ME_SN_a180,Mercury,SNode,Opposition,74,54,128,0.58,0.42
 ME_SN_a30,Mercury,SNode,SemiSextile,122,94,216,0.56,0.44
 ME_SN_a36,Mercury,SNode,SemiQuintile,144,149,293,0.49,0.51
 ME_SN_a45,Mercury,SNode,SemiSquare,160,160,320,0.5,0.5
-ME_SN_a60,Mercury,SNode,Sextile,226,220,446,0.51,0.49
+ME_SN_a60,Mercury,SNode,Sextile,228,220,448,0.51,0.49
 ME_SN_a72,Mercury,SNode,Quintile,155,129,284,0.55,0.45
 ME_SN_a90,Mercury,SNode,Square,152,158,310,0.49,0.51
 ME_SU_a0,Mercury,Sun,Conjunction,339,307,646,0.52,0.48
@@ -748,7 +748,7 @@ ME_UR_a45,Mercury,Uranus,SemiSquare,135,131,266,0.51,0.49
 ME_UR_a60,Mercury,Uranus,Sextile,128,137,265,0.48,0.52
 ME_UR_a72,Mercury,Uranus,Quintile,131,129,260,0.5,0.5
 ME_UR_a90,Mercury,Uranus,Square,131,117,248,0.53,0.47
-ME_VE_a0,Mercury,Venus,Conjunction,194,190,384,0.51,0.49
+ME_VE_a0,Mercury,Venus,Conjunction,195,190,385,0.51,0.49
 ME_VE_a30,Mercury,Venus,SemiSextile,367,399,766,0.48,0.52
 ME_VE_a36,Mercury,Venus,SemiQuintile,347,328,675,0.51,0.49
 ME_VE_a45,Mercury,Venus,SemiSquare,265,259,524,0.51,0.49
@@ -774,8 +774,8 @@ MO_CE_a135,Moon,Ceres,SesquiSquare,396,355,751,0.53,0.47
 MO_CE_a144,Moon,Ceres,BiQuintile,392,368,760,0.52,0.48
 MO_CE_a150,Moon,Ceres,Quincunx,394,358,752,0.52,0.48
 MO_CE_a180,Moon,Ceres,Opposition,192,191,383,0.5,0.5
-MO_CE_a30,Moon,Ceres,SemiSextile,392,383,775,0.51,0.49
-MO_CE_a36,Moon,Ceres,SemiQuintile,385,368,753,0.51,0.49
+MO_CE_a30,Moon,Ceres,SemiSextile,393,383,776,0.51,0.49
+MO_CE_a36,Moon,Ceres,SemiQuintile,386,368,754,0.51,0.49
 MO_CE_a45,Moon,Ceres,SemiSquare,378,374,752,0.5,0.5
 MO_CE_a60,Moon,Ceres,Sextile,399,358,757,0.53,0.47
 MO_CE_a72,Moon,Ceres,Quintile,380,379,759,0.5,0.5
@@ -787,9 +787,9 @@ MO_CH_a135,Moon,Chiron,SesquiSquare,396,367,763,0.52,0.48
 MO_CH_a144,Moon,Chiron,BiQuintile,393,363,756,0.52,0.48
 MO_CH_a150,Moon,Chiron,Quincunx,381,386,767,0.5,0.5
 MO_CH_a180,Moon,Chiron,Opposition,188,202,390,0.48,0.52
-MO_CH_a30,Moon,Chiron,SemiSextile,395,373,768,0.51,0.49
-MO_CH_a36,Moon,Chiron,SemiQuintile,389,379,768,0.51,0.49
-MO_CH_a45,Moon,Chiron,SemiSquare,401,374,775,0.52,0.48
+MO_CH_a30,Moon,Chiron,SemiSextile,396,373,769,0.51,0.49
+MO_CH_a36,Moon,Chiron,SemiQuintile,390,379,769,0.51,0.49
+MO_CH_a45,Moon,Chiron,SemiSquare,402,374,776,0.52,0.48
 MO_CH_a60,Moon,Chiron,Sextile,405,355,760,0.53,0.47
 MO_CH_a72,Moon,Chiron,Quintile,413,366,779,0.53,0.47
 MO_CH_a90,Moon,Chiron,Square,412,357,769,0.54,0.46
@@ -803,10 +803,10 @@ MO_JN_a180,Moon,Juno,Opposition,190,178,368,0.52,0.48
 MO_JN_a30,Moon,Juno,SemiSextile,389,396,785,0.5,0.5
 MO_JN_a36,Moon,Juno,SemiQuintile,369,366,735,0.5,0.5
 MO_JN_a45,Moon,Juno,SemiSquare,373,345,718,0.52,0.48
-MO_JN_a60,Moon,Juno,Sextile,397,375,772,0.51,0.49
-MO_JN_a72,Moon,Juno,Quintile,409,379,788,0.52,0.48
+MO_JN_a60,Moon,Juno,Sextile,398,375,773,0.51,0.49
+MO_JN_a72,Moon,Juno,Quintile,410,379,789,0.52,0.48
 MO_JN_a90,Moon,Juno,Square,400,353,753,0.53,0.47
-MO_JU_a0,Moon,Jupiter,Conjunction,177,192,369,0.48,0.52
+MO_JU_a0,Moon,Jupiter,Conjunction,178,192,370,0.48,0.52
 MO_JU_a103,Moon,Jupiter,BiSeptile,400,361,761,0.53,0.47
 MO_JU_a120,Moon,Jupiter,Trine,390,389,779,0.5,0.5
 MO_JU_a135,Moon,Jupiter,SesquiSquare,386,395,781,0.49,0.51
@@ -830,9 +830,9 @@ MO_MA_a30,Moon,Mars,SemiSextile,384,365,749,0.51,0.49
 MO_MA_a36,Moon,Mars,SemiQuintile,375,368,743,0.5,0.5
 MO_MA_a45,Moon,Mars,SemiSquare,393,365,758,0.52,0.48
 MO_MA_a60,Moon,Mars,Sextile,398,350,748,0.53,0.47
-MO_MA_a72,Moon,Mars,Quintile,396,352,748,0.53,0.47
-MO_MA_a90,Moon,Mars,Square,400,352,752,0.53,0.47
-MO_ME_a0,Moon,Mercury,Conjunction,203,163,366,0.55,0.45
+MO_MA_a72,Moon,Mars,Quintile,397,352,749,0.53,0.47
+MO_MA_a90,Moon,Mars,Square,401,352,753,0.53,0.47
+MO_ME_a0,Moon,Mercury,Conjunction,204,163,367,0.56,0.44
 MO_ME_a103,Moon,Mercury,BiSeptile,374,326,700,0.53,0.47
 MO_ME_a120,Moon,Mercury,Trine,385,366,751,0.51,0.49
 MO_ME_a135,Moon,Mercury,SesquiSquare,369,359,728,0.51,0.49
@@ -852,15 +852,15 @@ MO_NE_a135,Moon,Neptune,SesquiSquare,392,382,774,0.51,0.49
 MO_NE_a144,Moon,Neptune,BiQuintile,393,376,769,0.51,0.49
 MO_NE_a150,Moon,Neptune,Quincunx,394,365,759,0.52,0.48
 MO_NE_a180,Moon,Neptune,Opposition,212,172,384,0.55,0.45
-MO_NE_a30,Moon,Neptune,SemiSextile,396,381,777,0.51,0.49
-MO_NE_a36,Moon,Neptune,SemiQuintile,414,354,768,0.54,0.46
+MO_NE_a30,Moon,Neptune,SemiSextile,397,381,778,0.51,0.49
+MO_NE_a36,Moon,Neptune,SemiQuintile,415,354,769,0.54,0.46
 MO_NE_a45,Moon,Neptune,SemiSquare,403,369,772,0.52,0.48
 MO_NE_a60,Moon,Neptune,Sextile,404,362,766,0.53,0.47
 MO_NE_a72,Moon,Neptune,Quintile,410,359,769,0.53,0.47
 MO_NE_a90,Moon,Neptune,Square,379,380,759,0.5,0.5
 MO_NN_a0,Moon,NNode,Conjunction,181,200,381,0.48,0.52
-MO_NN_a103,Moon,NNode,BiSeptile,392,374,766,0.51,0.49
-MO_NN_a120,Moon,NNode,Trine,402,372,774,0.52,0.48
+MO_NN_a103,Moon,NNode,BiSeptile,393,374,767,0.51,0.49
+MO_NN_a120,Moon,NNode,Trine,403,372,775,0.52,0.48
 MO_NN_a135,Moon,NNode,SesquiSquare,400,374,774,0.52,0.48
 MO_NN_a144,Moon,NNode,BiQuintile,409,352,761,0.54,0.46
 MO_NN_a150,Moon,NNode,Quincunx,412,363,775,0.53,0.47
@@ -871,7 +871,7 @@ MO_NN_a45,Moon,NNode,SemiSquare,391,375,766,0.51,0.49
 MO_NN_a60,Moon,NNode,Sextile,398,374,772,0.52,0.48
 MO_NN_a72,Moon,NNode,Quintile,382,387,769,0.5,0.5
 MO_NN_a90,Moon,NNode,Square,410,361,771,0.53,0.47
-MO_PA_a0,Moon,Pallas,Conjunction,200,174,374,0.53,0.47
+MO_PA_a0,Moon,Pallas,Conjunction,201,174,375,0.54,0.46
 MO_PA_a103,Moon,Pallas,BiSeptile,419,351,770,0.54,0.46
 MO_PA_a120,Moon,Pallas,Trine,377,389,766,0.49,0.51
 MO_PA_a135,Moon,Pallas,SesquiSquare,373,368,741,0.5,0.5
@@ -893,8 +893,8 @@ MO_PH_a150,Moon,Pholus,Quincunx,380,381,761,0.5,0.5
 MO_PH_a180,Moon,Pholus,Opposition,212,177,389,0.54,0.46
 MO_PH_a30,Moon,Pholus,SemiSextile,389,388,777,0.5,0.5
 MO_PH_a36,Moon,Pholus,SemiQuintile,387,373,760,0.51,0.49
-MO_PH_a45,Moon,Pholus,SemiSquare,391,379,770,0.51,0.49
-MO_PH_a60,Moon,Pholus,Sextile,402,360,762,0.53,0.47
+MO_PH_a45,Moon,Pholus,SemiSquare,392,379,771,0.51,0.49
+MO_PH_a60,Moon,Pholus,Sextile,403,360,763,0.53,0.47
 MO_PH_a72,Moon,Pholus,Quintile,404,364,768,0.53,0.47
 MO_PH_a90,Moon,Pholus,Square,406,362,768,0.53,0.47
 MO_PL_a0,Moon,Pluto,Conjunction,207,184,391,0.53,0.47
@@ -904,8 +904,8 @@ MO_PL_a135,Moon,Pluto,SesquiSquare,387,385,772,0.5,0.5
 MO_PL_a144,Moon,Pluto,BiQuintile,388,373,761,0.51,0.49
 MO_PL_a150,Moon,Pluto,Quincunx,394,378,772,0.51,0.49
 MO_PL_a180,Moon,Pluto,Opposition,197,189,386,0.51,0.49
-MO_PL_a30,Moon,Pluto,SemiSextile,386,387,773,0.5,0.5
-MO_PL_a36,Moon,Pluto,SemiQuintile,377,378,755,0.5,0.5
+MO_PL_a30,Moon,Pluto,SemiSextile,387,387,774,0.5,0.5
+MO_PL_a36,Moon,Pluto,SemiQuintile,378,378,756,0.5,0.5
 MO_PL_a45,Moon,Pluto,SemiSquare,393,374,767,0.51,0.49
 MO_PL_a60,Moon,Pluto,Sextile,394,365,759,0.52,0.48
 MO_PL_a72,Moon,Pluto,Quintile,380,390,770,0.49,0.51
@@ -917,7 +917,7 @@ MO_SA_a135,Moon,Saturn,SesquiSquare,409,369,778,0.53,0.47
 MO_SA_a144,Moon,Saturn,BiQuintile,389,376,765,0.51,0.49
 MO_SA_a150,Moon,Saturn,Quincunx,394,367,761,0.52,0.48
 MO_SA_a180,Moon,Saturn,Opposition,182,185,367,0.5,0.5
-MO_SA_a30,Moon,Saturn,SemiSextile,407,356,763,0.53,0.47
+MO_SA_a30,Moon,Saturn,SemiSextile,408,356,764,0.53,0.47
 MO_SA_a36,Moon,Saturn,SemiQuintile,371,386,757,0.49,0.51
 MO_SA_a45,Moon,Saturn,SemiSquare,351,395,746,0.47,0.53
 MO_SA_a60,Moon,Saturn,Sextile,408,357,765,0.53,0.47
@@ -933,10 +933,10 @@ MO_SN_a180,Moon,SNode,Opposition,181,200,381,0.48,0.52
 MO_SN_a30,Moon,SNode,SemiSextile,412,364,776,0.53,0.47
 MO_SN_a36,Moon,SNode,SemiQuintile,409,352,761,0.54,0.46
 MO_SN_a45,Moon,SNode,SemiSquare,400,375,775,0.52,0.48
-MO_SN_a60,Moon,SNode,Sextile,402,372,774,0.52,0.48
-MO_SN_a72,Moon,SNode,Quintile,392,376,768,0.51,0.49
+MO_SN_a60,Moon,SNode,Sextile,403,372,775,0.52,0.48
+MO_SN_a72,Moon,SNode,Quintile,393,376,769,0.51,0.49
 MO_SN_a90,Moon,SNode,Square,410,361,771,0.53,0.47
-MO_SU_a0,Moon,Sun,Conjunction,191,175,366,0.52,0.48
+MO_SU_a0,Moon,Sun,Conjunction,192,175,367,0.52,0.48
 MO_SU_a103,Moon,Sun,BiSeptile,375,356,731,0.51,0.49
 MO_SU_a120,Moon,Sun,Trine,361,372,733,0.49,0.51
 MO_SU_a135,Moon,Sun,SesquiSquare,370,352,722,0.51,0.49
@@ -959,8 +959,8 @@ MO_UR_a180,Moon,Uranus,Opposition,199,186,385,0.52,0.48
 MO_UR_a30,Moon,Uranus,SemiSextile,392,374,766,0.51,0.49
 MO_UR_a36,Moon,Uranus,SemiQuintile,399,368,767,0.52,0.48
 MO_UR_a45,Moon,Uranus,SemiSquare,408,373,781,0.52,0.48
-MO_UR_a60,Moon,Uranus,Sextile,409,359,768,0.53,0.47
-MO_UR_a72,Moon,Uranus,Quintile,400,369,769,0.52,0.48
+MO_UR_a60,Moon,Uranus,Sextile,410,359,769,0.53,0.47
+MO_UR_a72,Moon,Uranus,Quintile,401,369,770,0.52,0.48
 MO_UR_a90,Moon,Uranus,Square,378,396,774,0.49,0.51
 MO_VE_a0,Moon,Venus,Conjunction,201,157,358,0.56,0.44
 MO_VE_a103,Moon,Venus,BiSeptile,359,365,724,0.5,0.5
@@ -979,8 +979,8 @@ MO_VS_a0,Moon,Vesta,Conjunction,215,174,389,0.55,0.45
 MO_VS_a103,Moon,Vesta,BiSeptile,382,375,757,0.5,0.5
 MO_VS_a120,Moon,Vesta,Trine,385,389,774,0.5,0.5
 MO_VS_a135,Moon,Vesta,SesquiSquare,373,384,757,0.49,0.51
-MO_VS_a144,Moon,Vesta,BiQuintile,395,352,747,0.53,0.47
-MO_VS_a150,Moon,Vesta,Quincunx,391,357,748,0.52,0.48
+MO_VS_a144,Moon,Vesta,BiQuintile,396,352,748,0.53,0.47
+MO_VS_a150,Moon,Vesta,Quincunx,392,357,749,0.52,0.48
 MO_VS_a180,Moon,Vesta,Opposition,183,198,381,0.48,0.52
 MO_VS_a30,Moon,Vesta,SemiSextile,404,344,748,0.54,0.46
 MO_VS_a36,Moon,Vesta,SemiQuintile,405,330,735,0.55,0.45
@@ -1000,7 +1000,7 @@ NN_CH_a30,NNode,Chiron,SemiSextile,125,99,224,0.56,0.44
 NN_CH_a36,NNode,Chiron,SemiQuintile,133,96,229,0.58,0.42
 NN_CH_a45,NNode,Chiron,SemiSquare,138,111,249,0.55,0.45
 NN_CH_a60,NNode,Chiron,Sextile,118,110,228,0.52,0.48
-NN_CH_a72,NNode,Chiron,Quintile,131,127,258,0.51,0.49
+NN_CH_a72,NNode,Chiron,Quintile,133,127,260,0.51,0.49
 NN_CH_a90,NNode,Chiron,Square,150,161,311,0.48,0.52
 NN_NE_a0,NNode,Neptune,Conjunction,40,51,91,0.44,0.56
 NN_NE_a103,NNode,Neptune,BiSeptile,132,126,258,0.51,0.49
@@ -1054,7 +1054,7 @@ NN_SA_a45,NNode,Saturn,SemiSquare,106,99,205,0.52,0.48
 NN_SA_a60,NNode,Saturn,Sextile,110,101,211,0.52,0.48
 NN_SA_a72,NNode,Saturn,Quintile,107,106,213,0.5,0.5
 NN_SA_a90,NNode,Saturn,Square,120,128,248,0.48,0.52
-NN_SN_a180,NNode,SNode,Opposition,5361,5006,10367,0.52,0.48
+NN_SN_a180,NNode,SNode,Opposition,5363,5006,10369,0.52,0.48
 NN_UR_a0,NNode,Uranus,Conjunction,27,25,52,0.52,0.48
 NN_UR_a103,NNode,Uranus,BiSeptile,158,152,310,0.51,0.49
 NN_UR_a120,NNode,Uranus,Trine,87,77,164,0.53,0.47
@@ -1077,7 +1077,7 @@ PA_CH_a150,Pallas,Chiron,Quincunx,113,96,209,0.54,0.46
 PA_CH_a180,Pallas,Chiron,Opposition,44,41,85,0.52,0.48
 PA_CH_a30,Pallas,Chiron,SemiSextile,198,142,340,0.58,0.42
 PA_CH_a36,Pallas,Chiron,SemiQuintile,137,138,275,0.5,0.5
-PA_CH_a45,Pallas,Chiron,SemiSquare,132,105,237,0.56,0.44
+PA_CH_a45,Pallas,Chiron,SemiSquare,134,105,239,0.56,0.44
 PA_CH_a60,Pallas,Chiron,Sextile,96,71,167,0.57,0.43
 PA_CH_a72,Pallas,Chiron,Quintile,94,80,174,0.54,0.46
 PA_CH_a90,Pallas,Chiron,Square,110,126,236,0.47,0.53
@@ -1129,7 +1129,7 @@ PA_PH_a150,Pallas,Pholus,Quincunx,73,75,148,0.49,0.51
 PA_PH_a180,Pallas,Pholus,Opposition,54,59,113,0.48,0.52
 PA_PH_a30,Pallas,Pholus,SemiSextile,135,142,277,0.49,0.51
 PA_PH_a36,Pallas,Pholus,SemiQuintile,170,165,335,0.51,0.49
-PA_PH_a45,Pallas,Pholus,SemiSquare,160,102,262,0.61,0.39
+PA_PH_a45,Pallas,Pholus,SemiSquare,162,102,264,0.61,0.39
 PA_PH_a60,Pallas,Pholus,Sextile,135,114,249,0.54,0.46
 PA_PH_a72,Pallas,Pholus,Quintile,132,112,244,0.54,0.46
 PA_PH_a90,Pallas,Pholus,Square,125,126,251,0.5,0.5
@@ -1211,7 +1211,7 @@ SA_CH_a135,Saturn,Chiron,SesquiSquare,123,127,250,0.49,0.51
 SA_CH_a144,Saturn,Chiron,BiQuintile,174,139,313,0.56,0.44
 SA_CH_a150,Saturn,Chiron,Quincunx,258,203,461,0.56,0.44
 SA_CH_a180,Saturn,Chiron,Opposition,261,251,512,0.51,0.49
-SA_CH_a60,Saturn,Chiron,Sextile,10,7,17,0.59,0.41
+SA_CH_a60,Saturn,Chiron,Sextile,12,7,19,0.63,0.37
 SA_CH_a72,Saturn,Chiron,Quintile,88,79,167,0.53,0.47
 SA_CH_a90,Saturn,Chiron,Square,67,62,129,0.52,0.48
 SA_NE_a0,Saturn,Neptune,Conjunction,98,87,185,0.53,0.47
@@ -1223,7 +1223,7 @@ SA_NE_a150,Saturn,Neptune,Quincunx,106,110,216,0.49,0.51
 SA_NE_a180,Saturn,Neptune,Opposition,31,40,71,0.44,0.56
 SA_NE_a30,Saturn,Neptune,SemiSextile,123,125,248,0.5,0.5
 SA_NE_a36,Saturn,Neptune,SemiQuintile,154,123,277,0.56,0.44
-SA_NE_a45,Saturn,Neptune,SemiSquare,142,129,271,0.52,0.48
+SA_NE_a45,Saturn,Neptune,SemiSquare,144,129,273,0.53,0.47
 SA_NE_a60,Saturn,Neptune,Sextile,185,145,330,0.56,0.44
 SA_NE_a72,Saturn,Neptune,Quintile,149,129,278,0.54,0.46
 SA_NE_a90,Saturn,Neptune,Square,166,134,300,0.55,0.45
@@ -1234,7 +1234,7 @@ SA_PH_a135,Saturn,Pholus,SesquiSquare,55,48,103,0.53,0.47
 SA_PH_a144,Saturn,Pholus,BiQuintile,157,146,303,0.52,0.48
 SA_PH_a150,Saturn,Pholus,Quincunx,217,209,426,0.51,0.49
 SA_PH_a180,Saturn,Pholus,Opposition,201,187,388,0.52,0.48
-SA_PH_a30,Saturn,Pholus,SemiSextile,79,71,150,0.53,0.47
+SA_PH_a30,Saturn,Pholus,SemiSextile,81,71,152,0.53,0.47
 SA_PH_a36,Saturn,Pholus,SemiQuintile,47,39,86,0.55,0.45
 SA_PH_a45,Saturn,Pholus,SemiSquare,61,51,112,0.54,0.46
 SA_PH_a60,Saturn,Pholus,Sextile,61,57,118,0.52,0.48
@@ -1265,7 +1265,7 @@ SA_UR_a36,Saturn,Uranus,SemiQuintile,176,164,340,0.52,0.48
 SA_UR_a45,Saturn,Uranus,SemiSquare,145,144,289,0.5,0.5
 SA_UR_a60,Saturn,Uranus,Sextile,114,101,215,0.53,0.47
 SA_UR_a72,Saturn,Uranus,Quintile,59,51,110,0.54,0.46
-SA_UR_a90,Saturn,Uranus,Square,43,47,90,0.48,0.52
+SA_UR_a90,Saturn,Uranus,Square,45,47,92,0.49,0.51
 SN_CH_a0,SNode,Chiron,Conjunction,35,35,70,0.5,0.5
 SN_CH_a103,SNode,Chiron,BiSeptile,162,187,349,0.46,0.54
 SN_CH_a120,SNode,Chiron,Trine,118,110,228,0.52,0.48
@@ -1366,7 +1366,7 @@ SU_CH_a150,Sun,Chiron,Quincunx,137,110,247,0.55,0.45
 SU_CH_a180,Sun,Chiron,Opposition,53,60,113,0.47,0.53
 SU_CH_a30,Sun,Chiron,SemiSextile,155,109,264,0.59,0.41
 SU_CH_a36,Sun,Chiron,SemiQuintile,133,128,261,0.51,0.49
-SU_CH_a45,Sun,Chiron,SemiSquare,137,127,264,0.52,0.48
+SU_CH_a45,Sun,Chiron,SemiSquare,138,127,265,0.52,0.48
 SU_CH_a60,Sun,Chiron,Sextile,116,148,264,0.44,0.56
 SU_CH_a72,Sun,Chiron,Quintile,141,121,262,0.54,0.46
 SU_CH_a90,Sun,Chiron,Square,106,123,229,0.46,0.54
@@ -1435,7 +1435,7 @@ SU_NN_a45,Sun,NNode,SemiSquare,134,111,245,0.55,0.45
 SU_NN_a60,Sun,NNode,Sextile,134,120,254,0.53,0.47
 SU_NN_a72,Sun,NNode,Quintile,138,116,254,0.54,0.46
 SU_NN_a90,Sun,NNode,Square,130,127,257,0.51,0.49
-SU_PA_a0,Sun,Pallas,Conjunction,85,79,164,0.52,0.48
+SU_PA_a0,Sun,Pallas,Conjunction,87,79,166,0.52,0.48
 SU_PA_a103,Sun,Pallas,BiSeptile,116,105,221,0.52,0.48
 SU_PA_a120,Sun,Pallas,Trine,88,114,202,0.44,0.56
 SU_PA_a135,Sun,Pallas,SesquiSquare,106,71,177,0.6,0.4
@@ -1468,7 +1468,7 @@ SU_PL_a135,Sun,Pluto,SesquiSquare,118,127,245,0.48,0.52
 SU_PL_a144,Sun,Pluto,BiQuintile,130,127,257,0.51,0.49
 SU_PL_a150,Sun,Pluto,Quincunx,115,130,245,0.47,0.53
 SU_PL_a180,Sun,Pluto,Opposition,65,55,120,0.54,0.46
-SU_PL_a30,Sun,Pluto,SemiSextile,110,129,239,0.46,0.54
+SU_PL_a30,Sun,Pluto,SemiSextile,111,129,240,0.46,0.54
 SU_PL_a36,Sun,Pluto,SemiQuintile,124,121,245,0.51,0.49
 SU_PL_a45,Sun,Pluto,SemiSquare,116,122,238,0.49,0.51
 SU_PL_a60,Sun,Pluto,Sextile,137,115,252,0.54,0.46
@@ -1511,7 +1511,7 @@ SU_UR_a30,Sun,Uranus,SemiSextile,121,128,249,0.49,0.51
 SU_UR_a36,Sun,Uranus,SemiQuintile,148,102,250,0.59,0.41
 SU_UR_a45,Sun,Uranus,SemiSquare,139,106,245,0.57,0.43
 SU_UR_a60,Sun,Uranus,Sextile,124,123,247,0.5,0.5
-SU_UR_a72,Sun,Uranus,Quintile,133,114,247,0.54,0.46
+SU_UR_a72,Sun,Uranus,Quintile,135,114,249,0.54,0.46
 SU_UR_a90,Sun,Uranus,Square,123,129,252,0.49,0.51
 SU_VS_a0,Sun,Vesta,Conjunction,95,73,168,0.57,0.43
 SU_VS_a103,Sun,Vesta,BiSeptile,114,105,219,0.52,0.48
@@ -1531,12 +1531,12 @@ UR_NE_a30,Uranus,Neptune,SemiSextile,362,322,684,0.53,0.47
 UR_NE_a36,Uranus,Neptune,SemiQuintile,315,288,603,0.52,0.48
 UR_NE_a45,Uranus,Neptune,SemiSquare,311,253,564,0.55,0.45
 UR_PH_a103,Uranus,Pholus,BiSeptile,684,591,1275,0.54,0.46
-UR_PH_a120,Uranus,Pholus,Trine,451,381,832,0.54,0.46
+UR_PH_a120,Uranus,Pholus,Trine,453,381,834,0.54,0.46
 UR_PH_a135,Uranus,Pholus,SesquiSquare,179,168,347,0.52,0.48
 UR_PH_a144,Uranus,Pholus,BiQuintile,104,129,233,0.45,0.55
 UR_PH_a150,Uranus,Pholus,Quincunx,90,87,177,0.51,0.49
 UR_PH_a180,Uranus,Pholus,Opposition,34,33,67,0.51,0.49
-UR_PL_a103,Uranus,Pluto,BiSeptile,182,148,330,0.55,0.45
+UR_PL_a103,Uranus,Pluto,BiSeptile,184,148,332,0.55,0.45
 UR_PL_a30,Uranus,Pluto,SemiSextile,18,16,34,0.53,0.47
 UR_PL_a36,Uranus,Pluto,SemiQuintile,268,275,543,0.49,0.51
 UR_PL_a45,Uranus,Pluto,SemiSquare,289,291,580,0.5,0.5
@@ -1552,7 +1552,7 @@ VE_CE_a150,Venus,Ceres,Quincunx,100,112,212,0.47,0.53
 VE_CE_a180,Venus,Ceres,Opposition,31,39,70,0.44,0.56
 VE_CE_a30,Venus,Ceres,SemiSextile,175,145,320,0.55,0.45
 VE_CE_a36,Venus,Ceres,SemiQuintile,173,130,303,0.57,0.43
-VE_CE_a45,Venus,Ceres,SemiSquare,132,131,263,0.5,0.5
+VE_CE_a45,Venus,Ceres,SemiSquare,134,131,265,0.51,0.49
 VE_CE_a60,Venus,Ceres,Sextile,158,136,294,0.54,0.46
 VE_CE_a72,Venus,Ceres,Quintile,129,138,267,0.48,0.52
 VE_CE_a90,Venus,Ceres,Square,128,143,271,0.47,0.53
@@ -1582,7 +1582,7 @@ VE_JN_a45,Venus,Juno,SemiSquare,145,145,290,0.5,0.5
 VE_JN_a60,Venus,Juno,Sextile,134,146,280,0.48,0.52
 VE_JN_a72,Venus,Juno,Quintile,142,151,293,0.48,0.52
 VE_JN_a90,Venus,Juno,Square,130,107,237,0.55,0.45
-VE_JU_a0,Venus,Jupiter,Conjunction,90,63,153,0.59,0.41
+VE_JU_a0,Venus,Jupiter,Conjunction,92,63,155,0.59,0.41
 VE_JU_a103,Venus,Jupiter,BiSeptile,144,96,240,0.6,0.4
 VE_JU_a120,Venus,Jupiter,Trine,135,109,244,0.55,0.45
 VE_JU_a135,Venus,Jupiter,SesquiSquare,110,116,226,0.49,0.51
@@ -1616,7 +1616,7 @@ VE_NE_a144,Venus,Neptune,BiQuintile,126,115,241,0.52,0.48
 VE_NE_a150,Venus,Neptune,Quincunx,128,121,249,0.51,0.49
 VE_NE_a180,Venus,Neptune,Opposition,72,57,129,0.56,0.44
 VE_NE_a30,Venus,Neptune,SemiSextile,135,120,255,0.53,0.47
-VE_NE_a36,Venus,Neptune,SemiQuintile,133,111,244,0.55,0.45
+VE_NE_a36,Venus,Neptune,SemiQuintile,135,111,246,0.55,0.45
 VE_NE_a45,Venus,Neptune,SemiSquare,136,112,248,0.55,0.45
 VE_NE_a60,Venus,Neptune,Sextile,122,113,235,0.52,0.48
 VE_NE_a72,Venus,Neptune,Quintile,106,124,230,0.46,0.54
@@ -1655,7 +1655,7 @@ VE_PH_a144,Venus,Pholus,BiQuintile,116,108,224,0.52,0.48
 VE_PH_a150,Venus,Pholus,Quincunx,132,131,263,0.5,0.5
 VE_PH_a180,Venus,Pholus,Opposition,54,58,112,0.48,0.52
 VE_PH_a30,Venus,Pholus,SemiSextile,137,126,263,0.52,0.48
-VE_PH_a36,Venus,Pholus,SemiQuintile,137,118,255,0.54,0.46
+VE_PH_a36,Venus,Pholus,SemiQuintile,138,118,256,0.54,0.46
 VE_PH_a45,Venus,Pholus,SemiSquare,152,114,266,0.57,0.43
 VE_PH_a60,Venus,Pholus,Sextile,144,130,274,0.53,0.47
 VE_PH_a72,Venus,Pholus,Quintile,118,112,230,0.51,0.49
@@ -1720,7 +1720,7 @@ VE_VS_a0,Venus,Vesta,Conjunction,72,79,151,0.48,0.52
 VE_VS_a103,Venus,Vesta,BiSeptile,125,116,241,0.52,0.48
 VE_VS_a120,Venus,Vesta,Trine,102,103,205,0.5,0.5
 VE_VS_a135,Venus,Vesta,SesquiSquare,99,86,185,0.54,0.46
-VE_VS_a144,Venus,Vesta,BiQuintile,96,77,173,0.55,0.45
+VE_VS_a144,Venus,Vesta,BiQuintile,98,77,175,0.56,0.44
 VE_VS_a150,Venus,Vesta,Quincunx,83,81,164,0.51,0.49
 VE_VS_a180,Venus,Vesta,Opposition,39,28,67,0.58,0.42
 VE_VS_a30,Venus,Vesta,SemiSextile,161,157,318,0.51,0.49
@@ -1772,7 +1772,7 @@ VS_JU_a0,Vesta,Jupiter,Conjunction,46,45,91,0.51,0.49
 VS_JU_a103,Vesta,Jupiter,BiSeptile,109,114,223,0.49,0.51
 VS_JU_a120,Vesta,Jupiter,Trine,100,103,203,0.49,0.51
 VS_JU_a135,Vesta,Jupiter,SesquiSquare,126,117,243,0.52,0.48
-VS_JU_a144,Vesta,Jupiter,BiQuintile,86,73,159,0.54,0.46
+VS_JU_a144,Vesta,Jupiter,BiQuintile,88,73,161,0.55,0.45
 VS_JU_a150,Vesta,Jupiter,Quincunx,129,123,252,0.51,0.49
 VS_JU_a180,Vesta,Jupiter,Opposition,52,54,106,0.49,0.51
 VS_JU_a30,Vesta,Jupiter,SemiSextile,145,113,258,0.56,0.44
@@ -1787,7 +1787,7 @@ VS_NE_a120,Vesta,Neptune,Trine,131,145,276,0.47,0.53
 VS_NE_a135,Vesta,Neptune,SesquiSquare,142,116,258,0.55,0.45
 VS_NE_a144,Vesta,Neptune,BiQuintile,108,107,215,0.5,0.5
 VS_NE_a150,Vesta,Neptune,Quincunx,128,105,233,0.55,0.45
-VS_NE_a180,Vesta,Neptune,Opposition,89,74,163,0.55,0.45
+VS_NE_a180,Vesta,Neptune,Opposition,91,74,165,0.55,0.45
 VS_NE_a30,Vesta,Neptune,SemiSextile,110,82,192,0.57,0.43
 VS_NE_a36,Vesta,Neptune,SemiQuintile,86,98,184,0.47,0.53
 VS_NE_a45,Vesta,Neptune,SemiSquare,108,107,215,0.5,0.5

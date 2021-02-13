@@ -60,8 +60,8 @@ polarityIdsDefinition <- function() {
   )
 }
 
-#' Definition of triplicity and it's corresponding human readable names.
-triplicityIdsDefinition <- function() {
+#' Definition of quality and it's corresponding human readable names.
+qualityIdsDefinition <- function() {
   c(
     'Cardinal' = 'CAR',
     'Fixed' = 'FIX',
@@ -246,11 +246,11 @@ polarityIdToNameMap <- function(ids) {
   idToNameMap(polarityIdsDefinition(), ids)
 }
 
-#' Map triplicity IDs vector to names.
-#' @param ids Triplicity IDs vector.
-#' @return Triplicity names vector.
-triplicityIdToNameMap <- function(ids) {
-  idToNameMap(triplicityIdsDefinition(), ids)
+#' Map quality IDs vector to names.
+#' @param ids Quality IDs vector.
+#' @return Quality names vector.
+qualityIdToNameMap <- function(ids) {
+  idToNameMap(qualityIdsDefinition(), ids)
 }
 
 #' Map element IDs vector to names.

@@ -1,0 +1,13 @@
+PlanetQualityCountRange,Quality,CountRange,Buy,Sell,DaysN,BuyDays%,SellDays%,Element
+"CAR_(5,6]",Cardinal,"(5,6]",80,85,165,0.48,0.52,CAR
+"CAR_(6,8]",Cardinal,"(6,8]",186,206,392,0.47,0.53,CAR
+"CAR_(8,14]",Cardinal,"(8,14]",271,249,520,0.52,0.48,CAR
+"CAR_[0,5]",Cardinal,"[0,5]",122,118,240,0.51,0.49,CAR
+"FIX_(5,6]",Fixed,"(5,6]",85,93,178,0.48,0.52,FIX
+"FIX_(6,7]",Fixed,"(6,7]",81,69,150,0.54,0.46,FIX
+"FIX_(7,14]",Fixed,"(7,14]",79,80,159,0.5,0.5,FIX
+"FIX_[0,5]",Fixed,"[0,5]",414,416,830,0.5,0.5,FIX
+"MUT_(4,6]",Mutable,"(4,6]",281,290,571,0.49,0.51,MUT
+"MUT_(6,7]",Mutable,"(6,7]",96,90,186,0.52,0.48,MUT
+"MUT_(7,13]",Mutable,"(7,13]",57,60,117,0.49,0.51,MUT
+"MUT_[0,4]",Mutable,"[0,4]",225,218,443,0.51,0.49,MUT
