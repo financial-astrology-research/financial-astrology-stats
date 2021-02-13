@@ -206,7 +206,7 @@ moonPhaseZodSignAssetPriceSideFrequencyPrepare <- function(moonPhaseAssetTable) 
 #' Prepare planet in elment count / asset price side (buy / sell) frequency statistics.
 #' @param planetElementCountAssetPrice Planet element count with asset prices table.
 #' @return Planet in element count category frequency statistics table.
-planetAspectTypesCountFrequencyPrepare <- function(planetElementCountAssetPrice) {
+planetElementsCountFrequencyPrepare <- function(planetElementCountAssetPrice) {
   planetElementCountAssetPrice[,
     PlanetElementCountRange := paste(PlanetElement, CountRange, sep = "_")
   ]
@@ -266,7 +266,7 @@ planetPositionsAssetStatsPrepare <- function() {
     )
 
     planetElementsCountFrequencyStats <- planetElementsCountAssetPricePrepare(symbolID) %>%
-      planetAspectTypesCountFrequencyPrepare()
+      planetElementsCountFrequencyPrepare()
     dataTableStatsExport(
       symbolID,
       planetElementsCountFrequencyStats,
@@ -317,3 +317,4 @@ moonPhaseAssetStatsPrepare <- function() {
     )
   }
 }
+planetPositionsAssetStatsPrepare()
