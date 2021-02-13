@@ -17,12 +17,12 @@ source("./idsExpandUtils.R")
 #' @return Factor / asset price (buy / sell) category frequency statistics table.
 factorAssetPriceEffectFrequencyCount <- function (factorAssetTable, byFactor) {
   variableEffectCountLong <- factorAssetTable[,
-    data.table(table(CEff)), by = byFactor
+    data.table(table(OEff)), by = byFactor
   ]
 
   effectCountWide <- dcast(
     variableEffectCountLong,
-    formula(paste0(byFactor, " ~ CEff")),
+    formula(paste0(byFactor, " ~ OEff")),
     value.var = "N",
     fill = 0
   )

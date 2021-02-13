@@ -89,7 +89,7 @@ modelPredictionsWithActualsLoad <- function(predictionsFileName, startDate) {
   assetDataTable <- assetAgumentedDataLoad(symbolId, startDate)
   modelPredictions <- modelPredictionsLoad(predictionsFileName)
   modelPredictions <- merge(
-    assetDataTable[, c('Date', 'OHLCMid', 'OHLCEff', 'CEff')],
+    assetDataTable[, c('Date', 'OHLCMid', 'OHLCEff', 'CEff',)],
     modelPredictions,
     by = "Date"
   )

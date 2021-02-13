@@ -89,6 +89,7 @@ assetPriceDataPriceAugment <- function(symbolID) {
 
   # Calculate mid price differences.
   assetPriceTable[, diffC := Delt(`Adj Close`, k = 1)]
+  assetPriceTable[, diffO := Delt(`Open`, k = 1)]
   assetPriceTable[, diffOHLC := Delt(OHLCMid, k = 1)]
   assetPriceTable[, difflogOHLC := Delt(OHLCMid, k = 1, type = "log")]
   assetPriceTable[, diffOxHL := Delt(Open, HLMid, k = 0)]
@@ -113,6 +114,7 @@ assetPriceDataPriceAugment <- function(symbolID) {
   labelCuts <- c(-1000000, 0, 1000000)
   labels <- c('Sell', 'Buy')
   assetPriceTable[, CEff := cut(diffC, labelCuts, labels = labels, right = FALSE)]
+  assetPriceTable[, OEff := cut(diffC, labelCuts, labels = labels, right = FALSE)]
   assetPriceTable[, OHLCEff := cut(diffOHLC, labelCuts, labels = labels, right = FALSE)]
   assetPriceTable[, OHLCMomEff := cut(OHLCMom, labelCuts, labels = labels, right = FALSE)]
   assetPriceTable[, HLCMomEff := cut(HLCMom, labelCuts, labels = labels, right = FALSE)]

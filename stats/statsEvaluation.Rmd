@@ -1,6 +1,6 @@
 ---
 title: "Statistics Evaluation"
-author: "Thilo Notz"
+author: "Thilo"
 output: html_document
 ---
 
@@ -57,7 +57,8 @@ getActualFrequency <- function(symbol) {
   filename_market <- paste0(path_market, symbol, '--augmented.csv')
   market_data <- read_delim(filename_market, delim=',')
   n_days <- dim(market_data)[1]
-  frequency <- sum(market_data$CEff == 'Buy') / n_days
+  #frequency <- sum(market_data$CEff == 'Buy') / n_days
+  frequency <- sum(market_data$OEff == 'Buy') / n_days
   return(frequency)
 }
 
