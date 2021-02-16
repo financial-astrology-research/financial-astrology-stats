@@ -64,7 +64,11 @@ calculatePointsPlanetsAspects <- function(longitudePoints) {
   columnNames <- colnames(natalPointsAspects)
   aspectColumnNames <- columnNames[grep("_", columnNames)]
   columnNamesParts <- tstrsplit(aspectColumnNames, "_", fixed = T)
-  normalAspectColumnNames <- paste0(columnNamesParts[[2]], columnNamesParts[[1]])
+  normalAspectColumnNames <- paste0(
+    substr(columnNamesParts[[1]], 1, 2),
+    columnNamesParts[[2]],
+    substr(columnNamesParts[[1]], 3, 6)
+  )
   setnames(natalPointsAspects, c('Date', 'Hour', normalAspectColumnNames))
 
   return(natalPointsAspects)
@@ -104,8 +108,8 @@ buildNatalLongitudeAspects <- function(symbol, dailyPlanetsPositions) {
   dailyPlanetsPositions <- dailyPlanetsPositions[, c('Date', 'Hour', selectColumnNames), with = F] %>%
     dataTableDateGreaterFilter(bornDate)
   # Cartesian join of natal and mundane positions.
-  natalMundanePositions <- setkey(dailyPlanetsPositions[, c(k=1, .SD)], k)[
-    natalPlanetPositions[, c(k=1, .SD)],
+  natalMundanePositions <- setkey(dailyPlanetsPositions[, c(k = 1, .SD)], k)[
+    natalPlanetPositions[, c(k = 1, .SD)],
     allow.cartesian = T
   ]
   # Helper dummy index cleanup.
@@ -124,3 +128,7 @@ natalAspectsWide <- loadPlanetsPositionTable() %>%
   buildNatalLongitudeAspects('BTC', .)
 natalAspectsLong <- hourlyAspectsWideToLongTransform(natalAspectsWide)
 dailyNatalAspectsLong <- hourlyAspectsDateAggregate(natalAspectsLong)
+fwrite(
+  dailyNatalAspectsLong,
+  paste0(astroDataDestinationPath(), 'BTC_natal_transits.csv')
+)
