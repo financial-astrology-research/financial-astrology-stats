@@ -51,23 +51,20 @@ calculatePointsPlanetsAspects <- function(longitudePoints) {
   ]
 
   # Format wide all the significant point points.planets
-  natalPointsAspects <- data.table(Date = unique(longitudePoints$Date))
-  natalLongitudePoints <- unique(longitudePoints$lon)
-  for (curcol in natalLongitudePoints) {
-    currentNatalPoint <- longitudePoints[
-      lon == curcol,
-      c('Date', planetsLonDisCols, planetsLonAspCols, planetsLonOrbCols),
-      with = F
-    ]
+  longitudePoints[, variable := substr(variable, 1, 2)]
+  natalPointsAspects <- dcast(
+    longitudePoints,
+    Date + Hour ~ variable,
+    value.var = c(planetsLonAspCols, planetsLonOrbCols),
+    fill = NA
+  )
 
-    natalPointId <- unique(
-      str_replace(longitudePoints[lon == curcol,]$variable, 'LON', '')
-    )
-
-    curColumnNames <- paste0(natalPointId, c(planetsLonDisCols, planetsLonAspCols, planetsLonOrbCols))
-    setnames(currentNatalPoint, c('Date', curColumnNames))
-    natalPointsAspects <- merge(natalPointsAspects, currentNatalPoint, by = 'Date')
-  }
+  # Normalize aspect names with same format as mundane aspects.
+  columnNames <- colnames(natalPointsAspects)
+  aspectColumnNames <- columnNames[grep("_", columnNames)]
+  columnNamesParts <- tstrsplit(aspectColumnNames, "_", fixed = T)
+  normalAspectColumnNames <- paste0(columnNamesParts[[2]], columnNamesParts[[1]])
+  setnames(natalPointsAspects, c('Date', 'Hour', normalAspectColumnNames))
 
   return(natalPointsAspects)
 }
@@ -75,7 +72,7 @@ calculatePointsPlanetsAspects <- function(longitudePoints) {
 #' Prepare the natal positions table for a given symbol.
 buildNatalLongitudes <- function(symbol) {
   # open the stocks incorporation date planets positions
-  natalfile <- paste0(astroDataDestinationPath(), "assets_natal_charts.tsv")
+  natalfile <- paste0(astroDataDestinationPath(), 'assets_natal_charts.tsv')
   natal <- fread(natalfile, sep = "\t", na.strings = "", verbose = F)
   loncols <- colnames(natal)
   loncols <- loncols[grep('^..LON$', loncols)]
@@ -91,19 +88,19 @@ buildNatalLongitudeAspects <- function(symbol, dailyPlanetsPositions) {
   # build natal positions
   natalPlanetPositions <- buildNatalLongitudes(symbol)
   columnNames <- colnames(dailyPlanetsPositions)
-  selectColumnNames <- columnNames[grep("..LON", columnNames)]
+  selectColumnNames <- columnNames[grep('..LON', columnNames)]
   # extract only the planets longitudes
-  dailyPlanetsPositions <- dailyPlanetsPositions[, c('Date', 'wday', selectColumnNames), with = F]
+  dailyPlanetsPositions <- dailyPlanetsPositions[, c('Date', 'Hour', selectColumnNames), with = F]
   # Cartesian join of natal and mundane positions.
   natalMundanePositions <- dailyPlanetsPositions[,
     as.list(natalPlanetPositions),
     by = dailyPlanetsPositions
   ]
-  # Calculate aspects against natal chart positions.
-  natalTransitAspects <- calculatePointsPlanetsAspects(natalMundanePositions)
-
-  return(natalTransitAspects)
+  # Calculate natal chart positions transits aspects.
+  calculatePointsPlanetsAspects(natalMundanePositions)
 }
 
-dailyPlanetsPositions <- loadPlanetsPositionTable("daily")
-buildNatalLongitudeAspects("BTC", dailyPlanetsPositions) %>% print()
+natalAspectsWide <- loadPlanetsPositionTable() %>%
+  buildNatalLongitudeAspects('BTC', .)
+natalAspectsLong <- hourlyAspectsWideToLongTransform(natalAspectsWide)
+dailyNatalAspectsLong <- hourlyAspectsDateAggregate(hourlyPlanetAspectsLong)
