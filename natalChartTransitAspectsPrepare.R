@@ -7,8 +7,9 @@ library(data.table)
 library(magrittr)
 library(stringr)
 
-source("./planetAspectsDataPrepare.R")
+source("./dataLoadUtils.R")
 source("./fileSystemUtilities.R")
+source("./planetAspectsDataPrepare.R")
 
 calculatePointsPlanetsAspects <- function(longitudePoints) {
   aspectsSet <- pabloCerdaAspectSet()
@@ -83,19 +84,38 @@ buildNatalLongitudes <- function(symbol) {
   return(natal.symbol)
 }
 
+#' Asset natal chart data.
+natalChartDateGet <- function(symbol) {
+  # open the stocks incorporation date planets positions
+  natalfile <- paste0(astroDataDestinationPath(), 'assets_natal_charts.tsv')
+  natalCharts <- fread(natalfile, sep = "\t", na.strings = "", verbose = F)
+  natalChart <- natalCharts[Symbol == symbol]
+  as.Date(natalChart$Date)
+}
+
 # Calculate transits to natal position (symbol incorporation chart) aspects.
 buildNatalLongitudeAspects <- function(symbol, dailyPlanetsPositions) {
+  bornDate <- natalChartDateGet(symbol)
   # build natal positions
   natalPlanetPositions <- buildNatalLongitudes(symbol)
   columnNames <- colnames(dailyPlanetsPositions)
   selectColumnNames <- columnNames[grep('..LON', columnNames)]
   # extract only the planets longitudes
-  dailyPlanetsPositions <- dailyPlanetsPositions[, c('Date', 'Hour', selectColumnNames), with = F]
+  dailyPlanetsPositions <- dailyPlanetsPositions[, c('Date', 'Hour', selectColumnNames), with = F] %>%
+    dataTableDateGreaterFilter(bornDate)
   # Cartesian join of natal and mundane positions.
+  natalMundanePositions <- setkey(dailyPlanetsPositions[, c(k=1, .SD)], k)[
+    natalPlanetPositions[, c(k=1, .SD)],
+    allow.cartesian = T
+  ]
+  # Helper dummy index cleanup.
+  natalMundanePositions[, k := NULL]
+
   natalMundanePositions <- dailyPlanetsPositions[,
     as.list(natalPlanetPositions),
     by = dailyPlanetsPositions
   ]
+
   # Calculate natal chart positions transits aspects.
   calculatePointsPlanetsAspects(natalMundanePositions)
 }
@@ -103,4 +123,4 @@ buildNatalLongitudeAspects <- function(symbol, dailyPlanetsPositions) {
 natalAspectsWide <- loadPlanetsPositionTable() %>%
   buildNatalLongitudeAspects('BTC', .)
 natalAspectsLong <- hourlyAspectsWideToLongTransform(natalAspectsWide)
-dailyNatalAspectsLong <- hourlyAspectsDateAggregate(hourlyPlanetAspectsLong)
+dailyNatalAspectsLong <- hourlyAspectsDateAggregate(natalAspectsLong)

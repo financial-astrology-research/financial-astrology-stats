@@ -10,6 +10,22 @@ library(plyr)
 
 source("./fileSystemUtilities.R")
 
+#' Filter data table rows by date.
+#' @param dataTable Data table to subset from.
+#' @param filterDate Date to use for filtering.
+#' @return Data table subset with rows that match Date and selected columns.
+dataTableDateEqualFilter <- function(dataTable, filterDate) {
+  dataTable[Date == as.character(filterDate)]
+}
+
+#' Filter data table rows by date greater than.
+#' @param dataTable Data table to subset from.
+#' @param filterDate Date to use for filtering.
+#' @return Data table subset with rows that match Date and selected columns.
+dataTableDateGreaterFilter <- function(dataTable, filterDate) {
+  dataTable[Date > as.character(filterDate)]
+}
+
 #' Load CSV data table.
 #' @param pathFileName CSV file name including absolute or relative path.
 #' @return A data table.

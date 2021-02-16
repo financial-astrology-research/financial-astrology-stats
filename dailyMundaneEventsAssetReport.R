@@ -31,14 +31,6 @@ frequencyStatsColumnSort <- function(reportTable, columnNames) {
   reportTable[order(get(columnNames))]
 }
 
-#' Filter data table rows by date.
-#' @param dataTable Data table to subset from.
-#' @param filterDate Date to use for filtering.
-#' @return Data table subset with rows that match Date and selected columns.
-dataTableDateColsFilter <- function(dataTable, filterDate) {
-  dataTable[Date == as.character(filterDate)]
-}
-
 #' Load frequency stats table.
 #' @param dailyMundaneEventsTable Daily mundane events table to extract date report from.
 #' @param symbolID Symbol ID to load frequency stats for.
@@ -57,7 +49,7 @@ assetPriceEffectFrequencyStatsReport <- function(
     factorParts
   )
 
-  reportDateEvents <- dataTableDateColsFilter(
+  reportDateEvents <- dataTableDateEqualFilter(
     dailyMundaneEventsTable,
     reportDate
   )
