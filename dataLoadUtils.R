@@ -125,3 +125,11 @@ assetAugmentedDataLoad <- function(symbolID, startDate = NULL) {
 
   assetDataTable[Date >= startDate]
 }
+
+#' Load asset natal transit aspects table.
+#' @return Aspects long data table.
+assetNatalTransitAspectsLoad <- function(symbolID) {
+  destinationPathFileName <- paste0(astroDataDestinationPath(), symbolID,  "_natal_transits.csv")
+  assetNatalTransitAspectsTable <- memoFileRead(destinationPathFileName)
+  assetNatalTransitAspectsTable[, Date := as.Date(Date)]
+}
