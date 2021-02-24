@@ -238,7 +238,12 @@ dailyMundaneEventsPredictionsReport <- function(reportDate, symbolID) {
     reportDatePredictions <- predictionsTable[Date == reportDate, ..selectColumns]
     reportDatePredictions[, ModelID := str_replace(predictionsFileName, '.csv', '')]
     setcolorder(reportDatePredictions, c('ModelID', selectColumns))
-    setnames(reportDatePredictions, c('ModelID', 'Date', 'P1', 'P2', 'P3', 'P4', 'P5', 'Signal'))
+    pColNames <- c('P1', 'P2', 'P3', 'P4', 'P5')
+    if (length(reportDatePredictions) == 6) {
+      pColNames <- c('P1', 'P2', 'P3')
+    }
+
+    setnames(reportDatePredictions, c('ModelID', 'Date', pColNames, 'Signal'))
     allPredictions <- rbind(allPredictions, reportDatePredictions)
   }
 
