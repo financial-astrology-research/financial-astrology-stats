@@ -134,8 +134,11 @@ buildNatalLongitudeAspects <- function(symbolID, dailyPlanetsPositions) {
 assetsNatalChartTransitsPrepare <- function() {
   watchList <- assetsWatchList()
   for (symbolID in watchList$SymbolID) {
+    symbolIdParts <- unlist(strsplit(symbolID, "-"))
+    isCurrencyPair <- length(symbolIdParts) == 2
+    natalSymbolId <- ifelse(isCurrencyPair, symbolIdParts[1], symbolID)
     natalAspectsWide <- loadPlanetsPositionTable() %>%
-      buildNatalLongitudeAspects(symbolID, .)
+      buildNatalLongitudeAspects(natalSymbolId, .)
 
     # Process only when natal aspects ara available for this symbol.
     if (!is.null(natalAspectsWide)) {
@@ -143,7 +146,7 @@ assetsNatalChartTransitsPrepare <- function() {
       dailyNatalAspectsLong <- hourlyAspectsDateAggregate(natalAspectsLong)
       fwrite(
         dailyNatalAspectsLong,
-        paste0(astroDataDestinationPath(), symbolID, '_natal_transits.csv')
+        paste0(astroDataDestinationPath(), natalSymbolId, '_natal_transits.csv')
       )
     }
   }
