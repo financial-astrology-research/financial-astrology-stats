@@ -222,9 +222,9 @@ PLANETS ASPECTS:
 
 MACHINE LEARNING PREDICTIONS:
 
-                                  ModelID       Date         P1         P2         P3        P4         P5 Signal
-      BAT-USD-predict-ensamble-gakknn-VDA 2021-02-26  0.0305650  0.0562100  0.0326080  0.054274  0.0301000    Buy
-      BAT-USD-predict-ensamble-gakknn-MEM 2021-02-26 -0.0149290 -0.0016330 -0.0141468 -0.014147 -0.0023902   Sell
-      BAT-USD-predict-ensamble-gakknn-VGI 2021-02-26  0.0561570  0.0443830  0.0431280  0.028723  0.0494055    Buy
-  BAT-USD-predict-ensamble-gakknn-VDIBCFA 2021-02-26 -0.0212000  0.0183262 -0.0434092 -0.002514 -0.0265700   Sell
- BAT-USD-predict-ensamble-gakknn-VACGBFCI 2021-02-26 -0.0853619 -0.1226140 -0.0908743 -0.128554 -0.0753751   Sell
+                                ModelID       Date        P1        P2        P3        P4         P5 Signal
+    BAT-USD-predict-ensamble-gakknn-VGI 2021-02-26  0.056157  0.044383  0.043128  0.028723  0.0494055    Buy
+      BAT-USD-predict-kknnLDAB-ensamble 2021-02-26  1.000000  0.000000  0.860300        NA         NA    Buy
+   BAT-USD-predict-ensamble-gakknn-VACD 2021-02-26 -0.030760 -0.036112 -0.026890 -0.011974 -0.0105460   Sell
+ BAT-USD-predict-ensamble-gakknn-VDIDCC 2021-02-26 -0.098253 -0.078485 -0.090269  0.003392 -0.0798170   Sell
+    BAT-USD-predict-ensamble-gakknn-MCE 2021-02-26 -0.018020 -0.012804 -0.018080 -0.027800 -0.0129150   Sell

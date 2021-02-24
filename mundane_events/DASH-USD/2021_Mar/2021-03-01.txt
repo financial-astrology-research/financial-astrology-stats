@@ -223,9 +223,9 @@ PLANETS ASPECTS:
 
 MACHINE LEARNING PREDICTIONS:
 
-                               ModelID       Date          P1           P2         P3          P4           P5 Signal
-  DASH-USD-predict-ensamble-gakknn-MEG 2021-03-01  0.00266556  0.003484567  0.0107331  0.01439794 -0.002778694    Buy
-  DASH-USD-predict-ensamble-gakknn-VDE 2021-03-01 -0.08766700 -0.087026800 -0.0870270 -0.06349300 -0.087027000   Sell
- DASH-USD-predict-ensamble-gakknn-MICD 2021-03-01  0.00770900 -0.023685300  0.0075360  0.00808900  0.009145800   Sell
-  DASH-USD-predict-ensamble-gakknn-MEI 2021-03-01  0.00783300 -0.000282000 -0.0040220  0.01137400  0.012838300    Buy
-  DASH-USD-predict-ensamble-gakknn-MIA 2021-03-01 -0.01810700 -0.020829000 -0.0186562 -0.00663800  0.027407000   Sell
+                                 ModelID       Date        P1         P2         P3         P4         P5 Signal
+    DASH-USD-predict-ensamble-gakknn-VDE 2021-03-01 -0.087667 -0.0870268 -0.0870270 -0.0634930 -0.0870270   Sell
+       DASH-USD-predict-kknnLDL-ensamble 2021-03-01  1.000000  1.0000000  1.0000000  1.0000000  1.0000000    Buy
+ DASH-USD-predict-ensamble-gakknn-VDIBCC 2021-03-01 -0.040692 -0.0395020 -0.0389940 -0.0431780 -0.0382300   Sell
+    DASH-USD-predict-ensamble-gakknn-VAA 2021-03-01  0.019388  0.0072710  0.0027095  0.0193883  0.0324850   Sell
+    DASH-USD-predict-ensamble-gakknn-MBE 2021-03-01 -0.011125 -0.0223900 -0.0141610 -0.0172090 -0.0180383   Sell

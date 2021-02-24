@@ -214,8 +214,9 @@ PLANETS ASPECTS:
 
 MACHINE LEARNING PREDICTIONS:
 
-                             ModelID       Date          P1         P2          P3        P4         P5 Signal
- LTC-USD-predict-ensamble-gakknn-VEC 2021-03-13  0.02704600 0.02464220  0.03638600  0.033385  0.0809630    Buy
-   LTC-USD-predict-kknnLDDF-ensamble 2021-03-13  0.00000000 1.00000000  0.77620000  0.610080  0.2683140    Buy
-   LTC-USD-predict-kknnLDJD-ensamble 2021-03-13  0.00000000 0.74720000  1.00000000  1.000000  0.7109155    Buy
- LTC-USD-predict-ensamble-gakknn-MFM 2021-03-13 -0.01953704 0.00981392 -0.01178726 -0.019537 -0.0193095   Sell
+                               ModelID       Date         P1         P2         P3         P4          P5 Signal
+  LTC-USD-predict-ensamble-gakknn-VDIE 2021-03-13  0.0132460 -0.0035370 -0.0033060  0.0068440  0.00276600    Buy
+  LTC-USD-predict-ensamble-gakknn-MIBA 2021-03-13  0.0225086  0.0224000  0.0130520  0.0217080  0.02170796    Buy
+     LTC-USD-predict-kknnLDDF-ensamble 2021-03-13  0.0000000  1.0000000  0.7762000  0.6100800  0.26831400    Buy
+ LTC-USD-predict-ensamble-gakknn-UADBA 2021-03-13 -0.0250800 -0.0383602 -0.0527734 -0.0241961 -0.03095600   Sell
+   LTC-USD-predict-ensamble-gakknn-VEC 2021-03-13  0.0270460  0.0246422  0.0363860  0.0333850  0.08096300    Buy
