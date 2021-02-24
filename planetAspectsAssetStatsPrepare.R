@@ -102,6 +102,36 @@ planetAspectTypesCountFrequencyPrepare <- function(planetAspectsCountAssetPrice)
   )
 }
 
+natalTransitAspectsAssetPricesPrepare <- function(symbolID) {
+  symbolIdParts <- unlist(strsplit(symbolID, "-"))
+  isCurrencyPair <- length(symbolIdParts) == 2
+  # When is currency pair natal transits are based on base currency chart.
+  natalSymbolId <- ifelse(isCurrencyPair, symbolIdParts[1], symbolID)
+  destinationPathFileName <- paste0(astroDataDestinationPath(), natalSymbolId, "_natal_transits.csv")
+
+  if (!file.exists(destinationPathFileName)) {
+    return(NULL)
+  }
+
+  dailyNatalTransitAspectsLong <- assetNatalTransitAspectsLoad(natalSymbolId)
+  dailyAssetAugmentedData <- assetAugmentedDataLoad(symbolID)
+  merge(dailyNatalTransitAspectsLong, dailyAssetAugmentedData, by = 'Date')
+}
+
+natalTransitAspectsFrequencyStatsPrepare <- function(symbolID) {
+  natalTransitAspectsAssetPricesTable <- natalTransitAspectsAssetPricesPrepare(symbolID)
+  if (!is.null(natalTransitAspectsAssetPricesTable)) {
+    natalTransitAspectsAssetPricesTable[, pX := substr(origin, 1, 2)]
+    natalTransitAspectsAssetPricesTable[, pY := substr(origin, 3, 4)]
+    natalTransitAspectsAssetPricesTable[, PlanetsAspect := paste(pX, pY, aspect, sep = "_")]
+    dataTableStatsExport(
+      symbolID,
+      planetAspectsAssetPriceEffectFrequencyPrepare(natalTransitAspectsAssetPricesTable),
+      paste(symbolID, "transit_aspects", "buy_sell_count_freq_stats", sep = "-")
+    )
+  }
+}
+
 planetAspectsAssetStatsPrepare <- function() {
   # TODO: Extract data tmp path composition to FS utilities and use here.
   planetAspectsAssetPricesFiles <- list.files("./data/tmp", pattern = "*aspects_set_long.csv")
@@ -167,29 +197,7 @@ planetAspectsAssetStatsPrepare <- function() {
       planetAspectsAssetPriceDescriptivesPrepare(planetAspectsAssetPricesTable),
       paste(symbolID, "planets_aspects", "price_descriptive_stats", sep = "-")
     )
+
+    natalTransitAspectsFrequencyStatsPrepare(symbolID)
   }
 }
-
-natalTransitAspectsAssetPricesPrepare <- function(symbolID) {
-  symbolIdParts <- unlist(strsplit(symbolID, "-"))
-  isCurrencyPair <- length(symbolIdParts) == 2
-  # When is currency pair natal transits are based on base currency chart.
-  natalSymbolId <- ifelse(isCurrencyPair, symbolIdParts[1], symbolID)
-  dailyNatalTransitAspectsLong <- assetNatalTransitAspectsLoad(natalSymbolId)
-  dailyAssetAugmentedData <- assetAugmentedDataLoad(symbolID)
-  merge(dailyNatalTransitAspectsLong, dailyAssetAugmentedData, by = 'Date')
-}
-
-natalTransitAspectsFrequencyStatsPrepare <- function(symbolID) {
-  natalTransitAspectsAssetPricesTable <- natalTransitAspectsAssetPricesPrepare(symbolID)
-  natalTransitAspectsAssetPricesTable[, pX := substr(origin, 1, 2)]
-  natalTransitAspectsAssetPricesTable[, pY := substr(origin, 3, 4)]
-  natalTransitAspectsAssetPricesTable[, PlanetsAspect := paste(pX, pY, aspect, sep = "_")]
-  dataTableStatsExport(
-    symbolID,
-    planetAspectsAssetPriceEffectFrequencyPrepare(natalTransitAspectsAssetPricesTable),
-    paste(symbolID, "transit_aspects", "buy_sell_count_freq_stats", sep = "-")
-  )
-}
-
-natalTransitAspectsFrequencyStatsPrepare("BTC-USD")
