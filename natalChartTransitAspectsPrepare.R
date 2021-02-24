@@ -7,6 +7,7 @@ library(data.table)
 library(magrittr)
 library(stringr)
 
+source("./configUtils.R")
 source("./dataLoadUtils.R")
 source("./fileSystemUtilities.R")
 source("./planetAspectsDataPrepare.R")
