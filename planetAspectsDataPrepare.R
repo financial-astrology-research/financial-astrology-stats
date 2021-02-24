@@ -218,9 +218,13 @@ hourlyAspectsWideToLongTransform <- function(hourlyPlanetAspectsWide) {
   colNames <- colnames(hourlyPlanetAspectsWide)
   aspectColNames <- colNames[grep("^....ASP$", colNames)]
   hourlyPlanetAspectsLong <- melt(
-    hourlyPlanetAspectsWide, id.var = idCols,
-    variable.name = 'origin', value.name = 'aspect',
-    value.factor = T, measure.var = aspectColNames, na.rm = T
+    hourlyPlanetAspectsWide,
+    id.var = idCols,
+    variable.name = 'origin',
+    value.name = 'aspect',
+    value.factor = T,
+    measure.var = aspectColNames,
+    na.rm = T
   )
 
   setkey(hourlyPlanetAspectsLong, 'Date', 'Hour')
