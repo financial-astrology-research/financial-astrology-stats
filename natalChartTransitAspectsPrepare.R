@@ -98,10 +98,16 @@ natalChartDateGet <- function(symbol) {
 }
 
 # Calculate transits to natal position (symbol incorporation chart) aspects.
-buildNatalLongitudeAspects <- function(symbol, dailyPlanetsPositions) {
-  bornDate <- natalChartDateGet(symbol)
-  # build natal positions
-  natalPlanetPositions <- buildNatalLongitudes(symbol)
+buildNatalLongitudeAspects <- function(symbolID, dailyPlanetsPositions) {
+  bornDate <- natalChartDateGet(symbolID)
+
+  if (length(bornDate) == 0) {
+    return(NULL)
+  }
+
+  cat("Calculating", symbolID, "natal transits aspects\n", sep = " ")
+  # Prepare natal positions data table.
+  natalPlanetPositions <- buildNatalLongitudes(symbolID)
   columnNames <- colnames(dailyPlanetsPositions)
   selectColumnNames <- columnNames[grep('..LON', columnNames)]
   # extract only the planets longitudes
@@ -124,11 +130,22 @@ buildNatalLongitudeAspects <- function(symbol, dailyPlanetsPositions) {
   calculatePointsPlanetsAspects(natalMundanePositions)
 }
 
-natalAspectsWide <- loadPlanetsPositionTable() %>%
-  buildNatalLongitudeAspects('BTC', .)
-natalAspectsLong <- hourlyAspectsWideToLongTransform(natalAspectsWide)
-dailyNatalAspectsLong <- hourlyAspectsDateAggregate(natalAspectsLong)
-fwrite(
-  dailyNatalAspectsLong,
-  paste0(astroDataDestinationPath(), 'BTC_natal_transits.csv')
-)
+assetsNatalChartTransitsPrepare <- function() {
+  watchList <- assetsWatchList()
+  for (symbolID in watchList$SymbolID) {
+    natalAspectsWide <- loadPlanetsPositionTable() %>%
+      buildNatalLongitudeAspects(symbolID, .)
+
+    # Process only when natal aspects ara available for this symbol.
+    if (!is.null(natalAspectsWide)) {
+      natalAspectsLong <- hourlyAspectsWideToLongTransform(natalAspectsWide)
+      dailyNatalAspectsLong <- hourlyAspectsDateAggregate(natalAspectsLong)
+      fwrite(
+        dailyNatalAspectsLong,
+        paste0(astroDataDestinationPath(), symbolID, '_natal_transits.csv')
+      )
+    }
+  }
+}
+
+assetsNatalChartTransitsPrepare()
