@@ -244,7 +244,7 @@ dailyMundaneEventsPredictionsReport <- function(reportDate, symbolID) {
     }
 
     setnames(reportDatePredictions, c('ModelID', 'Date', pColNames, 'Signal'))
-    allPredictions <- rbind(allPredictions, reportDatePredictions)
+    allPredictions <- rbind(allPredictions, reportDatePredictions, fill = TRUE)
   }
 
   if (nrow(allPredictions) == 0) {
