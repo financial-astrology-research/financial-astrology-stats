@@ -11,6 +11,8 @@ library(swephR)
 options(digits = 14)
 data(SE)
 
+source('./dataExportUtils.R')
+
 #' Convert a given date/time to Julian Day.
 #' @param dateTime Date time string to convert.
 #' @return A julian day value.
@@ -32,8 +34,8 @@ dateTimeToJulianDayConvert <- function(dateTime) {
 #' @param planetID A sweph planet ID, can be inspected at SE global list.
 #' @return Planet longitude position value.
 #' @examples
-#'   planetLongitudeGet("2021-02-26 20:30:00", SE$SUN)
-#'   planetLongitudeGet("2021-02-26 20:30:00", SE$MOON)
+#'   planetLongitudeGet('2021-02-26 20:30:00', SE$SUN)
+#'   planetLongitudeGet('2021-02-26 20:30:00', SE$MOON)
 planetLongitudeGet <- function(dateTime, planetID) {
   iflag <- SE$FLG_MOSEPH + SE$FLG_SPEED
   jd <- dateTimeToJulianDayConvert(dateTime)
@@ -107,14 +109,20 @@ chineseZodiacStarsLatitudeDateTablePrepare <- function(dateTime) {
 #' @param endDate End date.
 #' @return Daily zodiac star longitude positions data table.
 chineseZodiacStarsLatitudeTablePrepare <- function(startDate, endDate) {
-  rangeDates <- seq(as.Date(startDate), as.Date(endDate), by = "1 day")
-  timeUTC <- "12:00"
-  lapply(rangeDates, function(rangeDate) {
-    cat("Computing chinese zodiac stars for ", rangeDate, "\n")
+  rangeDates <- seq(as.Date(startDate), as.Date(endDate), by = '1 day')
+  timeUTC <- '12:00'
+  dailyChineseZodiacStarsTable <- lapply(rangeDates, function(rangeDate) {
+    cat('Computing chinese zodiac stars for ', rangeDate, '\n')
     chineseZodiacStarsLatitudeDateTablePrepare(paste(rangeDate, timeUTC))
   }) %>% rbindlist()
+
+  targetFileName <- paste0(astroDataDestinationPath(), 'chinese_zodiac_stars_positions_daily_1980-2029', '.csv')
+  fwrite(
+    dailyChineseZodiacStarsTable,
+    targetFileName
+  )
+
+  cat('Zodiac star positions table exported to:', targetFileName, '\n')
 }
 
-dailyChineseZodiacStarsTable <- chineseZodiacStarsLatitudeTablePrepare(
-  "1980-01-01", "2029-12-31"
-)
+chineseZodiacStarsLatitudeTablePrepare('1980-01-01', '2029-12-31')
