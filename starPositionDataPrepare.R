@@ -85,7 +85,17 @@ chineseZodiacStarsLatitudeGet <- function(dateTime) {
   )
 
   longitudes <- lapply(zodStarIds, function(starID) starLongitudeGet(dateTime, starID))
-  data.table(starID = zodStarIds, longitude = longitudes)
+  starsLongitudeTable <- data.table(
+    Date = as.Date(dateTime),
+    StarID = zodStarIds,
+    Longitude = longitudes
+  )
+
+  data.table::dcast(
+    starsLongitudeTable,
+    Date ~ StarID,
+    value.var = 'Longitude'
+  )
 }
 
 chineseZodiacStarsLatitudeGet("2021-02-25 12:00")
