@@ -13,7 +13,7 @@ data(SE)
 
 #' Convert a given date/time to Julian Day.
 #' @param dateTime Date time string to convert.
-#' @return A julian day.
+#' @return A julian day value.
 dateTimeToJulianDayConvert <- function(dateTime) {
   hourDecimal <- hour(dateTime) + (minute(dateTime) / 60)
   jd <- swe_julday(
@@ -30,6 +30,7 @@ dateTimeToJulianDayConvert <- function(dateTime) {
 #' Calculate planet longitude for a given date/time.
 #' @param dateTime Date time string.
 #' @param planetID A sweph planet ID, can be inspected at SE global list.
+#' @return Planet longitude position value.
 #' @examples
 #'   planetLongitudeGet("2021-02-26 20:30:00", SE$SUN)
 #'   planetLongitudeGet("2021-02-26 20:30:00", SE$MOON)
@@ -40,10 +41,10 @@ planetLongitudeGet <- function(dateTime, planetID) {
   position[1]
 }
 
-
 #' Calculate fixed star longitude for a given date/time.
 #' @param dateTime Date time string.
 #' @param starID A sweph star ID (nomenclature), without leading comma.
+#' @return Star longitude position value.
 starLongitudeGet <- function(dateTime, starID) {
   iflag <- SE$FLG_MOSEPH + SE$FLG_SPEED + SE$FLG_EQUATORIAL
   jd <- dateTimeToJulianDayConvert(dateTime)
@@ -52,7 +53,10 @@ starLongitudeGet <- function(dateTime, starID) {
   position[1]
 }
 
-chineseZodiacStarsLatitudeGet <- function(dateTime) {
+#' Prepare chinese zodiac stars longitude positions dable for a given date/time.
+#' @param dateTime Date time string.
+#' @return Data table with stars longitude positions arranged in columns.
+chineseZodiacStarsLatitudeTablePrepare <- function(dateTime) {
   zodStarIds <- c(
     'beAri',
     'ta-6Eri',
@@ -98,4 +102,4 @@ chineseZodiacStarsLatitudeGet <- function(dateTime) {
   )
 }
 
-chineseZodiacStarsLatitudeGet("2021-02-25 12:00")
+chineseZodiacStarsLatitudeTablePrepare("2021-02-25 12:00")
