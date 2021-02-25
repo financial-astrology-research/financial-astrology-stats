@@ -91,7 +91,7 @@ chineseZodiacStarsLatitudeTablePrepare <- function(dateTime) {
   longitudes <- lapply(zodStarIds, function(starID) starLongitudeGet(dateTime, starID))
   starsLongitudeTable <- data.table(
     Date = as.Date(dateTime),
-    StarID = zodStarIds,
+    StarID = factor(zodStarIds, levels = zodStarIds),
     Longitude = longitudes
   )
 
