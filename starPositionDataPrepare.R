@@ -38,7 +38,7 @@ planetLongitudeGet <- function(dateTime, planetID) {
   iflag <- SE$FLG_MOSEPH + SE$FLG_SPEED
   jd <- dateTimeToJulianDayConvert(dateTime)
   position <- swe_calc_ut(jd, planetID, iflag)$xx
-  position[1]
+  round(position[1], 5)
 }
 
 #' Calculate fixed star longitude for a given date/time.
@@ -50,13 +50,13 @@ starLongitudeGet <- function(dateTime, starID) {
   jd <- dateTimeToJulianDayConvert(dateTime)
   result <- swe_fixstar2_ut(paste0(',', starID), jd, iflag)
   position <- result$xx
-  position[1]
+  round(position[1], 5)
 }
 
 #' Prepare chinese zodiac stars longitude positions dable for a given date/time.
 #' @param dateTime Date time string.
 #' @return Data table with stars longitude positions arranged in columns.
-chineseZodiacStarsLatitudeTablePrepare <- function(dateTime) {
+chineseZodiacStarsLatitudeDateTablePrepare <- function(dateTime) {
   zodStarIds <- c(
     'beAri',
     'ta-6Eri',
@@ -102,4 +102,19 @@ chineseZodiacStarsLatitudeTablePrepare <- function(dateTime) {
   )
 }
 
-chineseZodiacStarsLatitudeTablePrepare("2021-02-25 12:00")
+#' Compute chinese zodiac stars longitude positions for a date range.
+#' @param startDate Start date.
+#' @param endDate End date.
+#' @return Daily zodiac star longitude positions data table.
+chineseZodiacStarsLatitudeTablePrepare <- function(startDate, endDate) {
+  rangeDates <- seq(as.Date(startDate), as.Date(endDate), by = "1 day")
+  timeUTC <- "12:00"
+  lapply(rangeDates, function(rangeDate) {
+    cat("Computing chinese zodiac stars for ", rangeDate, "\n")
+    chineseZodiacStarsLatitudeDateTablePrepare(paste(rangeDate, timeUTC))
+  }) %>% rbindlist()
+}
+
+dailyChineseZodiacStarsTable <- chineseZodiacStarsLatitudeTablePrepare(
+  "1980-01-01", "2029-12-31"
+)
