@@ -110,10 +110,11 @@ chineseZodiacStarsLatitudeDateTablePrepare <- function(dateTime) {
 #' @return Daily zodiac star longitude positions data table.
 chineseZodiacStarsLatitudeTablePrepare <- function(startDate, endDate) {
   rangeDates <- seq(as.Date(startDate), as.Date(endDate), by = '1 day')
-  timeUTC <- '12:00'
+  utcTime <- '12:00'
   dailyChineseZodiacStarsTable <- lapply(rangeDates, function(rangeDate) {
-    cat('Computing chinese zodiac stars for ', rangeDate, '\n')
-    chineseZodiacStarsLatitudeDateTablePrepare(paste(rangeDate, timeUTC))
+    dateTime <- paste(as.character(rangeDate), utcTime)
+    cat('Computing chinese zodiac stars for ', dateTime, '\n')
+    chineseZodiacStarsLatitudeDateTablePrepare(dateTime)
   }) %>% rbindlist()
 
   targetFileName <- paste0(astroDataDestinationPath(), 'chinese_zodiac_stars_positions_daily_1980-2029', '.csv')
