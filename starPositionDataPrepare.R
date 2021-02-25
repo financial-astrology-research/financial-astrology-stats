@@ -3,10 +3,12 @@
 # Created by: pablocc
 # Created on: 25/02/2021
 
+library(data.table)
 library(lubridate)
 library(magrittr)
 library(swephR)
-options(digits=14)
+
+options(digits = 14)
 data(SE)
 
 #' Convert a given date/time to Julian Day.
@@ -28,6 +30,9 @@ dateTimeToJulianDayConvert <- function(dateTime) {
 #' Calculate planet longitude for a given date/time.
 #' @param dateTime Date time string.
 #' @param planetID A sweph planet ID, can be inspected at SE global list.
+#' @examples
+#'   planetLongitudeGet("2021-02-26 20:30:00", SE$SUN)
+#'   planetLongitudeGet("2021-02-26 20:30:00", SE$MOON)
 planetLongitudeGet <- function(dateTime, planetID) {
   iflag <- SE$FLG_MOSEPH + SE$FLG_SPEED
   jd <- dateTimeToJulianDayConvert(dateTime)
@@ -38,16 +43,49 @@ planetLongitudeGet <- function(dateTime, planetID) {
 
 #' Calculate fixed star longitude for a given date/time.
 #' @param dateTime Date time string.
-#' @param starName A sweph star name.
-starLongitudeGet <- function(dateTime, starName) {
-  iflag <- SE$FLG_MOSEPH + SE$FLG_SPEED
+#' @param starID A sweph star ID (nomenclature), without leading comma.
+starLongitudeGet <- function(dateTime, starID) {
+  iflag <- SE$FLG_MOSEPH + SE$FLG_SPEED + SE$FLG_EQUATORIAL
   jd <- dateTimeToJulianDayConvert(dateTime)
-  result <- swe_fixstar2_ut(starName, jd, iflag)
-  print(result)
+  result <- swe_fixstar2_ut(paste0(',', starID), jd, iflag)
   position <- result$xx
   position[1]
 }
 
+chineseZodiacStarsLatitudeGet <- function(dateTime) {
+  zodStarIds <- c(
+    'beAri',
+    'ta-6Eri',
+    '16Tau',
+    'epTau',
+    'laOri',
+    'zeOri',
+    'muGem',
+    'xiPup',
+    'laDra',
+    'alPyx',
+    'chUMa',
+    'gaCom',
+    'gaCrv',
+    'alVir',
+    'laCen',
+    'xi-2Lib',
+    'piSco',
+    'siSco',
+    'alHer',
+    'ga-2Sgr',
+    'muLyr',
+    'beCap',
+    'epAqr',
+    'gaEqu',
+    'alAqr',
+    'alPeg',
+    'psPeg',
+    'piAnd'
+  )
 
-planetLongitudeGet("2021-02-26 20:30:00", SE$SUN)
-starLongitudeGet("2021-02-26 20:30:00", "sirius")
+  longitudes <- lapply(zodStarIds, function(starID) starLongitudeGet(dateTime, starID))
+  data.table(starID = zodStarIds, longitude = longitudes)
+}
+
+chineseZodiacStarsLatitudeGet("2021-02-25 12:00")
