@@ -152,4 +152,54 @@ assetsNatalChartTransitsPrepare <- function() {
   }
 }
 
+natalChartFixedStarPositionsGet <- function(natalSymbolID) {
+  bornDate <- natalChartDateGet(natalSymbolID)
+  chineseZodiacFixedStarPositions <- chineseZodiacFixedStarPositionsLoad()
+  natalFixedStarPositions <- chineseZodiacFixedStarPositions[Date == bornDate]
+
+  if (nrow(natalFixedStarPositions) == 0) {
+    return(NULL);
+  }
+
+  natalFixedStarPositions[, -c('Date')] %>% as.vector() %>% sort()
+}
+
+#' Prepare transit planets natal chart chinese mansions positions.
+natalChartTransitsChineseMansionsPrepare <- function(symbolID) {
+  planetPositionsTable <- loadPlanetsPositionTable()
+  symbolIdParts <- unlist(strsplit(symbolID, "-"))
+  isCurrencyPair <- length(symbolIdParts) == 2
+  natalSymbolID <- ifelse(isCurrencyPair, symbolIdParts[1], symbolID)
+  natalFixedStarPositions <- natalChartFixedStarPositionsGet(natalSymbolID)
+  colNames <- colnames(planetPositionsTable)
+  longitudeColNames <- colNames[grep("^..LON", colNames)]
+  planetLongitudeTableLong <- melt(
+    planetPositionsTable,
+    id.var = "Date",
+    measure.var = longitudeColNames
+  )
+
+  if (!is.null(natalFixedStarPositions)) {
+    zodiacMansionsCut <- c(0, as.numeric(natalFixedStarPositions), 360)
+    zodiacMansionsNames <- names(natalFixedStarPositions)
+    zodiacMansionsCutNames <- c(
+      last(zodiacMansionsNames),
+      zodiacMansionsNames
+    )
+
+    planetLongitudeTableLong[, CM := cut(value, zodiacMansionsCut, zodiacMansionsCutNames)]
+    planetLongitudeTableLong[, pID := substr(variable, 1, 2)]
+    planetLongitudeTableLong[, variable := NULL]
+
+    targetPathFileName <- paste0(astroDataDestinationPath(), natalSymbolID, '_transits_positions.csv')
+    fwrite(
+      planetLongitudeTableLong,
+      targetPathFileName
+    )
+
+    cat("Exported transits positions to: ", targetPathFileName, "\n")
+  }
+}
+
 assetsNatalChartTransitsPrepare()
+natalChartTransitsChineseMansionsPrepare("BTC-USD")

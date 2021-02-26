@@ -136,7 +136,7 @@ assetNatalTransitAspectsLoad <- function(symbolID) {
 
 #' Load chinese zodiac fixed stars daily positions table.
 #' @return Fixed stars positions data table.
-chineseZodiacFixedStarsPositionLoad <- function() {
+chineseZodiacFixedStarPositionsLoad <- function() {
   destinationPathFileName <- paste0(astroDataDestinationPath(), 'chinese_zodiac_stars_positions_daily_1980-2029.csv')
   zodiacFixedStarsPositionTable <- memoFileRead(destinationPathFileName)
   zodiacFixedStarsPositionTable[, Date := as.Date(Date)]
