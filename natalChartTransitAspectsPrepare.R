@@ -170,6 +170,7 @@ natalChartTransitsChineseMansionsPrepare <- function(symbolID) {
   symbolIdParts <- unlist(strsplit(symbolID, "-"))
   isCurrencyPair <- length(symbolIdParts) == 2
   natalSymbolID <- ifelse(isCurrencyPair, symbolIdParts[1], symbolID)
+  bornDate <- natalChartDateGet(natalSymbolID)
   natalFixedStarPositions <- natalChartFixedStarPositionsGet(natalSymbolID)
   colNames <- colnames(planetPositionsTable)
   longitudeColNames <- colNames[grep("^..LON", colNames)]
@@ -179,6 +180,12 @@ natalChartTransitsChineseMansionsPrepare <- function(symbolID) {
     measure.var = longitudeColNames
   )
 
+  # Aggregate horly to daily with average longitude.
+  planetLongitudeTableLong <- planetLongitudeTableLong[, mean(value), by = c('Date', 'variable')]
+  setnames(planetLongitudeTableLong, c('Date', 'pID', 'Lon'))
+  planetLongitudeTableLong[, Lon := round(Lon, 2)]
+  setkey(planetLongitudeTableLong, Date)
+
   if (!is.null(natalFixedStarPositions)) {
     zodiacMansionsCut <- c(0, as.numeric(natalFixedStarPositions), 360)
     zodiacMansionsNames <- names(natalFixedStarPositions)
@@ -187,13 +194,12 @@ natalChartTransitsChineseMansionsPrepare <- function(symbolID) {
       zodiacMansionsNames
     )
 
-    planetLongitudeTableLong[, CM := cut(value, zodiacMansionsCut, zodiacMansionsCutNames)]
-    planetLongitudeTableLong[, pID := substr(variable, 1, 2)]
-    planetLongitudeTableLong[, variable := NULL]
+    planetLongitudeTableLong[, CM := cut(Lon, zodiacMansionsCut, zodiacMansionsCutNames)]
+    planetLongitudeTableLong[, pID := substr(pID, 1, 2)]
 
     targetPathFileName <- paste0(astroDataDestinationPath(), natalSymbolID, '_transits_positions.csv')
     fwrite(
-      planetLongitudeTableLong,
+      planetLongitudeTableLong[Date >= as.Date(bornDate)],
       targetPathFileName
     )
 
