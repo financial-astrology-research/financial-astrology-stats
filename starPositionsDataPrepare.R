@@ -7,6 +7,7 @@ library(data.table)
 library(lubridate)
 library(magrittr)
 library(swephR)
+library(swephRdata)
 
 options(digits = 14)
 data(SE)
@@ -48,7 +49,7 @@ planetLongitudeGet <- function(dateTime, planetID) {
 #' @param starID A sweph star ID (nomenclature), without leading comma.
 #' @return Star longitude position value.
 starLongitudeGet <- function(dateTime, starID) {
-  iflag <- SE$FLG_MOSEPH + SE$FLG_SPEED + SE$FLG_EQUATORIAL
+  iflag <- SE$FLG_SWIEPH + SE$FLG_SPEED + SE$FLG_BARYCTR
   jd <- dateTimeToJulianDayConvert(dateTime)
   result <- swe_fixstar2_ut(paste0(',', starID), jd, iflag)
   position <- result$xx
@@ -127,3 +128,4 @@ chineseZodiacStarsLatitudeTablePrepare <- function(startDate, endDate) {
 }
 
 chineseZodiacStarsLatitudeTablePrepare('1980-01-01', '2029-12-31')
+#chineseZodiacStarsLatitudeDateTablePrepare('1980-01-01') %>% print()
