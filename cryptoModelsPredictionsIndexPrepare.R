@@ -42,13 +42,9 @@ modelPredictionsSignalsGet <- function(predictFilename) {
 signalsIndexPlot <- function(signalsIndex, indexName) {
   indexPathFileName <- signalsIndexTargetPathFileNameGet(indexName)
   plotPathFileName <- str_replace(indexPathFileName, ".csv", ".png")
-  signalsIndex[, BuyDiff := buy - sell]
-  signalsIndex[, SellDiff := sell - buy]
-  signalsIndex[, BuySignals := minMaxNormalize(cumsum(BuyDiff))]
-  signalsIndex[, SellSignals := minMaxNormalize(cumsum(SellDiff))]
+  signalsIndex[, BuyForce := cumsum(buy - sell)]
   indexPlot <- ggplot(data = signalsIndex[Date >= Sys.Date() - 120,]) +
-    geom_line(aes(x = Date, y = BuySignals), colour = 'green') +
-    geom_line(aes(x = Date, y = SellSignals), colour = 'red') +
+    geom_line(aes(x = Date, y = BuyForce), colour = 'white') +
     scale_x_date(date_breaks = '7 days', date_labels = '%Y-%m-%d') +
     labs(
       title = paste(indexName, 'ML models buy/sell signals cumulative sum'),
