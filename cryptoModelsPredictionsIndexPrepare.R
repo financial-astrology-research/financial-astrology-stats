@@ -31,7 +31,7 @@ modelPredictionsSignalsGet <- function(predictFilename) {
   predictionTable[, ..exportCols]
 }
 
-signalsIndexPrepare <- function(dailySignals, byFormula, indexName) {
+signalsIndexCalculate <- function(dailySignals, byFormula, indexName) {
   setDT(dailySignals)
   setkey(dailySignals, 'Date')
   dailySignals[, Date := as.Date(Date)]
@@ -57,6 +57,34 @@ signalsIndexPrepare <- function(dailySignals, byFormula, indexName) {
   cat('Signals count index exported to:', indexPathFileName, '\n')
 }
 
+symbolPredictionsIndex <- function(symbolID) {
+  modelsPerformanceReport <- dataTableRead(
+    modelsLatestPerformancePathFileNameGet()
+  )
+
+  topPerformers <- modelsPerformanceReport[Symbol == symbolID][order(-Rank)] %>% head(5)
+  symbolPredictions <- rbindlist(lapply(topPerformers$PredictFile, modelPredictionsSignalsGet))
+  signalsIndexCalculate(
+    symbolPredictions,
+    'Date ~ EffPred',
+    paste(symbolID, 'daily', sep = '-')
+  )
+
+  signalsIndexCalculate(
+    symbolPredictions,
+    'YearWeek ~ EffPred',
+    paste(symbolID, 'weekly', sep = '-')
+  )
+
+  signalsIndexCalculate(
+    symbolPredictions,
+    'YearMonth ~ EffPred',
+    paste(symbolID, 'monthly', sep = '-')
+  )
+
+  return(symbolPredictions)
+}
+
 assetsModelsPredictionsSignalIndexPrepare <- function() {
   modelsPerformanceReport <- dataTableRead(
     modelsLatestPerformancePathFileNameGet()
@@ -64,27 +92,25 @@ assetsModelsPredictionsSignalIndexPrepare <- function() {
 
   # Calculate a buy/sell signal count index for all machine learning assets predictions.
   symbolsIDS <- unique(modelsPerformanceReport$Symbol)
-  for (symbolID in symbolsIDS) {
-    topPerformers <- modelsPerformanceReport[Symbol == symbolID][order(-Rank)] %>% head(5)
-    symbolPredictions <- rbindlist(lapply(topPerformers$PredictFile, modelPredictionsSignalsGet))
-    signalsIndexPrepare(
-      symbolPredictions,
-      'Date ~ EffPred',
-      paste(symbolID, 'daily', sep = '-')
-    )
+  allPredictions <- rbindlist(lapply(symbolsIDS, symbolPredictionsIndex))
 
-    signalsIndexPrepare(
-      symbolPredictions,
-      'YearWeek ~ EffPred',
-      paste(symbolID, 'weekly', sep = '-')
-    )
+  signalsIndexCalculate(
+    allPredictions,
+    'Date ~ EffPred',
+    'all-daily'
+  )
 
-    signalsIndexPrepare(
-      symbolPredictions,
-      'YearMonth ~ EffPred',
-      paste(symbolID, 'monthly', sep = '-')
-    )
-  }
+  signalsIndexCalculate(
+    allPredictions,
+    'YearWeek ~ EffPred',
+    'all-weekly'
+  )
+
+  signalsIndexCalculate(
+    allPredictions,
+    'YearMonth ~ EffPred',
+    'all-monthly'
+  )
 }
 
 assetsModelsPredictionsSignalIndexPrepare()
@@ -113,3 +139,4 @@ sectorSignalsIndexPrepare <- function() {
 
   consensusFiles <- lapply(predictionsList$filename, prepareConsensusPredictionCSV)
 }
+
