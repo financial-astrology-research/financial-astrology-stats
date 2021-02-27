@@ -13,6 +13,11 @@ source('plotUtils.R')
 
 exportCols <- c('Date', 'EffPred')
 
+# Min/Max normalization.
+minMaxNormalize <- function(x) {
+  return(round((x - min(x)) / (max(x) - min(x)), 4))
+}
+
 signalsPathFileNameGet <- function(symbolId) {
   targetFilename <- paste('ml', symbolId, 'daily.csv', sep = '-')
   paste0(modelsSignalsIndexDestinationPath(), targetFilename)
@@ -39,8 +44,8 @@ signalsIndexPlot <- function(signalsIndex, indexName) {
   plotPathFileName <- str_replace(indexPathFileName, ".csv", ".png")
   signalsIndex[, BuyDiff := buy - sell]
   signalsIndex[, SellDiff := sell - buy]
-  signalsIndex[, BuySignals := cumsum(BuyDiff)]
-  signalsIndex[, SellSignals := cumsum(SellDiff)]
+  signalsIndex[, BuySignals := minMaxNormalize(cumsum(BuyDiff))]
+  signalsIndex[, SellSignals := minMaxNormalize(cumsum(SellDiff))]
   indexPlot <- ggplot(data = signalsIndex[Date >= Sys.Date() - 120,]) +
     geom_line(aes(x = Date, y = BuySignals), colour = 'green') +
     geom_line(aes(x = Date, y = SellSignals), colour = 'red') +
