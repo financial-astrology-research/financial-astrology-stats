@@ -34,13 +34,19 @@ statsDataDestinationPath <- function(symbolID) {
 }
 
 #' Provides models predictions destination path.
-#' @returns The models predictions data relative destination path.
+#' @returns The models predictions relative destination path.
 modelsPredictionDestinationPath <- function() {
   destinationPath <- paste0(normalizePath('./machine_learning/predictions'), "/")
 }
 
+#' Provides top performing models predictions signals index destination path.
+#' @returns The models predictions index relative destination path.
+modelsSignalsIndexDestinationPath <- function() {
+  destinationPath <- paste0(normalizePath('./machine_learning/signals_index'), "/")
+}
+
 #' Provides models performance destination path.
-#' @returns The models performance data relative destination path.
+#' @returns The models performance relative destination path.
 modelsPerformanceDestinationPath <- function() {
   destinationPath <- paste0(normalizePath('./machine_learning/performance'), "/")
 }
