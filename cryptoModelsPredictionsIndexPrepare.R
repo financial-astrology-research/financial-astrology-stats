@@ -4,9 +4,12 @@
 # Created on: 27/02/2021
 
 library(data.table)
+library(ggplot2)
+library(stringr)
 
-source('./fileSystemUtilities.R')
 source('./dataLoadUtils.R')
+source('./fileSystemUtilities.R')
+source('plotUtils.R')
 
 exportCols <- c('Date', 'EffPred')
 
@@ -31,6 +34,31 @@ modelPredictionsSignalsGet <- function(predictFilename) {
   predictionTable[, ..exportCols]
 }
 
+signalsIndexPlot <- function(signalsIndex, indexName) {
+  indexPathFileName <- signalsIndexTargetPathFileNameGet(indexName)
+  plotPathFileName <- str_replace(indexPathFileName, ".csv", ".png")
+  signalsIndex[, BuyDiff := buy - sell]
+  signalsIndex[, BuyPotential := cumsum(BuyDiff)]
+  indexPlot <- ggplot(data = signalsIndex[Date >= Sys.Date() - 120,]) +
+    geom_line(aes(x = Date, y = BuyPotential), colour = 'white') +
+    scale_x_date(date_breaks = '7 days', date_labels = '%Y-%m-%d') +
+    labs(title = paste(indexName, 'ML models signals prediction buy potential')) +
+    ggplotDarkTheme() +
+    theme(axis.text.x = element_text(angle = 90, size = 14))
+
+  ggsave(
+    filename = plotPathFileName,
+    plot = indexPlot,
+    width = 30,
+    height = 15,
+    units = "cm",
+    scale = 1.5,
+    dpi = 72
+  )
+
+  cat("Plot saved to:", plotPathFileName, "\n")
+}
+
 signalsIndexCalculate <- function(dailySignals, byFormula, indexName) {
   setDT(dailySignals)
   setkey(dailySignals, 'Date')
@@ -38,23 +66,25 @@ signalsIndexCalculate <- function(dailySignals, byFormula, indexName) {
   dailySignals[, YearMonth := format(Date, '%Y-%m')]
   dailySignals[, YearWeek := format(Date, '%Y-%V')]
 
-  allSymbolsIndex <- dcast(
+  signalsIndex <- dcast(
     dailySignals,
     byFormula,
     fun.aggregate = SIT::count,
     value.var = 'EffPred',
     fill = 0
   )
-  setDT(allSymbolsIndex)
+  setDT(signalsIndex)
 
   # Calculate index signal based on the majority of all symbols signals side.
-  allSymbolsIndex[,
+  signalsIndex[,
     Action := ifelse(buy > sell, 'buy', ifelse(buy == sell, 'neutral', 'sell'))
   ]
 
   indexPathFileName <- signalsIndexTargetPathFileNameGet(indexName)
-  fwrite(allSymbolsIndex, indexPathFileName)
+  fwrite(signalsIndex, indexPathFileName)
   cat('Signals count index exported to:', indexPathFileName, '\n')
+
+  return(signalsIndex)
 }
 
 symbolPredictionsIndex <- function(symbolID) {
@@ -64,11 +94,12 @@ symbolPredictionsIndex <- function(symbolID) {
 
   topPerformers <- modelsPerformanceReport[Symbol == symbolID][order(-Rank)] %>% head(5)
   symbolPredictions <- rbindlist(lapply(topPerformers$PredictFile, modelPredictionsSignalsGet))
+  dailyIndexName <- paste(symbolID, 'daily', sep = '-')
   signalsIndexCalculate(
     symbolPredictions,
     'Date ~ EffPred',
-    paste(symbolID, 'daily', sep = '-')
-  )
+    dailyIndexName
+  ) %>% signalsIndexPlot(dailyIndexName)
 
   signalsIndexCalculate(
     symbolPredictions,
@@ -93,12 +124,12 @@ assetsModelsPredictionsSignalIndexPrepare <- function() {
   # Calculate a buy/sell signal count index for all machine learning assets predictions.
   symbolsIDS <- unique(modelsPerformanceReport$Symbol)
   allPredictions <- rbindlist(lapply(symbolsIDS, symbolPredictionsIndex))
-
+  dailyIndexName <- 'all-daily'
   signalsIndexCalculate(
     allPredictions,
     'Date ~ EffPred',
-    'all-daily'
-  )
+       dailyIndexName
+  ) %>% signalsIndexPlot(dailyIndexName)
 
   signalsIndexCalculate(
     allPredictions,
@@ -115,7 +146,8 @@ assetsModelsPredictionsSignalIndexPrepare <- function() {
 
 assetsModelsPredictionsSignalIndexPrepare()
 
-sectorSignalsIndexPrepare <- function() {
+signalsIndexConsensusPrepare <- function() {
+
   prepareConsensusPredictionCSV <- function(predictFilename) {
     cat('Processing: ', predictFilename, '\n')
     filenameParts <- unlist(strsplit(predictFilename, '-'))
