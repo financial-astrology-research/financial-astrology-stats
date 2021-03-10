@@ -5,6 +5,7 @@
 
 library(data.table)
 library(ggplot2)
+library(plyr)
 library(stringr)
 
 source('./dataLoadUtils.R')
@@ -85,6 +86,10 @@ signalsIndexCalculate <- function(dailySignals, byFormula, indexName) {
   # Calculate index signal based on the majority of all symbols signals side.
   signalsIndex[,
     Action := ifelse(buy > sell, 'buy', ifelse(buy == sell, 'neutral', 'sell'))
+  ]
+
+  signalsIndex[,
+    Flag := mapvalues(Action, c('buy', 'neutral', 'sell'), c(1, 2, 0), warn_missing = F)
   ]
 
   indexPathFileName <- signalsIndexTargetPathFileNameGet(indexName)
