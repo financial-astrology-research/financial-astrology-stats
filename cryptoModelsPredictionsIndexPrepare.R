@@ -89,7 +89,7 @@ signalsIndexCalculate <- function(dailySignals, byFormula, indexName) {
   ]
 
   signalsIndex[,
-    Flag := mapvalues(Action, c('buy', 'neutral', 'sell'), c(1, 2, 0), warn_missing = F)
+    ActionID := mapvalues(Action, c('buy', 'neutral', 'sell'), c(1, 2, 0), warn_missing = F)
   ]
 
   indexPathFileName <- signalsIndexTargetPathFileNameGet(indexName)
