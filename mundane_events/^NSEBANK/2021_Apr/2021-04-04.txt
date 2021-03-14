@@ -1,0 +1,217 @@
+
+PLANET SPEED PHASE:
+
+          Date  Planet Speed SpeedPhase  Buy Sell DaysN BuyDays% SellDays%
+ 1: 2021-04-04   Ceres  0.40     Direct 1179 1087  2266     0.52      0.48
+ 2: 2021-04-04  Chiron  0.06     Direct  864  810  1674     0.52      0.48
+ 3: 2021-04-04    Juno  0.04 Stationary   54   59   113     0.48      0.52
+ 4: 2021-04-04 Jupiter  0.19     Direct 1045  966  2011     0.52      0.48
+ 5: 2021-04-04    Mars  0.60     Direct 1374 1285  2659     0.52      0.48
+ 6: 2021-04-04 Mercury  1.78     Direct 1218 1127  2345     0.52      0.48
+ 7: 2021-04-04    Moon 13.75     Direct 1575 1447  3022     0.52      0.48
+ 8: 2021-04-04 Neptune  0.04     Direct  803  760  1563     0.51      0.49
+ 9: 2021-04-04   NNode  1.00     Direct 1575 1447  3022     0.52      0.48
+10: 2021-04-04  Pallas  0.30     Direct 1190 1109  2299     0.52      0.48
+11: 2021-04-04  Pholus  0.00 Stationary  109  119   228     0.48      0.52
+12: 2021-04-04   Pluto  0.01     Direct  819  743  1562     0.52      0.48
+13: 2021-04-04  Saturn  0.07     Direct  913  843  1756     0.52      0.48
+14: 2021-04-04   SNode  1.00     Direct 1575 1447  3022     0.52      0.48
+15: 2021-04-04     Sun  0.99     Direct 1575 1447  3022     0.52      0.48
+16: 2021-04-04  Uranus  0.05     Direct  873  803  1676     0.52      0.48
+17: 2021-04-04   Venus  1.24     Direct 1427 1306  2733     0.52      0.48
+18: 2021-04-04   Vesta -0.13 Retrograde  302  265   567     0.53      0.47
+
+PLANET RYTHM:
+
+          Date  Planet  Quality  Buy Sell DaysN BuyDays% SellDays%
+ 1: 2021-04-04   Ceres Cardinal  429  410   839     0.51      0.49
+ 2: 2021-04-04  Chiron Cardinal  326  289   615     0.53      0.47
+ 3: 2021-04-04    Juno  Mutable  552  539  1091     0.51      0.49
+ 4: 2021-04-04 Jupiter    Fixed  546  516  1062     0.51      0.49
+ 5: 2021-04-04    Mars  Mutable  502  446   948     0.53      0.47
+ 6: 2021-04-04 Mercury  Mutable  507  483   990     0.51      0.49
+ 7: 2021-04-04    Moon Cardinal  520  517  1037     0.50      0.50
+ 8: 2021-04-04 Neptune  Mutable 1064  976  2040     0.52      0.48
+ 9: 2021-04-04   NNode  Mutable  406  363   769     0.53      0.47
+10: 2021-04-04  Pallas  Mutable  536  510  1046     0.51      0.49
+11: 2021-04-04  Pholus Cardinal  317  279   596     0.53      0.47
+12: 2021-04-04   Pluto Cardinal 1472 1351  2823     0.52      0.48
+13: 2021-04-04  Saturn    Fixed  381  347   728     0.52      0.48
+14: 2021-04-04   SNode  Mutable  406  363   769     0.53      0.47
+15: 2021-04-04     Sun Cardinal  549  437   986     0.56      0.44
+16: 2021-04-04  Uranus    Fixed  320  293   613     0.52      0.48
+17: 2021-04-04   Venus Cardinal  511  498  1009     0.51      0.49
+18: 2021-04-04   Vesta  Mutable  515  442   957     0.54      0.46
+
+PLANET ELEMENT:
+
+          Date  Planet Element  Buy Sell DaysN BuyDays% SellDays%
+ 1: 2021-04-04   Ceres    Fire  429  367   796     0.54      0.46
+ 2: 2021-04-04  Chiron    Fire  326  289   615     0.53      0.47
+ 3: 2021-04-04    Juno    Fire  459  408   867     0.53      0.47
+ 4: 2021-04-04 Jupiter     Air  410  351   761     0.54      0.46
+ 5: 2021-04-04    Mars     Air  419  379   798     0.53      0.47
+ 6: 2021-04-04 Mercury   Water  418  374   792     0.53      0.47
+ 7: 2021-04-04    Moon   Earth  403  346   749     0.54      0.46
+ 8: 2021-04-04 Neptune   Water 1064  976  2040     0.52      0.48
+ 9: 2021-04-04   NNode     Air  488  444   932     0.52      0.48
+10: 2021-04-04  Pallas   Water  401  316   717     0.56      0.44
+11: 2021-04-04  Pholus   Earth  317  279   596     0.53      0.47
+12: 2021-04-04   Pluto   Earth 1472 1351  2823     0.52      0.48
+13: 2021-04-04  Saturn     Air  388  379   767     0.51      0.49
+14: 2021-04-04   SNode    Fire  488  444   932     0.52      0.48
+15: 2021-04-04     Sun    Fire  372  357   729     0.51      0.49
+16: 2021-04-04  Uranus   Earth  320  293   613     0.52      0.48
+17: 2021-04-04   Venus    Fire  416  360   776     0.54      0.46
+18: 2021-04-04   Vesta   Earth  492  431   923     0.53      0.47
+
+PLANET ZODIAC SIGN:
+
+          Date  Planet     ZodSign  Buy Sell DaysN BuyDays% SellDays%
+ 1: 2021-04-04   Ceres       Aries   71   58   129     0.55      0.45
+ 2: 2021-04-04  Chiron       Aries  326  289   615     0.53      0.47
+ 3: 2021-04-04    Juno Sagittarius  225  224   449     0.50      0.50
+ 4: 2021-04-04 Jupiter    Aquarius  160  141   301     0.53      0.47
+ 5: 2021-04-04    Mars      Gemini  129  110   239     0.54      0.46
+ 6: 2021-04-04 Mercury      Pisces  126  128   254     0.50      0.50
+ 7: 2021-04-04    Moon   Capricorn  141  129   270     0.52      0.48
+ 8: 2021-04-04 Neptune      Pisces 1064  976  2040     0.52      0.48
+ 9: 2021-04-04   NNode      Gemini  113   81   194     0.58      0.42
+10: 2021-04-04  Pallas      Pisces  174  141   315     0.55      0.45
+11: 2021-04-04  Pholus   Capricorn  317  279   596     0.53      0.47
+12: 2021-04-04   Pluto   Capricorn 1472 1351  2823     0.52      0.48
+13: 2021-04-04  Saturn    Aquarius   68   56   124     0.55      0.45
+14: 2021-04-04   SNode Sagittarius  113   81   194     0.58      0.42
+15: 2021-04-04     Sun       Aries  119  102   221     0.54      0.46
+16: 2021-04-04  Uranus      Taurus  320  293   613     0.52      0.48
+17: 2021-04-04   Venus       Aries  159  139   298     0.53      0.47
+18: 2021-04-04   Vesta       Virgo  160  127   287     0.56      0.44
+
+PLANET DECAN:
+
+          Date  Planet         Decan Buy Sell DaysN BuyDays% SellDays%
+ 1: 2021-04-04   Ceres       AriesD2  11    9    20     0.55      0.45
+ 2: 2021-04-04  Chiron       AriesD1 326  289   615     0.53      0.47
+ 3: 2021-04-04    Juno SagittariusD3  78   77   155     0.50      0.50
+ 4: 2021-04-04 Jupiter    AquariusD3  67   64   131     0.51      0.49
+ 5: 2021-04-04    Mars      GeminiD2  30   29    59     0.51      0.49
+ 6: 2021-04-04 Mercury      PiscesD3  43   33    76     0.57      0.43
+ 7: 2021-04-04    Moon   CapricornD1  48   44    92     0.52      0.48
+ 8: 2021-04-04 Neptune      PiscesD3  57   42    99     0.58      0.42
+ 9: 2021-04-04   NNode      GeminiD2  36   26    62     0.58      0.42
+10: 2021-04-04  Pallas      PiscesD1  77   43   120     0.64      0.36
+11: 2021-04-04  Pholus   CapricornD1 317  279   596     0.53      0.47
+12: 2021-04-04   Pluto   CapricornD3 347  310   657     0.53      0.47
+13: 2021-04-04   SNode SagittariusD2  36   26    62     0.58      0.42
+14: 2021-04-04     Sun       AriesD2  34   41    75     0.45      0.55
+15: 2021-04-04  Uranus      TaurusD1 290  263   553     0.52      0.48
+16: 2021-04-04   Venus       AriesD2  57   55   112     0.51      0.49
+17: 2021-04-04   Vesta       VirgoD1  65   59   124     0.52      0.48
+
+PLANET ARAB MANSION:
+
+          Date  Planet ArabMansion Buy Sell DaysN BuyDays% SellDays%
+ 1: 2021-04-04   Ceres      Butain  28   26    54     0.52      0.48
+ 2: 2021-04-04  Chiron     Saratan 326  289   615     0.53      0.47
+ 3: 2021-04-04    Juno       Balda  96  106   202     0.48      0.52
+ 4: 2021-04-04 Jupiter    Muqaddam  59   66   125     0.47      0.53
+ 5: 2021-04-04    Mars        Dira  65   66   131     0.50      0.50
+ 6: 2021-04-04 Mercury        Risa  53   54   107     0.50      0.50
+ 7: 2021-04-04    Moon       Dabih  62   53   115     0.54      0.46
+ 8: 2021-04-04 Neptune        Risa 202  183   385     0.52      0.48
+ 9: 2021-04-04   NNode       Han'a  17   12    29     0.59      0.41
+10: 2021-04-04  Pallas    Mu'ahhar  57   40    97     0.59      0.41
+11: 2021-04-04  Pholus       Dabih 317  279   596     0.53      0.47
+12: 2021-04-04   Pluto       Su'ud   8    8    16     0.50      0.50
+13: 2021-04-04  Saturn      Ahbija   5    3     8     0.62      0.38
+14: 2021-04-04   SNode     Na'a'im  15   12    27     0.56      0.44
+15: 2021-04-04     Sun      Butain  47   43    90     0.52      0.48
+16: 2021-04-04  Uranus     Dabaran  62   48   110     0.56      0.44
+17: 2021-04-04   Venus      Butain  54   59   113     0.48      0.52
+18: 2021-04-04   Vesta        Auwa  66   64   130     0.51      0.49
+
+PLANET VEDIC MANSION:
+
+          Date  Planet     VedicMansion Buy Sell DaysN BuyDays% SellDays%
+ 1: 2021-04-04   Ceres           Revati  20   25    45     0.44      0.56
+ 2: 2021-04-04  Chiron UttaraBhadrapada 450  378   828     0.54      0.46
+ 3: 2021-04-04    Juno         Jyeshtha  98  105   203     0.48      0.52
+ 4: 2021-04-04 Jupiter        Danishtha 106   85   191     0.55      0.45
+ 5: 2021-04-04    Mars       Mrigashira  69   68   137     0.50      0.50
+ 6: 2021-04-04 Mercury UttaraBhadrapada  55   46   101     0.54      0.46
+ 7: 2021-04-04    Moon      PurvaAshada  67   53   120     0.56      0.44
+ 8: 2021-04-04 Neptune  PurvaBhadrapada 398  342   740     0.54      0.46
+ 9: 2021-04-04   NNode           Rohini  17   12    29     0.59      0.41
+10: 2021-04-04  Pallas      Shatabhisha  85   55   140     0.61      0.39
+11: 2021-04-04  Pholus             Mula 650  547  1197     0.54      0.46
+12: 2021-04-04   Pluto     UttaraAshada 321  272   593     0.54      0.46
+13: 2021-04-04  Saturn         Shravana  18   16    34     0.53      0.47
+14: 2021-04-04   SNode         Jyeshtha  70   43   113     0.62      0.38
+15: 2021-04-04     Sun           Revati  50   48    98     0.51      0.49
+16: 2021-04-04  Uranus          Bharani  90   70   160     0.56      0.44
+17: 2021-04-04   Venus           Revati  67   67   134     0.50      0.50
+18: 2021-04-04   Vesta    PurvaPhalguni  71   51   122     0.58      0.42
+
+LAST MOON PHASE:
+
+         Date MoonPhase Buy Sell DaysN BuyDays% SellDays%
+1: 2021-04-04      Full 813  722  1535     0.53      0.47
+
+LAST MOON PHASE IN ZODIAC SIGN:
+
+         Date MoonPhase ZodSign Buy Sell DaysN BuyDays% SellDays%
+1: 2021-04-04      Full   Libra  55   44    99     0.56      0.44
+
+PLANETS ASPECTS:
+
+          Date meanOrb minOrb maxOrb startHour endHour exactHour effHours PlanetX       Aspect PlanetY  Buy Sell DaysN BuyDays% SellDays%
+ 1: 2021-04-04    0.82   0.07   1.64         0       3         0        4    Moon       Square  Chiron  117  107   224     0.52      0.48
+ 2: 2021-04-04    0.83   0.05   1.66         0       3         0        4    Moon        Trine  Uranus  124  100   224     0.55      0.45
+ 3: 2021-04-04    0.69   0.02   1.45         0      23         1       24 Mercury SemiQuintile Jupiter   51   56   107     0.48      0.52
+ 4: 2021-04-04    0.90   0.17   1.88         0       4         1        5    Moon     Quintile Neptune  113  118   231     0.49      0.51
+ 5: 2021-04-04    0.02   0.01   0.03         0      23         2       24  Chiron  SemiSextile  Uranus 1204 1121  2325     0.52      0.48
+ 6: 2021-04-04    1.00   0.20   1.90         1       7         4        7    Moon  SemiSextile  Saturn  121  105   226     0.54      0.46
+ 7: 2021-04-04    0.05   0.00   0.11         0      23         5       24    Juno      Sextile Jupiter   35   17    52     0.67      0.33
+ 8: 2021-04-04    0.21   0.01   0.50         0      23         6       24     Sun SemiQuintile  Pallas   47   46    93     0.51      0.49
+ 9: 2021-04-04    1.01   0.23   1.93         5      11         8        7    Moon     Quincunx   NNode  130  102   232     0.56      0.44
+10: 2021-04-04    1.01   0.23   1.93         5      11         8        7    Moon  SemiSextile   SNode  130  102   232     0.56      0.44
+11: 2021-04-04    0.91   0.02   1.60         7      13        10        7    Moon       Square     Sun  113  103   216     0.52      0.48
+12: 2021-04-04    0.95   0.06   1.71        10      16        13        7    Moon       Square   Ceres  106  108   214     0.50      0.50
+13: 2021-04-04    1.12   0.27   1.96        12      19        15        8    Moon SemiQuintile Jupiter  126  124   250     0.50      0.50
+14: 2021-04-04    1.03   0.23   1.83        11      18        15        8    Moon       Square   Venus  128   91   219     0.58      0.42
+15: 2021-04-04    0.94   0.12   1.74        14      20        17        7    Moon     Quincunx    Mars  106  116   222     0.48      0.52
+16: 2021-04-04    0.98   0.20   1.75        14      21        17        8    Moon     Quintile Mercury  126   99   225     0.56      0.44
+17: 2021-04-04    0.97   0.03   1.73        16      22        19        7    Moon   BiQuintile   NNode  135   88   223     0.61      0.39
+18: 2021-04-04    0.97   0.03   1.73        16      22        19        7    Moon SemiQuintile   SNode  135   88   223     0.61      0.39
+19: 2021-04-04    0.78   0.05   1.63        19      23        22        5    Moon      Sextile Neptune  117  110   227     0.52      0.48
+20: 2021-04-04    0.00   0.00   0.00         0      23        23       24   NNode   Opposition   SNode 1575 1447  3022     0.52      0.48
+21: 2021-04-04    1.82   1.78   1.87         0      23        NA       24   Ceres SemiQuintile  Pallas  162  132   294     0.55      0.45
+22: 2021-04-04    0.54   0.52   0.57         0      23        NA       24  Chiron     Quintile   Pluto  241  205   446     0.54      0.46
+23: 2021-04-04    0.33   0.32   0.34         0      23        NA       24    Juno SesquiSquare  Uranus   41   33    74     0.55      0.45
+24: 2021-04-04    0.32   0.26   0.38         0      23        NA       24 Jupiter   SemiSquare  Chiron   16   12    28     0.57      0.43
+25: 2021-04-04    1.95   1.89   2.00        12      23        NA       12 Jupiter     Quintile   SNode   56   59   115     0.49      0.51
+26: 2021-04-04    1.93   1.86   2.00         0      16        NA       17    Mars      Sextile   Ceres   37   28    65     0.57      0.43
+27: 2021-04-04    1.21   0.44   1.98         3      23        NA       21 Mercury     Quintile   NNode   20   21    41     0.49      0.51
+28: 2021-04-04    1.29   1.24   1.34         0      23        NA       24   NNode SemiQuintile  Uranus   34   36    70     0.49      0.51
+29: 2021-04-04    0.47   0.36   0.59         0      23        NA       24  Pallas  SemiSextile  Chiron   63   68   131     0.48      0.52
+30: 2021-04-04    0.45   0.33   0.57         0      23        NA       24  Pallas      Sextile  Uranus   20   32    52     0.38      0.62
+31: 2021-04-04    0.40   0.37   0.44         0      23        NA       24  Saturn SemiQuintile  Pholus   42   42    84     0.50      0.50
+32: 2021-04-04    1.29   1.24   1.34         0      23        NA       24   SNode   BiQuintile  Uranus   34   36    70     0.49      0.51
+33: 2021-04-04    1.65   1.37   1.94         0      23        NA       24     Sun  Conjunction   Ceres   16   29    45     0.36      0.64
+34: 2021-04-04    1.01   0.51   1.51         0      23        NA       24     Sun      Sextile   NNode   40   29    69     0.58      0.42
+35: 2021-04-04    1.01   0.51   1.51         0      23        NA       24     Sun        Trine   SNode   40   29    69     0.58      0.42
+36: 2021-04-04    1.20   0.66   1.73         0      23        NA       24     Sun   BiQuintile   Vesta   28   27    55     0.51      0.49
+37: 2021-04-04    0.48   0.46   0.50         0      23        NA       24  Uranus    BiSeptile   Pluto  188  153   341     0.55      0.45
+38: 2021-04-04    0.69   0.28   1.09         0      23        NA       24   Venus  Conjunction   Ceres   23   17    40     0.57      0.42
+39: 2021-04-04    1.28   0.97   1.58         0      23        NA       24   Venus      Sextile    Mars   42   56    98     0.43      0.57
+40: 2021-04-04    1.58   1.19   1.97         8      23        NA       16   Venus    BiSeptile  Pholus   47   29    76     0.62      0.38
+41: 2021-04-04    1.50   1.41   1.59         0      23        NA       24   Vesta     Quincunx  Chiron   47   39    86     0.55      0.45
+42: 2021-04-04    1.03   0.82   1.23         0      23        NA       24   Vesta   Opposition  Pallas   10    8    18     0.56      0.44
+43: 2021-04-04    1.68   1.62   1.74         0      23        NA       24   Vesta        Trine  Pholus   22   23    45     0.49      0.51
+44: 2021-04-04    1.48   1.39   1.56         0      23        NA       24   Vesta        Trine  Uranus   33   34    67     0.49      0.51
+          Date meanOrb minOrb maxOrb startHour endHour exactHour effHours PlanetX       Aspect PlanetY  Buy Sell DaysN BuyDays% SellDays%
+
+MACHINE LEARNING PREDICTIONS:
+
+         Model
+ Not available
