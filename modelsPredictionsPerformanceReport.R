@@ -135,9 +135,10 @@ predictionsPerformanceMetricsCalculate <- function(predictionsFileName) {
 
   reportData$Rank <- with(
     reportData,
-    ((Acc3m / (1 + AccSD3m)^2) +
-      (Acc2m / (1 + AccSD2m)^2) +
-      Acc1m) / 3
+    ((Acc6m / (1 + AccSD6m + abs(0.5 - Prev6m))^2) +
+      (Acc3m / (1 + AccSD3m + abs(0.5 + Prev3m))^2) +
+      (Acc2m / (1 + AccSD2m + abs(0.5 + Prev2m))^2) +
+      Acc1m) / 4
   )
 
   return(reportData)
