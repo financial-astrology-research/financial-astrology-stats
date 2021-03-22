@@ -141,9 +141,9 @@ symbolPredictionsIndex <- function(symbolID) {
 }
 
 assetsModelsPredictionsSignalIndexPrepare <- function() {
-  modelsPerformanceReport <- dataTableRead(
-    modelsLatestPerformancePathFileNameGet()
-  )
+  reportPathFile <- modelsLatestPerformancePathFileNameGet()
+  cat("Using report: ", reportPathFile, "\n")
+  modelsPerformanceReport <- dataTableRead(reportPathFile)
 
   # Calculate a buy/sell signal count index for all machine learning assets predictions.
   symbolsIDS <- unique(modelsPerformanceReport$Symbol)
