@@ -103,7 +103,9 @@ symbolSignalsFlattenExport <- function(signalsIndex, symbolID) {
   startDate <- as.Date('2020-01-01')
   signalsPathFile <- paste0(modelsSignalsIndexDestinationPath(), symbolID, '-signals-flat.txt')
   fileHandler <- file(signalsPathFile)
-  writeLines(str_flatten(signalsIndex[Date >= startDate]$ActionID, collapse = ','), fileHandler)
+  signalString <- str_flatten(signalsIndex[Date >= startDate]$ActionID, collapse = ',')
+  signalData <- paste0('string ', str_replace(symbolID, '-USD', ''), ' = "', signalString, '"')
+  writeLines(signalData, fileHandler)
   close(fileHandler)
 }
 
