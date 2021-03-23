@@ -110,11 +110,12 @@ symbolSignalsFlattenExport <- function(signalsIndex, symbolID) {
 }
 
 symbolPredictionsIndex <- function(symbolID) {
+  topModelsN <- 20
   modelsPerformanceReport <- dataTableRead(
     modelsLatestPerformancePathFileNameGet()
   )
 
-  topPerformers <- modelsPerformanceReport[Symbol == symbolID][order(-Rank)] %>% head(5)
+  topPerformers <- modelsPerformanceReport[Symbol == symbolID][order(-Rank)] %>% head(topModelsN)
   symbolPredictions <- rbindlist(lapply(topPerformers$PredictFile, modelPredictionsSignalsGet))
   dailyIndexName <- paste(symbolID, 'daily', sep = '-')
   signalsIndex <- signalsIndexCalculate(
