@@ -85,11 +85,11 @@ signalsIndexCalculate <- function(dailySignals, byFormula, indexName) {
 
   # Calculate index signal based on the majority of all symbols signals side.
   signalsIndex[,
-    Action := ifelse(buy > sell, 'buy', ifelse(buy == sell, 'neutral', 'sell'))
+    Action := ifelse(buy >= sell, 'buy', 'sell')
   ]
 
   signalsIndex[,
-    ActionID := mapvalues(Action, c('buy', 'neutral', 'sell'), c(1, 2, 0), warn_missing = F)
+    ActionID := mapvalues(Action, c('buy', 'sell'), c(1, 0), warn_missing = F)
   ]
 
   indexPathFileName <- signalsIndexTargetPathFileNameGet(indexName)
@@ -110,7 +110,7 @@ symbolSignalsFlattenExport <- function(signalsIndex, symbolID) {
 }
 
 symbolPredictionsIndex <- function(symbolID) {
-  topModelsN <- 20
+  topModelsN <- 1
   modelsPerformanceReport <- dataTableRead(
     modelsLatestPerformancePathFileNameGet()
   )
