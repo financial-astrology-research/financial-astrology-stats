@@ -101,7 +101,7 @@ predictionsPerformanceMetricsCalculate <- function(predictionsFileName) {
   createDate <- modelPredictionsCreateDateGet(predictionsFileName)
   startDate <- as.Date(format(Sys.Date() - 210, "%Y-%m-01"))
   modelPredictions <- modelPredictionsWithActualsLoad(predictionsFileName, startDate)
-  #modelPredictions <- modelPredictions[Date <= as.Date("2021-03-15")]
+  modelPredictions <- modelPredictions[Date <= as.Date("2021-01-31")]
   # Calculate accuracy by year/month days observations.
   accuracyTest <- modelPredictions[, accuracyCalculate(.SD), by = list(YearMonth)]
   # Filter months that don't have at least N observations yet.
@@ -137,10 +137,10 @@ predictionsPerformanceMetricsCalculate <- function(predictionsFileName) {
 
   reportData$Rank <- with(
     reportData,
-    ((Acc6m / (1 + AccSD6m + abs(0.5 - Prev6m))^2) +
-      (Acc3m / (1 + AccSD3m + abs(0.5 - Prev3m))^2) +
-      (Acc2m / (1 + AccSD2m + abs(0.5 - Prev2m))^2) +
-      Acc1m) / 4
+    ((Acc6m / (1 + abs(0.5 - Prev6m))^3) +
+      (Acc3m / (1 + abs(0.5 - Prev3m))^3) +
+      (Acc2m / (1 + abs(0.5 - Prev2m))^3) +
+      Acc1m / (1 + abs(0.5 - Prev1m))^3) / 4
   )
 
   return(reportData)
