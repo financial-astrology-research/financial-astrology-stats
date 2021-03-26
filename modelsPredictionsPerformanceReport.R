@@ -101,7 +101,7 @@ predictionsPerformanceMetricsCalculate <- function(predictionsFileName) {
   createDate <- modelPredictionsCreateDateGet(predictionsFileName)
   startDate <- as.Date(format(Sys.Date() - 210, "%Y-%m-01"))
   modelPredictions <- modelPredictionsWithActualsLoad(predictionsFileName, startDate)
-  modelPredictions <- modelPredictions[Date <= as.Date("2021-01-31")]
+  modelPredictions <- modelPredictions[Date <= as.Date("2021-02-28")]
   # Calculate accuracy by year/month days observations.
   accuracyTest <- modelPredictions[, accuracyCalculate(.SD), by = list(YearMonth)]
   # Filter months that don't have at least N observations yet.
