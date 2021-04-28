@@ -1,0 +1,226 @@
+
+PLANET SPEED PHASE:
+
+          Date  Planet Speed SpeedPhase  Buy Sell DaysN BuyDays% SellDays%
+ 1: 2021-05-04   Ceres  0.39     Direct 1709 1684  3393     0.50      0.50
+ 2: 2021-05-04  Chiron  0.05     Direct 1314 1219  2533     0.52      0.48
+ 3: 2021-05-04    Juno -0.12 Retrograde  451  466   917     0.49      0.51
+ 4: 2021-05-04 Jupiter  0.14     Direct 1513 1426  2939     0.51      0.49
+ 5: 2021-05-04    Mars  0.61     Direct 2022 1973  3995     0.51      0.49
+ 6: 2021-05-04 Mercury  1.81     Direct 1776 1720  3496     0.51      0.49
+ 7: 2021-05-04    Moon 13.14     Direct 2280 2223  4503     0.51      0.49
+ 8: 2021-05-04 Neptune  0.03     Direct 1220 1153  2373     0.51      0.49
+ 9: 2021-05-04   NNode  1.00     Direct 2280 2223  4503     0.51      0.49
+10: 2021-05-04  Pallas  0.26     Direct 1710 1691  3401     0.50      0.50
+11: 2021-05-04  Pholus -0.02 Retrograde  925  890  1815     0.51      0.49
+12: 2021-05-04   Pluto  0.00 Stationary  240  226   466     0.52      0.48
+13: 2021-05-04  Saturn  0.03     Direct 1349 1320  2669     0.51      0.49
+14: 2021-05-04   SNode  1.00     Direct 2280 2223  4503     0.51      0.49
+15: 2021-05-04     Sun  0.97     Direct 2280 2223  4503     0.51      0.49
+16: 2021-05-04  Uranus  0.06     Direct 1291 1234  2525     0.51      0.49
+17: 2021-05-04   Venus  1.23     Direct 2062 2020  4082     0.51      0.49
+18: 2021-05-04   Vesta  0.10     Direct 1812 1716  3528     0.51      0.49
+
+PLANET RYTHM:
+
+          Date  Planet  Quality  Buy Sell DaysN BuyDays% SellDays%
+ 1: 2021-05-04   Ceres Cardinal  674  640  1314     0.51      0.49
+ 2: 2021-05-04  Chiron Cardinal  549  524  1073     0.51      0.49
+ 3: 2021-05-04    Juno  Mutable  734  753  1487     0.49      0.51
+ 4: 2021-05-04 Jupiter    Fixed  751  720  1471     0.51      0.49
+ 5: 2021-05-04    Mars Cardinal  796  719  1515     0.53      0.47
+ 6: 2021-05-04 Mercury    Fixed  789  743  1532     0.52      0.48
+ 7: 2021-05-04    Moon    Fixed  777  723  1500     0.52      0.48
+ 8: 2021-05-04 Neptune  Mutable 1229 1242  2471     0.50      0.50
+ 9: 2021-05-04   NNode  Mutable  746  698  1444     0.52      0.48
+10: 2021-05-04  Pallas  Mutable  769  780  1549     0.50      0.50
+11: 2021-05-04  Pholus Cardinal  333  331   664     0.50      0.50
+12: 2021-05-04   Pluto Cardinal 1663 1649  3312     0.50      0.50
+13: 2021-05-04  Saturn    Fixed  708  659  1367     0.52      0.48
+14: 2021-05-04   SNode  Mutable  746  698  1444     0.52      0.48
+15: 2021-05-04     Sun    Fixed  768  735  1503     0.51      0.49
+16: 2021-05-04  Uranus    Fixed  347  336   683     0.51      0.49
+17: 2021-05-04   Venus    Fixed  769  704  1473     0.52      0.48
+18: 2021-05-04   Vesta  Mutable  849  752  1601     0.53      0.47
+
+PLANET ELEMENT:
+
+          Date  Planet Element  Buy Sell DaysN BuyDays% SellDays%
+ 1: 2021-05-04   Ceres    Fire  548  585  1133     0.48      0.52
+ 2: 2021-05-04  Chiron    Fire  330  336   666     0.50      0.50
+ 3: 2021-05-04    Juno    Fire  535  586  1121     0.48      0.52
+ 4: 2021-05-04 Jupiter     Air  623  574  1197     0.52      0.48
+ 5: 2021-05-04    Mars   Water  502  499  1001     0.50      0.50
+ 6: 2021-05-04 Mercury   Earth  548  520  1068     0.51      0.49
+ 7: 2021-05-04    Moon     Air  533  585  1118     0.48      0.52
+ 8: 2021-05-04 Neptune   Water 1229 1242  2471     0.50      0.50
+ 9: 2021-05-04   NNode     Air  514  523  1037     0.50      0.50
+10: 2021-05-04  Pallas   Water  548  516  1064     0.52      0.48
+11: 2021-05-04  Pholus   Earth  333  331   664     0.50      0.50
+12: 2021-05-04   Pluto   Earth 1663 1649  3312     0.50      0.50
+13: 2021-05-04  Saturn     Air  446  411   857     0.52      0.48
+14: 2021-05-04   SNode    Fire  514  523  1037     0.50      0.50
+15: 2021-05-04     Sun   Earth  563  563  1126     0.50      0.50
+16: 2021-05-04  Uranus   Earth  334  330   664     0.50      0.50
+17: 2021-05-04   Venus   Earth  577  516  1093     0.53      0.47
+18: 2021-05-04   Vesta   Earth  565  610  1175     0.48      0.52
+
+PLANET ZODIAC SIGN:
+
+          Date  Planet     ZodSign  Buy Sell DaysN BuyDays% SellDays%
+ 1: 2021-05-04   Ceres       Aries  170  160   330     0.52      0.48
+ 2: 2021-05-04  Chiron       Aries  330  336   666     0.50      0.50
+ 3: 2021-05-04    Juno Sagittarius  277  292   569     0.49      0.51
+ 4: 2021-05-04 Jupiter    Aquarius  200  163   363     0.55      0.45
+ 5: 2021-05-04    Mars      Cancer  198  182   380     0.52      0.48
+ 6: 2021-05-04 Mercury      Taurus  166  159   325     0.51      0.49
+ 7: 2021-05-04    Moon    Aquarius  180  192   372     0.48      0.52
+ 8: 2021-05-04 Neptune      Pisces 1229 1242  2471     0.50      0.50
+ 9: 2021-05-04   NNode      Gemini  134  100   234     0.57      0.43
+10: 2021-05-04  Pallas      Pisces  292  272   564     0.52      0.48
+11: 2021-05-04  Pholus   Capricorn  333  331   664     0.50      0.50
+12: 2021-05-04   Pluto   Capricorn 1663 1649  3312     0.50      0.50
+13: 2021-05-04  Saturn    Aquarius   90   77   167     0.54      0.46
+14: 2021-05-04   SNode Sagittarius  134  100   234     0.57      0.43
+15: 2021-05-04     Sun      Taurus  188  195   383     0.49      0.51
+16: 2021-05-04  Uranus      Taurus  334  330   664     0.50      0.50
+17: 2021-05-04   Venus      Taurus  175  147   322     0.54      0.46
+18: 2021-05-04   Vesta       Virgo  204  181   385     0.53      0.47
+
+PLANET DECAN:
+
+          Date  Planet         Decan Buy Sell DaysN BuyDays% SellDays%
+ 1: 2021-05-04   Ceres       AriesD3  75   78   153     0.49      0.51
+ 2: 2021-05-04  Chiron       AriesD2   5    3     8     0.62      0.38
+ 3: 2021-05-04    Juno SagittariusD3 111  110   221     0.50      0.50
+ 4: 2021-05-04 Jupiter    AquariusD3  93   82   175     0.53      0.47
+ 5: 2021-05-04    Mars      CancerD1  82   63   145     0.57      0.43
+ 6: 2021-05-04 Mercury      TaurusD3  55   50   105     0.52      0.48
+ 7: 2021-05-04    Moon    AquariusD2  65   61   126     0.52      0.48
+ 8: 2021-05-04 Neptune      PiscesD3  73   62   135     0.54      0.46
+ 9: 2021-05-04   NNode      GeminiD2  56   43    99     0.57      0.43
+10: 2021-05-04  Pallas      PiscesD2  93   77   170     0.55      0.45
+11: 2021-05-04  Pholus   CapricornD1 333  331   664     0.50      0.50
+12: 2021-05-04   Pluto   CapricornD3 356  355   711     0.50      0.50
+13: 2021-05-04  Saturn    AquariusD2  16   15    31     0.52      0.48
+14: 2021-05-04   SNode SagittariusD2  56   43    99     0.57      0.43
+15: 2021-05-04     Sun      TaurusD2  55   70   125     0.44      0.56
+16: 2021-05-04  Uranus      TaurusD2  41   26    67     0.61      0.39
+17: 2021-05-04   Venus      TaurusD3  56   47   103     0.54      0.46
+18: 2021-05-04   Vesta       VirgoD1  86   91   177     0.49      0.51
+
+PLANET ARAB MANSION:
+
+          Date  Planet ArabMansion Buy Sell DaysN BuyDays% SellDays%
+ 1: 2021-05-04   Ceres     Turaija  86   84   170     0.51      0.49
+ 2: 2021-05-04  Chiron     Saratan 330  336   666     0.50      0.50
+ 3: 2021-05-04    Juno       Balda 138  139   277     0.50      0.50
+ 4: 2021-05-04 Jupiter    Muqaddam  89   74   163     0.55      0.45
+ 5: 2021-05-04    Mars       Natra 117   83   200     0.58      0.42
+ 6: 2021-05-04 Mercury       Haq'a  70   59   129     0.54      0.46
+ 7: 2021-05-04    Moon      Ahbija  85   78   163     0.52      0.48
+ 8: 2021-05-04 Neptune        Risa 224  213   437     0.51      0.49
+ 9: 2021-05-04   NNode       Han'a  34   29    63     0.54      0.46
+10: 2021-05-04  Pallas    Mu'ahhar 123  120   243     0.51      0.49
+11: 2021-05-04  Pholus       Dabih 333  331   664     0.50      0.50
+12: 2021-05-04   Pluto       Su'ud  27   23    50     0.54      0.46
+13: 2021-05-04  Saturn      Ahbija  21   21    42     0.50      0.50
+14: 2021-05-04   SNode     Na'a'im  34   27    61     0.56      0.44
+15: 2021-05-04     Sun     Dabaran  77   83   160     0.48      0.52
+16: 2021-05-04  Uranus     Dabaran  76   61   137     0.55      0.45
+17: 2021-05-04   Venus       Haq'a  66   74   140     0.47      0.53
+18: 2021-05-04   Vesta        Auwa 106   91   197     0.54      0.46
+
+PLANET VEDIC MANSION:
+
+          Date  Planet    VedicMansion Buy Sell DaysN BuyDays% SellDays%
+ 1: 2021-05-04   Ceres          Aswini 100   92   192     0.52      0.48
+ 2: 2021-05-04    Juno        Jyeshtha 122  141   263     0.46      0.54
+ 3: 2021-05-04 Jupiter       Danishtha 128  115   243     0.53      0.47
+ 4: 2021-05-04    Mars           Ardra 116   87   203     0.57      0.43
+ 5: 2021-05-04 Mercury        Krittica  73   60   133     0.55      0.45
+ 6: 2021-05-04    Moon        Shravana  83   85   168     0.49      0.51
+ 7: 2021-05-04 Neptune PurvaBhadrapada 405  392   797     0.51      0.49
+ 8: 2021-05-04   NNode          Rohini  34   29    63     0.54      0.46
+ 9: 2021-05-04  Pallas PurvaBhadrapada 118   93   211     0.56      0.44
+10: 2021-05-04  Pholus            Mula 783  781  1564     0.50      0.50
+11: 2021-05-04   Pluto    UttaraAshada 329  324   653     0.50      0.50
+12: 2021-05-04  Saturn        Shravana  37   32    69     0.54      0.46
+13: 2021-05-04   SNode        Jyeshtha  88   65   153     0.58      0.42
+14: 2021-05-04     Sun         Bharani  84   82   166     0.51      0.49
+15: 2021-05-04  Uranus         Bharani 110   88   198     0.56      0.44
+16: 2021-05-04   Venus        Krittica  69   73   142     0.49      0.51
+17: 2021-05-04   Vesta   PurvaPhalguni  93   75   168     0.55      0.45
+
+LAST MOON PHASE:
+
+         Date MoonPhase  Buy Sell DaysN BuyDays% SellDays%
+1: 2021-05-04      Full 1152 1093  2245     0.51      0.49
+
+LAST MOON PHASE IN ZODIAC SIGN:
+
+         Date MoonPhase ZodSign Buy Sell DaysN BuyDays% SellDays%
+1: 2021-05-04      Full Scorpio  99  102   201     0.49      0.51
+
+PLANETS ASPECTS:
+
+          Date meanOrb minOrb maxOrb startHour endHour exactHour effHours PlanetX       Aspect PlanetY  Buy Sell DaysN BuyDays% SellDays%
+ 1: 2021-05-04    0.89   0.02   1.75         0      23         0       24 Mercury   BiQuintile  Pholus   53   42    95     0.56      0.44
+ 2: 2021-05-04    0.82   0.12   1.71         0       4         1        5    Moon     Quintile   Ceres  144  172   316     0.46      0.54
+ 3: 2021-05-04    0.76   0.05   1.59         0       4         1        5    Moon SemiQuintile Neptune  174  158   332     0.52      0.48
+ 4: 2021-05-04    0.89   0.03   1.91         0       6         2        7    Moon    BiSeptile Mercury  156  147   303     0.51      0.49
+ 5: 2021-05-04    0.80   0.11   1.50         0       5         2        6    Moon  SemiSextile  Pallas  158  167   325     0.49      0.51
+ 6: 2021-05-04    0.94   0.02   1.65         6      12         9        7    Moon   SemiSquare  Pholus  166  166   332     0.50      0.50
+ 7: 2021-05-04    1.03   0.21   1.86         7      14        11        8    Moon SesquiSquare    Mars  159  178   337     0.47      0.53
+ 8: 2021-05-04    0.09   0.00   0.19         0      23        12       24   Ceres SemiQuintile Neptune   48   44    92     0.52      0.48
+ 9: 2021-05-04    0.29   0.00   0.59         0      23        12       24 Mercury SemiQuintile    Mars   69   57   126     0.55      0.45
+10: 2021-05-04    0.93   0.07   1.70         9      15        12        7    Moon  SemiSextile Neptune  166  168   334     0.50      0.50
+11: 2021-05-04    1.09   0.26   1.93         9      16        13        8    Moon      Sextile    Juno  169  153   322     0.52      0.48
+12: 2021-05-04    0.30   0.02   0.68         0      23        15       24   Venus    BiSeptile   Vesta   80   59   139     0.58      0.42
+13: 2021-05-04    1.08   0.26   1.91        12      19        16        8    Moon     Quintile   SNode  187  146   333     0.56      0.44
+14: 2021-05-04    1.08   0.01   1.95        12      20        16        9    Moon       Square   Venus  155  162   317     0.49      0.51
+15: 2021-05-04    1.07   0.26   1.88        15      22        18        8    Moon   SemiSquare  Chiron  162  174   336     0.48      0.52
+16: 2021-05-04    0.93   0.08   1.69        17      23        20        7    Moon  SemiSextile   Pluto  180  159   339     0.53      0.47
+17: 2021-05-04    0.01   0.00   0.01         0      23        21       24  Chiron  SemiSextile  Uranus 1375 1377  2752     0.50      0.50
+18: 2021-05-04    0.06   0.02   0.09         0      23        23       24 Jupiter     Quintile  Uranus   30   29    59     0.51      0.49
+19: 2021-05-04    1.11   0.34   1.89        20      23        23        4    Moon      Sextile   Ceres  162  171   333     0.49      0.51
+20: 2021-05-04    0.00   0.00   0.00         0      23        23       24   NNode   Opposition   SNode 2280 2223  4503     0.51      0.49
+21: 2021-05-04    0.36   0.24   0.49         0      23        NA       24   Ceres      Sextile Jupiter   32   29    61     0.52      0.48
+22: 2021-05-04    1.15   0.94   1.37         0      23        NA       24   Ceres   SemiSquare   NNode   26   30    56     0.46      0.54
+23: 2021-05-04    1.67   1.48   1.86         0      23        NA       24   Ceres       Square   Pluto   32   22    54     0.59      0.41
+24: 2021-05-04    1.15   0.94   1.37         0      23        NA       24   Ceres SesquiSquare   SNode   26   30    56     0.46      0.54
+25: 2021-05-04    0.21   0.13   0.28         0      23        NA       24    Juno       Square Neptune   66   47   113     0.58      0.42
+26: 2021-05-04    1.89   1.83   1.95         0      23        NA       24    Juno SemiQuintile   Pluto   94   64   158     0.59      0.41
+27: 2021-05-04    0.48   0.39   0.57         0      23        NA       24 Jupiter    BiSeptile   NNode   36   19    55     0.65      0.35
+28: 2021-05-04    1.19   0.91   1.47         0      23        NA       24    Mars    BiSeptile Neptune   54   50   104     0.52      0.48
+29: 2021-05-04    0.91   0.61   1.22         0      23        NA       24    Mars   Opposition  Pholus   22   15    37     0.59      0.41
+30: 2021-05-04    0.55   0.27   0.83         0      23        NA       24    Mars   BiQuintile  Saturn   32   35    67     0.48      0.52
+31: 2021-05-04    0.80   0.56   1.04         0      23        NA       24    Mars      Sextile   Vesta   48   41    89     0.54      0.46
+32: 2021-05-04    1.74   1.51   1.98         0       8        NA        9 Mercury  SemiSextile   Ceres   99  105   204     0.49      0.51
+33: 2021-05-04    1.50   1.02   1.99         0      14        NA       15 Mercury       Square Jupiter   49   48    97     0.51      0.49
+34: 2021-05-04    1.34   0.73   1.94         0      19        NA       20 Mercury     Quintile  Pallas   66   68   134     0.49      0.51
+35: 2021-05-04    1.43   1.38   1.48         0      23        NA       24   NNode      Sextile  Chiron   21   27    48     0.44      0.56
+36: 2021-05-04    0.52   0.49   0.54         0      23        NA       24   NNode SesquiSquare   Pluto   45   61   106     0.42      0.58
+37: 2021-05-04    0.91   0.87   0.95         0      23        NA       24   NNode        Trine  Saturn  103   92   195     0.53      0.47
+38: 2021-05-04    1.43   1.37   1.48         0      23        NA       24   NNode  SemiSextile  Uranus   34   35    69     0.49      0.51
+39: 2021-05-04    0.58   0.45   0.71         0      23        NA       24  Pallas     Quintile  Pholus   52   58   110     0.47      0.53
+40: 2021-05-04    1.46   1.44   1.49         0      23        NA       24  Saturn SemiQuintile  Pholus   54   67   121     0.45      0.55
+41: 2021-05-04    1.43   1.38   1.48         0      23        NA       24   SNode        Trine  Chiron   21   27    48     0.44      0.56
+42: 2021-05-04    0.52   0.49   0.54         0      23        NA       24   SNode   SemiSquare   Pluto   45   61   106     0.42      0.58
+43: 2021-05-04    0.91   0.87   0.95         0      23        NA       24   SNode      Sextile  Saturn  103   92   195     0.53      0.47
+44: 2021-05-04    1.43   1.37   1.48         0      23        NA       24   SNode     Quincunx  Uranus   34   35    69     0.49      0.51
+45: 2021-05-04    1.69   1.42   1.96         0      13        NA       14     Sun  SemiSextile   NNode   47   56   103     0.46      0.54
+46: 2021-05-04    1.00   0.55   1.45         0      23        NA       24     Sun       Square  Saturn   58   42   100     0.58      0.42
+47: 2021-05-04    1.69   1.42   1.96         0      13        NA       14     Sun     Quincunx   SNode   47   56   103     0.46      0.54
+48: 2021-05-04    1.09   1.06   1.12         0      23        NA       24  Uranus    BiSeptile   Pluto  203  187   390     0.52      0.48
+49: 2021-05-04    1.48   0.99   1.97         3      23        NA       21   Venus   SemiSquare  Chiron   59   49   108     0.55      0.45
+50: 2021-05-04    1.47   0.99   1.95         0      17        NA       18   Venus     Quincunx    Juno   65   56   121     0.54      0.46
+51: 2021-05-04    1.62   1.27   1.97         0      14        NA       15   Venus      Sextile Neptune   51   41    92     0.55      0.45
+52: 2021-05-04    1.64   1.32   1.96        10      23        NA       14   Venus    BiSeptile  Saturn   57   68   125     0.46      0.54
+53: 2021-05-04    1.71   1.65   1.78         0      23        NA       24   Vesta        Trine  Pholus   48   61   109     0.44      0.56
+          Date meanOrb minOrb maxOrb startHour endHour exactHour effHours PlanetX       Aspect PlanetY  Buy Sell DaysN BuyDays% SellDays%
+
+MACHINE LEARNING PREDICTIONS:
+
+         Model
+ Not available
