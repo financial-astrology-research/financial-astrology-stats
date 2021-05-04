@@ -110,7 +110,7 @@ symbolSignalsFlattenExport <- function(signalsIndex, symbolID) {
 }
 
 symbolPredictionsIndex <- function(symbolID) {
-  topModelsN <- 5
+  topModelsN <- 6
   modelsPerformanceReport <- dataTableRead(
     modelsLatestPerformancePathFileNameGet()
   )
