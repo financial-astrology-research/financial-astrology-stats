@@ -19,18 +19,22 @@ colNames <- colnames(dailyPlanetPositions)
 longitudeColNames <- colNames[grep("^..LON", colNames)]
 # Max items per data chunk assuming positions need 3 numbers + 1 comma separator
 # ever item can consume max of 4 bytes and PineScript strings has a bytes limit.
-pineScriptStringLimit <- 4096
+pineScriptStringLimit <- 2048
 itemsPerChunk <- pineScriptStringLimit / 4
 
 vectorChunkSplit <- function(x, nChunks) {
   split(x, cut(seq_along(x), nChunks, labels = FALSE))
 }
 
-positionsVariableDump <- function(fileHandler, varName, values) {
-  dataString <- str_flatten(values, collapse = ',')
-  variableDefinition <- paste0('string ', varName, ' = "', dataString, '"')
+positionsVariableDump <- function(fileHandler, varName, valuesChunks) {
+  variableDefinition <- paste0(varName, ' = array.from(')
   write(variableDefinition, fileHandler, append = T)
-  cat(varName, "positions exported to", positionsPathFile, "\n")
+  for (index in names(valuesChunks)) {
+    chunkContent <- paste0('\t ', str_flatten(valuesChunks[[index]], collapse = ','), ',')
+    write(chunkContent, fileHandler, append = T)
+  }
+  write('\t )', fileHandler, append = T)
+  cat(varName, "positions exported to", positionsPathFile, '\n')
 }
 
 openPineScriptAstroPositionsFile <- function() {
@@ -49,10 +53,7 @@ for (colName in longitudeColNames) {
   positions <- round(dailyPlanetPositions[[colName]], 0)
   nChunks <- ceiling(length(positions) / itemsPerChunk)
   positionsChunks <- vectorChunkSplit(positions, nChunks)
-  for (index in names(positionsChunks)) {
-    varName <- paste0(colName, index)
-    positionsVariableDump(fileHandler, varName, positionsChunks[[index]])
-  }
+  positionsVariableDump(fileHandler, colName, positionsChunks)
 }
 
 closePineScriptAstroPositionsFile(fileHandler)
