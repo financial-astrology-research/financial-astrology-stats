@@ -27,6 +27,7 @@ vectorChunkSplit <- function(x, nChunks) {
 }
 
 positionsVariableDump <- function(fileHandler, varName, valuesChunks) {
+  positionsPathFile <- paste0(astroDataDestinationPath(), '-pine-script-astro-positions.txt')
   variableDefinition <- paste0(varName, ' = array.from(')
   write(variableDefinition, fileHandler, append = T)
   for (index in names(valuesChunks)) {
