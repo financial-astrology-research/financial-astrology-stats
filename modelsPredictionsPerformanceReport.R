@@ -61,7 +61,11 @@ accuracyCalculate <- function(monthlyData) {
 #' @return Symbol ID.
 predictionsFileNameSymbolIdExtract <- function(predictionsFileName) {
   fileNameParts <- unlist(strsplit(predictionsFileName, "-"))
-  paste(fileNameParts[1], fileNameParts[2], sep = "-")
+  ifelse(
+    fileNameParts[2] == 'predict',
+    fileNameParts[1],
+    paste(fileNameParts[1], fileNameParts[2], sep = "-")
+  )
 }
 
 #' Get model predictions creation date from models metadata table.
