@@ -9,6 +9,8 @@ source("./configUtils.R")
 source("./dataLoadUtils.R")
 source("./fileSystemUtilities.R")
 
+options(width=150)
+
 assetPredictionsTest <- function(symbolID) {
   startDate <- "2020-10-01"
   calculateAccuracy <- function(monthlyData) {
@@ -55,4 +57,9 @@ assetPredictionsTest <- function(symbolID) {
 }
 
 symbolsList <- assetsWatchList()
+targetPathFile <- paste0(modelsSignalsIndexPerformanceDestinationPath(), 'signals_index_monthly_performance', ".txt")
+cat("", targetPathFile, append = F)
+cat("\n", "Generating signals index performance test by month to ", targetPathFile, "\n")
+sink(targetPathFile)
 testResults <- lapply(symbolsList$SymbolID, assetPredictionsTest)
+sink()
