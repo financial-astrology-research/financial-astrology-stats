@@ -45,6 +45,12 @@ modelsSignalsIndexDestinationPath <- function() {
   destinationPath <- paste0(normalizePath('./machine_learning/signals_index'), "/")
 }
 
+#' Provides signals index performance reports destination path.
+#' @returns The signals index performance relative destination path.
+modelsSignalsIndexPerformanceDestinationPath <- function() {
+  destinationPath <- paste0(normalizePath('./machine_learning/signals_index_performance'), "/")
+}
+
 #' Provides models performance destination path.
 #' @returns The models performance relative destination path.
 modelsPerformanceDestinationPath <- function() {
