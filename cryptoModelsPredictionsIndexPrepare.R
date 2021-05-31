@@ -5,6 +5,7 @@
 
 library(data.table)
 library(ggplot2)
+library(plyr)
 library(stringr)
 
 source('./dataLoadUtils.R')
@@ -30,7 +31,7 @@ consensusSignalsPathFileNameGet <- function(symbolId) {
 
 signalsIndexTargetPathFileNameGet <- function(indexName) {
   targetFile <- paste('ml', indexName, 'index.csv', sep = '-')
-  indexFilePath <- paste0(modelsSignalsIndexDestinationPath(), targetFile)
+  indexPathFile <- paste0(modelsSignalsIndexDestinationPath(), targetFile)
 }
 
 modelPredictionsSignalsGet <- function(predictFilename) {
@@ -41,14 +42,14 @@ modelPredictionsSignalsGet <- function(predictFilename) {
 
 signalsIndexPlot <- function(signalsIndex, indexName) {
   indexPathFileName <- signalsIndexTargetPathFileNameGet(indexName)
-  plotPathFileName <- str_replace(indexPathFileName, ".csv", ".png")
+  plotPathFileName <- str_replace(indexPathFileName, '.csv', '.png')
   signalsIndex[, BuyForce := cumsum(buy - sell)]
   indexPlot <- ggplot(data = signalsIndex[Date >= Sys.Date() - 120,]) +
     geom_line(aes(x = Date, y = BuyForce), colour = 'white') +
     scale_x_date(date_breaks = '7 days', date_labels = '%Y-%m-%d') +
     labs(
       title = paste(indexName, 'ML models buy/sell signals cumulative sum'),
-      x = "Buy/Sell signals cumulative count"
+      x = 'Buy/Sell signals cumulative count'
     ) +
     ggplotDarkTheme() +
     theme(axis.text.x = element_text(angle = 90, size = 14))
@@ -58,12 +59,12 @@ signalsIndexPlot <- function(signalsIndex, indexName) {
     plot = indexPlot,
     width = 30,
     height = 15,
-    units = "cm",
+    units = 'cm',
     scale = 1.5,
     dpi = 72
   )
 
-  cat("Plot saved to:", plotPathFileName, "\n")
+  cat('Plot saved to:', plotPathFileName, '\n')
 }
 
 signalsIndexCalculate <- function(dailySignals, byFormula, indexName) {
@@ -84,7 +85,11 @@ signalsIndexCalculate <- function(dailySignals, byFormula, indexName) {
 
   # Calculate index signal based on the majority of all symbols signals side.
   signalsIndex[,
-    Action := ifelse(buy > sell, 'buy', ifelse(buy == sell, 'neutral', 'sell'))
+    Action := ifelse(buy >= sell, 'buy', 'sell')
+  ]
+
+  signalsIndex[,
+    ActionID := mapvalues(Action, c('buy', 'sell'), c(1, 0), warn_missing = F)
   ]
 
   indexPathFileName <- signalsIndexTargetPathFileNameGet(indexName)
@@ -94,19 +99,32 @@ signalsIndexCalculate <- function(dailySignals, byFormula, indexName) {
   return(signalsIndex)
 }
 
+symbolSignalsFlattenExport <- function(signalsIndex, symbolID) {
+  startDate <- as.Date('2020-01-01')
+  signalsPathFile <- paste0(modelsSignalsIndexDestinationPath(), symbolID, '-signals-flat.txt')
+  fileHandler <- file(signalsPathFile)
+  signalString <- str_flatten(signalsIndex[Date >= startDate]$ActionID, collapse = ',')
+  signalData <- paste0('string ', str_replace(symbolID, '-USD', ''), ' = "', signalString, '"')
+  writeLines(signalData, fileHandler)
+  close(fileHandler)
+}
+
 symbolPredictionsIndex <- function(symbolID) {
+  topModelsN <- 6
   modelsPerformanceReport <- dataTableRead(
     modelsLatestPerformancePathFileNameGet()
   )
 
-  topPerformers <- modelsPerformanceReport[Symbol == symbolID][order(-Rank)] %>% head(5)
+  topPerformers <- modelsPerformanceReport[Symbol == symbolID][order(-Rank)] %>% head(topModelsN)
   symbolPredictions <- rbindlist(lapply(topPerformers$PredictFile, modelPredictionsSignalsGet))
   dailyIndexName <- paste(symbolID, 'daily', sep = '-')
-  signalsIndexCalculate(
+  signalsIndex <- signalsIndexCalculate(
     symbolPredictions,
     'Date ~ EffPred',
     dailyIndexName
-  ) %>% signalsIndexPlot(dailyIndexName)
+  )
+  signalsIndexPlot(signalsIndex, dailyIndexName)
+  symbolSignalsFlattenExport(signalsIndex, symbolID)
 
   signalsIndexCalculate(
     symbolPredictions,
@@ -124,9 +142,9 @@ symbolPredictionsIndex <- function(symbolID) {
 }
 
 assetsModelsPredictionsSignalIndexPrepare <- function() {
-  modelsPerformanceReport <- dataTableRead(
-    modelsLatestPerformancePathFileNameGet()
-  )
+  reportPathFile <- modelsLatestPerformancePathFileNameGet()
+  cat("Using report: ", reportPathFile, "\n")
+  modelsPerformanceReport <- dataTableRead(reportPathFile)
 
   # Calculate a buy/sell signal count index for all machine learning assets predictions.
   symbolsIDS <- unique(modelsPerformanceReport$Symbol)
@@ -135,7 +153,7 @@ assetsModelsPredictionsSignalIndexPrepare <- function() {
   signalsIndexCalculate(
     allPredictions,
     'Date ~ EffPred',
-       dailyIndexName
+    dailyIndexName
   ) %>% signalsIndexPlot(dailyIndexName)
 
   signalsIndexCalculate(
@@ -160,9 +178,9 @@ signalsIndexConsensusPrepare <- function() {
     filenameParts <- unlist(strsplit(predictFilename, '-'))
     symbolId <- paste(filenameParts[1], filenameParts[2], 'T', sep = '')
     targetFilePath <- signalsPathFileNameGet(symbolId)
-    indexFilePath <- signalsIndexTargetPathFileNameGet('daily')
+    indexPathFile <- signalsIndexTargetPathFileNameGet('daily')
     symbolIndicator <- fread(targetFilePath)
-    indexIndicator <- fread(indexFilePath)
+    indexIndicator <- fread(indexPathFile)
     consensusIndicator <- merge(symbolIndicator, indexIndicator[, c('Date', 'Action')], by = 'Date')
     setnames(consensusIndicator, c('Date', 'SymbolAction', 'IndexAction'))
 
