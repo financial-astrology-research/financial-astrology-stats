@@ -52,7 +52,7 @@ closePineScriptAstroPositionsFile <- function(fileHandler) {
 
 fileHandler <- openPineScriptAstroPositionsFile()
 for (colName in c(longitudeColNames, speedColNames, declinationColNames)) {
-  positions <- round(dailyPlanetPositions[[colName]], 0)
+  positions <- round(dailyPlanetPositions[[colName]], 1)
   nChunks <- ceiling(length(positions) / itemsPerChunk)
   positionsChunks <- vectorChunkSplit(positions, nChunks)
   positionsVariableDump(fileHandler, colName, positionsChunks)
