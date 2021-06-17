@@ -57,7 +57,7 @@ signalsIndexPlot <- function(signalsIndex, indexName) {
   ggsave(
     filename = plotPathFileName,
     plot = indexPlot,
-    width = 30,
+    width = 50,
     height = 15,
     units = 'cm',
     scale = 1.5,
@@ -170,30 +170,3 @@ assetsModelsPredictionsSignalIndexPrepare <- function() {
 }
 
 assetsModelsPredictionsSignalIndexPrepare()
-
-signalsIndexConsensusPrepare <- function() {
-
-  prepareConsensusPredictionCSV <- function(predictFilename) {
-    cat('Processing: ', predictFilename, '\n')
-    filenameParts <- unlist(strsplit(predictFilename, '-'))
-    symbolId <- paste(filenameParts[1], filenameParts[2], 'T', sep = '')
-    targetFilePath <- signalsPathFileNameGet(symbolId)
-    indexPathFile <- signalsIndexTargetPathFileNameGet('daily')
-    symbolIndicator <- fread(targetFilePath)
-    indexIndicator <- fread(indexPathFile)
-    consensusIndicator <- merge(symbolIndicator, indexIndicator[, c('Date', 'Action')], by = 'Date')
-    setnames(consensusIndicator, c('Date', 'SymbolAction', 'IndexAction'))
-
-    # Hold when symbol indicator signal differs from index indicator.
-    consensusIndicator[SymbolAction != IndexAction, EffPred := 'hold']
-    consensusIndicator[SymbolAction == IndexAction | SymbolAction == 'neutral', EffPred := SymbolAction]
-    consensusTargetFilePath <- consensusSignalsPathFileNameGet(symbolId)
-    fwrite(consensusIndicator[, ..exportCols], consensusTargetFilePath)
-    cat('Consensus indicator exported to:', consensusTargetFilePath, '\n')
-
-    return(consensusTargetFilePath)
-  }
-
-  consensusFiles <- lapply(predictionsList$filename, prepareConsensusPredictionCSV)
-}
-
