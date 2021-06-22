@@ -17,8 +17,9 @@ dailyPlanetPositions <- planetPositionsTable[Hour == 0,]
 dailyPlanetPositions <- dailyPlanetPositions[Date >= startDate & Date <= endDate,]
 colNames <- colnames(dailyPlanetPositions)
 longitudeColNames <- colNames[grep("^..LON", colNames)]
-# Max items per data chunk assuming positions need 3 numbers + 1 comma separator
-# ever item can consume max of 4 bytes and PineScript strings has a bytes limit.
+speedColNames <- colNames[grep("^..SP", colNames)]
+declinationColNames <- colNames[grep("^..DEC", colNames)]
+# Max items per data chunk per PineScript code line to avoid their code editor crash.
 pineScriptStringLimit <- 2048
 itemsPerChunk <- pineScriptStringLimit / 4
 
@@ -27,7 +28,7 @@ vectorChunkSplit <- function(x, nChunks) {
 }
 
 positionsVariableDump <- function(fileHandler, varName, valuesChunks) {
-  positionsPathFile <- paste0(astroDataDestinationPath(), '-pine-script-astro-positions.txt')
+  positionsPathFile <- paste0(astroDataDestinationPath(), 'pine-script-astro-positions.txt')
   variableDefinition <- paste0(varName, ' = array.from(')
   write(variableDefinition, fileHandler, append = T)
   for (index in names(valuesChunks)) {
@@ -39,7 +40,7 @@ positionsVariableDump <- function(fileHandler, varName, valuesChunks) {
 }
 
 openPineScriptAstroPositionsFile <- function() {
-  positionsPathFile <- paste0(astroDataDestinationPath(), '-pine-script-astro-positions.txt')
+  positionsPathFile <- paste0(astroDataDestinationPath(), 'pine-script-astro-positions.txt')
   # Ensure the file is empty.
   cat("", positionsPathFile, append = F)
   file(positionsPathFile, "w")
@@ -50,8 +51,8 @@ closePineScriptAstroPositionsFile <- function(fileHandler) {
 }
 
 fileHandler <- openPineScriptAstroPositionsFile()
-for (colName in longitudeColNames) {
-  positions <- round(dailyPlanetPositions[[colName]], 0)
+for (colName in c(longitudeColNames, speedColNames, declinationColNames)) {
+  positions <- round(dailyPlanetPositions[[colName]], 1)
   nChunks <- ceiling(length(positions) / itemsPerChunk)
   positionsChunks <- vectorChunkSplit(positions, nChunks)
   positionsVariableDump(fileHandler, colName, positionsChunks)
