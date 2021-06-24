@@ -1,0 +1,226 @@
+
+PLANET SPEED PHASE:
+
+          Date  Planet Speed SpeedPhase  Buy Sell DaysN BuyDays% SellDays%
+ 1: 2021-07-21   Ceres  0.32     Direct  895 1001  1896     0.47      0.53
+ 2: 2021-07-21  Chiron  0.00 Stationary   59   85   144     0.41      0.59
+ 3: 2021-07-21    Juno -0.07 Retrograde  246  308   554     0.44      0.56
+ 4: 2021-07-21 Jupiter -0.09 Retrograde  338  379   717     0.47      0.53
+ 5: 2021-07-21    Mars  0.62     Direct 1059 1161  2220     0.48      0.52
+ 6: 2021-07-21 Mercury  1.95     Direct  919  983  1902     0.48      0.52
+ 7: 2021-07-21    Moon 14.58     Direct 1163 1303  2466     0.47      0.53
+ 8: 2021-07-21 Neptune -0.01 Retrograde  415  477   892     0.47      0.53
+ 9: 2021-07-21   NNode  1.00     Direct 1163 1303  2466     0.47      0.53
+10: 2021-07-21  Pallas -0.04 Retrograde  256  270   526     0.49      0.51
+11: 2021-07-21  Pholus -0.03 Retrograde  444  529   973     0.46      0.54
+12: 2021-07-21   Pluto -0.02 Retrograde  400  492   892     0.45      0.55
+13: 2021-07-21  Saturn -0.07 Retrograde  374  465   839     0.45      0.55
+14: 2021-07-21   SNode  1.00     Direct 1163 1303  2466     0.47      0.53
+15: 2021-07-21     Sun  0.95     Direct 1163 1303  2466     0.47      0.53
+16: 2021-07-21  Uranus  0.02     Direct  645  740  1385     0.47      0.53
+17: 2021-07-21   Venus  1.20     Direct 1060 1194  2254     0.47      0.53
+18: 2021-07-21   Vesta  0.43     Direct  925 1005  1930     0.48      0.52
+
+PLANET RYTHM:
+
+          Date  Planet  Quality  Buy Sell DaysN BuyDays% SellDays%
+ 1: 2021-07-21   Ceres    Fixed  429  517   946     0.45      0.55
+ 2: 2021-07-21  Chiron Cardinal  487  527  1014     0.48      0.52
+ 3: 2021-07-21    Juno  Mutable  260  326   586     0.44      0.56
+ 4: 2021-07-21 Jupiter  Mutable  361  465   826     0.44      0.56
+ 5: 2021-07-21    Mars    Fixed  400  442   842     0.48      0.52
+ 6: 2021-07-21 Mercury Cardinal  373  414   787     0.47      0.53
+ 7: 2021-07-21    Moon  Mutable  372  446   818     0.45      0.55
+ 8: 2021-07-21 Neptune  Mutable 1163 1303  2466     0.47      0.53
+ 9: 2021-07-21   NNode  Mutable  440  509   949     0.46      0.54
+10: 2021-07-21  Pallas  Mutable  356  426   782     0.46      0.54
+11: 2021-07-21  Pholus Cardinal  471  512   983     0.48      0.52
+12: 2021-07-21   Pluto Cardinal 1163 1303  2466     0.47      0.53
+13: 2021-07-21  Saturn    Fixed  253  227   480     0.53      0.47
+14: 2021-07-21   SNode  Mutable  439  509   948     0.46      0.54
+15: 2021-07-21     Sun Cardinal  386  433   819     0.47      0.53
+16: 2021-07-21  Uranus    Fixed  490  522  1012     0.48      0.52
+17: 2021-07-21   Venus    Fixed  374  450   824     0.45      0.55
+18: 2021-07-21   Vesta Cardinal  413  420   833     0.50      0.50
+
+PLANET ELEMENT:
+
+          Date  Planet Element  Buy Sell DaysN BuyDays% SellDays%
+ 1: 2021-07-21   Ceres   Earth  222  313   535     0.41      0.59
+ 2: 2021-07-21  Chiron    Fire  487  527  1014     0.48      0.52
+ 3: 2021-07-21    Juno    Fire  320  350   670     0.48      0.52
+ 4: 2021-07-21 Jupiter   Water  195  241   436     0.45      0.55
+ 5: 2021-07-21    Mars    Fire  332  406   738     0.45      0.55
+ 6: 2021-07-21 Mercury   Water  298  322   620     0.48      0.52
+ 7: 2021-07-21    Moon    Fire  280  336   616     0.45      0.55
+ 8: 2021-07-21 Neptune   Water 1163 1303  2466     0.47      0.53
+ 9: 2021-07-21   NNode     Air  377  390   767     0.49      0.51
+10: 2021-07-21  Pallas   Water  244  260   504     0.48      0.52
+11: 2021-07-21  Pholus   Earth  471  512   983     0.48      0.52
+12: 2021-07-21   Pluto   Earth 1163 1303  2466     0.47      0.53
+13: 2021-07-21  Saturn     Air  145  144   289     0.50      0.50
+14: 2021-07-21   SNode    Fire  378  390   768     0.49      0.51
+15: 2021-07-21     Sun   Water  278  335   613     0.45      0.55
+16: 2021-07-21  Uranus   Earth  490  522  1012     0.48      0.52
+17: 2021-07-21   Venus    Fire  300  357   657     0.46      0.54
+18: 2021-07-21   Vesta     Air  152  171   323     0.47      0.53
+
+PLANET ZODIAC SIGN:
+
+          Date  Planet     ZodSign  Buy Sell DaysN BuyDays% SellDays%
+ 1: 2021-07-21   Ceres      Taurus   92  127   219     0.42      0.58
+ 2: 2021-07-21  Chiron       Aries  487  527  1014     0.48      0.52
+ 3: 2021-07-21    Juno Sagittarius  126  151   277     0.45      0.55
+ 4: 2021-07-21 Jupiter      Pisces   17   25    42     0.40      0.60
+ 5: 2021-07-21    Mars         Leo   68   88   156     0.44      0.56
+ 6: 2021-07-21 Mercury      Cancer   78   96   174     0.45      0.55
+ 7: 2021-07-21    Moon Sagittarius  100  109   209     0.48      0.52
+ 8: 2021-07-21 Neptune      Pisces 1163 1303  2466     0.47      0.53
+ 9: 2021-07-21   NNode      Gemini  188  194   382     0.49      0.51
+10: 2021-07-21  Pallas      Pisces  141  169   310     0.45      0.55
+11: 2021-07-21  Pholus   Capricorn  471  512   983     0.48      0.52
+12: 2021-07-21   Pluto   Capricorn 1163 1303  2466     0.47      0.53
+13: 2021-07-21  Saturn    Aquarius  145  144   289     0.50      0.50
+14: 2021-07-21   SNode Sagittarius  188  194   382     0.49      0.51
+15: 2021-07-21     Sun      Cancer   79  114   193     0.41      0.59
+16: 2021-07-21  Uranus      Taurus  490  522  1012     0.48      0.52
+17: 2021-07-21   Venus         Leo  101  137   238     0.42      0.58
+18: 2021-07-21   Vesta       Libra   31   28    59     0.53      0.47
+
+PLANET DECAN:
+
+          Date  Planet         Decan Buy Sell DaysN BuyDays% SellDays%
+ 1: 2021-07-21   Ceres      TaurusD3  12   13    25     0.48      0.52
+ 2: 2021-07-21  Chiron       AriesD2  25   42    67     0.37      0.63
+ 3: 2021-07-21    Juno SagittariusD1  22   40    62     0.35      0.65
+ 4: 2021-07-21 Jupiter      PiscesD1  17   25    42     0.40      0.60
+ 5: 2021-07-21    Mars         LeoD1  23   25    48     0.48      0.52
+ 6: 2021-07-21 Mercury      CancerD2  27   33    60     0.45      0.55
+ 7: 2021-07-21    Moon SagittariusD2  33   36    69     0.48      0.52
+ 8: 2021-07-21 Neptune      PiscesD3 130  116   246     0.53      0.47
+ 9: 2021-07-21   NNode      GeminiD1   2    5     7     0.29      0.71
+10: 2021-07-21  Pallas      PiscesD3  32   36    68     0.47      0.53
+11: 2021-07-21  Pholus   CapricornD1 471  512   983     0.48      0.52
+12: 2021-07-21   Pluto   CapricornD3 509  568  1077     0.47      0.53
+13: 2021-07-21  Saturn    AquariusD2  48   52   100     0.48      0.52
+14: 2021-07-21   SNode SagittariusD1   2    5     7     0.29      0.71
+15: 2021-07-21     Sun      CancerD3  29   35    64     0.45      0.55
+16: 2021-07-21  Uranus      TaurusD2  70   79   149     0.47      0.53
+17: 2021-07-21   Venus         LeoD1  34   62    96     0.35      0.65
+18: 2021-07-21   Vesta       LibraD1  14    6    20     0.70      0.30
+
+PLANET ARAB MANSION:
+
+          Date  Planet ArabMansion  Buy Sell DaysN BuyDays% SellDays%
+ 1: 2021-07-21   Ceres       Haq'a   18   14    32     0.56      0.44
+ 2: 2021-07-21    Juno     Na'a'im   42   63   105     0.40      0.60
+ 3: 2021-07-21 Jupiter    Muqaddam   43   51    94     0.46      0.54
+ 4: 2021-07-21    Mars       Sarfa   23   38    61     0.38      0.62
+ 5: 2021-07-21 Mercury     Tarf(a)   33   36    69     0.48      0.52
+ 6: 2021-07-21    Moon     Na'a'im   45   46    91     0.49      0.51
+ 7: 2021-07-21 Neptune        Risa  330  341   671     0.49      0.51
+ 8: 2021-07-21   NNode       Han'a   74   71   145     0.51      0.49
+ 9: 2021-07-21  Pallas        Risa   39   49    88     0.44      0.56
+10: 2021-07-21  Pholus       Dabih  471  512   983     0.48      0.52
+11: 2021-07-21   Pluto        Bula 1035 1209  2244     0.46      0.54
+12: 2021-07-21  Saturn      Ahbija   58   57   115     0.50      0.50
+13: 2021-07-21   SNode     Na'a'im   72   70   142     0.51      0.49
+14: 2021-07-21     Sun       Gabha   41   41    82     0.50      0.50
+15: 2021-07-21  Uranus     Dabaran  113  132   245     0.46      0.54
+16: 2021-07-21   Venus       Sarfa   44   75   119     0.37      0.63
+17: 2021-07-21   Vesta        Gafr   16    9    25     0.64      0.36
+
+PLANET VEDIC MANSION:
+
+          Date  Planet     VedicMansion  Buy Sell DaysN BuyDays% SellDays%
+ 1: 2021-07-21   Ceres         Krittica   20   13    33     0.61      0.39
+ 2: 2021-07-21  Chiron           Revati   20   35    55     0.36      0.64
+ 3: 2021-07-21    Juno         Anuradha   30   52    82     0.37      0.63
+ 4: 2021-07-21 Jupiter      Shatabhisha   13   22    35     0.37      0.63
+ 5: 2021-07-21    Mars            Magha   23   40    63     0.37      0.63
+ 6: 2021-07-21 Mercury         Punavasu   32   40    72     0.44      0.56
+ 7: 2021-07-21    Moon         Jyeshtha   44   52    96     0.46      0.54
+ 8: 2021-07-21 Neptune  PurvaBhadrapada  559  641  1200     0.47      0.53
+ 9: 2021-07-21   NNode           Rohini   75   71   146     0.51      0.49
+10: 2021-07-21  Pallas UttaraBhadrapada   21   17    38     0.55      0.45
+11: 2021-07-21  Pholus             Mula 1035 1185  2220     0.47      0.53
+12: 2021-07-21   Pluto     UttaraAshada  466  514   980     0.48      0.52
+13: 2021-07-21  Saturn         Shravana   78   76   154     0.51      0.49
+14: 2021-07-21   SNode         Anuradha    6   14    20     0.30      0.70
+15: 2021-07-21     Sun           Pushya   43   40    83     0.52      0.48
+16: 2021-07-21  Uranus          Bharani  168  163   331     0.51      0.49
+17: 2021-07-21   Venus            Magha   49   63   112     0.44      0.56
+18: 2021-07-21   Vesta   UttaraPhalguni   27   27    54     0.50      0.50
+
+LAST MOON PHASE:
+
+         Date MoonPhase Buy Sell DaysN BuyDays% SellDays%
+1: 2021-07-21       New 598  643  1241     0.48      0.52
+
+LAST MOON PHASE IN ZODIAC SIGN:
+
+         Date MoonPhase ZodSign Buy Sell DaysN BuyDays% SellDays%
+1: 2021-07-21       New  Cancer  48   54   102     0.47      0.53
+
+PLANETS ASPECTS:
+
+          Date meanOrb minOrb maxOrb startHour endHour exactHour effHours PlanetX       Aspect PlanetY  Buy Sell DaysN BuyDays% SellDays%
+ 1: 2021-07-21    0.24   0.00   0.49         0      23         1       24   Vesta     Quincunx Jupiter   40   45    85     0.47      0.53
+ 2: 2021-07-21    0.82   0.01   1.79         0      23         2       24 Mercury SesquiSquare Jupiter   30   31    61     0.49      0.51
+ 3: 2021-07-21    1.06   0.05   1.89         1       7         4        7    Moon     Quintile Jupiter   87  101   188     0.46      0.54
+ 4: 2021-07-21    0.91   0.19   1.63         3       8         5        6    Moon SemiQuintile   Pluto   97   86   183     0.53      0.47
+ 5: 2021-07-21    1.05   0.08   1.90         4      10         7        7    Moon   BiQuintile  Uranus   84  100   184     0.46      0.54
+ 6: 2021-07-21    1.06   0.09   1.92         8      14        11        7    Moon       Square Neptune   84   97   181     0.46      0.54
+ 7: 2021-07-21    0.98   0.03   1.73         8      14        11        7    Moon   BiQuintile     Sun   82   89   171     0.48      0.52
+ 8: 2021-07-21    1.00   0.06   1.80        11      17        14        7    Moon        Trine    Mars   80   97   177     0.45      0.55
+ 9: 2021-07-21    1.06   0.10   1.92        12      18        15        7    Moon  SemiSextile   Pluto   95   89   184     0.52      0.48
+10: 2021-07-21    1.06   0.06   1.89        13      19        16        7    Moon   SemiSquare  Saturn   84   99   183     0.46      0.54
+11: 2021-07-21    1.04   0.14   1.92        15      21        18        7    Moon     Quincunx   Ceres   91   88   179     0.51      0.49
+12: 2021-07-21    0.92   0.24   1.60        16      21        19        6    Moon       Square  Pallas   84  100   184     0.46      0.54
+13: 2021-07-21    0.75   0.28   1.50        20      23        22        4    Moon    BiSeptile  Chiron   94   90   184     0.51      0.49
+14: 2021-07-21    0.95   0.28   1.99        18      23        22        6    Moon     Quincunx     Sun   84   91   175     0.48      0.52
+15: 2021-07-21    0.81   0.18   1.63        19      23        22        5    Moon SesquiSquare  Uranus   89   96   185     0.48      0.52
+16: 2021-07-21    0.93   0.24   1.91        19      23        22        5    Moon        Trine   Venus   74   97   171     0.43      0.57
+17: 2021-07-21    0.19   0.10   0.28         0      23        23       24    Mars SemiQuintile   Vesta   43   43    86     0.50      0.50
+18: 2021-07-21    0.00   0.00   0.00         0      23        23       24   NNode   Opposition   SNode 1163 1303  2466     0.47      0.53
+19: 2021-07-21    0.95   0.79   1.10         0      23        NA       24   Ceres   SemiSquare  Chiron   45   54    99     0.45      0.55
+20: 2021-07-21    0.62   0.45   0.79         0      23        NA       24   Ceres      Sextile  Pallas   38   46    84     0.45      0.55
+21: 2021-07-21    0.65   0.49   0.82         0      23        NA       24   Ceres   BiQuintile  Pholus   35   34    69     0.51      0.49
+22: 2021-07-21    1.49   1.33   1.66         0      23        NA       24   Ceres        Trine   Pluto   11    9    20     0.55      0.45
+23: 2021-07-21    1.52   1.50   1.54         0      23        NA       24  Chiron  SemiSextile  Uranus  993 1085  2078     0.48      0.52
+24: 2021-07-21    1.25   1.22   1.27         0      23        NA       24    Juno    BiSeptile Neptune   14   21    35     0.40      0.60
+25: 2021-07-21    0.59   0.58   0.60         0      23        NA       24    Juno   Opposition   NNode   10   12    22     0.45      0.55
+26: 2021-07-21    1.70   1.67   1.72         0      23        NA       24    Juno   SemiSquare   Pluto   18   24    42     0.43      0.57
+27: 2021-07-21    0.59   0.58   0.60         0      23        NA       24    Juno  Conjunction   SNode   10   12    22     0.45      0.55
+28: 2021-07-21    0.77   0.74   0.80         0      23        NA       24 Jupiter SemiQuintile   Pluto   60   94   154     0.39      0.61
+29: 2021-07-21    1.73   1.67   1.79         0      23        NA       24 Jupiter     Quintile  Uranus   26   46    72     0.36      0.64
+30: 2021-07-21    1.02   0.70   1.35         0      23        NA       24    Mars    BiSeptile    Juno   13   31    44     0.30      0.70
+31: 2021-07-21    1.70   1.43   1.98         0      21        NA       22    Mars     Quincunx Neptune   18   21    39     0.46      0.54
+32: 2021-07-21    0.72   0.41   1.03         0      23        NA       24    Mars     Quincunx   Pluto   17   30    47     0.36      0.64
+33: 2021-07-21    0.43   0.11   0.75         0      23        NA       24    Mars    BiSeptile   SNode   36   59    95     0.38      0.62
+34: 2021-07-21    1.34   0.76   1.94         0      14        NA       15 Mercury   BiQuintile    Juno    8   22    30     0.27      0.73
+35: 2021-07-21    1.54   1.15   1.95         0      10        NA       11 Mercury      Sextile  Uranus   31   37    68     0.46      0.54
+36: 2021-07-21    1.40   1.39   1.41         0      23        NA       24  Pallas     Quintile   NNode   34   41    75     0.45      0.55
+37: 2021-07-21    1.54   1.52   1.55         0      23        NA       24  Pallas   SemiSquare  Saturn    9   25    34     0.26      0.74
+38: 2021-07-21    1.85   1.81   1.88         0      23        NA       24  Pallas   SemiSquare  Uranus   32   24    56     0.57      0.43
+39: 2021-07-21    1.87   1.84   1.89         0      23        NA       24  Saturn      Sextile  Chiron   48   53   101     0.48      0.52
+40: 2021-07-21    1.43   1.41   1.45         0      23        NA       24  Saturn SemiQuintile  Pholus   35   29    64     0.55      0.45
+41: 2021-07-21    1.84   1.82   1.86         0      23        NA       24   SNode    BiSeptile Neptune   16   25    41     0.39      0.61
+42: 2021-07-21    1.83   1.65   2.00         0      13        NA       14     Sun      Sextile   Ceres   32   30    62     0.52      0.48
+43: 2021-07-21    1.62   1.27   1.97         7      23        NA       17     Sun     Quincunx Jupiter   25   22    47     0.53      0.47
+44: 2021-07-21    1.34   0.86   1.82         0      23        NA       24     Sun        Trine  Pallas   22   24    46     0.48      0.52
+45: 2021-07-21    1.88   1.76   2.00        12      23        NA       12     Sun      Sextile   Vesta   24   38    62     0.39      0.61
+46: 2021-07-21    1.40   0.85   1.96         0      22        NA       23   Venus SesquiSquare  Chiron   31   17    48     0.65      0.35
+47: 2021-07-21    1.36   0.74   1.98         0      23        NA       24   Venus   Opposition Jupiter   10   11    21     0.48      0.52
+48: 2021-07-21    1.58   1.16   1.99         0      16        NA       17   Venus     Quincunx  Pallas   17   19    36     0.47      0.53
+49: 2021-07-21    1.75   1.54   1.95        15      23        NA        9   Venus   BiQuintile   Pluto   46   43    89     0.52      0.48
+50: 2021-07-21    0.42   0.30   0.53         0      23        NA       24   Venus  SemiSextile     Sun   79  101   180     0.44      0.56
+51: 2021-07-21    1.67   1.35   1.98         0      13        NA       14   Venus    BiSeptile  Uranus   25   23    48     0.52      0.48
+52: 2021-07-21    1.60   1.23   1.97         0      23        NA       24   Venus  SemiSextile   Vesta   34   37    71     0.48      0.52
+53: 2021-07-21    1.51   1.32   1.70         0      23        NA       24   Vesta SesquiSquare  Uranus   34   33    67     0.51      0.49
+          Date meanOrb minOrb maxOrb startHour endHour exactHour effHours PlanetX       Aspect PlanetY  Buy Sell DaysN BuyDays% SellDays%
+
+MACHINE LEARNING PREDICTIONS:
+
+         Model
+ Not available
