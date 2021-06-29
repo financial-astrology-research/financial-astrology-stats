@@ -6,6 +6,7 @@
 library(stringr)
 
 source("./fileSystemUtilities.R")
+source("./planetPositionDataPrepare.R")
 source("./planetAspectsDataPrepare.R")
 
 startDate <- as.Date("2010-01-01")
@@ -22,6 +23,13 @@ declinationColNames <- colNames[grep("^..DEC", colNames)]
 # Max items per data chunk per PineScript code line to avoid their code editor crash.
 pineScriptStringLimit <- 2048
 itemsPerChunk <- pineScriptStringLimit / 4
+sideralLongitudeColNames <- paste0('SID', longitudeColNames)
+for (longitudeColName in longitudeColNames) {
+  sidColName <- paste0('SID', longitudeColName)
+  dailyPlanetPositions[,
+    c(sidColName) := tropicalToSideralConversion(get(longitudeColName))
+  ]
+}
 
 vectorChunkSplit <- function(x, nChunks) {
   split(x, cut(seq_along(x), nChunks, labels = FALSE))
@@ -51,8 +59,8 @@ closePineScriptAstroPositionsFile <- function(fileHandler) {
 }
 
 fileHandler <- openPineScriptAstroPositionsFile()
-for (colName in c(longitudeColNames, speedColNames, declinationColNames)) {
-  positions <- round(dailyPlanetPositions[[colName]], 2)
+for (colName in c(longitudeColNames, sideralLongitudeColNames, speedColNames, declinationColNames)) {
+  positions <- round(dailyPlanetPositions[[colName]], 3)
   nChunks <- ceiling(length(positions) / itemsPerChunk)
   positionsChunks <- vectorChunkSplit(positions, nChunks)
   positionsVariableDump(fileHandler, colName, positionsChunks)
