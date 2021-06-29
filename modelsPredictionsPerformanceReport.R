@@ -47,11 +47,13 @@ accuracyCalculate <- function(monthlyData) {
   ) %>% caret::confusionMatrix()
 
   accuracy <- confusionData$overall['Accuracy']
+  PValue <- confusionData$overall['AccuracyPValue']
   prevalence <- confusionData$byClass['Prevalence']
 
   list(
     N = nrow(monthlyData),
     Accuracy = accuracy,
+    PValue = PValue,
     Prevalence = prevalence
   )
 }
@@ -111,12 +113,11 @@ predictionsPerformanceMetricsCalculate <- function(predictionsFileName) {
   # Filter months that don't have at least N observations yet.
   accuracyTest <- accuracyTest[N >= 10]
   # Calculate descriptive statistics for Accuracy / Prevalence.
-  descriptives6m <- round(describe(head(accuracyTest[, c('Accuracy', 'Prevalence')], 6)), 3)
-  descriptives3m <- round(describe(tail(accuracyTest[, c('Accuracy', 'Prevalence')], 3)), 3)
-  descriptives2m <- round(describe(tail(accuracyTest[, c('Accuracy', 'Prevalence')], 2)), 3)
-  descriptives1m <- round(describe(tail(accuracyTest[, c('Accuracy', 'Prevalence')], 1)), 3)
-  #prodDays <- as.numeric(difftime(Sys.Date(), as.Date(createDate), units = "days"))
-  prodDays <- 0
+  descriptives6m <- round(describe(head(accuracyTest[, c('Accuracy', 'PValue', 'Prevalence')], 6)), 3)
+  descriptives3m <- round(describe(tail(accuracyTest[, c('Accuracy', 'PValue', 'Prevalence')], 3)), 3)
+  descriptives2m <- round(describe(tail(accuracyTest[, c('Accuracy', 'PValue', 'Prevalence')], 2)), 3)
+  descriptives1m <- round(describe(tail(accuracyTest[, c('Accuracy', 'PValue', 'Prevalence')], 1)), 3)
+  prodDays <- as.numeric(difftime(Sys.Date(), as.Date(createDate), units = "days"))
 
   reportData <- data.table(
     PredictFile = predictionsFileName,
@@ -130,13 +131,17 @@ predictionsPerformanceMetricsCalculate <- function(predictionsFileName) {
     AccSD6m = descriptives6m$sd[1],
     AccSD3m = descriptives3m$sd[1],
     AccSD2m = descriptives2m$sd[1],
-    Prev6m = descriptives6m$mean[2],
-    Prev3m = descriptives3m$mean[2],
-    Prev2m = descriptives2m$mean[2],
-    Prev1m = descriptives1m$mean[2],
-    PrevSD6m = descriptives6m$sd[2],
-    PrevSD3m = descriptives3m$sd[2],
-    PrevSD2m = descriptives2m$sd[2]
+    PVal6m = descriptives6m$mean[2],
+    PVal3m = descriptives3m$mean[2],
+    PVal2m = descriptives2m$mean[2],
+    PVal1m = descriptives1m$mean[2],
+    Prev6m = descriptives6m$mean[3],
+    Prev3m = descriptives3m$mean[3],
+    Prev2m = descriptives2m$mean[3],
+    Prev1m = descriptives1m$mean[3],
+    PrevSD6m = descriptives6m$sd[3],
+    PrevSD3m = descriptives3m$sd[3],
+    PrevSD2m = descriptives2m$sd[3]
   )
 
   reportData$Rank <- with(
