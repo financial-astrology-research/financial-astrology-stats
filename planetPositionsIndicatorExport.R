@@ -6,6 +6,7 @@
 library(stringr)
 
 source("./fileSystemUtilities.R")
+source("./planetPositionDataPrepare.R")
 source("./planetAspectsDataPrepare.R")
 
 startDate <- as.Date("2010-01-01")
@@ -17,17 +18,25 @@ dailyPlanetPositions <- planetPositionsTable[Hour == 0,]
 dailyPlanetPositions <- dailyPlanetPositions[Date >= startDate & Date <= endDate,]
 colNames <- colnames(dailyPlanetPositions)
 longitudeColNames <- colNames[grep("^..LON", colNames)]
-# Max items per data chunk assuming positions need 3 numbers + 1 comma separator
-# ever item can consume max of 4 bytes and PineScript strings has a bytes limit.
+speedColNames <- colNames[grep("^..SP", colNames)]
+declinationColNames <- colNames[grep("^..DEC", colNames)]
+# Max items per data chunk per PineScript code line to avoid their code editor crash.
 pineScriptStringLimit <- 2048
 itemsPerChunk <- pineScriptStringLimit / 4
+sideralLongitudeColNames <- paste0('SID', longitudeColNames)
+for (longitudeColName in longitudeColNames) {
+  sidColName <- paste0('SID', longitudeColName)
+  dailyPlanetPositions[,
+    c(sidColName) := tropicalToSideralConversion(get(longitudeColName))
+  ]
+}
 
 vectorChunkSplit <- function(x, nChunks) {
   split(x, cut(seq_along(x), nChunks, labels = FALSE))
 }
 
 positionsVariableDump <- function(fileHandler, varName, valuesChunks) {
-  positionsPathFile <- paste0(astroDataDestinationPath(), '-pine-script-astro-positions.txt')
+  positionsPathFile <- paste0(astroDataDestinationPath(), 'pine-script-astro-positions.txt')
   variableDefinition <- paste0(varName, ' = array.from(')
   write(variableDefinition, fileHandler, append = T)
   for (index in names(valuesChunks)) {
@@ -39,7 +48,7 @@ positionsVariableDump <- function(fileHandler, varName, valuesChunks) {
 }
 
 openPineScriptAstroPositionsFile <- function() {
-  positionsPathFile <- paste0(astroDataDestinationPath(), '-pine-script-astro-positions.txt')
+  positionsPathFile <- paste0(astroDataDestinationPath(), 'pine-script-astro-positions.txt')
   # Ensure the file is empty.
   cat("", positionsPathFile, append = F)
   file(positionsPathFile, "w")
@@ -50,8 +59,8 @@ closePineScriptAstroPositionsFile <- function(fileHandler) {
 }
 
 fileHandler <- openPineScriptAstroPositionsFile()
-for (colName in longitudeColNames) {
-  positions <- round(dailyPlanetPositions[[colName]], 0)
+for (colName in c(longitudeColNames, sideralLongitudeColNames, speedColNames, declinationColNames)) {
+  positions <- round(dailyPlanetPositions[[colName]], 3)
   nChunks <- ceiling(length(positions) / itemsPerChunk)
   positionsChunks <- vectorChunkSplit(positions, nChunks)
   positionsVariableDump(fileHandler, colName, positionsChunks)
