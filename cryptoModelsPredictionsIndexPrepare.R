@@ -99,14 +99,27 @@ signalsIndexCalculate <- function(dailySignals, byFormula, indexName) {
   return(signalsIndex)
 }
 
-symbolSignalsFlattenExport <- function(signalsIndex, symbolID) {
-  startDate <- as.Date('2020-01-01')
-  signalsPathFile <- paste0(modelsSignalsIndexDestinationPath(), symbolID, '-signals-flat.txt')
-  fileHandler <- file(signalsPathFile)
-  signalString <- str_flatten(signalsIndex[Date >= startDate]$ActionID, collapse = ',')
-  signalData <- paste0('string ', str_replace(symbolID, '-USD', ''), ' = "', signalString, '"')
-  writeLines(signalData, fileHandler)
-  close(fileHandler)
+vectorChunkSplit <- function(x, nChunks) {
+  split(x, cut(seq_along(x), nChunks, labels = FALSE))
+}
+
+symbolSignalsFlattenExport <- function(fileHandler, signalsIndex, symbolID) {
+  startDate <- as.Date('2021-01-01')
+  signalActions <- signalsIndex[Date >= startDate]$ActionID
+  itemsPerChunk <- 200
+  nChunks <- ceiling(length(signalActions) / itemsPerChunk)
+  signalChunks <- vectorChunkSplit(signalActions, nChunks)
+
+  baseSymbol <- str_replace(symbolID, '-USD', '')
+  variableDefinition <- paste0('varip int[] ', baseSymbol, ' = array.from(')
+  write(variableDefinition, fileHandler, append = T)
+  for (index in names(signalChunks)) {
+    chunkContent <- paste0('\t ', str_flatten(signalChunks[[index]], collapse = ','), ',')
+    write(chunkContent, fileHandler, append = T)
+  }
+
+  write('\t )', fileHandler, append = T)
+  cat(baseSymbol, 'signals exported', '\n')
 }
 
 symbolPredictionsIndex <- function(symbolID) {
@@ -124,7 +137,7 @@ symbolPredictionsIndex <- function(symbolID) {
     dailyIndexName
   )
   signalsIndexPlot(signalsIndex, dailyIndexName)
-  symbolSignalsFlattenExport(signalsIndex, symbolID)
+  symbolSignalsFlattenExport(fileHandler, signalsIndex, symbolID)
 
   signalsIndexCalculate(
     symbolPredictions,
@@ -169,4 +182,13 @@ assetsModelsPredictionsSignalIndexPrepare <- function() {
   )
 }
 
+openPineScriptSignalsFile <- function() {
+  indexPathFile <- paste0(modelsSignalsIndexDestinationPath(), 'pine-script-signals.txt')
+  # Ensure the file is empty.
+  cat("", indexPathFile, append = F)
+  file(indexPathFile, "w")
+}
+
+fileHandler <- openPineScriptSignalsFile()
 assetsModelsPredictionsSignalIndexPrepare()
+close(fileHandler)
