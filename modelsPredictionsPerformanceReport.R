@@ -146,7 +146,7 @@ predictionsPerformanceMetricsCalculate <- function(predictionsFileName) {
 
   reportData$Rank <- with(
     reportData,
-    ((Acc6m  + Acc3m   + Acc2m) / 3) / (1 + AccSD6m)^3
+    ((Acc6m  + Acc3m   + Acc2m) / 3) * (1 - PVal6m)
   )
 
   return(reportData)
