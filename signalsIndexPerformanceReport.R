@@ -67,13 +67,13 @@ testPrevalence <- rbindlist(lapply(testResults, function(testResult) testResult[
 
 # Portfolio performance.
 portfolioAccuracy = mean(testAccuracy$mean)
-portfolioSD = mean(testAccuracy$sd)
+portfolioAccuracySD = mean(testAccuracy$sd)
 portfolioPrevalence = mean(testPrevalence$mean)
-portfolioSD = mean(testPrevalence$sd)
+portfolioPrevalenceSD = mean(testPrevalence$sd)
 
 cat("\n\n##########################################\n")
 cat("Portfolio accuracy: ", portfolioAccuracy, "SD:", portfolioAccuracySD)
-cat("        prevalence: ", portfolioPrevalence, "SD:", portfolioPrevalenceSD)
+cat("\n        prevalence: ", portfolioPrevalence, "SD:", portfolioPrevalenceSD)
 cat("\n##########################################\n")
 
 sink()
