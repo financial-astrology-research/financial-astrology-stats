@@ -62,4 +62,18 @@ cat("", targetPathFile, append = F)
 cat("\n", "Generating signals index performance test by month to ", targetPathFile, "\n")
 sink(targetPathFile)
 testResults <- lapply(symbolsList$SymbolID, assetPredictionsTest)
+testAccuracy <- rbindlist(lapply(testResults, function(testResult) testResult[c("Accuracy"),]))
+testPrevalence <- rbindlist(lapply(testResults, function(testResult) testResult[c("Prevalence"),]))
+
+# Portfolio performance.
+portfolioAccuracy = mean(testAccuracy$mean)
+portfolioSD = mean(testAccuracy$sd)
+portfolioPrevalence = mean(testPrevalence$mean)
+portfolioSD = mean(testPrevalence$sd)
+
+cat("\n\n##########################################\n")
+cat("Portfolio accuracy: ", portfolioAccuracy, "SD:", portfolioAccuracySD)
+cat("        prevalence: ", portfolioPrevalence, "SD:", portfolioPrevalenceSD)
+cat("\n##########################################\n")
+
 sink()
