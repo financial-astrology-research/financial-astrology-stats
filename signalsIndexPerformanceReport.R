@@ -8,6 +8,7 @@ library(psych)
 source("./configUtils.R")
 source("./dataLoadUtils.R")
 source("./fileSystemUtilities.R")
+source("./planetAspectsAssetsPriceDataPrepare.R")
 
 options(width=150)
 
@@ -56,6 +57,7 @@ assetPredictionsTest <- function(symbolID) {
   describe(accuracyTest[, c('Accuracy', 'Prevalence')]) %>% print()
 }
 
+planetsAspectsAssetsPriceDataPrepare()
 symbolsList <- assetsWatchList()
 targetPathFile <- paste0(modelsSignalsIndexPerformanceDestinationPath(), 'signals_index_monthly_performance', ".txt")
 cat("", targetPathFile, append = F)
