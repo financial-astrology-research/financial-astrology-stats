@@ -11,9 +11,10 @@
  8:   2021-05 0.7000000  0.7000000 20
  9:   2021-06 0.6363636  0.7272727 22
 10:   2021-07 0.5238095  0.6666667 21
-           vars  n mean   sd median trimmed  mad  min  max range skew kurtosis   se
-Accuracy      1 10  0.6 0.07   0.58    0.60 0.07 0.52 0.71  0.19 0.51    -1.37 0.02
-Prevalence    2 10  0.7 0.06   0.69    0.69 0.07 0.63 0.81  0.18 0.60    -1.18 0.02
+11:   2021-08 0.4285714  0.6666667 21
+           vars  n mean   sd median trimmed  mad  min  max range  skew kurtosis   se
+Accuracy      1 11 0.59 0.08   0.58    0.59 0.08 0.43 0.71  0.29 -0.11    -0.77 0.02
+Prevalence    2 11 0.70 0.06   0.68    0.69 0.07 0.63 0.81  0.18  0.73    -0.92 0.02
 
  ADA-USD signals index performance test by month: 
     YearMonth  Accuracy Prevalence  N
@@ -27,9 +28,10 @@ Prevalence    2 10  0.7 0.06   0.69    0.69 0.07 0.63 0.81  0.18 0.60    -1.18 0
  8:   2021-05 0.6774194  0.5161290 31
  9:   2021-06 0.4666667  0.5333333 30
 10:   2021-07 0.4838710  0.4838710 31
+11:   2021-08 0.5161290  0.3870968 31
            vars  n mean   sd median trimmed  mad  min  max range  skew kurtosis   se
-Accuracy      1 10 0.57 0.09   0.59    0.58 0.13 0.43 0.68  0.25 -0.20    -1.65 0.03
-Prevalence    2 10 0.50 0.08   0.52    0.50 0.07 0.33 0.61  0.28 -0.52    -0.89 0.03
+Accuracy      1 11 0.57 0.09   0.58    0.57 0.14 0.43 0.68  0.25 -0.06    -1.62 0.03
+Prevalence    2 11 0.49 0.09   0.52    0.49 0.10 0.33 0.61  0.28 -0.31    -1.26 0.03
 
  AMZN signals index performance test by month: 
     YearMonth  Accuracy Prevalence  N
@@ -43,9 +45,10 @@ Prevalence    2 10 0.50 0.08   0.52    0.50 0.07 0.33 0.61  0.28 -0.52    -0.89 
  8:   2021-05 0.6500000  0.7000000 20
  9:   2021-06 0.8181818  0.6363636 22
 10:   2021-07 0.4761905  0.7142857 21
+11:   2021-08 0.5714286  0.6190476 21
            vars  n mean   sd median trimmed  mad  min  max range  skew kurtosis   se
-Accuracy      1 10 0.67 0.12   0.67    0.67 0.14 0.48 0.82  0.34 -0.12    -1.55 0.04
-Prevalence    2 10 0.63 0.07   0.64    0.64 0.08 0.53 0.71  0.19 -0.36    -1.49 0.02
+Accuracy      1 11 0.66 0.12   0.65    0.66 0.13 0.48 0.82  0.34  0.04    -1.55 0.03
+Prevalence    2 11 0.63 0.07   0.64    0.64 0.07 0.53 0.71  0.19 -0.32    -1.36 0.02
 
  AUDUSD=X signals index performance test by month: 
     YearMonth  Accuracy Prevalence  N
@@ -59,9 +62,10 @@ Prevalence    2 10 0.63 0.07   0.64    0.64 0.08 0.53 0.71  0.19 -0.36    -1.49 
  8:   2021-05 0.8095238  0.5714286 21
  9:   2021-06 0.6818182  0.6363636 22
 10:   2021-07 0.6818182  0.4545455 22
+11:   2021-08 0.5454545  0.6363636 22
            vars  n mean   sd median trimmed  mad  min  max range  skew kurtosis   se
-Accuracy      1 10 0.67 0.12   0.68    0.69 0.12 0.41 0.83  0.42 -0.65    -0.52 0.04
-Prevalence    2 10 0.59 0.11   0.60    0.58 0.07 0.43 0.82  0.38  0.39    -0.68 0.04
+Accuracy      1 11 0.66 0.12   0.68    0.67 0.12 0.41 0.83  0.42 -0.44    -0.83 0.04
+Prevalence    2 11 0.59 0.11   0.62    0.58 0.07 0.43 0.82  0.38  0.30    -0.55 0.03
 
  AXP signals index performance test by month: 
     YearMonth  Accuracy Prevalence  N
@@ -75,9 +79,10 @@ Prevalence    2 10 0.59 0.11   0.60    0.58 0.07 0.43 0.82  0.38  0.39    -0.68 
  8:   2021-05 0.6500000  0.7000000 20
  9:   2021-06 0.5909091  0.4090909 22
 10:   2021-07 0.6190476  0.7142857 21
+11:   2021-08 0.5714286  0.6190476 21
            vars  n mean   sd median trimmed  mad  min  max range  skew kurtosis   se
-Accuracy      1 10 0.60 0.13   0.60     0.6 0.07 0.35 0.86  0.51  0.11     0.26 0.04
-Prevalence    2 10 0.59 0.16   0.61     0.6 0.14 0.27 0.80  0.53 -0.60    -0.90 0.05
+Accuracy      1 11 0.60 0.12   0.59     0.6 0.07 0.35 0.86  0.51  0.18     0.63 0.04
+Prevalence    2 11 0.59 0.15   0.62     0.6 0.12 0.27 0.80  0.53 -0.68    -0.62 0.05
 
  BAT-USD signals index performance test by month: 
     YearMonth  Accuracy Prevalence  N
@@ -91,9 +96,10 @@ Prevalence    2 10 0.59 0.16   0.61     0.6 0.14 0.27 0.80  0.53 -0.60    -0.90 
  8:   2021-05 0.6774194  0.5483871 31
  9:   2021-06 0.5333333  0.4000000 30
 10:   2021-07 0.5483871  0.2903226 31
-           vars  n mean   sd median trimmed  mad  min  max range skew kurtosis   se
-Accuracy      1 10 0.59 0.08   0.56    0.58 0.08 0.50 0.74  0.24  0.6    -1.05 0.03
-Prevalence    2 10 0.50 0.11   0.51    0.50 0.10 0.29 0.65  0.35 -0.4    -0.98 0.03
+11:   2021-08 0.4838710  0.4193548 31
+           vars  n mean   sd median trimmed  mad  min  max range  skew kurtosis   se
+Accuracy      1 11 0.58 0.08   0.55    0.57 0.07 0.48 0.74  0.26  0.64    -0.95 0.02
+Prevalence    2 11 0.49 0.10   0.48    0.49 0.10 0.29 0.65  0.35 -0.25    -1.01 0.03
 
  BNB-USD signals index performance test by month: 
     YearMonth  Accuracy Prevalence  N
@@ -107,9 +113,10 @@ Prevalence    2 10 0.50 0.11   0.51    0.50 0.10 0.29 0.65  0.35 -0.4    -0.98 0
  8:   2021-05 0.4838710  0.5161290 31
  9:   2021-06 0.6000000  0.3666667 30
 10:   2021-07 0.5806452  0.4193548 31
+11:   2021-08 0.5483871  0.6129032 31
            vars  n mean   sd median trimmed  mad  min  max range  skew kurtosis   se
-Accuracy      1 10 0.60 0.10   0.61    0.61 0.15 0.46 0.71  0.25 -0.21    -1.72 0.03
-Prevalence    2 10 0.48 0.06   0.49    0.49 0.07 0.37 0.55  0.18 -0.49    -1.18 0.02
+Accuracy      1 11 0.60 0.09    0.6    0.60 0.15 0.46 0.71  0.25 -0.08    -1.68 0.03
+Prevalence    2 11 0.49 0.07    0.5    0.49 0.07 0.37 0.61  0.25 -0.15    -0.97 0.02
 
  BTC-USD signals index performance test by month: 
     YearMonth  Accuracy Prevalence  N
@@ -123,9 +130,10 @@ Prevalence    2 10 0.48 0.06   0.49    0.49 0.07 0.37 0.55  0.18 -0.49    -1.18 
  8:   2021-05 0.6451613  0.5806452 31
  9:   2021-06 0.5333333  0.3666667 30
 10:   2021-07 0.6451613  0.7419355 31
+11:   2021-08 0.4838710  0.6774194 31
            vars  n mean   sd median trimmed  mad  min  max range  skew kurtosis   se
-Accuracy      1 10 0.60 0.09   0.64    0.60 0.08 0.46 0.71  0.25 -0.29    -1.74 0.03
-Prevalence    2 10 0.58 0.10   0.58    0.58 0.07 0.37 0.74  0.38 -0.36    -0.39 0.03
+Accuracy      1 11 0.59 0.09   0.63    0.59 0.11 0.46 0.71  0.25 -0.12    -1.86 0.03
+Prevalence    2 11 0.58 0.10   0.58    0.59 0.10 0.37 0.74  0.38 -0.49    -0.36 0.03
 
  CAT signals index performance test by month: 
     YearMonth  Accuracy Prevalence  N
@@ -139,9 +147,10 @@ Prevalence    2 10 0.58 0.10   0.58    0.58 0.07 0.37 0.74  0.38 -0.36    -0.39 
  8:   2021-05 0.8500000  0.5000000 20
  9:   2021-06 0.5909091  0.5454545 22
 10:   2021-07 0.4761905  0.5714286 21
+11:   2021-08 0.6666667  0.6190476 21
            vars  n mean   sd median trimmed  mad  min  max range skew kurtosis   se
-Accuracy      1 10 0.60 0.14   0.62    0.59 0.18 0.41 0.85  0.44 0.18    -1.41 0.05
-Prevalence    2 10 0.55 0.08   0.55    0.54 0.04 0.45 0.74  0.28 1.14     0.83 0.02
+Accuracy      1 11 0.60 0.14   0.65    0.60 0.09 0.41 0.85  0.44 0.07    -1.31 0.04
+Prevalence    2 11 0.56 0.07   0.55    0.55 0.04 0.45 0.74  0.28 0.93     0.42 0.02
 
  DASH-USD signals index performance test by month: 
     YearMonth  Accuracy Prevalence  N
@@ -155,9 +164,10 @@ Prevalence    2 10 0.55 0.08   0.55    0.54 0.04 0.45 0.74  0.28 1.14     0.83 0
  8:   2021-05 0.6129032  0.4838710 31
  9:   2021-06 0.6666667  0.2666667 30
 10:   2021-07 0.5483871  0.4516129 31
+11:   2021-08 0.3225806  0.5483871 31
            vars  n mean   sd median trimmed  mad  min  max range  skew kurtosis   se
-Accuracy      1 10 0.62 0.08   0.63    0.62 0.09 0.48 0.77  0.28  0.10    -1.10 0.03
-Prevalence    2 10 0.46 0.09   0.47    0.46 0.04 0.27 0.60  0.33 -0.63    -0.18 0.03
+Accuracy      1 11 0.59 0.12   0.61    0.61 0.08 0.32 0.77  0.44 -0.75    -0.04 0.04
+Prevalence    2 11 0.46 0.09   0.48    0.47 0.05 0.27 0.60  0.33 -0.73    -0.09 0.03
 
  EOS-USD signals index performance test by month: 
     YearMonth  Accuracy Prevalence  N
@@ -171,9 +181,10 @@ Prevalence    2 10 0.46 0.09   0.47    0.46 0.04 0.27 0.60  0.33 -0.63    -0.18 
  8:   2021-05 0.6451613  0.4193548 31
  9:   2021-06 0.7000000  0.3333333 30
 10:   2021-07 0.5161290  0.3548387 31
+11:   2021-08 0.5806452  0.5161290 31
            vars  n mean   sd median trimmed  mad  min  max range skew kurtosis   se
-Accuracy      1 10 0.62 0.12   0.61    0.60 0.14 0.46 0.86  0.39 0.47    -1.03 0.04
-Prevalence    2 10 0.46 0.10   0.46    0.46 0.15 0.33 0.61  0.28 0.13    -1.79 0.03
+Accuracy      1 11 0.61 0.12   0.58    0.60 0.12 0.46 0.86  0.39 0.57    -0.76 0.04
+Prevalence    2 11 0.47 0.10   0.50    0.47 0.12 0.33 0.61  0.28 0.02    -1.72 0.03
 
  ETC-USD signals index performance test by month: 
     YearMonth  Accuracy Prevalence  N
@@ -187,9 +198,10 @@ Prevalence    2 10 0.46 0.10   0.46    0.46 0.15 0.33 0.61  0.28 0.13    -1.79 0
  8:   2021-05 0.6451613  0.5806452 31
  9:   2021-06 0.6000000  0.5333333 30
 10:   2021-07 0.5806452  0.3548387 31
-           vars  n mean   sd median trimmed  mad  min  max range  skew kurtosis   se
-Accuracy      1 10 0.61 0.07   0.61    0.61 0.05 0.50 0.71  0.21 -0.05    -1.25 0.02
-Prevalence    2 10 0.48 0.10   0.48    0.47 0.14 0.35 0.61  0.26  0.07    -1.80 0.03
+11:   2021-08 0.5161290  0.3870968 31
+           vars  n mean   sd median trimmed  mad  min  max range skew kurtosis   se
+Accuracy      1 11 0.60 0.07   0.60    0.60 0.07 0.50 0.71  0.21 0.10    -1.35 0.02
+Prevalence    2 11 0.47 0.10   0.47    0.46 0.12 0.35 0.61  0.26 0.23    -1.76 0.03
 
  ETH-USD signals index performance test by month: 
     YearMonth  Accuracy Prevalence  N
@@ -203,9 +215,10 @@ Prevalence    2 10 0.48 0.10   0.48    0.47 0.14 0.35 0.61  0.26  0.07    -1.80 
  8:   2021-05 0.6451613  0.4838710 31
  9:   2021-06 0.4333333  0.6000000 30
 10:   2021-07 0.2903226  0.4838710 31
+11:   2021-08 0.4516129  0.5161290 31
            vars  n mean   sd median trimmed  mad  min  max range  skew kurtosis   se
-Accuracy      1 10 0.58 0.13   0.65    0.60 0.05 0.29 0.68  0.39 -1.13    -0.13 0.04
-Prevalence    2 10 0.57 0.09   0.55    0.56 0.09 0.46 0.73  0.27  0.64    -1.12 0.03
+Accuracy      1 11 0.57 0.13   0.65    0.59 0.05 0.29 0.68  0.39 -0.88    -0.61 0.04
+Prevalence    2 11 0.56 0.09   0.54    0.55 0.08 0.46 0.73  0.27  0.77    -0.85 0.03
 
  EURUSD=X signals index performance test by month: 
     YearMonth  Accuracy Prevalence  N
@@ -219,9 +232,10 @@ Prevalence    2 10 0.57 0.09   0.55    0.56 0.09 0.46 0.73  0.27  0.64    -1.12 
  8:   2021-05 0.7619048  0.3333333 21
  9:   2021-06 0.5909091  0.2727273 22
 10:   2021-07 0.5909091  0.4090909 22
+11:   2021-08 0.6818182  0.5000000 22
            vars  n mean   sd median trimmed  mad  min  max range  skew kurtosis   se
-Accuracy      1 10 0.62 0.11   0.64    0.62 0.08 0.43 0.76  0.33 -0.58    -1.02 0.03
-Prevalence    2 10 0.40 0.12   0.40    0.40 0.13 0.19 0.57  0.37 -0.08    -1.39 0.04
+Accuracy      1 11 0.62 0.10   0.65    0.63 0.07 0.43 0.76  0.33 -0.72    -0.77 0.03
+Prevalence    2 11 0.41 0.12   0.41    0.41 0.13 0.19 0.57  0.37 -0.23    -1.33 0.04
 
  GBPUSD=X signals index performance test by month: 
     YearMonth  Accuracy Prevalence  N
@@ -235,9 +249,10 @@ Prevalence    2 10 0.40 0.12   0.40    0.40 0.13 0.19 0.57  0.37 -0.08    -1.39 
  8:   2021-05 0.7142857  0.4285714 21
  9:   2021-06 0.5909091  0.5454545 22
 10:   2021-07 0.3636364  0.3636364 22
+11:   2021-08 0.4090909  0.5909091 22
            vars  n mean   sd median trimmed  mad  min  max range  skew kurtosis   se
-Accuracy      1 10 0.59 0.13   0.62    0.60 0.13 0.36 0.73  0.36 -0.47    -1.52 0.04
-Prevalence    2 10 0.53 0.13   0.52    0.52 0.13 0.36 0.77  0.41  0.47    -1.15 0.04
+Accuracy      1 11 0.57 0.14   0.59    0.58 0.18 0.36 0.73  0.36 -0.27    -1.75 0.04
+Prevalence    2 11 0.53 0.13   0.55    0.52 0.16 0.36 0.77  0.41  0.37    -1.09 0.04
 
  GLD signals index performance test by month: 
     YearMonth  Accuracy Prevalence  N
@@ -251,9 +266,10 @@ Prevalence    2 10 0.53 0.13   0.52    0.52 0.13 0.36 0.77  0.41  0.47    -1.15 
  8:   2021-05 0.6500000  0.4500000 20
  9:   2021-06 0.6363636  0.4545455 22
 10:   2021-07 0.4761905  0.4285714 21
+11:   2021-08 0.1904762  0.7142857 21
            vars  n mean   sd median trimmed  mad  min  max range  skew kurtosis   se
-Accuracy      1 10 0.58 0.09   0.61    0.59 0.06 0.41 0.67  0.26 -0.64    -1.36 0.03
-Prevalence    2 10 0.53 0.09   0.53    0.53 0.12 0.43 0.63  0.20  0.01    -2.07 0.03
+Accuracy      1 11 0.54 0.15   0.59    0.57 0.09 0.19 0.67  0.48 -1.17     0.29 0.04
+Prevalence    2 11 0.55 0.10   0.59    0.54 0.17 0.43 0.71  0.29  0.12    -1.67 0.03
 
  KO signals index performance test by month: 
     YearMonth  Accuracy Prevalence  N
@@ -267,9 +283,10 @@ Prevalence    2 10 0.53 0.09   0.53    0.53 0.12 0.43 0.63  0.20  0.01    -2.07 
  8:   2021-05 0.8500000  0.5500000 20
  9:   2021-06 0.5909091  0.5000000 22
 10:   2021-07 0.7142857  0.6190476 21
-           vars  n mean   sd median trimmed  mad  min  max range  skew kurtosis   se
-Accuracy      1 10 0.59 0.14   0.61    0.59 0.08 0.35 0.85  0.50 -0.08    -0.75 0.05
-Prevalence    2 10 0.62 0.09   0.61    0.61 0.11 0.50 0.74  0.24  0.08    -1.72 0.03
+11:   2021-08 0.3809524  0.9047619 21
+           vars  n mean   sd median trimmed  mad  min  max range skew kurtosis   se
+Accuracy      1 11 0.57 0.15   0.61    0.57 0.12 0.35 0.85   0.5 0.03    -1.02 0.05
+Prevalence    2 11 0.64 0.12   0.62    0.63 0.11 0.50 0.90   0.4 0.63    -0.63 0.04
 
  LINK-USD signals index performance test by month: 
     YearMonth  Accuracy Prevalence  N
@@ -283,9 +300,10 @@ Prevalence    2 10 0.62 0.09   0.61    0.61 0.11 0.50 0.74  0.24  0.08    -1.72 
  8:   2021-05 0.8064516  0.5161290 31
  9:   2021-06 0.4666667  0.6333333 30
 10:   2021-07 0.4838710  0.6451613 31
+11:   2021-08 0.5483871  0.4193548 31
            vars  n mean   sd median trimmed  mad  min  max range  skew kurtosis   se
-Accuracy      1 10 0.59 0.12   0.58    0.59 0.15 0.43 0.81  0.37  0.27    -1.34 0.04
-Prevalence    2 10 0.55 0.08   0.54    0.55 0.12 0.43 0.65  0.21 -0.10    -1.67 0.02
+Accuracy      1 11 0.59 0.11   0.57    0.58 0.13 0.43 0.81  0.37  0.38    -1.14 0.03
+Prevalence    2 11 0.54 0.08   0.53    0.54 0.12 0.42 0.65  0.23 -0.03    -1.69 0.03
 
  LTC-USD signals index performance test by month: 
     YearMonth  Accuracy Prevalence  N
@@ -299,9 +317,10 @@ Prevalence    2 10 0.55 0.08   0.54    0.55 0.12 0.43 0.65  0.21 -0.10    -1.67 
  8:   2021-05 0.7096774  0.4516129 31
  9:   2021-06 0.5666667  0.7333333 30
 10:   2021-07 0.4838710  0.5483871 31
-           vars  n mean   sd median trimmed  mad  min  max range skew kurtosis   se
-Accuracy      1 10 0.58 0.11   0.56    0.58 0.14 0.43 0.73  0.30 0.09    -1.72 0.04
-Prevalence    2 10 0.52 0.13   0.50    0.52 0.07 0.30 0.73  0.43 0.20    -0.85 0.04
+11:   2021-08 0.6451613  0.4193548 31
+           vars  n mean   sd median trimmed  mad  min  max range  skew kurtosis   se
+Accuracy      1 11 0.59 0.11   0.57    0.59 0.12 0.43 0.73  0.30 -0.03    -1.65 0.03
+Prevalence    2 11 0.51 0.13   0.48    0.51 0.10 0.30 0.73  0.43  0.35    -0.76 0.04
 
  MSFT signals index performance test by month: 
     YearMonth  Accuracy Prevalence  N
@@ -315,9 +334,10 @@ Prevalence    2 10 0.52 0.13   0.50    0.52 0.07 0.30 0.73  0.43 0.20    -0.85 0
  8:   2021-05 0.5500000  0.5000000 20
  9:   2021-06 0.7272727  0.5454545 22
 10:   2021-07 0.5238095  0.6666667 21
+11:   2021-08 0.5714286  0.6666667 21
            vars  n mean   sd median trimmed  mad  min  max range  skew kurtosis   se
-Accuracy      1 10 0.64 0.13   0.71    0.65 0.09 0.40 0.77  0.37 -0.53    -1.42 0.04
-Prevalence    2 10 0.63 0.11   0.65    0.63 0.06 0.42 0.80  0.38 -0.36    -0.91 0.03
+Accuracy      1 11 0.63 0.13   0.68    0.64 0.13 0.40 0.77  0.37 -0.41    -1.41 0.04
+Prevalence    2 11 0.63 0.10   0.67    0.63 0.04 0.42 0.80  0.38 -0.47    -0.65 0.03
 
  USDCAD=X signals index performance test by month: 
     YearMonth  Accuracy Prevalence  N
@@ -331,9 +351,10 @@ Prevalence    2 10 0.63 0.11   0.65    0.63 0.06 0.42 0.80  0.38 -0.36    -0.91 
  8:   2021-05 0.6666667  0.5714286 21
  9:   2021-06 0.6818182  0.5909091 22
 10:   2021-07 0.5000000  0.5000000 22
+11:   2021-08 0.5454545  0.6363636 22
            vars  n mean   sd median trimmed  mad  min  max range  skew kurtosis   se
-Accuracy      1 10 0.62 0.11   0.64    0.63 0.08 0.40 0.76  0.36 -0.55    -0.87 0.04
-Prevalence    2 10 0.45 0.13   0.48    0.46 0.15 0.19 0.59  0.40 -0.55    -0.94 0.04
+Accuracy      1 11 0.61 0.11   0.61    0.62 0.11 0.40 0.76  0.36 -0.41    -0.91 0.03
+Prevalence    2 11 0.46 0.13   0.48    0.47 0.17 0.19 0.64  0.45 -0.53    -0.91 0.04
 
  USDJPY=X signals index performance test by month: 
     YearMonth  Accuracy Prevalence  N
@@ -347,9 +368,10 @@ Prevalence    2 10 0.45 0.13   0.48    0.46 0.15 0.19 0.59  0.40 -0.55    -0.94 
  8:   2021-05 0.7619048  0.3333333 21
  9:   2021-06 0.7272727  0.4545455 22
 10:   2021-07 0.4090909  0.4545455 22
+11:   2021-08 0.3636364  0.4090909 22
            vars  n mean   sd median trimmed  mad  min  max range  skew kurtosis   se
-Accuracy      1 10 0.62 0.15   0.65    0.62 0.19 0.41 0.81  0.40 -0.15    -1.82 0.05
-Prevalence    2 10 0.45 0.13   0.45    0.45 0.17 0.25 0.62  0.37 -0.05    -1.54 0.04
+Accuracy      1 11 0.59 0.16   0.62    0.60 0.21 0.36 0.81  0.45 -0.08    -1.78 0.05
+Prevalence    2 11 0.45 0.12   0.45    0.45 0.16 0.25 0.62  0.37  0.03    -1.40 0.04
 
  XLM-USD signals index performance test by month: 
     YearMonth  Accuracy Prevalence  N
@@ -363,9 +385,10 @@ Prevalence    2 10 0.45 0.13   0.45    0.45 0.17 0.25 0.62  0.37 -0.05    -1.54 
  8:   2021-05 0.7096774  0.5161290 31
  9:   2021-06 0.5000000  0.3000000 30
 10:   2021-07 0.4838710  0.2580645 31
-           vars  n mean   sd median trimmed  mad  min  max range  skew kurtosis   se
-Accuracy      1 10 0.56 0.10   0.56    0.56 0.12 0.39 0.71  0.32 -0.03    -1.45 0.03
-Prevalence    2 10 0.45 0.15   0.43    0.44 0.16 0.26 0.71  0.45  0.34    -1.20 0.05
+11:   2021-08 0.4516129  0.3225806 31
+           vars  n mean   sd median trimmed  mad  min  max range skew kurtosis   se
+Accuracy      1 11 0.55 0.10   0.53    0.55 0.11 0.39 0.71  0.32 0.12    -1.48 0.03
+Prevalence    2 11 0.44 0.14   0.43    0.42 0.16 0.26 0.71  0.45 0.49    -1.07 0.04
 
  XMR-USD signals index performance test by month: 
     YearMonth  Accuracy Prevalence  N
@@ -379,9 +402,10 @@ Prevalence    2 10 0.45 0.15   0.43    0.44 0.16 0.26 0.71  0.45  0.34    -1.20 
  8:   2021-05 0.7096774  0.3548387 31
  9:   2021-06 0.4666667  0.4666667 30
 10:   2021-07 0.4516129  0.2903226 31
-           vars  n mean   sd median trimmed  mad  min  max range  skew kurtosis   se
-Accuracy      1 10 0.56 0.14   0.58    0.56 0.17 0.33 0.80  0.47  0.07    -1.24 0.04
-Prevalence    2 10 0.48 0.13   0.50    0.48 0.18 0.29 0.63  0.34 -0.12    -1.84 0.04
+11:   2021-08 0.5483871  0.3870968 31
+           vars  n mean   sd median trimmed  mad  min  max range skew kurtosis   se
+Accuracy      1 11 0.56 0.13   0.57    0.56 0.16 0.33 0.80  0.47 0.09    -1.02 0.04
+Prevalence    2 11 0.47 0.12   0.47    0.47 0.17 0.29 0.63  0.34 0.03    -1.80 0.04
 
  XRP-USD signals index performance test by month: 
     YearMonth  Accuracy Prevalence  N
@@ -395,9 +419,10 @@ Prevalence    2 10 0.48 0.13   0.50    0.48 0.18 0.29 0.63  0.34 -0.12    -1.84 
  8:   2021-05 0.7419355  0.4516129 31
  9:   2021-06 0.5333333  0.3333333 30
 10:   2021-07 0.5483871  0.4193548 31
-           vars  n mean   sd median trimmed  mad  min  max range  skew kurtosis   se
-Accuracy      1 10 0.60 0.13   0.58    0.61 0.17 0.40 0.77  0.37 -0.06    -1.63 0.04
-Prevalence    2 10 0.43 0.08   0.43    0.43 0.04 0.29 0.58  0.29  0.06    -0.60 0.03
+11:   2021-08 0.4838710  0.3225806 31
+           vars  n mean   sd median trimmed  mad  min  max range skew kurtosis   se
+Accuracy      1 11 0.59 0.12   0.55    0.59 0.10 0.40 0.77  0.37 0.10    -1.63 0.04
+Prevalence    2 11 0.42 0.08   0.43    0.42 0.04 0.29 0.58  0.29 0.18    -0.80 0.02
 
  ZEC-USD signals index performance test by month: 
     YearMonth  Accuracy Prevalence  N
@@ -411,9 +436,10 @@ Prevalence    2 10 0.43 0.08   0.43    0.43 0.04 0.29 0.58  0.29  0.06    -0.60 
  8:   2021-05 0.5161290  0.5161290 31
  9:   2021-06 0.4000000  0.4333333 30
 10:   2021-07 0.5161290  0.3870968 31
-           vars  n mean  sd median trimmed  mad  min  max range  skew kurtosis   se
-Accuracy      1 10 0.55 0.1   0.54    0.55 0.12 0.40 0.68  0.28 -0.06    -1.54 0.03
-Prevalence    2 10 0.46 0.1   0.43    0.45 0.10 0.32 0.61  0.29  0.38    -1.42 0.03
+11:   2021-08 0.4193548  0.3548387 31
+           vars  n mean  sd median trimmed  mad  min  max range skew kurtosis   se
+Accuracy      1 11 0.54 0.1   0.52    0.54 0.12 0.40 0.68  0.28 0.07    -1.61 0.03
+Prevalence    2 11 0.45 0.1   0.42    0.44 0.10 0.32 0.61  0.29 0.51    -1.31 0.03
 
  ZRX-USD signals index performance test by month: 
     YearMonth  Accuracy Prevalence  N
@@ -427,9 +453,10 @@ Prevalence    2 10 0.46 0.1   0.43    0.45 0.10 0.32 0.61  0.29  0.38    -1.42 0
  8:   2021-05 0.7741935  0.3870968 31
  9:   2021-06 0.6666667  0.3666667 30
 10:   2021-07 0.6451613  0.5161290 31
+11:   2021-08 0.4838710  0.4193548 31
            vars  n mean   sd median trimmed  mad  min  max range  skew kurtosis   se
-Accuracy      1 10 0.62 0.09   0.64    0.62 0.06 0.45 0.77  0.32 -0.25    -0.48 0.03
-Prevalence    2 10 0.44 0.10   0.42    0.44 0.12 0.29 0.60  0.31  0.11    -1.51 0.03
+Accuracy      1 11 0.61 0.09   0.63    0.61 0.07 0.45 0.77  0.32 -0.12    -0.92 0.03
+Prevalence    2 11 0.44 0.10   0.42    0.43 0.12 0.29 0.60  0.31  0.16    -1.33 0.03
 
  ^DJI signals index performance test by month: 
     YearMonth  Accuracy Prevalence  N
@@ -443,9 +470,10 @@ Prevalence    2 10 0.44 0.10   0.42    0.44 0.12 0.29 0.60  0.31  0.11    -1.51 
  8:   2021-05 0.8000000  0.6500000 20
  9:   2021-06 0.6363636  0.8181818 22
 10:   2021-07 0.4285714  0.5714286 21
+11:   2021-08 0.4761905  0.5714286 21
            vars  n mean   sd median trimmed  mad  min  max range  skew kurtosis   se
-Accuracy      1 10 0.65 0.12   0.66    0.66 0.12 0.43 0.80  0.37 -0.45    -1.24 0.04
-Prevalence    2 10 0.67 0.11   0.67    0.67 0.10 0.47 0.82  0.34 -0.24    -1.05 0.03
+Accuracy      1 11 0.64 0.13   0.64    0.64 0.15 0.43 0.80  0.37 -0.25    -1.53 0.04
+Prevalence    2 11 0.66 0.10   0.65    0.66 0.11 0.47 0.82  0.34 -0.07    -1.14 0.03
 
  ^FTSE signals index performance test by month: 
     YearMonth  Accuracy Prevalence  N
@@ -459,9 +487,10 @@ Prevalence    2 10 0.67 0.11   0.67    0.67 0.10 0.47 0.82  0.34 -0.24    -1.05 
  8:   2021-05 0.8421053  0.5789474 19
  9:   2021-06 0.5454545  0.7727273 22
 10:   2021-07 0.5454545  0.5909091 22
+11:   2021-08 0.6000000  0.6000000 20
            vars  n mean   sd median trimmed  mad  min  max range skew kurtosis   se
-Accuracy      1 10 0.62 0.17   0.58    0.61 0.19 0.43 0.90  0.47 0.42    -1.44 0.05
-Prevalence    2 10 0.68 0.10   0.70    0.68 0.13 0.55 0.85  0.30 0.09    -1.58 0.03
+Accuracy      1 11 0.62 0.16    0.6    0.61 0.22 0.43 0.90  0.47 0.48    -1.24 0.05
+Prevalence    2 11 0.68 0.10    0.7    0.67 0.15 0.55 0.85  0.30 0.24    -1.52 0.03
 
  ^GSPC signals index performance test by month: 
     YearMonth  Accuracy Prevalence  N
@@ -475,9 +504,10 @@ Prevalence    2 10 0.68 0.10   0.70    0.68 0.13 0.55 0.85  0.30 0.09    -1.58 0
  8:   2021-05 0.8000000  0.6500000 20
  9:   2021-06 0.6818182  0.8181818 22
 10:   2021-07 0.6190476  0.8571429 21
+11:   2021-08 0.5238095  0.5238095 21
            vars  n mean   sd median trimmed  mad  min  max range  skew kurtosis   se
-Accuracy      1 10 0.66 0.08   0.67    0.66 0.09 0.55 0.80  0.25  0.08    -1.38 0.03
-Prevalence    2 10 0.67 0.14   0.67    0.68 0.15 0.42 0.86  0.44 -0.38    -1.14 0.04
+Accuracy      1 11 0.65 0.09   0.67    0.65 0.10 0.52 0.80  0.28  0.09    -1.40 0.03
+Prevalence    2 11 0.66 0.14   0.65    0.66 0.19 0.42 0.86  0.44 -0.19    -1.34 0.04
 
  ^IBEX signals index performance test by month: 
     YearMonth  Accuracy Prevalence  N
@@ -491,9 +521,10 @@ Prevalence    2 10 0.67 0.14   0.67    0.68 0.15 0.42 0.86  0.44 -0.38    -1.14 
  8:   2021-05 0.7619048  0.6190476 21
  9:   2021-06 0.5000000  0.4545455 22
 10:   2021-07 0.5000000  0.8636364 22
+11:   2021-08 0.4285714  0.6666667 21
            vars  n mean   sd median trimmed  mad  min  max range skew kurtosis   se
-Accuracy      1 10 0.63 0.13   0.62    0.62 0.17 0.48 0.85  0.37 0.27    -1.56 0.04
-Prevalence    2 10 0.55 0.16   0.55    0.54 0.14 0.27 0.86  0.59 0.22    -0.70 0.05
+Accuracy      1 11 0.61 0.14   0.59    0.60 0.16 0.43 0.85  0.42 0.29    -1.48 0.04
+Prevalence    2 11 0.56 0.16   0.60    0.56 0.15 0.27 0.86  0.59 0.07    -0.68 0.05
 
  ^IXIC signals index performance test by month: 
     YearMonth  Accuracy Prevalence  N
@@ -507,9 +538,10 @@ Prevalence    2 10 0.55 0.16   0.55    0.54 0.14 0.27 0.86  0.59 0.22    -0.70 0
  8:   2021-05 0.9000000  0.6500000 20
  9:   2021-06 0.4545455  0.6818182 22
 10:   2021-07 0.5238095  0.7619048 21
-           vars  n mean   sd median trimmed  mad  min  max range skew kurtosis   se
-Accuracy      1 10 0.66 0.15   0.63    0.66 0.13 0.45 0.90  0.45  0.3    -1.54 0.05
-Prevalence    2 10 0.71 0.10   0.70    0.72 0.09 0.50 0.85  0.35 -0.4    -0.74 0.03
+11:   2021-08 0.6666667  0.8095238 21
+           vars  n mean   sd median trimmed  mad  min  max range  skew kurtosis   se
+Accuracy      1 11 0.66 0.14   0.63    0.66 0.13 0.45 0.90  0.45  0.31    -1.36 0.04
+Prevalence    2 11 0.72 0.10   0.71    0.73 0.10 0.50 0.85  0.35 -0.53    -0.65 0.03
 
  ^N225 signals index performance test by month: 
     YearMonth  Accuracy Prevalence  N
@@ -523,9 +555,10 @@ Prevalence    2 10 0.71 0.10   0.70    0.72 0.09 0.50 0.85  0.35 -0.4    -0.74 0
  8:   2021-05 0.7222222  0.5555556 18
  9:   2021-06 0.3636364  0.5454545 22
 10:   2021-07 0.4000000  0.5000000 20
+11:   2021-08 0.3809524  0.4761905 21
            vars  n mean   sd median trimmed  mad  min  max range  skew kurtosis   se
-Accuracy      1 10 0.62 0.16   0.64    0.62 0.15 0.36 0.86  0.49 -0.27    -1.31 0.05
-Prevalence    2 10 0.49 0.07   0.49    0.49 0.07 0.33 0.59  0.26 -0.54    -0.61 0.02
+Accuracy      1 11 0.60 0.17   0.61    0.60 0.18 0.36 0.86  0.49 -0.12    -1.51 0.05
+Prevalence    2 11 0.49 0.07   0.48    0.49 0.07 0.33 0.59  0.26 -0.53    -0.36 0.02
 
  ^NSEBANK signals index performance test by month: 
     YearMonth  Accuracy Prevalence  N
@@ -539,9 +572,10 @@ Prevalence    2 10 0.49 0.07   0.49    0.49 0.07 0.33 0.59  0.26 -0.54    -0.61 
  8:   2021-05 0.9000000  0.7000000 20
  9:   2021-06 0.6363636  0.6363636 22
 10:   2021-07 0.5714286  0.5714286 21
+11:   2021-08 0.5500000  0.5000000 20
            vars  n mean   sd median trimmed  mad  min  max range  skew kurtosis   se
-Accuracy      1 10 0.63 0.13   0.65    0.63 0.05 0.43 0.90  0.47  0.18    -0.45 0.04
-Prevalence    2 10 0.62 0.09   0.62    0.63 0.06 0.42 0.76  0.34 -0.48    -0.37 0.03
+Accuracy      1 11 0.63 0.13   0.64    0.62 0.07 0.43 0.90  0.47  0.32    -0.28 0.04
+Prevalence    2 11 0.61 0.10   0.60    0.61 0.05 0.42 0.76  0.34 -0.27    -0.80 0.03
 
  ^NSEI signals index performance test by month: 
     YearMonth  Accuracy Prevalence  N
@@ -555,12 +589,13 @@ Prevalence    2 10 0.62 0.09   0.62    0.63 0.06 0.42 0.76  0.34 -0.48    -0.37 
  8:   2021-05 0.7500000  0.6000000 20
  9:   2021-06 0.6818182  0.5454545 22
 10:   2021-07 0.6190476  0.5714286 21
+11:   2021-08 0.5000000  0.5500000 20
            vars  n mean   sd median trimmed  mad  min  max range  skew kurtosis   se
-Accuracy      1 10 0.59 0.11   0.61    0.59 0.11 0.42 0.75  0.33 -0.31    -1.23 0.03
-Prevalence    2 10 0.57 0.09   0.56    0.57 0.05 0.42 0.71  0.29  0.14    -0.95 0.03
+Accuracy      1 11 0.58 0.11   0.60    0.58 0.12 0.42 0.75  0.33 -0.14    -1.30 0.03
+Prevalence    2 11 0.57 0.08   0.55    0.56 0.04 0.42 0.71  0.29  0.19    -0.71 0.02
 
 
 ##########################################
-Portfolio accuracy:  0.6088571 SD: 0.1154286
-        prevalence:  0.5425714 SD: 0.104
+Portfolio accuracy:  0.5991429 SD: 0.1182857
+        prevalence:  0.542 SD: 0.1034286
 ##########################################
