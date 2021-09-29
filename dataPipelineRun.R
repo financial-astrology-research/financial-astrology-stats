@@ -29,4 +29,4 @@ planetPositionsAssetStatsPrepare()
 # Produce moon phase / price statistics CSV tables for watchlist assets.
 moonPhaseAssetStatsPrepare()
 # Produce next upcoming N days mundane events assets report for watchlist symbols.
-nDailyMundaneEventsReport(35)
+nDailyMundaneEventsReport(60)
