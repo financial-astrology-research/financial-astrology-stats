@@ -1,0 +1,230 @@
+
+PLANET SPEED PHASE:
+
+          Date  Planet Speed SpeedPhase Buy Sell DaysN BuyDays% SellDays%
+ 1: 2022-01-19   Ceres  0.03 Stationary  32   31    63     0.51      0.49
+ 2: 2022-01-19  Chiron  0.03     Direct 492  511  1003     0.49      0.51
+ 3: 2022-01-19    Juno  0.40     Direct 658  718  1376     0.48      0.52
+ 4: 2022-01-19 Jupiter  0.22     Direct 562  600  1162     0.48      0.52
+ 5: 2022-01-19    Mars  0.72     Direct 825  870  1695     0.49      0.51
+ 6: 2022-01-19 Mercury -0.86 Retrograde 165  188   353     0.47      0.53
+ 7: 2022-01-19    Moon 12.36     Direct 898  953  1851     0.49      0.51
+ 8: 2022-01-19 Neptune  0.03     Direct 472  480   952     0.50      0.50
+ 9: 2022-01-19   NNode  1.00     Direct 898  953  1851     0.49      0.51
+10: 2022-01-19  Pallas  0.30     Direct 643  727  1370     0.47      0.53
+11: 2022-01-19  Pholus  0.04     Direct 453  483   936     0.48      0.52
+12: 2022-01-19   Pluto  0.03     Direct 463  483   946     0.49      0.51
+13: 2022-01-19  Saturn  0.12     Direct 513  540  1053     0.49      0.51
+14: 2022-01-19   SNode  1.00     Direct 898  953  1851     0.49      0.51
+15: 2022-01-19     Sun  1.02     Direct 898  953  1851     0.49      0.51
+16: 2022-01-19  Uranus  0.00 Stationary  57   63   120     0.48      0.52
+17: 2022-01-19   Venus -0.42 Retrograde  64   63   127     0.50      0.50
+18: 2022-01-19   Vesta  0.53     Direct 704  720  1424     0.49      0.51
+
+PLANET RYTHM:
+
+          Date  Planet  Quality Buy Sell DaysN BuyDays% SellDays%
+ 1: 2022-01-19   Ceres    Fixed 289  353   642     0.45      0.55
+ 2: 2022-01-19  Chiron Cardinal 592  580  1172     0.51      0.49
+ 3: 2022-01-19    Juno Cardinal 377  400   777     0.49      0.51
+ 4: 2022-01-19 Jupiter  Mutable 208  257   465     0.45      0.55
+ 5: 2022-01-19    Mars  Mutable 251  257   508     0.49      0.51
+ 6: 2022-01-19 Mercury    Fixed 291  327   618     0.47      0.53
+ 7: 2022-01-19    Moon    Fixed 301  317   618     0.49      0.51
+ 8: 2022-01-19 Neptune  Mutable 898  953  1851     0.49      0.51
+ 9: 2022-01-19   NNode    Fixed 269  297   566     0.48      0.52
+10: 2022-01-19  Pallas  Mutable 285  260   545     0.52      0.48
+11: 2022-01-19  Pholus Cardinal 580  561  1141     0.51      0.49
+12: 2022-01-19   Pluto Cardinal 898  953  1851     0.49      0.51
+13: 2022-01-19  Saturn    Fixed 249  198   447     0.56      0.44
+14: 2022-01-19   SNode    Fixed 269  297   566     0.48      0.52
+15: 2022-01-19     Sun Cardinal 303  301   604     0.50      0.50
+16: 2022-01-19  Uranus    Fixed 594  576  1170     0.51      0.49
+17: 2022-01-19   Venus Cardinal 294  346   640     0.46      0.54
+18: 2022-01-19   Vesta Cardinal 253  263   516     0.49      0.51
+
+PLANET ELEMENT:
+
+          Date  Planet Element Buy Sell DaysN BuyDays% SellDays%
+ 1: 2022-01-19   Ceres   Earth 153  161   314     0.49      0.51
+ 2: 2022-01-19  Chiron    Fire 592  580  1172     0.51      0.49
+ 3: 2022-01-19    Juno   Earth 287  317   604     0.48      0.52
+ 4: 2022-01-19 Jupiter   Water 219  251   470     0.47      0.53
+ 5: 2022-01-19    Mars    Fire 233  277   510     0.46      0.54
+ 6: 2022-01-19 Mercury     Air 223  210   433     0.52      0.48
+ 7: 2022-01-19    Moon    Fire 218  248   466     0.47      0.53
+ 8: 2022-01-19 Neptune   Water 898  953  1851     0.49      0.51
+ 9: 2022-01-19   NNode   Earth  67  112   179     0.37      0.63
+10: 2022-01-19  Pallas   Water 242  243   485     0.50      0.50
+11: 2022-01-19  Pholus   Earth 580  561  1141     0.51      0.49
+12: 2022-01-19   Pluto   Earth 898  953  1851     0.49      0.51
+13: 2022-01-19  Saturn     Air 249  198   447     0.56      0.44
+14: 2022-01-19   SNode   Water  67  112   179     0.37      0.63
+15: 2022-01-19     Sun   Earth 218  239   457     0.48      0.52
+16: 2022-01-19  Uranus   Earth 594  576  1170     0.51      0.49
+17: 2022-01-19   Venus   Earth 207  196   403     0.51      0.49
+18: 2022-01-19   Vesta   Earth 379  386   765     0.50      0.50
+
+PLANET ZODIAC SIGN:
+
+          Date  Planet     ZodSign Buy Sell DaysN BuyDays% SellDays%
+ 1: 2022-01-19   Ceres      Taurus  76   92   168     0.45      0.55
+ 2: 2022-01-19  Chiron       Aries 592  580  1172     0.51      0.49
+ 3: 2022-01-19    Juno   Capricorn 164  167   331     0.50      0.50
+ 4: 2022-01-19 Jupiter      Pisces  34   42    76     0.45      0.55
+ 5: 2022-01-19    Mars Sagittarius  44   50    94     0.47      0.53
+ 6: 2022-01-19 Mercury    Aquarius  79   70   149     0.53      0.47
+ 7: 2022-01-19    Moon         Leo  63   83   146     0.43      0.57
+ 8: 2022-01-19 Neptune      Pisces 898  953  1851     0.49      0.51
+ 9: 2022-01-19  Pallas      Pisces 192  168   360     0.53      0.47
+10: 2022-01-19  Pholus   Capricorn 580  561  1141     0.51      0.49
+11: 2022-01-19   Pluto   Capricorn 898  953  1851     0.49      0.51
+12: 2022-01-19  Saturn    Aquarius 249  198   447     0.56      0.44
+13: 2022-01-19     Sun   Capricorn  75   72   147     0.51      0.49
+14: 2022-01-19  Uranus      Taurus 594  576  1170     0.51      0.49
+15: 2022-01-19   Venus   Capricorn  75   73   148     0.51      0.49
+16: 2022-01-19   Vesta   Capricorn  69   77   146     0.47      0.53
+
+PLANET DECAN:
+
+          Date  Planet         Decan Buy Sell DaysN BuyDays% SellDays%
+ 1: 2022-01-19   Ceres      TaurusD3  27   29    56     0.48      0.52
+ 2: 2022-01-19  Chiron       AriesD1 495  494   989     0.50      0.50
+ 3: 2022-01-19    Juno   CapricornD3  16   11    27     0.59      0.41
+ 4: 2022-01-19 Jupiter      PiscesD1  34   42    76     0.45      0.55
+ 5: 2022-01-19    Mars SagittariusD3   9   23    32     0.28      0.72
+ 6: 2022-01-19 Mercury    AquariusD1  14   16    30     0.47      0.53
+ 7: 2022-01-19    Moon         LeoD2  21   28    49     0.43      0.57
+ 8: 2022-01-19 Neptune      PiscesD3 218  186   404     0.54      0.46
+ 9: 2022-01-19  Pallas      PiscesD3  75   66   141     0.53      0.47
+10: 2022-01-19  Pholus   CapricornD1 580  561  1141     0.51      0.49
+11: 2022-01-19   Pluto   CapricornD3 616  619  1235     0.50      0.50
+12: 2022-01-19  Saturn    AquariusD2  76   65   141     0.54      0.46
+13: 2022-01-19     Sun   CapricornD3  25   23    48     0.52      0.48
+14: 2022-01-19  Uranus      TaurusD2 162  145   307     0.53      0.47
+15: 2022-01-19   Venus   CapricornD2  31   24    55     0.56      0.44
+16: 2022-01-19   Vesta   CapricornD1  46   54   100     0.46      0.54
+
+PLANET ARAB MANSION:
+
+          Date  Planet ArabMansion Buy Sell DaysN BuyDays% SellDays%
+ 1: 2022-01-19   Ceres       Haq'a  41   33    74     0.55      0.45
+ 2: 2022-01-19  Chiron     Saratan 582  564  1146     0.51      0.49
+ 3: 2022-01-19    Juno        Bula  72   58   130     0.55      0.45
+ 4: 2022-01-19    Mars       Balda  15   26    41     0.37      0.63
+ 5: 2022-01-19 Mercury       Su'ud  18   21    39     0.46      0.54
+ 6: 2022-01-19    Moon       Zubra  24   38    62     0.39      0.61
+ 7: 2022-01-19 Neptune        Risa 432  397   829     0.52      0.48
+ 8: 2022-01-19   NNode       Haq'a  35   22    57     0.61      0.39
+ 9: 2022-01-19  Pallas        Risa  92   80   172     0.53      0.47
+10: 2022-01-19  Pholus       Dabih 580  561  1141     0.51      0.49
+11: 2022-01-19   Pluto       Su'ud  79   65   144     0.55      0.45
+12: 2022-01-19  Saturn      Ahbija 104   76   180     0.58      0.42
+13: 2022-01-19   SNode       Saula  35   22    57     0.61      0.39
+14: 2022-01-19     Sun       Su'ud  23   40    63     0.37      0.63
+15: 2022-01-19  Uranus     Dabaran 209  194   403     0.52      0.48
+16: 2022-01-19   Venus        Bula  33   29    62     0.53      0.47
+17: 2022-01-19   Vesta       Dabih  50   57   107     0.47      0.53
+
+PLANET VEDIC MANSION:
+
+          Date  Planet     VedicMansion Buy Sell DaysN BuyDays% SellDays%
+ 1: 2022-01-19   Ceres         Krittica  43   33    76     0.57      0.43
+ 2: 2022-01-19  Chiron UttaraBhadrapada 659  672  1331     0.50      0.50
+ 3: 2022-01-19    Juno     UttaraAshada  23   12    35     0.66      0.34
+ 4: 2022-01-19 Jupiter      Shatabhisha  28   34    62     0.45      0.55
+ 5: 2022-01-19    Mars             Mula  12   31    43     0.28      0.72
+ 6: 2022-01-19 Mercury         Shravana  33   29    62     0.53      0.47
+ 7: 2022-01-19    Moon         Ashlesha  24   38    62     0.39      0.61
+ 8: 2022-01-19 Neptune  PurvaBhadrapada 679  679  1358     0.50      0.50
+ 9: 2022-01-19   NNode         Krittica  31   21    52     0.60      0.40
+10: 2022-01-19  Pallas  PurvaBhadrapada  91   84   175     0.52      0.48
+11: 2022-01-19  Pholus             Mula 898  953  1851     0.49      0.51
+12: 2022-01-19   Pluto     UttaraAshada 575  563  1138     0.51      0.49
+13: 2022-01-19  Saturn         Shravana 180  132   312     0.58      0.42
+14: 2022-01-19   SNode         Anuradha  98   80   178     0.55      0.45
+15: 2022-01-19     Sun     UttaraAshada  29   37    66     0.44      0.56
+16: 2022-01-19  Uranus          Bharani 261  228   489     0.53      0.47
+17: 2022-01-19   Venus      PurvaAshada  37   33    70     0.53      0.47
+18: 2022-01-19   Vesta             Mula  72   94   166     0.43      0.57
+
+LAST MOON PHASE:
+
+         Date MoonPhase Buy Sell DaysN BuyDays% SellDays%
+1: 2022-01-19      Full 439  487   926     0.47      0.53
+
+LAST MOON PHASE IN ZODIAC SIGN:
+
+         Date MoonPhase ZodSign Buy Sell DaysN BuyDays% SellDays%
+1: 2022-01-19      Full     Leo  37   51    88     0.42      0.58
+
+PLANETS ASPECTS:
+
+          Date meanOrb minOrb maxOrb startHour endHour exactHour effHours PlanetX       Aspect PlanetY Buy Sell DaysN BuyDays% SellDays%
+ 1: 2022-01-19    0.96   0.19   1.72         0       3         0        4    Moon     Quintile   Ceres  52   82   134     0.39      0.61
+ 2: 2022-01-19    0.81   0.07   1.55         0       3         0        4    Moon   BiQuintile   Vesta  67   67   134     0.50      0.50
+ 3: 2022-01-19    0.81   0.14   1.70         0       4         1        5    Moon     Quintile   NNode  70   64   134     0.52      0.48
+ 4: 2022-01-19    0.91   0.10   1.96         0       5         1        6    Moon       Square  Uranus  68   68   136     0.50      0.50
+ 5: 2022-01-19    0.79   0.19   1.64         0       5         2        6    Moon SesquiSquare    Mars  62   71   133     0.47      0.53
+ 6: 2022-01-19    1.03   0.24   1.82         0       7         3        8    Moon   BiQuintile  Pholus  73   64   137     0.53      0.47
+ 7: 2022-01-19    0.93   0.12   1.72         3       9         6        7    Moon     Quincunx   Venus  63   67   130     0.48      0.52
+ 8: 2022-01-19    1.02   0.15   1.90         4      11         7        8    Moon   Opposition  Saturn  32   36    68     0.47      0.53
+ 9: 2022-01-19    1.04   0.22   1.85         6      13         9        8    Moon   BiQuintile Neptune  63   72   135     0.47      0.53
+10: 2022-01-19    1.01   0.17   1.85         7      14        10        8    Moon   BiQuintile  Pallas  70   64   134     0.52      0.48
+11: 2022-01-19    1.04   0.19   1.89         7      14        10        8    Moon    BiSeptile   SNode  76   64   140     0.54      0.46
+12: 2022-01-19    0.08   0.00   0.15         0      23        12       24   Vesta      Sextile Jupiter  17    9    26     0.65      0.35
+13: 2022-01-19    0.12   0.01   0.27         0      23        15       24   Venus SesquiSquare   Ceres  16   12    28     0.57      0.43
+14: 2022-01-19    0.92   0.00   1.61        14      20        17        7    Moon   BiQuintile   Venus  62   65   127     0.49      0.51
+15: 2022-01-19    0.23   0.01   0.53         0      23        18       24    Mars  SemiSextile   Pluto  11   22    33     0.33      0.67
+16: 2022-01-19    1.11   0.01   2.00        14      22        18        9    Moon SesquiSquare   Vesta  61   73   134     0.46      0.54
+17: 2022-01-19    0.19   0.01   0.44         0      23        19       24   Vesta   BiQuintile   NNode  34   51    85     0.40      0.60
+18: 2022-01-19    0.19   0.01   0.44         0      23        19       24   Vesta SemiQuintile   SNode  34   51    85     0.40      0.60
+19: 2022-01-19    0.78   0.00   1.56        18      23        21        6    Moon     Quincunx Neptune  56   78   134     0.42      0.58
+20: 2022-01-19    0.78   0.06   1.50        18      23        21        6    Moon SesquiSquare  Pholus  62   72   134     0.46      0.54
+21: 2022-01-19    0.76   0.09   1.61        19      23        22        5    Moon     Quincunx  Pallas  69   66   135     0.51      0.49
+22: 2022-01-19    0.00   0.00   0.00         0      23        23       24   NNode   Opposition   SNode 898  953  1851     0.49      0.51
+23: 2022-01-19    0.52   0.48   0.56         0      23        NA       24   Ceres  Conjunction   NNode  44   42    86     0.51      0.49
+24: 2022-01-19    1.97   1.96   1.97         0      23        NA       24   Ceres   BiQuintile  Pholus  41   40    81     0.51      0.49
+25: 2022-01-19    1.50   1.49   1.50         0      23        NA       24   Ceres        Trine   Pluto  12   20    32     0.38      0.62
+26: 2022-01-19    1.04   1.00   1.08         0      23        NA       24   Ceres    BiSeptile  Saturn   6   13    19     0.32      0.68
+27: 2022-01-19    0.52   0.48   0.56         0      23        NA       24   Ceres   Opposition   SNode  44   42    86     0.51      0.49
+28: 2022-01-19    0.33   0.32   0.33         0      23        NA       24  Chiron     Quintile   Pluto 367  366   733     0.50      0.50
+29: 2022-01-19    1.95   1.94   1.97         0      23        NA       24  Chiron  SemiSextile  Uranus 744  803  1547     0.48      0.52
+30: 2022-01-19    1.86   1.73   2.00         5      23        NA       19    Juno  Conjunction   Pluto  32   23    55     0.58      0.42
+31: 2022-01-19    1.61   1.52   1.70         0      23        NA       24 Jupiter      Sextile  Pholus  10   11    21     0.48      0.52
+32: 2022-01-19    1.85   1.77   1.94         0      23        NA       24 Jupiter SemiQuintile   Pluto  88  107   195     0.45      0.55
+33: 2022-01-19    1.67   1.36   1.97         2      23        NA       22    Mars     Quincunx   Ceres  16   19    35     0.46      0.54
+34: 2022-01-19    0.47   0.14   0.81         0      23        NA       24    Mars    BiSeptile  Chiron  23   12    35     0.66      0.34
+35: 2022-01-19    1.70   1.54   1.86         0      23        NA       24    Mars  SemiSextile    Juno  14   11    25     0.56      0.44
+36: 2022-01-19    0.52   0.17   0.87         0      23        NA       24    Mars SesquiSquare  Uranus  22    9    31     0.71      0.29
+37: 2022-01-19    0.93   0.48   1.40         0      23        NA       24 Mercury      Sextile  Chiron  14   12    26     0.54      0.46
+38: 2022-01-19    1.69   1.39   1.97         9      23        NA       15 Mercury   SemiSquare Neptune  20   19    39     0.51      0.49
+39: 2022-01-19    1.38   0.78   1.96         0      23        NA       24 Mercury   SemiSquare  Pallas  23   48    71     0.32      0.68
+40: 2022-01-19    1.73   1.46   2.00        10      23        NA       14 Mercury  SemiSextile  Pholus  15   30    45     0.33      0.67
+41: 2022-01-19    1.45   1.41   1.49         0      23        NA       24   NNode   BiQuintile  Pholus  46   53    99     0.46      0.54
+42: 2022-01-19    1.56   1.48   1.64         0      23        NA       24   NNode    BiSeptile  Saturn   8   15    23     0.35      0.65
+43: 2022-01-19    0.48   0.35   0.61         0      23        NA       24  Pallas  Conjunction Neptune  29   28    57     0.51      0.49
+44: 2022-01-19    1.56   1.47   1.65         0      23        NA       24  Pallas SemiQuintile  Saturn  27   24    51     0.53      0.47
+45: 2022-01-19    1.98   1.95   2.00         0      15        NA       16  Saturn SemiQuintile  Pholus 106   81   187     0.57      0.43
+46: 2022-01-19    1.45   1.41   1.49         0      23        NA       24   SNode SemiQuintile  Pholus  46   53    99     0.46      0.54
+47: 2022-01-19    1.32   0.85   1.80         0      23        NA       24     Sun        Trine   Ceres  16   21    37     0.43      0.57
+48: 2022-01-19    0.97   0.58   1.35         0      23        NA       24     Sun SemiQuintile Jupiter  19   28    47     0.40      0.60
+49: 2022-01-19    0.80   0.29   1.32         0      23        NA       24     Sun        Trine   NNode  17   29    46     0.37      0.63
+50: 2022-01-19    0.80   0.29   1.32         0      23        NA       24     Sun      Sextile   SNode  17   29    46     0.37      0.63
+51: 2022-01-19    1.52   1.05   1.98         0      22        NA       23     Sun    BiSeptile  Uranus  27   17    44     0.61      0.39
+52: 2022-01-19    1.28   1.26   1.30         0      23        NA       24  Uranus    BiSeptile   Pluto 298  276   574     0.52      0.48
+53: 2022-01-19    0.46   0.29   0.63         0      23        NA       24   Venus SesquiSquare   NNode  27   19    46     0.59      0.41
+54: 2022-01-19    0.90   0.65   1.15         0      23        NA       24   Venus  SemiSextile  Saturn  22   20    42     0.52      0.48
+55: 2022-01-19    0.46   0.29   0.63         0      23        NA       24   Venus   SemiSquare   SNode  27   19    46     0.59      0.41
+56: 2022-01-19    0.35   0.12   0.59         0      23        NA       24   Vesta   BiQuintile   Ceres  49   38    87     0.56      0.44
+57: 2022-01-19    1.62   1.38   1.85         0      23        NA       24   Vesta  Conjunction  Pholus  21   35    56     0.38      0.62
+          Date meanOrb minOrb maxOrb startHour endHour exactHour effHours PlanetX       Aspect PlanetY Buy Sell DaysN BuyDays% SellDays%
+
+MACHINE LEARNING PREDICTIONS:
+
+                                   ModelID       Date         P1         P2         P3         P4          P5 Signal
+     ZEC-USD-predict-ensamble-gakknn-UADBC 2022-01-19  0.0026111 -0.0223330 -0.0022400  0.0236340 -0.00381270   Sell
+       ZEC-USD-predict-ensamble-gakknn-UAC 2022-01-19  0.0747300 -0.0018420  0.0695008  0.0524210  0.06655500    Buy
+       ZEC-USD-predict-ensamble-gakknn-VDL 2022-01-19 -0.0300632 -0.0347751 -0.0352640 -0.0515088 -0.02384777   Sell
+       ZEC-USD-predict-ensamble-gakknn-PCA 2022-01-19 -0.0146320 -0.0109931 -0.0146324 -0.0434310 -0.01592800   Sell
+ ZEC-USD-predict-ensamble-gakknn-NAABCAABB 2022-01-19 -0.0533967 -0.0907104 -0.0704420 -0.0674280 -0.03721990   Sell
