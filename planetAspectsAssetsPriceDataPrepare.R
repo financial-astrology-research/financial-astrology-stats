@@ -5,6 +5,7 @@
 
 library(data.table)
 library(quantmod)
+library(stringr)
 
 source("./configUtils.R")
 source("./fileSystemUtilities.R")
@@ -66,6 +67,8 @@ assetPriceDataPriceAugment <- function(symbolID) {
 
   # Filter observations with missing open price.
   assetPriceTable <- assetPriceTable[!is.na(Open)]
+  assetPriceTable[, Date := str_replace(Date, '^X', '')]
+  assetPriceTable[, Date := str_replace_all(Date, '\\.', '-')]
   assetPriceTable[, Date := as.Date(Date, format = dateFormat)]
   setkey(assetPriceTable, 'Date')
 
